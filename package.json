@@ -14,8 +14,7 @@
     "type": "git",
     "url": ""
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Chicago Tribune News Applications",
   "license": "MIT",
   "devDependencies": {
@@ -28,6 +27,8 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-sass": "^2.0.0",
+    "html-entities": "^1.2.1",
+    "htmlparser2": "^3.9.2",
     "minifyify": "^7.3.3",
     "trib-styles": "git+ssh://git@tribune.unfuddle.com:tribune/trib-styles.git"
   },
@@ -39,5 +40,5 @@
     "> 1%",
     "last 2 versions",
     "ie >= 11"
-  ] 
+  ]
 }

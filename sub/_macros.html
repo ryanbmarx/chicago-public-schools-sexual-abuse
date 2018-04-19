@@ -1,0 +1,228 @@
+{% macro breaker(text, num=False) %}
+  {% if num %}
+    {# <div class='breaker breaker--{{ num }}'> #}
+      <h3>{{ text }}</h3>
+    {# </div> #}
+  {% else %}
+    <h3>{{ text }}</h3>
+  {% endif %}
+{% endmacro %}
+
+{% macro photo_arr(design_str, p2p_collection_slug_str, image_width, display_caption_bool, display_credit_bool, add_class_str, override_caption) %}
+  <div class='photo-arr photo-arr--{{ design_str }} {{ add_class_str }}'>
+  {% if design_str|int == 0 %}
+    {# ZERO means a gallery #}
+    {{ gallery(p2p_collection_slug_str, display_caption_bool, display_credit_bool, image_width) }}
+  {% else %}
+    {# OTHERWISE WE'LL JUST USE CSS TO ARRANGE THE PHOTOS #}
+    {% set limit = design_str|get_photo_limit %}
+    {% for img in get_p2p_content_item(p2p_collection_slug_str)['related_items'][0:limit] %}
+      {{ add_p2p_photo(img['slug'], "image--lazy", image_width, display_caption_bool, display_credit_bool) }}
+    {% endfor %}
+  {% endif %}
+  {% if override_caption %}
+    <p class='photo-arr__override-caption'>{{ override_caption }}</p>
+  {% endif %}
+  </div>
+  {# {{ get_p2p_content_item(p2p_collection_slug_str) }} #}
+{% endmacro %}
+
+
+{% macro gallery(slug, show_caption_bool, show_credit_bool, image_width) %}
+  {# TODO: Make photo size respect the river #}
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      {% for img in get_p2p_content_item(slug)['related_items'] %}
+        {% if show_caption_bool %}
+          {% set caption = img.content_item.caption %}
+        {% else %}
+          {% set caption = False %}
+        {% endif %}
+
+        {% if show_credit_bool %}
+          {% set credit = img.content_item.credit %}
+        {% else %}
+          {% set credit = False %}
+        {% endif %}
+
+        <div class="swiper-slide">
+          {{ add_p2p_photo(img['slug'], "", image_width, caption, credit, True) }}
+          {# <div class="swiper-lazy-preloader"></div> #}
+        </div>
+      {% endfor %}
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- If we need scrollbar -->
+    {# <div class="swiper-scrollbar"></div> #}
+</div>
+{% endmacro %}
+
+{% macro aside(aside_type, add_class) %}
+    {% if aside_type == 'subscribe' or aside_type == "respond" %}
+      {% set refer_url = refers[aside_type + "_url"]['text']|process_text2(False)|e %}
+    {% else %}
+      {% set refer_url = "http://" + ROOT_URL + "/" + refers[aside_type + "_url"]['text']|process_text2(False)|e %}
+    {% endif %}
+
+    <aside class='refer refer--{{ aside_type }} {% if add_class %} {{ add_class }} {% endif %}'>
+        <h3 class='refer__headline'>{{ refers[aside_type + "_headline"]['text']|dumb_to_smart_quotes|process_text2(False) }}</h3>
+        <p class='refer__blurb'>{{ refers[aside_type + "_text"]['text']|dumb_to_smart_quotes|process_text2(False) }}</p>
+        {% if  refers[aside_type + "_url"] and refers[aside_type + "_button_text"] %}
+            <a class='refer__button' href='{{ refer_url|process_text2(False) }}' target="_blank">{{ refers[aside_type + "_button_text"]["text"]|process_text2(False) }}</a>
+        {% endif %}
+    </aside>
+{% endmacro %}
+
+
+{% macro add_photo(url, add_class, caption, alt) %}
+  <figure class='image {{ add_class }}'>
+    <img src='{{ url }}' alt='{{ alt }}'/>
+    <figcaption> {{ caption }}</figcaption>
+</figure>
+{% endmacro %}
+
+{% macro add_p2p_photo(slug, add_class, width, display_caption, display_credit, full_res=False) %}
+  {% set photo = get_p2p_content_item(slug) %}
+  
+  {% if photo|check_if_is_okay_to_publish %}
+  
+    {% set caption = "" %}
+    
+    {% if display_caption or display_credit %}
+      {% set caption = caption + "<figcaption>" %}
+      {# {% set caption = caption + "<figcaption>" + photo.caption|striptags|strip_whitespace %} #}
+    {% endif %}
+    
+    {% if display_caption %}
+      {% set caption = caption + photo.caption|striptags|strip_whitespace %}
+    {% endif %}
+
+    {% if display_credit %}
+      {% set caption = caption + " (" + photo.credit|striptags|strip_whitespace + ")" %}
+    {% endif %}
+
+    {% if display_caption or display_credit %}
+      {% set caption = caption + "</figcaption>" %}
+    {% endif %}
+
+    {% if full_res %}
+      {# {% set src = "src=\'" ~ photo.photo_services_url ~ "/" ~ width ~ "\'" %} #}
+      {% set src = "src='{}/{}'".format(photo.photo_services_url, width) %}
+    {% else %}
+      {% set src = "src='{}/{}'".format(photo.photo_services_url, width) %}
+      {% set full_res_src = "data-full-res-src='{}/{}'".format(photo.photo_services_url, width) %}
+    {% endif %}
+
+      <figure class='image {{ add_class }}'>
+        <img {% if not full_res %} {{ full_res_src|process_text2(False) }} {% endif %} {{ src|process_text2(False) }} alt='{{ photo.title }}' title='{{ photo.title }}'/>
+        {{ caption|process_text2(False) }}
+      </figure>
+    {% else %}
+      <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
+    {% endif %}
+{% endmacro %}
+
+{% macro ad(type, alignment) %}
+    {# returns an advert <div> with the proper alignment classes and data-* attributes to make it fit within this project. #}
+    {% if alignment %}
+        {% set class = "advert--" + alignment%}
+    {% endif %}
+
+    {% if type == "cube" %}
+        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
+    {% elif type == "leaderboard" %}
+        <div class="advert" data-ad-type="leaderboard"></div>
+    {% endif %}
+{% endmacro %}
+
+{% macro keep_scrolling_icon() %}
+  <div class='story-header__scrolling-icon'>
+    <span>{{ scrolling_icon_text }}</span>
+    <i class="fa fa-arrow-circle-down fa-2x" aria-hidden="true"></i>
+  </div>
+
+{% endmacro %}
+
+{% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
+    
+  {% set page_url = "http://" + ROOT_URL + "/" + PATH %}
+  
+  {% set tweet = quote_text + ' #WaterDrain via @chicagotribune' %}
+    <figure class="trib-pullquote">
+{#         <ul class="social-menu">
+            <li>
+                <a target="_blank" href="https://twitter.com/share?url={{ page_url }}&text={{ tweet|urlencode }}">
+                    <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                    <span class="hidden">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.facebook.com/sharer.php?u={{ page_url }}&t={{ quote_text|urlencode }}">
+                    <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                    <span class="hidden">Facebook</span>
+                </a>
+            </li>
+        </ul>
+ #}{#         <p>{{ quote_text|length }} CHARS QUOTE</p>
+        <p>{{ tweet|length }} CHARS TOTAL</p> #}
+        <blockquote>{{ quote_text|dumb_to_smart_quotes|process_text2(False) }}</blockquote>
+        {% if quote_attribution %}
+            <figcaption>
+                {{ quote_attribution|process_text2(False) }}
+                {% if quote_attribution_secondary|process_text2(False) %}<span>{{ quote_attribution_secondary|process_text2(False) }}</span>{% endif %}
+            </figcaption>
+        {% endif %}
+    </figure>
+    
+{% endmacro %}
+
+{% macro add_chart(id, addon_class, url) %}
+    {% if addon_class %}
+        {% set class = addon_class %}
+    {% else %}
+        {% set class = "" %}
+    {% endif %}
+    <div class='chart chart--{{ id }} {{ class }}'>      
+        <div id='{{ id }}' class='graphic-embed' data-iframe-url='{{ url }}'></div>
+        {# {% include "_subtemplates/_loading-spinner.html" %} #}
+    </div>
+{% endmacro %}
+
+{% macro add_video(id, header, video_slug,addon_class="") %}
+
+    {% set video = get_p2p_content_item(video_slug) %}
+
+    {% if addon_class %}
+        {% set class = addon_class %}
+    {% else %}
+        {% set class = "" %}
+    {% endif %}
+   <div class='video {{ class }}'>
+      {% if header %}
+        <h4 class='video__headline'>{{ header }}</h4>
+      {% endif %}
+       <div class='video__wrapper'>
+{#         <div class='video__object-wrapper'> #}
+          <video data-account="3690581440001"
+            data-player="S1vBkbMfe"
+            data-embed="default"
+            data-video-id="ref:{{ video['id'] }}"
+            data-application-id
+            tabindex="-1" 
+            class="video-js"
+            controls></video>
+{#         </div> #}
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro add_author(name, email) %}
+  <span itemprop="author"><a {% if email %}href="mailto:{{- email -}}?subject=Regarding: {{ title }}"{% endif %}><span itemprop="name">{{- name -}}</span></a></span>
+{% endmacro%}
