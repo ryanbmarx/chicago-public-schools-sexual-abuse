@@ -91,7 +91,7 @@
     {{ add_p2p_photo(s.slug, s.add_class, width, display_caption, display_credit) }}
 
 {% elif type == "html" %}
-    {{ s.html_content|process_text2(False) }}
+    {{ s.html_content|process_text(False) }}
 {% elif type|upper == "REFER" %}
     {% if s.add_class %}
         {% set add_class = s.add_class %}
