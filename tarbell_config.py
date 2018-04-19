@@ -4,6 +4,44 @@
 Tarbell project configuration
 """
 
+from flask import Blueprint, g, render_template
+import os.path # for testing for images
+import jinja2 #for context-getting
+
+from itertools import ifilter # For the route
+from tarbell.hooks import register_hook #for the route, too
+
+blueprint = Blueprint('cps-abuse', __name__)
+
+# This is so we don't need to make physical html files for each one. 
+@blueprint.route('/<slug>/index.html')
+def cps_abuse_story(slug):
+    """
+    Make a page for each bar (side or main), based on the unique slug.
+    """
+
+    site = g.current_site
+
+    # get our production bucket for URL building
+    bucket = site.project.S3_BUCKETS.get('production', '')
+    data = site.get_context()
+    rows = data.get('stories', [])
+
+    # get the row we want, defaulting to an empty dictionary
+    row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
+
+    # render a template, using the same template environment as everywhere else
+    return render_template('subtemplates/_abuse-base.html', bucket=bucket, slug=slug, headline=row["headline"], dek=row["dek"],**data)
+
+
+"""
+################################################################
+FILTERS & FUNCTIONS //// #######################################
+################################################################
+"""
+
+
+
 # Google document key for the stories. If not specified, the Archie stuff is skipped
 DOC_KEY = "1NNNFdLZvKiSzG3t2NJ0Ls4YIGPaSq1oM5QhiMd-bYFM"
 
