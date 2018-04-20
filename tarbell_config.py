@@ -41,8 +41,9 @@ SPREADSHEET_KEY = "1SQ_N8fyaimSvjMs62HyATD1CsnssDD7fVWKp14Ta7eQ"
 blueprint = Blueprint('cps-abuse', __name__)
 
 # This is so we don't need to make physical html files for each one. 
-@blueprint.route('/<slug>/')
 @blueprint.route('/<slug>/index.html')
+@blueprint.route('/<slug>')
+@blueprint.route('/<slug>/')
 def cps_abuse_story(slug):
     """
     Make a page for each bar (side or main), based on the unique slug.
@@ -70,15 +71,13 @@ def cps_abuse_story(slug):
         headline=row["headline"]
         dek=row["dek"]
         
-        print ">>>>>>>>>", bucket, "<<<<<<<<<<<<"
-
         # render a template, using the same template environment as everywhere else
         return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, headline=headline, dek=dek,**data)
         
 
 # This is an exception so we don't even need to worry about the main page, either.
-@blueprint.route('/index.html')
-@blueprint.route('/')
+# @blueprint.route('/index.html')
+# @blueprint.route('/')
 def cps_abuse_story_main_page():
     """
     Make a page for each bar (side or main), based on the unique slug.
@@ -101,6 +100,16 @@ def cps_abuse_story_main_page():
 
     # render a template, using the same template environment as everywhere else
     return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug='mainbar', headline=row["headline"], dek=row["dek"],**data)
+
+# @freezer.register_generator
+# def stories():
+#     site = g.current_site
+#     # get our production bucket for URL building
+#     # bucket = site.project.S3_BUCKETS.get('production', '')
+#     data = site.get_context()
+#     rows = data.get('stories', [])
+#     for story in rows:
+#         yield {"slug": story.slug}
 
 
 """
