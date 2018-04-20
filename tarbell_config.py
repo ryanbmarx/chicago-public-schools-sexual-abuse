@@ -24,10 +24,6 @@ import htmlmin # to minify html
 
 import codecs, archieml
 from subprocess import call
-# from collections import OrderedDict
-# from jinja2 import Markup
-# from jinja2.exceptions import TemplateNotFound
-# from pprint import pprint
 from apiclient import errors
 
 # imports bc copied blueprint functions #
@@ -68,14 +64,26 @@ def cps_abuse_story(slug):
     # get the row we want, defaulting to an empty dictionary
     row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
 
-    # render a template, using the same template environment as everywhere else
-    return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, headline=row["headline"], dek=row["dek"],**data)
+    if row == {}: 
+        # This returned rendered template has no row data, b/c it is empty 
+        return render_template('404.html', bucket=bucket, slug=slug, **data)
 
+    else:
+
+        headline=row["headline"]
+        dek=row["dek"]
+        
+        # render a template, using the same template environment as everywhere else
+        return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, headline=headline, dek=dek,**data)
+        
+    
+
+    
 
 # This is an exception so we don't even need to worry about the main page, either.
 @blueprint.route('/index.html')
 @blueprint.route('/')
-def cps_abuse_story_main_page(slug="mainbar"):
+def cps_abuse_story_main_page():
     """
     Make a page for each bar (side or main), based on the unique slug.
     """
@@ -93,10 +101,10 @@ def cps_abuse_story_main_page(slug="mainbar"):
     rows = data.get('stories', [])
 
     # get the row we want, defaulting to an empty dictionary
-    row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
+    row = next(ifilter(lambda r: r['slug'] == 'mainbar', rows), {})
 
     # render a template, using the same template environment as everywhere else
-    return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug=slug, headline=row["headline"], dek=row["dek"],**data)
+    return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug='mainbar', headline=row["headline"], dek=row["dek"],**data)
 
 
 """

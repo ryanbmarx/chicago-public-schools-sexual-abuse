@@ -21,9 +21,6 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 {% block content %}
 <div class='container'>
 	<div class='river'>
-
-		{{ name, slug, title }}
-
 		{%if headline %}<h1>{{ headline }}</h1>{% endif %}
 		{% if dek %}<h2>{{ dek }}</h2>{% endif %}
 		{% for story_item in story %}
