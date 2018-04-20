@@ -1,6 +1,17 @@
 $navbar-z-index: 10000 !default;
 $nav-speed: 1000ms !default;
 
+@keyframes blurInto{
+	from {
+		filter: blur(100px);
+	}
+
+	to{
+		filter: blur(0)
+	}
+}
+
+
 .carousel{
 	width: 100%;
 	z-index: $navbar-z-index; // Set absurdly high b/c of Leaflet elements
@@ -71,8 +82,11 @@ $nav-speed: 1000ms !default;
 		top: 50%;
 		transform: translate(0, -50%);
 
+		animation: blurInto 2s ease-out 0s 1;
+
 		span{
 			font-weight: 700;
+			animation: blurInto 2s ease-out 1s 1;
 		}
 	}
 
@@ -88,6 +102,11 @@ $nav-speed: 1000ms !default;
 	opacity: 1;
 	transform: translate(0,0);
 	transition: all #{$nav-speed} ease;
+
+	.carousel__stories-list li{
+		filter: blur(0);
+		transition: filter 1s ease-out;
+	}
 }
 
 
@@ -98,6 +117,9 @@ $nav-speed: 1000ms !default;
 		margin-bottom: $grid-gap;
 		padding-bottom: $grid-gap;
 		border-bottom: 1px solid #eee;
+
+		filter: blur(100px);
+		transition: filter 1s ease-out;
 	}	
 }
 
