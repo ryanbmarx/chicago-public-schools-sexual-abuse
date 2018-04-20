@@ -31,6 +31,10 @@ from clint.textui import colored
 from tarbell.utils import puts
 from tarbell.oauth import get_drive_api
 
+# To generate the urls with or without links
+from flask_frozen import Freezer, walk_directory
+
+
 # Google document key for the stories. If not specified, the Archie stuff is skipped
 DOC_KEY = "1NNNFdLZvKiSzG3t2NJ0Ls4YIGPaSq1oM5QhiMd-bYFM"
 
@@ -38,7 +42,7 @@ DOC_KEY = "1NNNFdLZvKiSzG3t2NJ0Ls4YIGPaSq1oM5QhiMd-bYFM"
 SPREADSHEET_KEY = "1SQ_N8fyaimSvjMs62HyATD1CsnssDD7fVWKp14Ta7eQ"
 
 
-blueprint = Blueprint('cps-abuse', __name__)
+blueprint = Blueprint('cps_abuse', __name__)
 
 # This is so we don't need to make physical html files for each one. 
 @blueprint.route('/<slug>/index.html')
@@ -68,11 +72,8 @@ def cps_abuse_story(slug):
 
     else:
 
-        headline=row["headline"]
-        dek=row["dek"]
-        
         # render a template, using the same template environment as everywhere else
-        return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, headline=headline, dek=dek,**data)
+        return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, story_info=row,**data)
         
 
 # This is an exception so we don't even need to worry about the main page, either.
@@ -99,17 +100,21 @@ def cps_abuse_story_main_page():
     row = next(ifilter(lambda r: r['slug'] == 'mainbar', rows), {})
 
     # render a template, using the same template environment as everywhere else
-    return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug='mainbar', headline=row["headline"], dek=row["dek"],**data)
+    return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug='mainbar', headline=row["headline"], dek=row["dek"],story_info=row, **data)
 
-# @freezer.register_generator
-# def stories():
-#     site = g.current_site
-#     # get our production bucket for URL building
-#     # bucket = site.project.S3_BUCKETS.get('production', '')
-#     data = site.get_context()
-#     rows = data.get('stories', [])
-#     for story in rows:
-#         yield {"slug": story.slug}
+def story_urls():
+    # "Generate a URL for every story"
+    site = g.current_site
+    data = site.get_context()
+    stories = data.get('stories', [])
+    
+    for s in stories:
+        yield("cps_abuse.cps_abuse_story", {"slug": s['slug']})
+
+@register_hook('generate')
+def register_stories(site, output_root, extra_context):
+    # "This runs before tarbell builds the static site"
+    site.freezer.register_generator(story_urls)
 
 
 """
