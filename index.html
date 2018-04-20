@@ -13,16 +13,15 @@
 {% block content %}
 <div class='container'>
 	<div class='river'>
-		<small>But this is the main bar, yo</small>
-		{%if headline %}<h1>{{ headline }}</h1>{% endif %}
-		{% if dek %}<h2>{{ dek }}</h2>{% endif %}
-		{% for story_item in story %}
-			{# The story content, from the Archie, is passed directly to the template as var story #}
-			{% set s = story_item %}
-			{% include 'subtemplates/_story-loop.html' %}
-		{% endfor %}
-
-		<p>The slug is <strong><code>{{ slug }}</code></strong></p>
+		<ul>
+			{% for story in stories %}
+				<li>
+					<a href="{{ url_for('cps-abuse.cps_abuse_story', slug=story.slug) }}">
+						{{ story.headline }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
 	</div>
 </div>
 {% endblock content %}
