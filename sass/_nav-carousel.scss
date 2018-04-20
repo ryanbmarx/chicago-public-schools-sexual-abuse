@@ -11,12 +11,18 @@ $nav-speed: 1000ms !default;
 	box-sizing: border-box;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 	align-content: center;
 
 	[itemprop="publisher"]{
 		height: $navbar_inner_height;
+
+		position: absolute;
+		right: 15px;
+		top: 50%;
+		transform: translate(0, -50%);
+
 		svg{
 			height: $navbar_inner_height;
 		}
@@ -59,6 +65,12 @@ $nav-speed: 1000ms !default;
 		color:white;
 		text-transform:uppercase;
 		margin: 0;
+
+		position: absolute;
+		left: 15px;
+		top: 50%;
+		transform: translate(0, -50%);
+
 		span{
 			font-weight: 700;
 		}
