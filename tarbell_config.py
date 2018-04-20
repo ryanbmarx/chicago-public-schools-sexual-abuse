@@ -15,7 +15,6 @@ from tarbell.hooks import register_hook #for the route, too
 import sys
 from os import path
 sys.path.append( path.dirname( path.abspath(__file__) ) )
-print(__file__, path.dirname(path.abspath(__file__)))
 import archie
 
 ######### Specifically for the ArchieML
@@ -111,7 +110,7 @@ FILTERS & FUNCTIONS //// #######################################
 """
 
 # Exclude these files from publication
-EXCLUDES = ['scripts', '*.md', 'img/src','img/svgs', 'requirements.txt', 'node_modules', '.scss', 'sass', 'base-sass', 'js/src', '*.ai', 'package.json', 'Gruntfile.js', 'out_drive.html', 'out_parsed.txt']
+EXCLUDES = ['scripts', '*.md', 'img/src','img/svgs', 'requirements.txt', 'node_modules', '.scss', 'sass', 'base-sass', 'js/src', '*.ai', 'package.json', 'package-lock.json', 'Gruntfile.js', 'out_drive.html', 'out_parsed.txt']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4
