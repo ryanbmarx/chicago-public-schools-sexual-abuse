@@ -75,8 +75,10 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta property="og:description" content="{{ story_info['og_description'] }}" />
     <meta property="og:image" content="{{ story_info['thumbnail_url'] }}" />
     <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
-    <meta name="og:image:height" content="{{ thumbnail.height }}px" />
-    <meta name="og:image:width" content="{{ thumbnail.width }}px" />
+    {% if thumbnail %}
+	    <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+	    <meta name="og:image:width" content="{{ thumbnail.width }}px" />
+    {% endif %}
 {% endblock opengraph %}
 
 {# TWITTER #}
