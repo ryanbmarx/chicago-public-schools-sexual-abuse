@@ -1,0 +1,67 @@
+
+.carousel__button{
+  display:block;
+  height: $hamburger-nav-height;
+  width: $hamburger-nav-width;
+  position:relative;
+
+  overflow:hidden;
+  cursor:pointer;
+  
+  // reset button styles
+  border:none;
+  background:none;
+  margin: 0;
+  padding:0;
+
+  span{
+    border-radius: $hamburger-border-radius;
+    background: $hamburger-nav-color;
+    height: $hamburger-bar-height;
+    width: 100%;
+    display: block;
+    transition: all $nav-transition-time ease;
+
+    position: absolute;
+    left:0;
+
+    &:nth-of-type(1){
+      top: 0;
+    }
+    
+    &:nth-of-type(2){
+      top: 50%;
+      transform:translate(0, -50%);
+    }
+
+    &:nth-of-type(3){
+      bottom: 0;
+    }
+  }
+}
+
+
+.carousel__button.carousel__button--open{
+  span{
+    transition: all $nav-transition-time ease;
+
+    &:nth-of-type(1){
+      transform:translate(-50%,0) rotate(-45deg);
+      top: 50%;
+      left: 50%
+    }
+    
+    &:nth-of-type(2){
+      opacity:0;
+      transform:translate(-100%, -50%);
+    }
+
+    &:nth-of-type(3){
+      transform:translate(-50%,0) rotate(45deg);
+      top: 50%;
+      left: 50%;
+      bottom:auto;
+
+    }
+  }
+}

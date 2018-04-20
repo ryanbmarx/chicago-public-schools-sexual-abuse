@@ -1,0 +1,37 @@
+<nav id='abuse-nav' class='carousel'>
+	<p class='carousel__title'>{{ project_title|process_text() }}</p>
+	{# <p class='carousel__tagline'>{{ project_tagline }}</p> #}
+	<button id="hamburger" class='carousel__button'>
+	  <p aria-role="label" class='sr-only'>Click here to toggle navigation</p>
+	  <span></span>
+	  <span></span>
+	  <span></span>
+	</button>
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+	  	<a href="http://www.chicagotribune.com" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+	  		<meta itemprop="url" content="http://www.chicagotribune.com" />
+			<svg viewbox="0 0 170 30" title='Chicago Tribune' alt='Chicago Tribune logo'>
+				<use xlink:href="#chicago-tribune-logo" />
+			</svg>
+	    </a>
+  		<meta itemprop="name" content="Chicago Tribune">
+	</div>
+</nav>
+<div class='carousel__stories'>
+	<ul class="carousel__stories-list">
+		{% for story in stories %}
+			<li>
+				<article class='story'>
+					<div class='story__text'>
+						<h1 class="story__headline">{{ story.slug }}: {{ story.headline }}</h1>
+						<p class='story__description'>{{ story.og_description }}</p>
+						<a class='story__link' href="{{ url_for('cps_abuse.cps_abuse_story', slug=story.slug) }}">Read the story</a>
+					</div>
+					<figure class='story__image'>
+						<img src="http://{{ ROOT_URL }}/{{ story.thumbnail_url }}" alt="{{ story.thumbnail_alt }}" title="{{ story.thumbnail_alt }}"/>
+					</figure>
+				</article>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

@@ -7,6 +7,12 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 
 #}
 
+{% block google_fonts_prefetch %}
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,700" crossorigin>
+{% endblock google_fonts_prefetch %}
+
+
+
 {% block title %}<title>{{ story_info['headline'] }} -- Chicago Tribune</title>{% endblock title %}
 
 {% set canonical_url = "http://" ~ ROOT_URL ~ url_for('cps_abuse.cps_abuse_story', slug=slug) %}
@@ -19,6 +25,11 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock stylesheets %}
+
+{% block nav %}
+    {# Our super cool project navigation #}
+    {% include "subtemplates/_nav-carousel.html" %}
+{% endblock %}
 
 {% block content %}
 <div class='container'>
@@ -39,7 +50,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 
 
 {% block scripts %}
-	{# <script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script> #}
+	<script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {# ANALYTICS TWEAKS, FOR ALL THE DIFFERENT STORIES #}

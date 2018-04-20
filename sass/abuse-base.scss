@@ -4,7 +4,29 @@
 
 // Reassign type styles
 // $fonts-serif: XXX;
-// $fonts-sans-serif: XXX;
+$fonts-sans-serif: "Open Sans", sans-serif;
+$fonts-sans-serif-condensed: "'Open Sans Condensed', sans-serif";
+
+
+$cta-background-color: lighten($trib-blue4, 20%);
+
+// $river-width-large: 650px;
+// $river-width-small: 450px;
+
+// NAV CAROUSEL
+$navbar_padding_h: $grid-gap / 2;
+$navbar_padding_v: $grid-gap / 2;
+$navbar-overall-height: $navbar_inner_height + $navbar_padding_v + $navbar_padding_v;
+
+// Hamburgar button in nav
+
+$hamburger-border-radius: 5px;
+$hamburger-nav-height: $navbar-inner-height;
+$hamburger-nav-width:$hamburger-nav-height;
+// $hamburger-nav-color: $navbar_background_color;
+$hamburger-nav-color: white;
+$hamburger-bar-height: 2px;
+$nav-transition-time: 250ms;
 
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
@@ -42,7 +64,8 @@
 
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
-
+@import 'nav-carousel';
+@import 'hamburger';
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -50,9 +73,7 @@
 // RESETS
 body{
 	margin: 0;
-	padding-left: 0;
-	padding-right: 0;
-	padding-bottom: 0;
+	padding: 0;
 }
 
 .sr-only{
