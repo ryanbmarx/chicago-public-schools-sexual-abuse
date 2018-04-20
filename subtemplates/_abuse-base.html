@@ -1,6 +1,12 @@
 {% extends "_base.html" %}
 
- {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
+{# 
+NOTES:
+
+The variable {{ slug }} is the unique identifier for the page. This should be used in all analytics.
+
+#}
+
 {% set canonical_url = "http://" ~ ROOT_URL ~ url_for('cps-abuse.cps_abuse_story', slug=slug) %}
 {% block canonical %}<link rel="canonical" href={{ canonical_url }} />{% endblock canonical %}
 
@@ -15,6 +21,9 @@
 {% block content %}
 <div class='container'>
 	<div class='river'>
+
+		{{ name, slug, title }}
+
 		{%if headline %}<h1>{{ headline }}</h1>{% endif %}
 		{% if dek %}<h2>{{ dek }}</h2>{% endif %}
 		{% for story_item in story %}
@@ -32,3 +41,11 @@
 {% block scripts %}
 	{# <script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script> #}
 {% endblock %}
+
+{# ANALYTICS TWEAKS, FOR ALL THE DIFFERENT STORIES #}
+
+{% block omniture_page_name %}{{ name }}--{{ slug }}{% endblock omniture_page_name %}
+
+{% block chartbeat_page_title %}{{ headline }} (title){% endblock chartbeat_page_title %}
+{% block chartbeat_section %}Dataviz, Watchdog, title{% endblock chartbeat_section %}
+{% block chartbeat_author %}Watchdog{% endblock chartbeat_author %}
