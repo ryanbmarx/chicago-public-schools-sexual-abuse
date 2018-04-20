@@ -5,22 +5,60 @@ Tarbell project configuration
 """
 
 from flask import Blueprint, g, render_template
-import os.path # for testing for images
+# import os.path # for testing for images
 import jinja2 #for context-getting
 
 from itertools import ifilter # For the route
 from tarbell.hooks import register_hook #for the route, too
 
+
+import sys
+from os import path
+sys.path.append( path.dirname( path.abspath(__file__) ) )
+print(__file__, path.dirname(path.abspath(__file__)))
+import archie
+
+######### Specifically for the ArchieML
+
+import htmlmin # to minify html
+
+import codecs, archieml
+from subprocess import call
+# from collections import OrderedDict
+# from jinja2 import Markup
+# from jinja2.exceptions import TemplateNotFound
+# from pprint import pprint
+from apiclient import errors
+
+# imports bc copied blueprint functions #
+from clint.textui import colored
+# import p2p
+from tarbell.utils import puts
+from tarbell.oauth import get_drive_api
+
+# Google document key for the stories. If not specified, the Archie stuff is skipped
+DOC_KEY = "1NNNFdLZvKiSzG3t2NJ0Ls4YIGPaSq1oM5QhiMd-bYFM"
+
+# Google spreadsheet key
+SPREADSHEET_KEY = "1SQ_N8fyaimSvjMs62HyATD1CsnssDD7fVWKp14Ta7eQ"
+
+
 blueprint = Blueprint('cps-abuse', __name__)
 
 # This is so we don't need to make physical html files for each one. 
+@blueprint.route('/<slug>/')
 @blueprint.route('/<slug>/index.html')
 def cps_abuse_story(slug):
     """
     Make a page for each bar (side or main), based on the unique slug.
     """
-
     site = g.current_site
+
+    # We'll use the slug to find only the archie stuff we want, then pass that to the template
+    archie.get_drive_api_stuff(site, site.project.DOC_KEY)
+    archie_content = archie.get_extra_context()
+    # site.project.DEFAULT_CONTEXT.update(**archie.get_extra_context())
+
 
     # get our production bucket for URL building
     bucket = site.project.S3_BUCKETS.get('production', '')
@@ -31,7 +69,34 @@ def cps_abuse_story(slug):
     row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
 
     # render a template, using the same template environment as everywhere else
-    return render_template('subtemplates/_abuse-base.html', bucket=bucket, slug=slug, headline=row["headline"], dek=row["dek"],**data)
+    return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, headline=row["headline"], dek=row["dek"],**data)
+
+
+# This is an exception so we don't even need to worry about the main page, either.
+@blueprint.route('/index.html')
+@blueprint.route('/')
+def cps_abuse_story_main_page(slug="mainbar"):
+    """
+    Make a page for each bar (side or main), based on the unique slug.
+    """
+    site = g.current_site
+
+    # We'll use the slug to find only the archie stuff we want, then pass that to the template
+    archie.get_drive_api_stuff(site, site.project.DOC_KEY)
+    archie_content = archie.get_extra_context()
+    # site.project.DEFAULT_CONTEXT.update(**archie.get_extra_context())
+
+
+    # get our production bucket for URL building
+    bucket = site.project.S3_BUCKETS.get('production', '')
+    data = site.get_context()
+    rows = data.get('stories', [])
+
+    # get the row we want, defaulting to an empty dictionary
+    row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
+
+    # render a template, using the same template environment as everywhere else
+    return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug=slug, headline=row["headline"], dek=row["dek"],**data)
 
 
 """
@@ -40,16 +105,8 @@ FILTERS & FUNCTIONS //// #######################################
 ################################################################
 """
 
-
-
-# Google document key for the stories. If not specified, the Archie stuff is skipped
-DOC_KEY = "1NNNFdLZvKiSzG3t2NJ0Ls4YIGPaSq1oM5QhiMd-bYFM"
-
-# Google spreadsheet key
-SPREADSHEET_KEY = "1SQ_N8fyaimSvjMs62HyATD1CsnssDD7fVWKp14Ta7eQ"
-
 # Exclude these files from publication
-EXCLUDES = ['*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', '*.ai', 'package.json', 'Gruntfile.js']
+EXCLUDES = ['*.md', 'img/src','img/svgs', 'requirements.txt', 'node_modules', '.scss', 'sass', 'js/src', '*.ai', 'package.json', 'Gruntfile.js', 'out_drive.html', 'out_parsed.txt']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4
