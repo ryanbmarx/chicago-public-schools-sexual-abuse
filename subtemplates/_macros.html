@@ -78,7 +78,7 @@
     <aside class='refer refer--{{ aside_type }} {% if add_class %} {{ add_class }} {% endif %}'>
         <h3 class='refer__headline'>{{ refer_content["headline"]|dumb_to_smart_quotes|process_text(False) }}</h3>
         {% if refer_content["text"]%}
-        <p class='refer__blurb'>{{ refer_content["text"]|dumb_to_smart_quotes|process_text(False) }}</p>
+        <p class='refer__text'>{{ refer_content["text"]|dumb_to_smart_quotes|process_text(False) }}</p>
         {% endif %}
         {% if  refer_content["button_url"] and refer_content["button_text"] %}
             <a class='refer__button' href='{{ refer_content["button_url"]|process_text(False) }}' target="_blank" rel="noopener">{{ refer_content["button_text"]|process_text(False) }}</a>

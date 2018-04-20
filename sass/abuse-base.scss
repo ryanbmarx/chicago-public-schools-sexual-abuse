@@ -2,7 +2,9 @@
 @import 'base-variables';
 @import 'base-config'; // If you are using the off-platform blueprint, uncomment this.
 
-
+// Reassign type styles
+// $fonts-serif: XXX;
+// $fonts-sans-serif: XXX;
 
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
@@ -35,7 +37,7 @@
 @import 'base-byline';
 @import 'base-adverts';
 @import 'base-comments';
-@import 'base-call-to-action';
+@import 'base-refers';
 @import 'base-hamburger';
 
 
@@ -44,6 +46,14 @@
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
+
+// RESETS
+body{
+	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}
 
 .sr-only{
 	// Use this to hide elements from everything except screen readers.
@@ -69,7 +79,7 @@
 // ##############################################
 
 p{
-	font: 15px/1.6em $serif-fonts;
+	font: 15px/1.6em $fonts-serif;
 	margin: 0 0 #{$grid-gap / 2} 0;
 }
 
