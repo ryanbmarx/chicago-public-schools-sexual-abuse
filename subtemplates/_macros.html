@@ -65,17 +65,23 @@
 {% endmacro %}
 
 {% macro aside(aside_type, add_class) %}
+    {% set refer_content = refers[aside_type] %}
+    
     {% if aside_type == 'subscribe' or aside_type == "respond" %}
-      {% set refer_url = refers[aside_type + "_url"]['text']|process_text(False)|e %}
+      {% set refer_url = refer_content["url"]|process_text(False)|e %}
     {% else %}
-      {% set refer_url = "http://" + ROOT_URL + "/" + refers[aside_type + "_url"]['text']|process_text(False)|e %}
+      {% set refer_url = "http://" + ROOT_URL + "/" + refer_content["url"]|process_text(False)|e %}
     {% endif %}
 
+    
+
     <aside class='refer refer--{{ aside_type }} {% if add_class %} {{ add_class }} {% endif %}'>
-        <h3 class='refer__headline'>{{ refers[aside_type + "_headline"]['text']|dumb_to_smart_quotes|process_text(False) }}</h3>
-        <p class='refer__blurb'>{{ refers[aside_type + "_text"]['text']|dumb_to_smart_quotes|process_text(False) }}</p>
-        {% if  refers[aside_type + "_url"] and refers[aside_type + "_button_text"] %}
-            <a class='refer__button' href='{{ refer_url|process_text(False) }}' target="_blank">{{ refers[aside_type + "_button_text"]["text"]|process_text(False) }}</a>
+        <h3 class='refer__headline'>{{ refer_content["headline"]|dumb_to_smart_quotes|process_text(False) }}</h3>
+        {% if refer_content["text"]%}
+        <p class='refer__blurb'>{{ refer_content["text"]|dumb_to_smart_quotes|process_text(False) }}</p>
+        {% endif %}
+        {% if  refer_content["button_url"] and refer_content["button_text"] %}
+            <a class='refer__button' href='{{ refer_content["button_url"]|process_text(False) }}' target="_blank" rel="noopener">{{ refer_content["button_text"]|process_text(False) }}</a>
         {% endif %}
     </aside>
 {% endmacro %}
