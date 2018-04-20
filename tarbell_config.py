@@ -53,8 +53,6 @@ def cps_abuse_story(slug):
     # We'll use the slug to find only the archie stuff we want, then pass that to the template
     archie.get_drive_api_stuff(site, site.project.DOC_KEY)
     archie_content = archie.get_extra_context()
-    # site.project.DEFAULT_CONTEXT.update(**archie.get_extra_context())
-
 
     # get our production bucket for URL building
     bucket = site.project.S3_BUCKETS.get('production', '')
@@ -73,12 +71,11 @@ def cps_abuse_story(slug):
         headline=row["headline"]
         dek=row["dek"]
         
+        print ">>>>>>>>>", bucket, "<<<<<<<<<<<<"
+
         # render a template, using the same template environment as everywhere else
         return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, headline=headline, dek=dek,**data)
         
-    
-
-    
 
 # This is an exception so we don't even need to worry about the main page, either.
 @blueprint.route('/index.html')
@@ -114,7 +111,7 @@ FILTERS & FUNCTIONS //// #######################################
 """
 
 # Exclude these files from publication
-EXCLUDES = ['*.md', 'img/src','img/svgs', 'requirements.txt', 'node_modules', '.scss', 'sass', 'js/src', '*.ai', 'package.json', 'Gruntfile.js', 'out_drive.html', 'out_parsed.txt']
+EXCLUDES = ['scripts', '*.md', 'img/src','img/svgs', 'requirements.txt', 'node_modules', '.scss', 'sass', 'base-sass', 'js/src', '*.ai', 'package.json', 'Gruntfile.js', 'out_drive.html', 'out_parsed.txt']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4
