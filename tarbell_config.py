@@ -45,6 +45,7 @@ SPREADSHEET_KEY = "1SQ_N8fyaimSvjMs62HyATD1CsnssDD7fVWKp14Ta7eQ"
 blueprint = Blueprint('cps_abuse', __name__)
 
 # This is so we don't need to make physical html files for each one. 
+
 @blueprint.route('/<slug>/index.html')
 @blueprint.route('/<slug>')
 @blueprint.route('/<slug>/')
@@ -115,6 +116,16 @@ def story_urls():
 def register_stories(site, output_root, extra_context):
     # "This runs before tarbell builds the static site"
     site.freezer.register_generator(story_urls)
+
+# @freezer.register_generator
+# def stories():
+#     site = g.current_site
+#     # get our production bucket for URL building
+#     # bucket = site.project.S3_BUCKETS.get('production', '')
+#     data = site.get_context()
+#     rows = data.get('stories', [])
+#     for story in rows:
+#         yield {"slug": story.slug}
 
 
 """
