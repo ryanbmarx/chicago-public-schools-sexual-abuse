@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,700"');
+
 // Enables Tribune colors, but is required for everything.
 @import 'base-variables';
 @import 'base-config'; // If you are using the off-platform blueprint, uncomment this.
 
 // Reassign type styles
 // $fonts-serif: XXX;
-$fonts-sans-serif: "Open Sans", sans-serif;
+$fonts-sans-serif: ""Open Sans", sans-serif";
 $fonts-sans-serif-condensed: "'Open Sans Condensed', sans-serif";
 
 

@@ -27,7 +27,7 @@ $nav-speed: 1000ms !default;
 	@supports (display:grid){
 		display: grid;
 		grid-template: 12px 1fr / 1fr 1fr 1fr;
-		grid-gap: #{$grid-gap / 3} 0;
+		grid-gap: 5px 0;
 		align-items: center;
 	}
 
@@ -104,7 +104,7 @@ $nav-speed: 1000ms !default;
 
 	&__title{
 		@include blurInto(0)
-		@include responsive-font(3vw, 23px, 30px, 25px);
+		@include responsive-font(3vw, 27px, 37px, 25px);
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
 		line-height: 1em;
@@ -128,7 +128,7 @@ $nav-speed: 1000ms !default;
 
 		span{
 			@include blurInto(1)
-			font-weight: 700;
+			font-weight: 600;
 		}
 	}
 
