@@ -6,6 +6,11 @@ $nav-speed: 1000ms !default;
 	animation: blurInto 2s ease-out #{$delay}s 1 forwards;
 }
 
+
+:root{
+	--navbar-height: 65px;
+}
+
 .blur-at-start{
 	opacity:0;
 	filter: blur(100px);
@@ -15,17 +20,15 @@ $nav-speed: 1000ms !default;
 	width: 100%;
 	z-index: $navbar-z-index; // Set absurdly high b/c of Leaflet elements
 	background: rgba($navbar_background_color, .95);
-
+	height: var(--navbar-height);
 	box-sizing: border-box;
 	padding: $navbar_padding_v $navbar_padding_h;
 
 	@supports (display:grid){
 		display: grid;
 		grid-template: 12px 1fr / 1fr 1fr 1fr;
-		// grid-template: repeat(2, #{$navbar-overall-height / 2}) / 1fr 1fr 1fr;
 		grid-gap: #{$grid-gap / 3} 0;
 		align-items: center;
-		// padding: 0 $navbar_padding_h; // keeps a little space on the edges.
 	}
 
 	@supports not (display:grid){
@@ -33,8 +36,6 @@ $nav-speed: 1000ms !default;
 	    justify-content: center;
 	    align-items: center;
 		align-content: center;
-		height: $navbar-overall-height;
-		// padding: $navbar_padding_v $navbar_padding_h;
 	}
 
 	[itemprop="publisher"]{
@@ -87,8 +88,8 @@ $nav-speed: 1000ms !default;
 		width: 100%;
 
 		position: fixed;
-		top: $navbar-overall-height;
-		height: calc(100vh - #{$navbar-overall-height});
+		top: var(--navbar-height);
+		height: calc(100vh - var(--navbar-height););
 		left: 0;
 		z-index: #{$navbar-z-index - 1};
 
@@ -218,6 +219,11 @@ $nav-speed: 1000ms !default;
 
 
 @media all and (min-width: $river-width-large){
+	
+	:root{
+		--navbar-height: 60px;
+	}
+
 	body{
 		padding: #{$navbar_inner_height + ($navbar_padding_v * 2)} 0 0 0 !important;
 	}
