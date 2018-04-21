@@ -1,6 +1,15 @@
 $navbar-z-index: 10000 !default;
 $nav-speed: 1000ms !default;
 
+@mixin blurInto($delay:0){
+	// @param $delay <integer> the delay, in seconds, for the animation
+	animation: blurInto 2s ease-out #{$delay}s 1 forwards;
+}
+
+.blur-at-start{
+	opacity:0;
+	filter: blur(100px);
+}
 
 .carousel{
 	width: 100%;
@@ -8,7 +17,7 @@ $nav-speed: 1000ms !default;
 	background: rgba($navbar_background_color, .95);
 
 	box-sizing: border-box;
-		padding: $navbar_padding_v $navbar_padding_h;
+	padding: $navbar_padding_v $navbar_padding_h;
 
 	@supports (display:grid){
 		display: grid;
@@ -29,6 +38,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	[itemprop="publisher"]{
+		@include blurInto(3)
 		// height: $navbar_inner_height;
 		// height: 10px;
 		display: contents; // So it takes up no space, causing things to misalign.
@@ -41,7 +51,6 @@ $nav-speed: 1000ms !default;
 		img{
 			width: 100%;
 		    max-width: 110px;
-			animation: blurInto 2s ease-out 3s 1;
 		}
 
 		@supports (display:grid){
@@ -93,6 +102,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	&__title{
+		@include blurInto(0)
 		@include responsive-font(3vw, 23px, 30px, 25px);
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
@@ -115,11 +125,9 @@ $nav-speed: 1000ms !default;
 			transform: translate(0, -50%);
 		}
 
-		animation: blurInto 2s ease-out 0s 1;
-
 		span{
+			@include blurInto(1)
 			font-weight: 700;
-			animation: blurInto 2s ease-out 1s 1;
 		}
 	}
 
@@ -199,7 +207,7 @@ $nav-speed: 1000ms !default;
 }
 
 .carousel__button{
-  animation: blurInto 2s ease-out 3s 1;
+  @include blurInto(3)
   
   @supports (display:grid){
     grid-column: 3;

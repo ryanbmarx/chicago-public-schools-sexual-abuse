@@ -36,11 +36,15 @@ $nav-transition-time: 250ms;
 
 @keyframes blurInto{
 	from {
+		opacity:0;
 		filter: blur(100px);
+		transform: translate(-5px, 0);
 	}
 
 	to{
-		filter: blur(0)
+		opacity:1;
+		filter: blur(0);
+		transform: translate(0,0);
 	}
 }
 
