@@ -14,6 +14,14 @@
   margin: 0;
   padding:0;
 
+  // animation: blurInto 2s ease-out 3s 1;
+  
+  // @supports (display:grid){
+  //   grid-column: 3;
+  //   grid-row:1 / -1;
+  //   justify-self: end;
+  // }
+
   span{
     border-radius: $hamburger-border-radius;
     background: $hamburger-nav-color;

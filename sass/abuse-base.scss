@@ -15,8 +15,8 @@ $cta-background-color: lighten($trib-blue4, 20%);
 
 // NAV CAROUSEL
 $navbar_padding_h: $grid-gap / 2;
-$navbar_padding_v: $grid-gap / 2;
-$navbar-overall-height: $navbar_inner_height + $navbar_padding_v + $navbar_padding_v;
+$navbar_padding_v: $grid-gap / 3;
+$navbar-overall-height: 60px;
 
 // Hamburgar button in nav
 
@@ -34,6 +34,15 @@ $nav-transition-time: 250ms;
 
 // ---- MAKE OR IMPORT MORE MIXINS HERE ---------------------------------------------
 
+@keyframes blurInto{
+	from {
+		filter: blur(100px);
+	}
+
+	to{
+		filter: blur(0)
+	}
+}
 
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT -----------------------------------

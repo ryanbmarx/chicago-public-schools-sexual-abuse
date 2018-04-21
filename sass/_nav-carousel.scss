@@ -1,38 +1,48 @@
 $navbar-z-index: 10000 !default;
 $nav-speed: 1000ms !default;
 
-@keyframes blurInto{
-	from {
-		filter: blur(100px);
-	}
-
-	to{
-		filter: blur(0)
-	}
-}
-
 
 .carousel{
 	width: 100%;
 	z-index: $navbar-z-index; // Set absurdly high b/c of Leaflet elements
-	padding: $navbar_padding_v $navbar_padding_h; // keeps a little space on the edges.
 	background: rgba($navbar_background_color, .95);
-	height: $navbar_inner_height + ($navbar_padding_v * 2);
 
 	box-sizing: border-box;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	align-content: center;
+	@supports (display:grid){
+		display: grid;
+		grid-template: 1fr 1fr / 1fr 1fr 1fr;
+		grid-template: repeat(2, #{$navbar-overall-height / 2}) / 1fr 1fr 1fr;
+		grid-gap: 3px 0;
+		align-items: center;
+		padding: 0 $navbar_padding_h; // keeps a little space on the edges.
+	}
+
+	@supports not (display:grid){
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+		align-content: center;
+		height: $navbar-overall-height;
+		padding: $navbar_padding_v $navbar_padding_h;
+	}
 
 	[itemprop="publisher"]{
-		height: $navbar_inner_height;
+		// height: $navbar_inner_height;
+		// height: 10px;
+		animation: blurInto 2s ease-out 3s 1;
 
-		position: absolute;
-		right: 15px;
-		top: 50%;
-		transform: translate(0, -50%);
+		@supports (display:grid){
+			grid-column: 1;
+			grid-row:1;
+		    align-self: end;
+		}
+		@supports not (display:grid){
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
 
 		svg{
 			height: $navbar_inner_height;
@@ -71,16 +81,25 @@ $nav-speed: 1000ms !default;
 	}
 
 	&__title{
-		font: 20px/1em #{$fonts-sans-serif-condensed};
+		@include responsive-font(3vw, 23px, 30px, 25px);
+		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
 		color:white;
 		text-transform:uppercase;
 		margin: 0;
+		
+		@supports (display:grid){
+			grid-column: 1 / -1;
+			grid-row:2;
+			align-self: start;
+		}
 
-		position: absolute;
-		left: 15px;
-		top: 50%;
-		transform: translate(0, -50%);
+		@supports not (display:grid){
+			position: absolute;
+			left: 15px;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
 
 		animation: blurInto 2s ease-out 0s 1;
 
@@ -165,6 +184,15 @@ $nav-speed: 1000ms !default;
 	}
 }
 
+.carousel__button{
+  animation: blurInto 2s ease-out 3s 1;
+  
+  @supports (display:grid){
+    grid-column: 3;
+    grid-row:1 / -1;
+    justify-self: end;
+  }
+}
 
 
 @media all and (min-width: $river-width-large){
@@ -178,12 +206,44 @@ $nav-speed: 1000ms !default;
 		left: 0;
 
 		&__title{
-			font-size: 30px;
+			// @include 
+			// font-size: 30px;
 		}
 	}
 
 	@supports (display:grid){
-		// If we support grid, then undo the mobile view
+		// Rearrange the navbar from the mobile layout.
+		.carousel {
+			grid-template: 1fr / 1fr 1fr 1fr;
+			padding: $navbar_padding_v $navbar_padding_h;
+
+			&__title{
+				grid-column: 1 / -1;
+				grid-row: 1;
+				justify-self: start;
+				align-self: center;
+			}
+
+			&__button{
+				grid-column: 2;
+				grid-row: 1;
+				justify-self: center;
+				align-self: center;
+			}
+			
+			[itemprop="publisher"]{
+				grid-column: 3;
+				grid-row: 1;
+				justify-self: end;
+				align-self: center;
+			    
+			    img {height: 25px;}
+			}
+
+		}
+
+
+		// If we support grid, then undo the mobile view of the story links
 		.carousel__stories-list{
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
