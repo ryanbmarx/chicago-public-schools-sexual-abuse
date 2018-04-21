@@ -67,6 +67,8 @@ def cps_abuse_story(slug):
     # get the row we want, defaulting to an empty dictionary
     row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
 
+    print "fetching content for {}".format(slug)
+
     if row == {}: 
         # This returned rendered template has no row data, b/c it is empty 
         return render_template('404.html', bucket=bucket, slug=slug, **data)
@@ -117,15 +119,6 @@ def register_stories(site, output_root, extra_context):
     # "This runs before tarbell builds the static site"
     site.freezer.register_generator(story_urls)
 
-# @freezer.register_generator
-# def stories():
-#     site = g.current_site
-#     # get our production bucket for URL building
-#     # bucket = site.project.S3_BUCKETS.get('production', '')
-#     data = site.get_context()
-#     rows = data.get('stories', [])
-#     for story in rows:
-#         yield {"slug": story.slug}
 
 
 """
