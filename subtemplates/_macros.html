@@ -142,9 +142,9 @@
     {% endif %}
 
     {% if type == "cube" %}
-        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
-    {% elif type == "leaderboard" %}
-        <div class="advert" data-ad-type="leaderboard"></div>
+        <aside class="advert {{ class }}" data-ad-type="shrinky-cube"></aside>
+    {% elif type == "leaderboard" or type == "banner" %}
+        <aside class="advert" data-ad-type="leaderboard"></aside>
     {% endif %}
 {% endmacro %}
 
