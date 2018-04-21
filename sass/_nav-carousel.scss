@@ -8,14 +8,15 @@ $nav-speed: 1000ms !default;
 	background: rgba($navbar_background_color, .95);
 
 	box-sizing: border-box;
+		padding: $navbar_padding_v $navbar_padding_h;
 
 	@supports (display:grid){
 		display: grid;
-		grid-template: 1fr 1fr / 1fr 1fr 1fr;
-		grid-template: repeat(2, #{$navbar-overall-height / 2}) / 1fr 1fr 1fr;
-		grid-gap: 3px 0;
+		grid-template: 12px 1fr / 1fr 1fr 1fr;
+		// grid-template: repeat(2, #{$navbar-overall-height / 2}) / 1fr 1fr 1fr;
+		grid-gap: #{$grid-gap / 3} 0;
 		align-items: center;
-		padding: 0 $navbar_padding_h; // keeps a little space on the edges.
+		// padding: 0 $navbar_padding_h; // keeps a little space on the edges.
 	}
 
 	@supports not (display:grid){
@@ -24,13 +25,24 @@ $nav-speed: 1000ms !default;
 	    align-items: center;
 		align-content: center;
 		height: $navbar-overall-height;
-		padding: $navbar_padding_v $navbar_padding_h;
+		// padding: $navbar_padding_v $navbar_padding_h;
 	}
 
 	[itemprop="publisher"]{
 		// height: $navbar_inner_height;
 		// height: 10px;
-		animation: blurInto 2s ease-out 3s 1;
+		display: contents; // So it takes up no space, causing things to misalign.
+		
+		& > a{
+			// So it takes up no space.
+			display:contents;
+		}
+
+		img{
+			width: 100%;
+		    max-width: 110px;
+			animation: blurInto 2s ease-out 3s 1;
+		}
 
 		@supports (display:grid){
 			grid-column: 1;
@@ -44,9 +56,9 @@ $nav-speed: 1000ms !default;
 			transform: translate(0, -50%);
 		}
 
-		svg{
-			height: $navbar_inner_height;
-		}
+		// svg{
+		// 	height: $navbar_inner_height;
+		// }
 	}
 
 	&__inner{
@@ -84,6 +96,8 @@ $nav-speed: 1000ms !default;
 		@include responsive-font(3vw, 23px, 30px, 25px);
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
+		line-height: 1em;
+
 		color:white;
 		text-transform:uppercase;
 		margin: 0;
@@ -232,12 +246,15 @@ $nav-speed: 1000ms !default;
 			}
 			
 			[itemprop="publisher"]{
+				display:block; // b/c we need to undo display:contents to place in the grid
 				grid-column: 3;
 				grid-row: 1;
 				justify-self: end;
 				align-self: center;
 			    
-			    img {height: 25px;}
+			    img {
+		    	    max-width: 150px;
+			    }
 			}
 
 		}
