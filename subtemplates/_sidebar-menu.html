@@ -1,0 +1,5 @@
+<nav class='sidebar-menu'>
+	{% for story in stories if story.slug != "mainbar" %}
+		<article><a href="#{{ story.slug }}">{{ story.headline }}</a></article>
+	{% endfor %}
+</nav>

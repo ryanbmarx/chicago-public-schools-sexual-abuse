@@ -1,0 +1,20 @@
+<div class='credits'>
+	<h1 class='credits__label'>Credits</h1>
+	<p class='credits__sublabel'>Sublabel</p>
+	<div class='credits__inner'>
+		{% for category in credits_control|sort(attribute="display_order") %}
+				{% for person in credits|sort(attribute="name_last") if person[category.id] == 1 %}
+				{% if loop.first %}
+					<div class='credits__category'>
+					<h2 class='credits__category-label'>{{ category.readable }}</h2>
+					<dl class="credits__category-list">
+				{% endif %}
+					{{ person.name_first }} {{ person.name_last }}{% if not loop.last %}, {% endif %}
+				{% if loop.last %}
+					</dl>
+					</div>
+				{% endif %}
+				{% endfor %}
+		{% endfor %}
+	</div>
+</div>

@@ -1,6 +1,10 @@
 {% extends "_base.html" %}
 
+
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
+
+{% block nav %}{% endblock %}
+
 
 {% block library_scripts %}
 	{# <script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script> #}
@@ -11,16 +15,52 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class='container'>
-	<div class='river'>
-		<ul>
 
-		</ul>
+{% set mainbar_info = stories|get_story_info('mainbar') %}
+
+{# Our super cool project navigation #}
+{% include "subtemplates/_nav-carousel.html" %}
+{% include "subtemplates/_header.html" with context %}
+<section id='main' class='container'>
+	<div class='river'>
+		{% for story_item in abuse['mainbar'] %}
+			{# The story content, from the Archie, is passed directly to the template as var story #}
+			{% set s = story_item %}
+			{% include 'subtemplates/_story-loop.html' %}
+		{% endfor %}
 	</div>
-</div>
+</section> {# END MAINBAR #}
+{% include "subtemplates/_sidebar-menu.html" %}
+<section class='sidebars container'>
+	<div class='sidebars__traveler'>
+		{% include 'subtemplates/_sidebar-traveler.html' %}
+	</div>
+	<div class='sidebars__stories'>
+	{% for story in stories if story.slug != "mainbar" %}
+		{% set i = loop.index %}
+		{% set info = story %} {# use a new var so the data is available on subtemplates #}
+		<div id='{{ story.slug }}' class='river'>
+			{% include "subtemplates/_sidebar-header.html" %}
+			{% for story_item in abuse[info.slug] %}
+				{# The story content, from the Archie, is passed directly to the template as var 	story #}
+				{% set s = story_item %}
+				{% include 'subtemplates/_story-loop.html' %}
+			{% endfor %} {# end storyloop #}
+		</div>
+		{% if i % 3 == 0 %}
+			{{ refer() }}
+		{% endif %}
+	{% endfor %} {# end sidebars loop #}
+	</div> {# END SIDEBARS__STORIES WRAPPER #}
+	<div class='sidebars__media-column'>
+		{# RIGHT NOW, THIS JUST SPACES THINGS SO THE RIVER REMAINS CENTERED #}
+	</div>
+</section> {# END SIDEBARS #}
+
+{% include 'subtemplates/_credits.html' %}
 {% endblock content %}
 
 
 {% block scripts %}
-	{# <script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script> #}
+	<script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script>
 {% endblock %}

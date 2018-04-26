@@ -1,0 +1,27 @@
+// Here we deal with the side-saddle graphics
+
+$media-col-width: 250px !default;
+$side-width: calc(100vw - (#{$river-width-large} + (100vw - #{$river-width-large}) / 2 + #{$grid-gap}) - #{$grid-gap});
+// This calc() pushes the graphic from the left edge of the viewport to the right edge of the river, with a further grid-gap in between;
+$side-right-position: calc(#{$river-width-large} + (100vw - #{$river-width-large}) / 2 + #{$grid-gap});
+
+
+
+
+
+@media all and (min-width: $side-saddle-min-width){
+	.side{
+		position: absolute;
+		width: $side-width;
+		box-sizing:border-box;
+		background: yellow;
+		padding: $grid-gap;
+		&--right{
+			left: $side-right-position;
+		}
+	}
+
+
+}
+
+

@@ -4,16 +4,26 @@
 @import 'base-variables';
 @import 'base-config'; // If you are using the off-platform blueprint, uncomment this.
 
+// COLORS, eyedropped from Casella photos
+
+$darkest: #070808;
+$dark: #293B93;
+// $dark: #292D74;
+$bright: #FEE8A0;
+$white: #F1F3F4;
+
+$body-background-color: $dark;
+$navbar_background_color: $darkest;
+$highlight-color: $bright;
+
 // Reassign type styles
 // $fonts-serif: XXX;
-$fonts-sans-serif: ""Open Sans", sans-serif";
+$fonts-sans-serif: "'Open Sans', sans-serif";
 $fonts-sans-serif-condensed: "'Open Sans Condensed', sans-serif";
 
 
 $cta-background-color: lighten($trib-blue4, 20%);
 
-// $river-width-large: 650px;
-// $river-width-small: 450px;
 
 // NAV CAROUSEL
 $navbar_padding_h: $grid-gap / 2;
@@ -21,15 +31,20 @@ $navbar_padding_v: $grid-gap / 3;
 $navbar-overall-height: 60px;
 
 // Hamburgar button in nav
-
 $hamburger-border-radius: 5px;
 $hamburger-nav-height: $navbar-inner-height;
 $hamburger-nav-width:$hamburger-nav-height;
 // $hamburger-nav-color: $navbar_background_color;
-$hamburger-nav-color: white;
+$hamburger-nav-color: $highlight-color;
 $hamburger-bar-height: 2px;
 $nav-transition-time: 250ms;
 
+
+// CUSTOM OR WEIRD BREAKPOINTS AND SCAFFOLDING
+$river-width-large: 650px; // Copied from base
+$river-width-small: 450px; // Copied from base
+$media-col-width: 250px;
+$side-saddle-min-width: ($river-width-large + ($media-col-width * 2) + $grid-gap);
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
@@ -50,6 +65,12 @@ $nav-transition-time: 250ms;
 	}
 }
 
+%content_block{
+	padding: $grid-gap;
+	background: $white;
+	box-sizing: border-box;
+    margin-bottom: $grid-gap;
+}
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT -----------------------------------
 // @import 'ngux-visibility-toggles';
@@ -79,8 +100,12 @@ $nav-transition-time: 250ms;
 
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
-@import 'nav-carousel';
-@import 'hamburger';
+@import 'nav-carousel'; // The nav drawer
+@import 'hamburger'; // Specifically the animated button to open the nav drawer
+@import 'credits'; // The credits box
+@import 'embedded-content'; // Handles graphics and various side-saddle issues
+@import 'traveler'; // The nav alongside the sidebars
+@import 'sidebar-menu'; // The nav before the sidebars
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -89,6 +114,7 @@ $nav-transition-time: 250ms;
 body{
 	margin: 0;
 	padding: 0;
+	background: $body-background-color;
 }
 
 .sr-only{
@@ -109,6 +135,11 @@ body{
 	p{ @include agate(); }
 }
 
+.page-footer{
+	background: $darkest;
+}
+
+
 
 // ##############################################
 // If you are using the off platform rig, then uncomment this code. otherwise you can delete it.
@@ -128,6 +159,14 @@ a{
 	}
 }
 
+
+// CHANGES TO RIVER FOR THE DARK BG STYLE
+
+.river{
+	@extend %content_block;
+}
+
+.sidebars__traveler{display:none;}
 
 // This is the paywall/meter/registration sticky note at the bottom of the page
 .met-flyout .met-promo-content{
@@ -159,13 +198,34 @@ a{
 		line-height: 1.5em;
 	}
 }
+@media all and (min-width: $side-saddle-min-width){
 
-@media all and (min-width: $tablet-min-width){
-	// ONLY CHANGES FOR TABLETS + DESKTOPS
-	// By default, this is 650px+	
+	.sidebars{
+		display:flex;
+
+		&__traveler{
+			display:block;
+			flex: 1 1;
+		}
+
+		&__stories{
+			flex-basis: $river-width-large
+		}
+
+		&__media-column{
+			// Right now, this column only exists to take up equal space on the far side
+			flex: 1 1;
+		}
+	}
+
 }
 
-@media all and (min-width: $desktop-min-width){
-	// ONLY CHANGES FOR DESKTOPS
-	// By default, this is 850px+
-}
+// @media all and (min-width: $tablet-min-width){
+// 	// ONLY CHANGES FOR TABLETS + DESKTOPS
+// 	// By default, this is 650px+	
+// }
+
+// @media all and (min-width: $desktop-min-width){
+// 	// ONLY CHANGES FOR DESKTOPS
+// 	// By default, this is 850px+
+// }

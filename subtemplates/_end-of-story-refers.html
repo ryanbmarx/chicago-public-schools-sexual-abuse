@@ -1,0 +1,13 @@
+{% if story_info["refers_at_end"] %}
+	<section class='end-refers'>
+		<h1>{{ end_of_story_refers_headline }}</h1>
+		<p>{{ end_of_story_refers_text|process_text() }}</p>
+		<div class='end-refers__refers'>
+		{% for refer in story_info["refers_at_end"]|generate_end_of_story_refers %}
+			<div class='refer'>
+				{{ refer }}
+			</div>	
+		{% endfor %}
+		</div>
+	</section>
+{% endif %}

@@ -46,9 +46,9 @@ blueprint = Blueprint('cps_abuse', __name__)
 
 # This is so we don't need to make physical html files for each one. 
 
-@blueprint.route('/<slug>/index.html')
-@blueprint.route('/<slug>')
-@blueprint.route('/<slug>/')
+# @blueprint.route('/<slug>/index.html')
+# @blueprint.route('/<slug>')
+# @blueprint.route('/<slug>/')
 def cps_abuse_story(slug):
     """
     Make a page for each bar (side or main), based on the unique slug.
@@ -57,7 +57,14 @@ def cps_abuse_story(slug):
 
     # We'll use the slug to find only the archie stuff we want, then pass that to the template
     archie.get_drive_api_stuff(site, site.project.DOC_KEY)
-    archie_content = archie.get_extra_context()
+    
+    try:
+        archie_content = archie.get_extra_context()
+        story = archie_content['abuse'][slug]
+    except KeyError:
+        story = "No story content"
+
+
 
     # get our production bucket for URL building
     bucket = site.project.S3_BUCKETS.get('production', '')
@@ -69,15 +76,31 @@ def cps_abuse_story(slug):
 
     print "fetching content for {}".format(slug)
 
-    if row == {}: 
-        # This returned rendered template has no row data, b/c it is empty 
-        return render_template('404.html', bucket=bucket, slug=slug, **data)
-
-    else:
-
+    if row != {}: 
         # render a template, using the same template environment as everywhere else
-        return render_template('subtemplates/_abuse-base.html', story=archie_content["abuse"][slug], bucket=bucket, slug=slug, story_info=row,**data)
-        
+        return render_template('subtemplates/_abuse-base.html', story=story, bucket=bucket, slug=slug, story_info=row,**data)
+    elif slug == "404.html":
+        return render_template('404.html', bucket=bucket,**data)
+    elif slug == "ad-iframe.html":
+        return render_template('ad-iframe.html', bucket=bucket,**data)
+    else:
+        return render_template('404.html', bucket=bucket,**data)
+
+
+# @blueprint.route('/404.html')
+def cps_abuse_404():
+    site = g.current_site
+    data = site.get_context()
+    bucket = site.project.S3_BUCKETS.get('production', '')
+    return render_template('404.html', bucket=bucket,**data)
+
+# @blueprint.route('/ad-iframe.html')
+def cps_abuse_ad_iframe():
+    site = g.current_site
+    data = site.get_context()
+    bucket = site.project.S3_BUCKETS.get('production', '')
+    return render_template('ad-iframe.html', bucket=bucket,**data)
+
 
 # This is an exception so we don't even need to worry about the main page, either.
 # @blueprint.route('/index.html')
@@ -86,6 +109,9 @@ def cps_abuse_story_main_page():
     """
     Make a page for each bar (side or main), based on the unique slug.
     """
+
+    print("Fetching content for {}".format(slug))
+
     site = g.current_site
 
     # We'll use the slug to find only the archie stuff we want, then pass that to the template
@@ -98,6 +124,15 @@ def cps_abuse_story_main_page():
     bucket = site.project.S3_BUCKETS.get('production', '')
     data = site.get_context()
     rows = data.get('stories', [])
+
+    # Start with some exceptions
+    if slug == "404.html":
+        return render_template('404.html', bucket=bucket, **data)
+
+    if slug == "ad-iframe.html":
+        return render_template('ad-iframe.html', bucket=bucket, **data)
+
+    # Now move on to the actual story templates
 
     # get the row we want, defaulting to an empty dictionary
     row = next(ifilter(lambda r: r['slug'] == 'mainbar', rows), {})
@@ -114,7 +149,13 @@ def story_urls():
     for s in stories:
         yield("cps_abuse.cps_abuse_story", {"slug": s['slug']})
 
-@register_hook('generate')
+# @register_hook('generate')
+def register_stories(site, output_root, extra_context):
+    # "This runs before tarbell builds the static site"
+    site.freezer.register_generator(story_urls)
+
+
+# @register_hook('generate')
 def register_stories(site, output_root, extra_context):
     # "This runs before tarbell builds the static site"
     site.freezer.register_generator(story_urls)
@@ -126,6 +167,36 @@ def register_stories(site, output_root, extra_context):
 FILTERS & FUNCTIONS //// #######################################
 ################################################################
 """
+
+@blueprint.app_template_filter('get_story_info')
+# @jinja2.contextfilter
+def get_story_info(stories, slug):
+    """
+    Takes a slug and pulls the info for the story.
+    """
+    for story in stories:
+        if story['slug'] == slug:
+            return story
+
+
+@blueprint.app_template_filter('generate_end_of_story_refers')
+@jinja2.contextfilter
+def generate_end_of_story_refers(context, slugs):
+    """
+    Takes a slug and pulls the info for the stpries we want the readers to hit next.
+    """
+    refer_slugs = slugs.split(',')
+    retval = []
+
+    for slug in refer_slugs:
+        for story in context['stories']:
+            # Match each refer slug to it's row in the stories spreadsheet.
+            if story['slug'] == slug.strip():
+                # COllect the rows for the refers and send them on.
+                retval.append(story)
+
+    return retval
+
 
 # Exclude these files from publication
 EXCLUDES = ['scripts', '*.md', 'img/src','img/svgs', 'requirements.txt', 'node_modules', '.scss', 'sass', 'base-sass', 'js/src', '*.ai', 'package.json', 'package-lock.json', 'Gruntfile.js', 'out_drive.html', 'out_parsed.txt']

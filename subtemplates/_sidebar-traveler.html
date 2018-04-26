@@ -1,0 +1,7 @@
+<nav class='traveler'>
+	<ul>
+		{% for story in stories if story.slug != "mainbar" %}
+			<li><a href="#{{ story.slug }}">{{ story.headline }}</a></li>
+		{% endfor %}
+	</ul>
+</nav>

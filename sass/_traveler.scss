@@ -1,0 +1,16 @@
+// ######################################################################
+// This is NOT the container. This is the MENU inside the container
+// ######################################################################
+
+.traveler{
+	@extend %content_block;
+	margin-right: $grid-gap;
+}
+
+@media all and (min-width: $side-saddle-min-width){
+	.traveler{
+		position:sticky;
+		top: $grid-gap + $navbar-overall-height;
+	}
+
+}

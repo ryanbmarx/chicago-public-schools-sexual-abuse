@@ -1,0 +1,23 @@
+.sidebar-menu{
+	@extend .container;
+	margin: $grid-gap auto;
+	background: red;
+	box-sizing:border-box;
+	padding: $grid-gap;
+
+	@supports (display:grid){
+		display:grid;
+		grid-template: 300px / repeat(4, 1fr);
+		grid-auto-flow: row dense;
+	}
+
+	@supports not (display:griddddd){
+		display:flex;
+		flex-wrap:wrap;
+
+		& > * {
+			flex: 1 1 250px;
+		}
+	}
+
+}
