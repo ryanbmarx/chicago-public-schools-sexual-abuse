@@ -1,0 +1,88 @@
+{% extends "_base.html" %}
+
+{# 
+NOTES:
+
+The variable {{ slug }} is the unique identifier for the page. This should be used in all analytics.
+
+#}
+
+
+{% block title %}<title>{{ story_info['headline'] }} -- Chicago Tribune</title>{% endblock title %}
+
+{% set canonical_url = "http://" ~ ROOT_URL %}
+{% block canonical %}<link rel="canonical" href={{ canonical_url }} />{% endblock canonical %}
+
+{% block library_scripts %}{% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <script type='text/javascript'>
+        console.log("{{ story_info['slug'] }}");
+        document.location.replace("http://{{ ROOT_URL }}#{{ story_info['slug'] }}");
+        
+    </script>
+{% endblock content %}
+
+
+{% block scripts %}{% endblock %}
+
+{# ANALYTICS TWEAKS, FOR ALL THE DIFFERENT STORIES #}
+{% block omniture_page_name %}{{ name }}--{{ slug }}{% endblock omniture_page_name %}
+
+{% block chartbeat_page_title %}{{ headline }} (title){% endblock chartbeat_page_title %}
+{% block chartbeat_section %}Dataviz, Watchdog, title{% endblock chartbeat_section %}
+{% block chartbeat_author %}Watchdog{% endblock chartbeat_author %}
+
+{# GOOGLE/SEO #}
+{% block structured_data_meta %}
+    {# METS/STRUCTURED DATA #}
+    <meta name="description" content="{{ story_info['og_description'] }}" />
+
+    {# If the story has its own keywords, then use them, otherwise use the default #}
+    {% if story_info['seo_keywords'] %}
+        <meta name="keywords" content="{{ story_info['seo_keywords'] }}" />
+    {% else %}
+        <meta name="keywords" content="{{ seo_keywords }}" />
+    {% endif %}
+    <meta name="author" content="Chicago Tribune" />
+    <meta property="image" content="{{ story_info['thumbnail_url'] }}" />
+{% endblock structured_data_meta %}
+
+
+{% set thumbnail =  story_info['thumbnail_url']|get_thumbnail_info %}
+
+{# OPENGRAPH #}
+{% block opengraph %}
+    <meta property="og:url" content="{{ canonical_url }}" />
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="{{ story_info['og_title'] }}" />
+    <meta property="og:description" content="{{ story_info['og_description'] }}" />
+    <meta property="og:image" content="{{ story_info['thumbnail_url'] }}" />
+    <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
+    {% if thumbnail %}
+        <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+        <meta name="og:image:width" content="{{ thumbnail.width }}px" />
+    {% endif %}
+{% endblock opengraph %}
+
+{# TWITTER #}
+{% block twitter scoped%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@chicagotribune" />
+    <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
+    <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
+    <meta name="twitter:image" content="{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
+    <meta name="twitter:creator" content="@chicagotribune" />
+    <meta name="twitter:creator" content="@chitribgraphics" />
+    <meta name="twitter:creator" content="@jsmithrichards" />
+    <meta name="twitter:creator" content="@perezjr" />
+    <meta name="twitter:creator" content="@poolcar4" />
+{% endblock twitter %}
+
+{% block footer %}{% endblock footer %}
+
+

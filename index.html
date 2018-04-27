@@ -39,7 +39,7 @@
 	{% for story in stories if story.slug != "mainbar" %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
-		<div id='{{ story.slug }}' class='river'>
+		<div id='{{ story.slug }}' class='sidebar river'>
 			{% include "subtemplates/_sidebar-header.html" %}
 			{% for story_item in abuse[info.slug] %}
 				{# The story content, from the Archie, is passed directly to the template as var 	story #}
@@ -47,6 +47,8 @@
 				{% include 'subtemplates/_story-loop.html' %}
 			{% endfor %} {# end storyloop #}
 		</div>
+		<button class='read-more' data-target="{{ story.slug }}">Read more</button>
+		
 		{% if i % 3 == 0 %}
 			{{ refer() }}
 		{% endif %}

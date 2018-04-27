@@ -46,9 +46,9 @@ blueprint = Blueprint('cps_abuse', __name__)
 
 # This is so we don't need to make physical html files for each one. 
 
-# @blueprint.route('/<slug>/index.html')
-# @blueprint.route('/<slug>')
-# @blueprint.route('/<slug>/')
+@blueprint.route('/<slug>/index.html')
+@blueprint.route('/<slug>')
+@blueprint.route('/<slug>/')
 def cps_abuse_story(slug):
     """
     Make a page for each bar (side or main), based on the unique slug.
@@ -56,13 +56,13 @@ def cps_abuse_story(slug):
     site = g.current_site
 
     # We'll use the slug to find only the archie stuff we want, then pass that to the template
-    archie.get_drive_api_stuff(site, site.project.DOC_KEY)
+    # archie.get_drive_api_stuff(site, site.project.DOC_KEY)
     
-    try:
-        archie_content = archie.get_extra_context()
-        story = archie_content['abuse'][slug]
-    except KeyError:
-        story = "No story content"
+    # try:
+    #     archie_content = archie.get_extra_context()
+    #     story = archie_content['abuse'][slug]
+    # except KeyError:
+    #     story = "No story content"
 
 
 
@@ -76,69 +76,18 @@ def cps_abuse_story(slug):
 
     print "fetching content for {}".format(slug)
 
-    if row != {}: 
+    if row != {} and row['slug'] != "mainbar": 
         # render a template, using the same template environment as everywhere else
-        return render_template('subtemplates/_abuse-base.html', story=story, bucket=bucket, slug=slug, story_info=row,**data)
+        # But skip the mainbar, since that is the main index.html
+        return render_template('templates/_abuse-sidebar-base.html', bucket=bucket, slug=slug, story_info=row,**data)
     elif slug == "404.html":
         return render_template('404.html', bucket=bucket,**data)
     elif slug == "ad-iframe.html":
         return render_template('ad-iframe.html', bucket=bucket,**data)
+    elif slug == "index.html":
+        return render_template('index.html', bucket=bucket,**data)
     else:
         return render_template('404.html', bucket=bucket,**data)
-
-
-# @blueprint.route('/404.html')
-def cps_abuse_404():
-    site = g.current_site
-    data = site.get_context()
-    bucket = site.project.S3_BUCKETS.get('production', '')
-    return render_template('404.html', bucket=bucket,**data)
-
-# @blueprint.route('/ad-iframe.html')
-def cps_abuse_ad_iframe():
-    site = g.current_site
-    data = site.get_context()
-    bucket = site.project.S3_BUCKETS.get('production', '')
-    return render_template('ad-iframe.html', bucket=bucket,**data)
-
-
-# This is an exception so we don't even need to worry about the main page, either.
-# @blueprint.route('/index.html')
-# @blueprint.route('/')
-def cps_abuse_story_main_page():
-    """
-    Make a page for each bar (side or main), based on the unique slug.
-    """
-
-    print("Fetching content for {}".format(slug))
-
-    site = g.current_site
-
-    # We'll use the slug to find only the archie stuff we want, then pass that to the template
-    archie.get_drive_api_stuff(site, site.project.DOC_KEY)
-    archie_content = archie.get_extra_context()
-    # site.project.DEFAULT_CONTEXT.update(**archie.get_extra_context())
-
-
-    # get our production bucket for URL building
-    bucket = site.project.S3_BUCKETS.get('production', '')
-    data = site.get_context()
-    rows = data.get('stories', [])
-
-    # Start with some exceptions
-    if slug == "404.html":
-        return render_template('404.html', bucket=bucket, **data)
-
-    if slug == "ad-iframe.html":
-        return render_template('ad-iframe.html', bucket=bucket, **data)
-
-    # Now move on to the actual story templates
-
-    # get the row we want, defaulting to an empty dictionary
-    row = next(ifilter(lambda r: r['slug'] == 'mainbar', rows), {})
-
-    # render a template, using the same template environment as everywhere else
-    return render_template('index.html', story=archie_content["abuse"]['mainbar'], bucket=bucket, slug='mainbar', headline=row["headline"], dek=row["dek"],story_info=row, **data)
 
 def story_urls():
     # "Generate a URL for every story"
@@ -149,17 +98,10 @@ def story_urls():
     for s in stories:
         yield("cps_abuse.cps_abuse_story", {"slug": s['slug']})
 
-# @register_hook('generate')
+@register_hook('generate')
 def register_stories(site, output_root, extra_context):
     # "This runs before tarbell builds the static site"
     site.freezer.register_generator(story_urls)
-
-
-# @register_hook('generate')
-def register_stories(site, output_root, extra_context):
-    # "This runs before tarbell builds the static site"
-    site.freezer.register_generator(story_urls)
-
 
 
 """
