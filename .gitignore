@@ -20,3 +20,6 @@ js/*.map
 #ArchieML artifacts
 out_parsed.txt
 out_drive.html
+
+# A place to store things locally
+_archive

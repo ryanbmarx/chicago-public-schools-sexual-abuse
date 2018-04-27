@@ -1,5 +1,15 @@
 <nav class='sidebar-menu'>
-	{% for story in stories if story.slug != "mainbar" %}
-		<article><a href="#{{ story.slug }}">{{ story.headline }}</a></article>
-	{% endfor %}
+	<h1 class='sidebar-menu__header'>Case studies and sidebars</h1>
+	<div class='sidebar-menu__stories'>
+		{% for story in stories if story.slug != "mainbar" %}
+			<article class='sidebar-menu__story'>
+				<a href="#{{ story.slug }}">
+					{% if loop.index < 5 %}
+						<img class='sidebar-menu__story-thumb' src="{{ story.thumbnail_url }}" alt="story.thumbnail_alt_text" />
+					{% endif %}
+					<p>{{ story.headline }}</p>
+				</a>
+			</article>
+		{% endfor %}
+	</div>
 </nav>

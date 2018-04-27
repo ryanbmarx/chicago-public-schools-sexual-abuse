@@ -112,6 +112,7 @@ $read-more-background-color: $bright;
 @import 'embedded-content'; // Handles graphics and various side-saddle issues
 @import 'traveler'; // The nav alongside the sidebars
 @import 'sidebar-menu'; // The nav before the sidebars
+@import 'header'; // the mainbar header
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -120,7 +121,9 @@ $read-more-background-color: $bright;
 body{
 	margin: 0;
 	padding: 0;
-	background: $body-background-color;
+	background-color: $body-background-color;
+	background-image: url(../img/cps-abuse-bg-texture.jpg);
+	background-blend-mode: multiply;
 }
 
 .sr-only{
