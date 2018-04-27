@@ -1,0 +1,17 @@
+.header{
+
+	& * {
+		color: white !important;
+	}
+	&__panel{
+		height: calc(100vh - #{$navbar-overall-height});
+	}
+
+	&__panel--headline{
+		display:flex;
+		flex-flow: column;
+		align-items:center;
+		justify-content: center;
+
+	}
+}
