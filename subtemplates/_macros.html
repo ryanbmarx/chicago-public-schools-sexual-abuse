@@ -1,3 +1,37 @@
+{% macro add_date_published(pub, mod) %}
+  <div class='pub-date'>
+
+    {% if pub >= mod %}
+      {# If the mod date is the same as pub date, then there have been no updates #}
+      <meta itemprop="datePublished" datetime="{{ pub|xldate_to_datetime }}" content="{{ pub|xldate_to_datetime }}">
+      <time itemprop="dateModified" datetime="{{ mod }}"content="{{ mod|xldate_to_datetime }}">PUBLISHED: {{ mod|xldate_to_datetime|format_date_with_strftime("%B %-d, %Y") }}</time>
+
+    {% else %}
+      {# The the mod date is after the pub date, then there have been updates. #}
+      <meta itemprop="datePublished" datetime="{{ pub|xldate_to_datetime }}" content="{{ pub|xldate_to_datetime }}">
+      <time itemprop="dateModified" datetime="{{ mod }}"content="{{ mod|xldate_to_datetime }}">UPDATED: {{ mod|xldate_to_datetime|format_date_with_strftime("%B %-d, %Y") }}</time>
+
+    {% endif %}
+
+  </div>
+{% endmacro %}
+
+
+
+{% macro add_bylines(bylines) %}
+  <div class='bylines'>
+    <p itemprop="author creator"> By 
+      {%- for person in bylines|get_bylines %}
+        <a href="mailto:{{ person.email }}" target="_blank" rel="noopener">
+          <span itemtype="http://schema.org/Person" itemscope="">{{ person.name_first }} {{ person.name_last }}</span>
+        </a>
+        {%- if loop.length > 2 and loop.index < loop.length - 1 %}, {% endif %}
+        {%- if loop.index == loop.length - 1 %} and {% endif %}
+      {% endfor %}
+    </p>
+  </div>
+{% endmacro %}
+
 {% macro breaker(text, num=False) %}
   {% if num %}
     {# <div class='breaker breaker--{{ num }}'> #}

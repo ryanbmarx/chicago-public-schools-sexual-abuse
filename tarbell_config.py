@@ -121,22 +121,18 @@ def get_story_info(stories, slug):
             return story
 
 
-@blueprint.app_template_filter('generate_end_of_story_refers')
+@blueprint.app_template_filter('get_bylines')
 @jinja2.contextfilter
-def generate_end_of_story_refers(context, slugs):
+def get_bylines(context, byline_slugs):
     """
-    Takes a slug and pulls the info for the stpries we want the readers to hit next.
+    takes a list of reporter IDs and pulls byline info from the credits tab
     """
-    refer_slugs = slugs.split(',')
+    bylines = byline_slugs.split(',')
     retval = []
-
-    for slug in refer_slugs:
-        for story in context['stories']:
-            # Match each refer slug to it's row in the stories spreadsheet.
-            if story['slug'] == slug.strip():
-                # COllect the rows for the refers and send them on.
-                retval.append(story)
-
+    for byline in bylines:
+        for credit in context['credits']:
+            if byline.strip() == credit['id']:
+                retval.append(credit)
     return retval
 
 

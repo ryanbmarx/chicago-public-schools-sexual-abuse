@@ -1,5 +1,7 @@
 {% extends "_base.html" %}
 
+{% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
+{% from './subtemplates/_macros.html' import add_date_published as add_date_published with context%}
 
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
 
@@ -29,7 +31,7 @@
 			{% include 'subtemplates/_story-loop.html' %}
 		{% endfor %}
 	</div>
-</section> {# END MAINBAR #}
+</section> </article>{# END MAINBAR #}
 {% include "subtemplates/_sidebar-menu.html" %}
 <section class='sidebars container'>
 	<div class='sidebars__traveler'>
@@ -39,14 +41,14 @@
 	{% for story in stories if story.slug != "mainbar" %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
-		<div id='{{ story.slug }}' class='sidebar river'>
+		<article id='{{ story.slug }}' class='sidebar river'>
 			{% include "subtemplates/_sidebar-header.html" %}
 			{% for story_item in abuse[info.slug] %}
 				{# The story content, from the Archie, is passed directly to the template as var 	story #}
 				{% set s = story_item %}
 				{% include 'subtemplates/_story-loop.html' %}
 			{% endfor %} {# end storyloop #}
-		</div>
+		</article>
 		<button class='read-more' data-target="{{ story.slug }}">Read more</button>
 		
 		{% if i % 3 == 0 %}

@@ -1,6 +1,17 @@
-<header>
-	<h1>{{ mainbar_info.headline }}</h1>
-	<h2>{{ mainbar_info.dek }}</h2>
-	{{ mainbar_info.bylines }}
-	{{ date_published }}
+{% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
+{% from './subtemplates/_macros.html' import add_date_published as add_date_published with context%}
+
+<header class='header'>
+	<div class='header__panel'></div>
+	<div class='header__panel'></div>
+	<div class='header__panel'></div>
+	<div class='header__panel'></div>
+	<div class='header__panel'></div>
+	<div class='header__panel'></div>
+	<div class='header__panel header__panel--headline'>
+		<h1>{{ mainbar_info.headline }}</h1>
+		<h2>{{ mainbar_info.dek }}</h2>
+		{{ add_bylines(mainbar_info.bylines)}}
+		{{ add_date_published(date_published, date_modified) }}
+	</div>
 </header>
