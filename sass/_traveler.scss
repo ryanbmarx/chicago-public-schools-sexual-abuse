@@ -5,6 +5,31 @@
 .traveler{
 	@extend %content_block;
 	margin-right: $grid-gap;
+
+	ul{
+		list-style:none;
+		margin:0;
+		padding: 0;
+
+	}
+
+	&__link{
+		@include sans-serif();
+		display:block;
+		font-family: #{$fonts-sans-serif-condensed};
+		padding: 5px 0;
+		border-bottom: 1px solid $trib-gray4;
+		color:black;
+
+		&:hover, &:focus{
+			text-decoration:none;
+			background: $trib-gray4;
+		}
+
+		&--active{
+			font-weight: bold;
+		}
+	}
 }
 
 @media all and (min-width: $side-saddle-min-width){
