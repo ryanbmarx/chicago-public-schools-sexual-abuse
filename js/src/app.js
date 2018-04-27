@@ -1,5 +1,5 @@
-const 	inView = require('in-view'),
-		pym = require('pym.js');
+import 'intersection-observer';
+const 	pym = require('pym.js'), inView = require('in-view');
 
 
 
@@ -51,6 +51,65 @@ window.addEventListener('DOMContentLoaded', function(e){
             this.remove();
         })
     });
+
+/*
+    // Activate interaction between traveler and the sidebars
+
+    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
+
+    const sidebarObserver = new IntersectionObserver((entry, observer)=>{
+        if(entry[0].intersectionRatio > 0){
+            // If the ratio > 0, then the element is more than 0% visible in the viewport
+            const target = entry[0].target.getAttribute('id');
+            console.log('entry target:', target, entry);
+
+            // Mute the active link in the traveler
+            const activeLink = document.querySelector(`.traveler__link--active`)
+            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
+            
+            // Add the highlight class to the new traveler link
+            document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
+        }
+    }, {
+        rootMargin: `50% 0px -50% 0px`, // Move the trigger line from the bottom of the screen to half-way up from the bottom
+        threshold: 0 // Trigger when the items are 50% visible
+    });
+
+    sidebars.forEach(sidebar => sidebarObserver.observe(sidebar));
+*/
+
+    // Also, let's lazyload the images
+    const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy');
+
+    const lazyObserver = new IntersectionObserver((entry, observer)=>{
+        console.log(entry);
+        // This is the object of our lazy-loading afecction for the moment
+        const el = entry[0].target;
+
+        if (el.classList.contains('image--lazy')){
+            // If we're dealing with an image
+            const   newWidth = entry[0].boundingClientRect.width,
+                    fullResSrc = el.querySelector('img').getAttribute("src").replace("10", newWidth);
+
+            // let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
+            el.querySelector('img').setAttribute('src', fullResSrc);
+            
+        } else if (el.classList.contains('chart--lazy')){
+            // if we're dealing with a graphic
+
+            const   chartContainer = el.querySelector('.graphic-embed'),
+                    pymId = chartContainer.id,
+                    pymUrl = chartContainer.dataset.iframeUrl;
+                    new pym.Parent(pymId, pymUrl, {});
+        }
+
+        // now that the image or graphic has been loaded, we don't need to observe anymore
+        // This ensures we only lazy load an item once.
+        lazyObserver.unobserve(el);
+    }, {
+        rootMargin: `0px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
+    });
+    lazyItems.forEach(i => lazyObserver.observe(i));
 });
 
 
@@ -71,24 +130,24 @@ window.addEventListener('load', function() {
     }
     
     // Let's set our lazyload offset to 500px. The iframe should be loaded once it's 500px frmo being seen.
-    inView.offset(-500);
+    // inView.offset(-500);
     
-    // Let's lazyload the pym
-    inView('.chart--lazy')
-        .on('enter', el => {
-            const   chartContainer = el.querySelector('.graphic-embed'),
-                    pymId = chartContainer.id,
-                    pymUrl = chartContainer.dataset.iframeUrl;
-            if (!pymParents[pymId]){
-                pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
-            }
-        });
+    // // Let's lazyload the pym
+    // inView('.chart--lazy')
+    //     .on('enter', el => {
+    //         const   chartContainer = el.querySelector('.graphic-embed'),
+    //                 pymId = chartContainer.id,
+    //                 pymUrl = chartContainer.dataset.iframeUrl;
+    //         if (!pymParents[pymId]){
+    //             pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
+    //         }
+    //     });
 
     // Also, let's lazyload the images
-    inView('.image--lazy img')
-        .on('enter', el => {
-            let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
-            console.log('adding', src);
-            el.setAttribute('src', src);
-        });
+    // inView('.image--lazy img')
+    //     .on('enter', el => {
+    //         let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
+    //         console.log('adding', src);
+    //         el.setAttribute('src', src);
+    //     });
 });
