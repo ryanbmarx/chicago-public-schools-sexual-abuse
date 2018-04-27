@@ -1,8 +1,5 @@
 {% extends "_base.html" %}
 
-{% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
-{% from './subtemplates/_macros.html' import add_date_published as add_date_published with context%}
-
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
 
 {% block nav %}{% endblock %}
@@ -24,7 +21,7 @@
 {% include "subtemplates/_nav-carousel.html" %}
 {% include "subtemplates/_header.html" with context %}
 <section id='main' class='container'>
-	<div class='river'>
+	<div class='river dropcap'>
 		{% for story_item in abuse['mainbar'] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
 			{% set s = story_item %}
@@ -41,7 +38,7 @@
 	{% for story in stories if story.slug != "mainbar" %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
-		<article id='{{ story.slug }}' class='sidebar river'>
+		<article id='{{ story.slug }}' class='sidebar river dropcap'>
 			{% include "subtemplates/_sidebar-header.html" %}
 			{% for story_item in abuse[info.slug] %}
 				{# The story content, from the Archie, is passed directly to the template as var 	story #}

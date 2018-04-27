@@ -175,6 +175,24 @@ a{
 	@extend %content_block;
 }
 
+
+// Explode first graf if the story
+.dropcap > p:first-of-type {
+    font-size: 1.4em;
+    line-height: 1.65em;
+
+	// Story dropcap
+	&:first-letter{
+		color: $trib-red2;
+		float: left;
+		font-size: 75px;
+		line-height: 60px;
+		padding-top: 4px;
+		padding-right: 8px;
+		padding-left: 3px;
+	}
+}
+
 .sidebars__traveler{display:none;}
 
 .sidebar{
@@ -254,6 +272,24 @@ a{
 			}
 		}
 	}
+}
+
+// TODO: Move into base styles
+
+.river ~ .image{
+	// For any images that are subsequent siblings (not children!!)
+	// of a .river. The goal here is to target full-width images that
+	// are in a container but not a river.
+	
+	figcaption{
+		color: $white;
+	}
+}
+
+// TWEAKS JUST FOR THIS PROJECT
+
+.image{
+	margin: $grid-gap 0;
 }
 
 @media all and (min-width: $phablet-min-width){
