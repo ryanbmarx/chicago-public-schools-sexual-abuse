@@ -8,20 +8,34 @@ function isMobile(){
     return window.innerWidth < 850 ? true : false;
 }
 
+function toggleDrawer(drawerShouldOpen=false){
+    if (drawerShouldOpen){
+        // The drawer should be opened
+        document.querySelector('.carousel').classList.add('carousel--open');
+        document.querySelector('#hamburger').classList.add('carousel__button--open');
+    } else {
+        // the drawer should be closed
+        document.querySelector('.carousel').classList.remove('carousel--open');
+        document.querySelector('#hamburger').classList.remove('carousel__button--open');
+    }
+}
 window.addEventListener('DOMContentLoaded', function(e){
 
 	// Handle the carousel opening/closing
 	[].slice.call(document.querySelectorAll('.carousel__opener')).forEach(opener => {
 		opener.addEventListener('click', function(e){
 			if (document.querySelector('#hamburger').classList.contains('carousel__button--open')){
-				document.querySelector('.carousel').classList.remove('carousel--open');
-				document.querySelector('#hamburger').classList.remove('carousel__button--open');
+				toggleDrawer();
 			} else {
-				document.querySelector('.carousel').classList.add('carousel--open');
-				document.querySelector('#hamburger').classList.add('carousel__button--open');
+                toggleDrawer(true);
 			}
 		});
 	});
+
+    [].slice.call(document.querySelectorAll('.carousel__stories-list .story__link')).forEach(link => {
+        link.addEventListener('click', e => toggleDrawer());
+    });
+    
 
 
     // Open the sidebars
