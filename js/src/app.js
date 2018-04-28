@@ -1,5 +1,6 @@
 import 'intersection-observer';
-const 	pym = require('pym.js'), inView = require('in-view');
+const 	pym = require('pym.js'), 
+        inView = require('in-view');
 
 
 
@@ -93,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 
             // let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
             el.querySelector('img').setAttribute('src', fullResSrc);
-            
+
         } else if (el.classList.contains('chart--lazy')){
             // if we're dealing with a graphic
 
@@ -116,9 +117,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 
 window.addEventListener('load', function() {  
 
-    // First, let's load the not lazy graphics
-    let pymParents = {};
-
+    // First, let's init the non-lazy graphics
     const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
     
     for (var graphicCounter = 0; graphicCounter < graphics.length; graphicCounter++){
@@ -126,28 +125,25 @@ window.addEventListener('load', function() {
                 pymId = graphic.id,
                 pymUrl = graphic.dataset.iframeUrl;
         
-            pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
+        new pym.Parent(pymId, pymUrl, {});
     }
     
-    // Let's set our lazyload offset to 500px. The iframe should be loaded once it's 500px frmo being seen.
-    // inView.offset(-500);
-    
-    // // Let's lazyload the pym
-    // inView('.chart--lazy')
-    //     .on('enter', el => {
-    //         const   chartContainer = el.querySelector('.graphic-embed'),
-    //                 pymId = chartContainer.id,
-    //                 pymUrl = chartContainer.dataset.iframeUrl;
-    //         if (!pymParents[pymId]){
-    //             pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
-    //         }
-    //     });
+    // Let's set our lazyload offset to ~ 40% up the screen.
+    const windowHeight = window.innerHeight;
 
-    // Also, let's lazyload the images
-    // inView('.image--lazy img')
-    //     .on('enter', el => {
-    //         let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
-    //         console.log('adding', src);
-    //         el.setAttribute('src', src);
-    //     });
+    inView.offset(windowHeight * .4);
+    
+    // Let's track the sidebars
+    const sidebars = inView('.sidebar')
+        .on('enter', el => {
+
+            const target = el.id;
+
+            // Mute the active link in the traveler
+            const activeLink = document.querySelector(`.traveler__link--active`)
+            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
+            
+            // Add the highlight class to the new traveler link
+            document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
+        });
 });
