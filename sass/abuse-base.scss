@@ -294,6 +294,31 @@ a{
 	margin: $grid-gap 0;
 }
 
+// Changes to comments to match the styles
+
+.comments:not(.comments--open){
+	
+	.river{ 
+		
+    	@supports (display: contents){
+    		display: contents;
+    	}
+    	@supports not (display: contents){
+    		background: none; 
+    	}
+	}
+	#comments-button{
+		border-color: $white;
+		color: $white;
+
+		&:hover{
+			background: $white;
+			color: black;
+		}
+	}
+}
+
+
 @media all and (min-width: $phablet-min-width){
 	// By default, this is 450px+
 	p{
