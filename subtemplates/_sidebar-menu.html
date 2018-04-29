@@ -1,7 +1,7 @@
 <nav class='sidebar-menu'>
 	<h1 class='sidebar-menu__header'>Case studies and sidebars</h1>
 	<div class='sidebar-menu__stories'>
-		{% for story in stories if story.slug != "mainbar" %}
+		{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" %}
 			<article class='sidebar-menu__story'>
 				<a href="#{{ story.slug }}">
 					{% if loop.index < 5 %}
