@@ -81,7 +81,16 @@ $read-more-background-color: $bright;
     text-align: center;
     font: 38px/1.3em #{$fonts-sans-serif-condensed};
     text-transform: uppercase;
+	text-align:center;
+	margin:0;
 }
+
+%section-sub-label{
+	@include sans-serif();
+	text-align:center;
+	margin:0;
+}
+
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT -----------------------------------
 // @import 'ngux-visibility-toggles';
@@ -146,11 +155,6 @@ body{
   border: 0;
 }
 
-.credits, .trb_mainContent .credits {
-	// All notes, sources and credits should go inside a container class='credits'
-	// and should use the agate type style. No italics
-	p{ @include agate(); }
-}
 
 .page-footer{
 	background: $darkest;
