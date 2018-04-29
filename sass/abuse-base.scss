@@ -77,6 +77,12 @@ $read-more-background-color: $bright;
     margin-bottom: $grid-gap;
 }
 
+%section-label{
+    text-align: center;
+    font: 38px/1.3em #{$fonts-sans-serif-condensed};
+    text-transform: uppercase;
+}
+
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT -----------------------------------
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';
