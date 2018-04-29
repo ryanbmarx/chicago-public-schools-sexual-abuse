@@ -1,12 +1,21 @@
+%section-label{
+    text-align: center;
+    font: 38px/1.3em #{$fonts-sans-serif-condensed};
+    text-transform: uppercase;
+}
+
 .credits{
 	@extend %content_block;
-	@extend .container;
+	
     margin: $grid-gap auto;
-    background: rgba(black, .4);
-
+    background: rgba($white, .15);
+	padding: $grid-gap;
 	overflow:hidden;
+	color: white;
 
 	&__inner{
+		@extend .container;
+			
 		margin-right: #{$grid-gap / -1 };
 		display:flex;
 		flex-wrap: wrap;
@@ -23,12 +32,12 @@
 	}
 
 	&__label{
+		@extend %section-label;
 		margin:0;
-		// flex-basis: 100%;
-		text-align:center;
 	}
 
 	&__sublabel{
+		@include sans-serif();
 		margin: 0;
 		text-align:center;
 		// flex-basis: 100%;
