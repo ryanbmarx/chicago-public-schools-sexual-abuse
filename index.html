@@ -1,5 +1,9 @@
 {% extends "_base.html" %}
 
+{% macro abuse_subscribe_refer() %}
+	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text']) }}
+{% endmacro %}
+
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
 
 {% block nav %}{% endblock %}
@@ -33,6 +37,7 @@
 		{% endfor %}
 	</div>
 </section> </article>{# END MAINBAR #}
+<div class='advert' data-ad-type="leaderboard"></div>
 {% include "subtemplates/_sidebar-menu.html" %}
 <section class='sidebars container'>
 	<div class='sidebars__traveler'>
@@ -51,9 +56,10 @@
 			{% endfor %} {# end storyloop #}
 		</article>
 		<button class='read-more' data-target="{{ story.slug }}">Read more</button>
-		
-		{% if i % 3 == 0 %}
-			{{ refer() }}
+		{% if i % 6 == 0 %}
+			<div class='advert' data-ad-type="shrinky-cube"></div>
+		{% elif i % 3 == 0 %}
+			{{ abuse_subscribe_refer() }}
 		{% endif %}
 	{% endfor %} {# end sidebars loop #}
 	</div> {# END SIDEBARS__STORIES WRAPPER #}

@@ -181,6 +181,16 @@ a{
 }
 
 
+// Makes subscribe refers side-saddle
+.refer{
+	@extend .side--right;
+}
+
+[data-ad-type="shrinky-cube"]{
+	margin: $grid-gap auto;
+}
+
+
 // CHANGES TO RIVER FOR THE DARK BG STYLE
 
 .river{
