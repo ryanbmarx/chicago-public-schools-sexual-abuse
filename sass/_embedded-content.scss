@@ -16,7 +16,13 @@ $side-saddle-min-width: $river-width-large + $media-col-width * 2 + $container_p
 		// padding: $grid-gap;
 		
 		&--right{
+			@extend .side;
 			right: $container_padding_h; // Hugs it against the interior edge of the container
+		}
+
+		&--left{
+			@extend .side;
+			left: $container_padding_h; // Hugs it against the interior edge of the container
 		}
 	}
 
