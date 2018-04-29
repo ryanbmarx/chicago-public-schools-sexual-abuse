@@ -4,6 +4,10 @@
 
 {% block nav %}{% endblock %}
 
+{% block prefetch %}
+	{{ super() }}
+	<link href='http://{{ ROOT_URL }}/img/cps-abuse-bg-texture.jpg' rel='preload' as='image'>
+{% endblock prefetch %}
 
 {% block library_scripts %}
 	{# <script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script> #}
