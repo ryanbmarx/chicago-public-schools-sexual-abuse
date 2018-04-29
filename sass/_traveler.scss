@@ -4,7 +4,9 @@
 
 .traveler{
 	@extend %content_block;
+	background: rgba($white, .75);
 	margin-right: $grid-gap;
+	padding: $grid-gap / 2;
 
 	ul{
 		list-style:none;
@@ -13,21 +15,24 @@
 
 	}
 
+	li:last-child a {border-bottom: none;}
+
 	&__link{
 		@include sans-serif();
 		display:block;
 		font-family: #{$fonts-sans-serif-condensed};
-		padding: 5px 0;
+		padding: 5px;
 		border-bottom: 1px solid $trib-gray4;
 		color:black;
 
 		&:hover, &:focus{
 			text-decoration:none;
-			background: $trib-gray4;
+			// background: $trib-gray4;
 		}
 
 		&--active{
 			font-weight: bold;
+			background: $white;
 		}
 	}
 }
