@@ -6,11 +6,13 @@
 	padding: $grid-gap;
 
 	&__header{
-		@include label5();
-		margin: 0 0 #{$grid-gap / 2} 0;
-		text-align:center;
+		@extend %section-label;
 	}
 
+	&__sub-label{
+		@extend %section-sub-label;
+		margin: 0 0 #{$grid-gap / 2} 0;
+	}
 
 	&__stories{
 		@supports (display:grid){

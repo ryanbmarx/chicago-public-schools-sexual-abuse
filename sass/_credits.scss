@@ -28,14 +28,10 @@
 
 	&__label{
 		@extend %section-label;
-		margin:0;
 	}
 
 	&__sublabel{
-		@include sans-serif();
-		margin: 0;
-		text-align:center;
-		// flex-basis: 100%;
+		@extend %section-sub-label;
 	}
 
 	&__category-label{
