@@ -13,7 +13,7 @@ $dark: #0a154e;
 $bright: #FEE8A0;
 $white: #F1F3F4;
 
-$body-background-color: $dark;
+$body-background-color: #111;
 $navbar_background_color: $darkest;
 $highlight-color: $bright;
 
@@ -112,7 +112,7 @@ $read-more-background-color: $bright;
 @import 'traveler'; // The nav alongside the sidebars
 @import 'sidebar-menu'; // The nav before the sidebars
 @import 'header'; // the mainbar header
-
+@import 'breakers'; // Test styles for story breakers
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
@@ -121,8 +121,11 @@ body{
 	margin: 0;
 	padding: 0;
 	background-color: $body-background-color;
-	background-image: url(../img/cps-abuse-bg-texture.jpg);
-	background-blend-mode: multiply;
+	
+	@supports (background-blend-mode: multiply){
+		background-image: url(../img/cps-abuse-bg-texture.jpg);
+		background-blend-mode: multiply;
+	}
 }
 
 .sr-only{
