@@ -1,5 +1,6 @@
 <nav class='sidebar-menu'>
-	<h1 class='sidebar-menu__header'>Case studies and sidebars</h1>
+	<h1 class='sidebar-menu__header'>{{ sidebar_label }}</h1>
+	<p class='sidebar-menu__sub-label'>{{ sidebar_sublabel }}</p>
 	<div class='sidebar-menu__stories'>
 		{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" %}
 			<article class='sidebar-menu__story'>

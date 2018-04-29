@@ -1,6 +1,6 @@
 <div class='credits'>
-	<h1 class='credits__label'>Credits</h1>
-	<p class='credits__sublabel'>Sublabel</p>
+	<h1 class='credits__label'>{{ credits_label }}</h1>
+	<p class='credits__sublabel'>{{ credits_sublabel }}</p>
 	<div class='credits__inner'>
 		{% for category in credits_control|sort(attribute="display_order") %}
 				{% for person in credits|sort(attribute="name_last") if person[category.id] == 1 %}
