@@ -12,16 +12,13 @@
 		{# Put the images here #}
 		<img class='map__layer map__layer--base' src="http://{{ ROOT_URL }}/img/header/intro_basemap.svg">
 		{% for panel in intro|sort(attribute="disp_order") %}
-			{# {% if loop.first %}
-			<img  class='map__layer map__layer--{{ panel.id }}' src='http://{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' />
-			{% endif %} #}
+			<img class='map__layer map__layer--{{ panel.id }}' src='http://{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' />
 		{% endfor %}
 	</div>
 	{% for panel in intro|sort(attribute="disp_order") %}
 		<div id="{{ panel.id }}" class='header__panel'>
-			<small><strong>{{ panel.id }}:</strong>
+			<small><strong>{{ panel.id }}:</strong></small>
 			<p class='header__panel-text'>{{ panel.text|process_text }}</p>
 		</div>
 	{% endfor %}
-
 </header>

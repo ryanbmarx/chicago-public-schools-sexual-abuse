@@ -19,7 +19,6 @@
 
 		box-sizing: border-box;
 		padding: $grid-gap / 2;
-
 	}
 
 	&__panel--headline{
@@ -29,7 +28,6 @@
 	}
 
 	&__map{
-
 		position: sticky;
 		top: 0;
 
@@ -45,32 +43,85 @@
 	}
 }
 
-
-[data-header-panel]{
-	.header__map{
-
-
-		// img{
-		// 	opacity:1;
-		// 	transition: opacity 150ms ease;
-		// }
-
-	}
-}
-
 .map{
 
 	&__layer{
-		// 	opacity:0;
-		// 	transition: opacity 150ms ease;
+			opacity:0;
+			transition: opacity 150ms ease;
+
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+	}
+
+	&__layer--base{
+		opacity: 1;
 	}
 
 	&__layer--visible{
-		// 	opacity:1;
-		// 	transition: opacity 150ms ease;
+			opacity:1;
+			transition: opacity 150ms ease;
 	}
 }
 
+
+// USE CSS AND A DATA-* ATTRIBUTE ON THE BODY 
+// TO TOGGLE VISIBLITY OF THE APPROPRIATE IMAGES
+
+// PANEL 1
+[data-header-panel="intro_ex_1"]{
+	.map__layer.map__layer--intro_ex_1{
+		opacity: 1;
+	}
+}
+
+// PANEL 2
+[data-header-panel="intro_ex_2"]{
+	.map__layer.map__layer--intro_ex_1, 
+	.map__layer.map__layer--intro_ex_2{
+		opacity: 1;
+	}
+}
+
+// PANEL 3
+[data-header-panel="intro_ex_3"]{
+	.map__layer.map__layer--intro_ex_1, 
+	.map__layer.map__layer--intro_ex_2, 
+	.map__layer.map__layer--intro_ex_3{
+		opacity: 1;
+	}
+}
+// PANEL 4
+[data-header-panel="intro_police_locs"]{
+	.map__layer.map__layer--intro_police_locs{
+		opacity: 1;
+	}
+}
+
+// PANEL 5
+[data-header-panel="intro_civil_suits_locs"]{
+	.map__layer.map__layer--intro_police_locs,
+	.map__layer.map__layer--intro_civil_suits_locs{
+		opacity: 1;
+	}
+}
+
+// PANEL 6
+[data-header-panel="intro_citations_locs"]{
+	.map__layer.map__layer--intro_police_locs,
+	.map__layer.map__layer--intro_civil_suits_locs,
+	.map__layer.map__layer--intro_citations_locs{
+		opacity: 1;
+	}
+}
+
+// PANEL 7
+[data-header-panel="intro_dont_know"]{
+	.map__layer.map__layer--intro_dont_know{
+		opacity: 1;
+	}
+}
 
 @media all and (min-width: $tablet-min-width){
 	.header{
