@@ -4,7 +4,9 @@
 		color: white !important;
 	}
 	&__panel{
-		height: calc(100vh - #{$navbar-overall-height});
+		height: calc(100vh - var(--navbar-height));
+		box-sizing: border-box;
+		border: 1px dashed yellow;
 	}
 
 	&__panel--headline{
