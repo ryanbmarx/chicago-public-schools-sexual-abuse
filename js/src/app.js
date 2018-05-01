@@ -1,4 +1,7 @@
 import 'intersection-observer';
+// import "scrollmonitor";
+const scrollMonitor = require('scrollmonitor');
+
 const 	pym = require('pym.js'), 
         inView = require('in-view');
 
@@ -53,37 +56,11 @@ window.addEventListener('DOMContentLoaded', function(e){
         })
     });
 
-/*
-    // Activate interaction between traveler and the sidebars
-
-    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
-
-    const sidebarObserver = new IntersectionObserver((entry, observer)=>{
-        if(entry[0].intersectionRatio > 0){
-            // If the ratio > 0, then the element is more than 0% visible in the viewport
-            const target = entry[0].target.getAttribute('id');
-            console.log('entry target:', target, entry);
-
-            // Mute the active link in the traveler
-            const activeLink = document.querySelector(`.traveler__link--active`)
-            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
-            
-            // Add the highlight class to the new traveler link
-            document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
-        }
-    }, {
-        rootMargin: `50% 0px -50% 0px`, // Move the trigger line from the bottom of the screen to half-way up from the bottom
-        threshold: 0 // Trigger when the items are 50% visible
-    });
-
-    sidebars.forEach(sidebar => sidebarObserver.observe(sidebar));
-*/
 
     // Also, let's lazyload the images
     const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy');
 
     const lazyObserver = new IntersectionObserver((entry, observer)=>{
-        console.log(entry);
         // This is the object of our lazy-loading afecction for the moment
         const el = entry[0].target;
 
@@ -114,13 +91,17 @@ window.addEventListener('DOMContentLoaded', function(e){
 
 
 
-    // This is th header stub
-    document.querySelector('body').setAttribute('data-header-panel', "true");
+ 
 });
 
 
 
 window.addEventListener('load', function() {  
+
+    console.log('main window is onloaded');
+
+    const windowHeight = window.innerHeight;
+
 
     // First, let's init the non-lazy graphics
     const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
@@ -134,7 +115,6 @@ window.addEventListener('load', function() {
     }
     
     // Let's set our lazyload offset to ~ 40% up the screen.
-    const windowHeight = window.innerHeight;
 
     inView.offset(windowHeight * .4);
     
@@ -151,4 +131,29 @@ window.addEventListener('load', function() {
             // Add the highlight class to the new traveler link
             document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
         });
+
+   
+
+    // This powers the header 
+
+    const   body = document.querySelector('body'),
+            headerPanels = [].slice.call(document.querySelectorAll('.header__panel'));
+
+    console.log(windowHeight, windowHeight * -0.4, windowHeight * -0.6);
+    const watchers = headerPanels.map(panel => {
+
+        const watcher = scrollMonitor.create(panel, {
+            bottom: windowHeight * -0.4, 
+            // top: windowHeight * -0.6
+        });
+
+        watcher.enterViewport(function(){
+            console.log('new panel entered', panel.id, panel);
+            const id = panel.id
+            body.setAttribute('data-header-panel', id)
+        })
+
+        return watcher;
+    });
+
 });
