@@ -143,8 +143,7 @@ window.addEventListener('load', function() {
     const watchers = headerPanels.map(panel => {
 
         const watcher = scrollMonitor.create(panel, {
-            bottom: windowHeight * -0.4, 
-            // top: windowHeight * -0.6
+            bottom: windowHeight * -0.55
         });
 
         watcher.enterViewport(function(){
