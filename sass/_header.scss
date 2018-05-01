@@ -21,9 +21,11 @@
 		padding: $grid-gap / 2;
 	}
 
-	&__panel--headline{
-		// Because the headline panel DOES include the navbar
-		height: calc(100vh - var(--navbar-height));
+	.header__panel.header__panel--headline{
+		// We use this selector b/c we want to be very specific so it does not 
+		// take up the changes to other panels.
+
+		height: calc(100vh - var(--navbar-height));// Because the headline panel DOES include the navbar
 		justify-content: center;
 	}
 
@@ -128,11 +130,14 @@
 
 
 		&__panel{
-			height: calc(100vh - var(--navbar-height));
+			// height: calc(100vh - var(--navbar-height));
 			padding: $grid-gap * 2;
 			max-width: 50vw;
 			align-items:flex-start;
 			justify-content: center;
+
+			height: 600px;
+			max-height: 100vh;
 		}
 
 		&__panel--headline{
