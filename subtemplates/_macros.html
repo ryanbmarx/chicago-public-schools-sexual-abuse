@@ -102,7 +102,7 @@
     {% set refer_content = refers[aside_type] %}
     
     {% if aside_type == 'subscribe' or aside_type == "respond" %}
-      {% set refer_url = refer_content["url"]|process_text()|e %}
+      {% set refer_url = refer_content["url"]|process_text|e %}
     {% else %}
       {% set refer_url = "http://" + ROOT_URL + "/" + refer_content["url"]|process_text()|e %}
     {% endif %}

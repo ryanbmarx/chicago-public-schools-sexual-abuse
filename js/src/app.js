@@ -111,6 +111,11 @@ window.addEventListener('DOMContentLoaded', function(e){
         rootMargin: `0px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
     });
     lazyItems.forEach(i => lazyObserver.observe(i));
+
+
+
+    // This is th header stub
+    document.querySelector('body').setAttribute('data-header-panel', "true");
 });
 
 
