@@ -102,20 +102,20 @@
     {% set refer_content = refers[aside_type] %}
     
     {% if aside_type == 'subscribe' or aside_type == "respond" %}
-      {% set refer_url = refer_content["url"]|process_text(False)|e %}
+      {% set refer_url = refer_content["url"]|process_text()|e %}
     {% else %}
-      {% set refer_url = "http://" + ROOT_URL + "/" + refer_content["url"]|process_text(False)|e %}
+      {% set refer_url = "http://" + ROOT_URL + "/" + refer_content["url"]|process_text()|e %}
     {% endif %}
 
     
 
     <aside class='refer refer--{{ aside_type }} {% if add_class %} {{ add_class }} {% endif %}'>
-        <h3 class='refer__headline'>{{ refer_content["headline"]|dumb_to_smart_quotes|process_text(False) }}</h3>
+        <h3 class='refer__headline'>{{ refer_content["headline"]|dumb_to_smart_quotes|process_text() }}</h3>
         {% if refer_content["text"]%}
-        <p class='refer__text'>{{ refer_content["text"]|dumb_to_smart_quotes|process_text(False) }}</p>
+        <p class='refer__text'>{{ refer_content["text"]|dumb_to_smart_quotes|process_text() }}</p>
         {% endif %}
         {% if  refer_content["button_url"] and refer_content["button_text"] %}
-            <a class='refer__button' href='{{ refer_content["button_url"]|process_text(False) }}' target="_blank" rel="noopener">{{ refer_content["button_text"]|process_text(False) }}</a>
+            <a class='refer__button' href='{{ refer_content["button_url"]|process_text() }}' target="_blank" rel="noopener">{{ refer_content["button_text"]|process_text() }}</a>
         {% endif %}
     </aside>
 {% endmacro %}
@@ -161,8 +161,8 @@
     {% endif %}
 
       <figure class='image {{ add_class }}'>
-        <img {% if not full_res %} {{ full_res_src|process_text(False) }} {% endif %} {{ src|process_text(False) }} alt='{{ photo.title }}' title='{{ photo.title }}'/>
-        {{ caption|process_text(False) }}
+        <img {% if not full_res %} {{ full_res_src|process_text() }} {% endif %} {{ src|process_text() }} alt='{{ photo.title }}' title='{{ photo.title }}'/>
+        {{ caption|process_text() }}
       </figure>
     {% else %}
       <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
@@ -212,11 +212,11 @@
         </ul>
  #}{#         <p>{{ quote_text|length }} CHARS QUOTE</p>
         <p>{{ tweet|length }} CHARS TOTAL</p> #}
-        <blockquote>{{ quote_text|dumb_to_smart_quotes|process_text(False) }}</blockquote>
+        <blockquote>{{ quote_text|dumb_to_smart_quotes|process_text() }}</blockquote>
         {% if quote_attribution %}
             <figcaption>
-                {{ quote_attribution|process_text(False) }}
-                {% if quote_attribution_secondary|process_text(False) %}<span>{{ quote_attribution_secondary|process_text(False) }}</span>{% endif %}
+                {{ quote_attribution|process_text() }}
+                {% if quote_attribution_secondary|process_text() %}<span>{{ quote_attribution_secondary|process_text() }}</span>{% endif %}
             </figcaption>
         {% endif %}
     </figure>
