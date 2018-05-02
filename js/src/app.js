@@ -137,23 +137,26 @@ window.addEventListener('load', function() {
     // This powers the header 
 
     const   body = document.querySelector('body'),
-            headerPanels = [].slice.call(document.querySelectorAll('.header__panel'));
+            headerPanels = [].slice.call(document.querySelectorAll('.header__panel-text'));
 
     console.log(windowHeight, windowHeight * -0.4, windowHeight * -0.6);
     const watchers = headerPanels.map(panel => {
 
         const watcher = scrollMonitor.create(panel, {
-            top: windowHeight * -0.90
+            top: windowHeight * -0.5
         });
 
         watcher.enterViewport(function(){
-            console.log('new panel entered', panel.id, panel);
-            const id = panel.id;
-            body.setAttribute('data-header-panel', id);
+            const   panelParent = panel.parentElement,
+                    id = panelParent.id,
+                    activePanel = document.querySelector('.header__panel--active');
 
-            const activePanel = document.querySelector('.header__panel--active');
+            // Toggle text highlight
             if (activePanel != null) activePanel.classList.remove('header__panel--active')
-            panel.classList.add('header__panel--active');
+            panelParent.classList.add('header__panel--active');
+
+            // Toggle graphic image with the <body> data attribute.
+            body.setAttribute('data-header-panel', id);
         })
 
         return watcher;

@@ -20,7 +20,7 @@
 		* {
 			// While the heads and deks should be left aligned throughout 
 			// this presentation, we want all text in this panel to be centered.
-		    margin: 0 auto;
+		    margin: 0 auto #{$grid-gap / 2} auto;
 			text-align: center;
 			color: white;
 		}
@@ -28,7 +28,7 @@
 
 	&__panel{
 		height: 100vh;
-		border: 1px dashed yellow;
+		// border: 1px dashed yellow;
 
 		display:flex;
 		flex-flow: column;
@@ -70,7 +70,7 @@
 	}
 
 	small{
-		// display:none;
+		display:none;
     	// DEBUG ONLY. CAN BE DELETED ON PROD
     	@include agate();
     	color: white;
@@ -181,7 +181,7 @@
 			padding: $grid-gap * 2;			
 			align-items:flex-start;
 			justify-content: center;
-			height: 75vh; // Adjust this to make scroll faster or slower
+			height: 85vh; // Adjust this to make scroll faster or slower
 		}
 
 		&__panel--headline{
