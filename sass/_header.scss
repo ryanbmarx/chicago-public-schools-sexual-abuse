@@ -5,10 +5,16 @@
 	}
 
 	&__headline{
+		font: 65px/1.3em #{$fonts-sans-serif-condensed};
 		text-align: center;
+	    margin: 0 0 #{$grid-gap / 2} 0;
 	}
+
 	&__dek{
+		@extend .dek;
+		// @include sans-serif-text(25px, 1.3em, bold);
 		text-align: center;
+		// margin: 0 0 #{$grid-gap / 2} 0;
 	}
 
 	&__panel{
@@ -110,7 +116,9 @@
 
 // PANEL 5
 [data-header-panel="intro_civil_suits_locs"]{
-	.map__layer.map__layer--intro_police_locs,
+	.map__layer.map__layer--intro_police_locs{
+		opacity: .5
+	}
 	.map__layer.map__layer--intro_civil_suits_locs{
 		opacity: 1;
 	}
@@ -119,7 +127,10 @@
 // PANEL 6
 [data-header-panel="intro_citations_locs"]{
 	.map__layer.map__layer--intro_police_locs,
-	.map__layer.map__layer--intro_civil_suits_locs,
+	.map__layer.map__layer--intro_civil_suits_locs{
+		opacity: .5
+	}
+
 	.map__layer.map__layer--intro_citations_locs{
 		opacity: 1;
 	}
@@ -141,8 +152,8 @@
 			align-items:flex-start;
 			justify-content: center;
 
-			height: 600px;
-			max-height: 100vh;
+			min-height: 500px;
+			height: 75vh;
 		}
 
 		&__panel--headline{
