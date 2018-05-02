@@ -1,0 +1,55 @@
+p{
+	font: 15px/1.6em $fonts-serif;
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
+
+a{
+	color: $color-links;
+	text-decoration: none;
+
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+
+// Explode first graf if the story
+.dropcap > p:first-of-type {
+    font-size: 1.4em;
+    line-height: 1.65em;
+
+	// Story dropcap
+	&:first-letter{
+		color: $trib-red2;
+		float: left;
+		font-size: 75px;
+		line-height: 60px;
+		padding-top: 4px;
+		padding-right: 8px;
+		padding-left: 3px;
+	}
+}
+
+
+
+.dek{
+	@include sans-serif-text(25px, 1.3em, bold);
+	text-align: center;
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
+
+.kicker{
+	@include sans-serif();
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+
+
+@media all and (min-width: $phablet-min-width){
+	// By default, this is 450px+
+	p{
+		font-size: 18px;
+		line-height: 1.5em;
+	}
+}

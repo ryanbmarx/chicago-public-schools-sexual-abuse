@@ -121,6 +121,7 @@ $read-more-background-color: $bright;
 
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
+@import 'abuse-typography';
 @import 'nav-carousel'; // The nav drawer
 @import 'hamburger'; // Specifically the animated button to open the nav drawer
 @import 'credits'; // The credits box
@@ -167,19 +168,6 @@ body{
 // If you are using the off platform rig, then uncomment this code. otherwise you can delete it.
 // ##############################################
 
-p{
-	font: 15px/1.6em $fonts-serif;
-	margin: 0 0 #{$grid-gap / 2} 0;
-}
-
-a{
-	color: $color-links;
-	text-decoration: none;
-
-	&:hover{
-		text-decoration: underline;
-	}
-}
 
 
 // Makes subscribe refers side-saddle
@@ -199,22 +187,6 @@ a{
 }
 
 
-// Explode first graf if the story
-.dropcap > p:first-of-type {
-    font-size: 1.4em;
-    line-height: 1.65em;
-
-	// Story dropcap
-	&:first-letter{
-		color: $trib-red2;
-		float: left;
-		font-size: 75px;
-		line-height: 60px;
-		padding-top: 4px;
-		padding-right: 8px;
-		padding-left: 3px;
-	}
-}
 
 .sidebars__traveler{display:none;}
 
@@ -253,6 +225,8 @@ a{
 		}
 	}
 }
+
+// sidebar open buttons
 .read-more{
 	@include sans-serif();
     z-index: 1000;
@@ -342,10 +316,10 @@ a{
 
 @media all and (min-width: $phablet-min-width){
 	// By default, this is 450px+
-	p{
-		font-size: 18px;
-		line-height: 1.5em;
-	}
+	// p{
+	// 	font-size: 18px;
+	// 	line-height: 1.5em;
+	// }
 }
 @media all and (min-width: $side-saddle-min-width){
 
