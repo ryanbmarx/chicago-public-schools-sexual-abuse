@@ -13,11 +13,17 @@
 	
 		.st6{clip-path:url(#SVGID_2_);fill:none;stroke:#808080;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st7{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:4;stroke-miterlimit:10;}
-	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
-	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
-	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
-	.st12{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+	
+		.st8{opacity:0.65;clip-path:url(#SVGID_12_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+	.st9{clip-path:url(#SVGID_12_);}
+	.st10{clip-path:url(#SVGID_14_);fill:#FFFFFF;}
+	.st11{clip-path:url(#SVGID_12_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
+	.st14{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
+	.st15{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+	.st16{fill:#005596;fill-opacity:0.6;stroke:#005596;stroke-width:2;stroke-miterlimit:10;}
+	.st17{fill:#FFFFFF;}
 </style>
 <symbol  id="city-outline" viewBox="-805.6 -898.5 1529.2 1928.5">
 	<g>
@@ -11018,7 +11024,7 @@
 </symbol>
 <g id="base">
 	
-		<use xlink:href="#city-outline"  width="1529.2" height="1928.5" id="XMLID_2_" x="-805.6" y="-898.5" transform="matrix(1 0 0 -1 300 375)" style="overflow:visible;"/>
+		<use xlink:href="#city-outline"  width="1529.2" height="1928.5" id="XMLID_1_" x="-805.6" y="-898.5" transform="matrix(1 0 0 -1 300 375)" style="overflow:visible;"/>
 </g>
 <g id="Layer_2">
 </g>
