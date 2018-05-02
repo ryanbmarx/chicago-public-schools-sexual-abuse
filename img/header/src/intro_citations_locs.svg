@@ -5,95 +5,100 @@
 <style type="text/css">
 	
 		.st0{opacity:0.65;clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
-	.st1{clip-path:url(#SVGID_2_);fill:#1A1A1A;}
-	.st2{clip-path:url(#SVGID_2_);}
-	.st3{clip-path:url(#SVGID_4_);fill:#333333;}
-	.st4{clip-path:url(#SVGID_6_);}
-	.st5{fill:none;stroke:#4D4D4D;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
+	.st3{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
 	
-		.st6{clip-path:url(#SVGID_2_);fill:none;stroke:#808080;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st7{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:4;stroke-miterlimit:10;}
-	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
-	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
-	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
-	.st12{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+		.st4{opacity:0.65;clip-path:url(#SVGID_10_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_10_);fill:#1A1A1A;}
+	.st6{clip-path:url(#SVGID_10_);}
+	.st7{clip-path:url(#SVGID_12_);fill:#333333;}
+	.st8{clip-path:url(#SVGID_14_);}
+	.st9{fill:none;stroke:#4D4D4D;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st10{clip-path:url(#SVGID_10_);fill:none;stroke:#808080;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st11{clip-path:url(#SVGID_10_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:4;stroke-miterlimit:10;}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
+	.st14{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
+	.st15{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
+	.st16{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
 </style>
 <g id="base">
 </g>
 <g id="Layer_2">
-	<circle class="st11" cx="447.8" cy="323" r="5"/>
-	<circle class="st11" cx="424.5" cy="289.7" r="5"/>
-	<circle class="st11" cx="390.1" cy="234.2" r="5"/>
-	<circle class="st11" cx="389" cy="234.2" r="5"/>
-	<circle class="st11" cx="422.3" cy="210.9" r="5"/>
-	<circle class="st11" cx="421.2" cy="210.9" r="5"/>
-	<circle class="st11" cx="376.7" cy="176.5" r="5"/>
-	<circle class="st11" cx="342.3" cy="209.8" r="5"/>
-	<circle class="st11" cx="341.2" cy="176.5" r="5"/>
-	<circle class="st11" cx="375.6" cy="143.2" r="5"/>
-	<circle class="st11" cx="375.6" cy="144.3" r="5"/>
-	<circle class="st11" cx="408.9" cy="176.5" r="5"/>
-	<circle class="st11" cx="407.8" cy="176.5" r="5"/>
-	<circle class="st11" cx="418.9" cy="153.2" r="5"/>
-	<circle class="st11" cx="374.5" cy="286.4" r="5"/>
-	<circle class="st11" cx="373.4" cy="286.4" r="5"/>
-	<circle class="st11" cx="351.2" cy="264.2" r="5"/>
-	<circle class="st11" cx="384.5" cy="309.7" r="5"/>
-	<circle class="st11" cx="329" cy="299.7" r="5"/>
-	<circle class="st11" cx="362.3" cy="334.1" r="5"/>
-	<circle class="st11" cx="339" cy="356.3" r="5"/>
-	<circle class="st11" cx="339" cy="355.2" r="5"/>
-	<circle class="st11" cx="305.7" cy="334.1" r="5"/>
-	<circle class="st11" cx="305.7" cy="310.8" r="5"/>
-	<circle class="st11" cx="283.5" cy="288.6" r="5"/>
-	<circle class="st11" cx="283.5" cy="244.2" r="5"/>
-	<circle class="st11" cx="283.5" cy="233.1" r="5"/>
-	<circle class="st11" cx="261.3" cy="210.9" r="5"/>
-	<circle class="st11" cx="272.4" cy="199.8" r="5"/>
-	<circle class="st11" cx="305.7" cy="210.9" r="5"/>
-	<circle class="st11" cx="350.1" cy="244.2" r="5"/>
-	<circle class="st11" cx="427.8" cy="333" r="5"/>
-	<circle class="st11" cx="427.8" cy="344.1" r="5"/>
-	<circle class="st11" cx="394.5" cy="377.4" r="5"/>
-	<circle class="st11" cx="383.4" cy="377.4" r="5"/>
-	<circle class="st11" cx="361.2" cy="366.3" r="5"/>
-	<circle class="st11" cx="372.3" cy="421.9" r="5"/>
-	<circle class="st11" cx="416.7" cy="421.9" r="5"/>
-	<circle class="st11" cx="472.2" cy="444.1" r="5"/>
-	<circle class="st11" cx="450" cy="466.3" r="5"/>
-	<circle class="st11" cx="450" cy="477.4" r="5"/>
-	<circle class="st11" cx="461.1" cy="477.4" r="5"/>
-	<circle class="st11" cx="483.3" cy="499.6" r="5"/>
-	<circle class="st11" cx="450" cy="534" r="5"/>
-	<circle class="st11" cx="416.7" cy="500.7" r="5"/>
-	<circle class="st11" cx="405.6" cy="500.7" r="5"/>
-	<circle class="st11" cx="394.5" cy="511.8" r="5"/>
-	<circle class="st11" cx="361.2" cy="489.6" r="5"/>
-	<circle class="st11" cx="339" cy="522.9" r="5"/>
-	<circle class="st11" cx="350.1" cy="522.9" r="5"/>
-	<circle class="st11" cx="361.2" cy="534" r="5"/>
-	<circle class="st11" cx="383.4" cy="567.3" r="5"/>
-	<circle class="st11" cx="282.4" cy="526.2" r="5"/>
-	<circle class="st11" cx="405.6" cy="545.1" r="5"/>
-	<circle class="st11" cx="416.7" cy="567.3" r="5"/>
-	<circle class="st11" cx="438.9" cy="578.4" r="5"/>
-	<circle class="st11" cx="494.4" cy="534" r="5"/>
-	<circle class="st11" cx="505.5" cy="522.9" r="5"/>
-	<circle class="st11" cx="494.4" cy="456.3" r="5"/>
-	<circle class="st11" cx="505.5" cy="489.6" r="5"/>
-	<circle class="st11" cx="527.7" cy="511.8" r="5"/>
-	<circle class="st11" cx="538.8" cy="511.8" r="5"/>
-	<circle class="st11" cx="505.5" cy="545.1" r="5"/>
-	<circle class="st11" cx="483.3" cy="611.7" r="5"/>
-	<circle class="st11" cx="483.3" cy="622.8" r="5"/>
-	<circle class="st11" cx="494.4" cy="667.2" r="5"/>
-	<circle class="st11" cx="527.7" cy="633.9" r="5"/>
-	<circle class="st11" cx="527.7" cy="622.8" r="5"/>
-	<circle class="st11" cx="516.6" cy="589.5" r="5"/>
-	<circle class="st11" cx="549.9" cy="611.7" r="5"/>
-	<circle class="st11" cx="549.9" cy="622.8" r="5"/>
-	<circle class="st11" cx="538.8" cy="578.4" r="5"/>
-	<circle class="st11" cx="582.1" cy="616.2" r="5"/>
+	<circle class="st15" cx="447.8" cy="323" r="5"/>
+	<circle class="st15" cx="424.5" cy="289.7" r="5"/>
+	<circle class="st15" cx="390.1" cy="234.2" r="5"/>
+	<circle class="st15" cx="389" cy="234.2" r="5"/>
+	<circle class="st15" cx="422.3" cy="210.9" r="5"/>
+	<circle class="st15" cx="421.2" cy="210.9" r="5"/>
+	<circle class="st15" cx="376.7" cy="176.5" r="5"/>
+	<circle class="st15" cx="342.3" cy="209.8" r="5"/>
+	<circle class="st15" cx="341.2" cy="176.5" r="5"/>
+	<circle class="st15" cx="375.6" cy="143.2" r="5"/>
+	<circle class="st15" cx="375.6" cy="144.3" r="5"/>
+	<circle class="st15" cx="408.9" cy="176.5" r="5"/>
+	<circle class="st15" cx="407.8" cy="176.5" r="5"/>
+	<circle class="st15" cx="418.9" cy="153.2" r="5"/>
+	<circle class="st15" cx="374.5" cy="286.4" r="5"/>
+	<circle class="st15" cx="373.4" cy="286.4" r="5"/>
+	<circle class="st15" cx="351.2" cy="264.2" r="5"/>
+	<circle class="st15" cx="384.5" cy="309.7" r="5"/>
+	<circle class="st15" cx="329" cy="299.7" r="5"/>
+	<circle class="st15" cx="362.3" cy="334.1" r="5"/>
+	<circle class="st15" cx="339" cy="356.3" r="5"/>
+	<circle class="st15" cx="339" cy="355.2" r="5"/>
+	<circle class="st15" cx="305.7" cy="334.1" r="5"/>
+	<circle class="st15" cx="305.7" cy="310.8" r="5"/>
+	<circle class="st15" cx="283.5" cy="288.6" r="5"/>
+	<circle class="st15" cx="283.5" cy="244.2" r="5"/>
+	<circle class="st15" cx="283.5" cy="233.1" r="5"/>
+	<circle class="st15" cx="261.3" cy="210.9" r="5"/>
+	<circle class="st15" cx="272.4" cy="199.8" r="5"/>
+	<circle class="st15" cx="305.7" cy="210.9" r="5"/>
+	<circle class="st15" cx="350.1" cy="244.2" r="5"/>
+	<circle class="st15" cx="427.8" cy="333" r="5"/>
+	<circle class="st15" cx="427.8" cy="344.1" r="5"/>
+	<circle class="st15" cx="394.5" cy="377.4" r="5"/>
+	<circle class="st15" cx="383.4" cy="377.4" r="5"/>
+	<circle class="st15" cx="361.2" cy="366.3" r="5"/>
+	<circle class="st15" cx="372.3" cy="421.9" r="5"/>
+	<circle class="st15" cx="416.7" cy="421.9" r="5"/>
+	<circle class="st15" cx="472.2" cy="444.1" r="5"/>
+	<circle class="st15" cx="450" cy="466.3" r="5"/>
+	<circle class="st15" cx="450" cy="477.4" r="5"/>
+	<circle class="st15" cx="461.1" cy="477.4" r="5"/>
+	<circle class="st15" cx="483.3" cy="499.6" r="5"/>
+	<circle class="st15" cx="450" cy="534" r="5"/>
+	<circle class="st15" cx="416.7" cy="500.7" r="5"/>
+	<circle class="st15" cx="405.6" cy="500.7" r="5"/>
+	<circle class="st15" cx="394.5" cy="511.8" r="5"/>
+	<circle class="st15" cx="361.2" cy="489.6" r="5"/>
+	<circle class="st15" cx="339" cy="522.9" r="5"/>
+	<circle class="st15" cx="350.1" cy="522.9" r="5"/>
+	<circle class="st15" cx="361.2" cy="534" r="5"/>
+	<circle class="st15" cx="383.4" cy="567.3" r="5"/>
+	<circle class="st15" cx="282.4" cy="526.2" r="5"/>
+	<circle class="st15" cx="405.6" cy="545.1" r="5"/>
+	<circle class="st15" cx="416.7" cy="567.3" r="5"/>
+	<circle class="st15" cx="438.9" cy="578.4" r="5"/>
+	<circle class="st15" cx="494.4" cy="534" r="5"/>
+	<circle class="st15" cx="505.5" cy="522.9" r="5"/>
+	<circle class="st15" cx="494.4" cy="456.3" r="5"/>
+	<circle class="st15" cx="505.5" cy="489.6" r="5"/>
+	<circle class="st15" cx="527.7" cy="511.8" r="5"/>
+	<circle class="st15" cx="538.8" cy="511.8" r="5"/>
+	<circle class="st15" cx="505.5" cy="545.1" r="5"/>
+	<circle class="st15" cx="483.3" cy="611.7" r="5"/>
+	<circle class="st15" cx="483.3" cy="622.8" r="5"/>
+	<circle class="st15" cx="494.4" cy="667.2" r="5"/>
+	<circle class="st15" cx="527.7" cy="633.9" r="5"/>
+	<circle class="st15" cx="527.7" cy="622.8" r="5"/>
+	<circle class="st15" cx="516.6" cy="589.5" r="5"/>
+	<circle class="st15" cx="549.9" cy="611.7" r="5"/>
+	<circle class="st15" cx="549.9" cy="622.8" r="5"/>
+	<circle class="st15" cx="538.8" cy="578.4" r="5"/>
+	<circle class="st15" cx="582.1" cy="616.2" r="5"/>
 </g>
 </svg>

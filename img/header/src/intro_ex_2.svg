@@ -5,22 +5,27 @@
 <style type="text/css">
 	
 		.st0{opacity:0.65;clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
-	.st1{clip-path:url(#SVGID_2_);fill:#1A1A1A;}
-	.st2{clip-path:url(#SVGID_2_);}
-	.st3{clip-path:url(#SVGID_4_);fill:#333333;}
-	.st4{clip-path:url(#SVGID_6_);}
-	.st5{fill:none;stroke:#4D4D4D;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
+	.st3{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
 	
-		.st6{clip-path:url(#SVGID_2_);fill:none;stroke:#808080;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st7{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:4;stroke-miterlimit:10;}
-	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
-	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
-	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
-	.st12{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+		.st4{opacity:0.65;clip-path:url(#SVGID_10_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_10_);fill:#1A1A1A;}
+	.st6{clip-path:url(#SVGID_10_);}
+	.st7{clip-path:url(#SVGID_12_);fill:#333333;}
+	.st8{clip-path:url(#SVGID_14_);}
+	.st9{fill:none;stroke:#4D4D4D;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st10{clip-path:url(#SVGID_10_);fill:none;stroke:#808080;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st11{clip-path:url(#SVGID_10_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:4;stroke-miterlimit:10;}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
+	.st14{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
+	.st15{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
+	.st16{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
 </style>
 <g id="base">
-	<circle class="st8" cx="360.6" cy="476" r="6.8"/>
+	<circle class="st12" cx="360.6" cy="476" r="6.8"/>
 </g>
 <g id="Layer_2">
 </g>
