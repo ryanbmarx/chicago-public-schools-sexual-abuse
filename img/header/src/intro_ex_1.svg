@@ -5,32 +5,38 @@
 <style type="text/css">
 	
 		.st0{opacity:0.65;clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
-	.st1{clip-path:url(#SVGID_2_);}
-	.st2{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
-	.st3{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	
-		.st4{opacity:0.65;clip-path:url(#SVGID_10_);fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
-	.st5{clip-path:url(#SVGID_10_);fill:#1A1A1A;}
-	.st6{clip-path:url(#SVGID_10_);}
-	.st7{clip-path:url(#SVGID_12_);fill:#333333;}
-	.st8{clip-path:url(#SVGID_14_);}
-	.st9{fill:none;stroke:#4D4D4D;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	
-		.st10{clip-path:url(#SVGID_10_);fill:none;stroke:#808080;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st11{clip-path:url(#SVGID_10_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
-	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
-	.st14{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
-	.st15{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
-	.st16{fill:#005596;fill-opacity:0.6;stroke:#005596;stroke-width:2;stroke-miterlimit:10;}
-	.st17{fill:#FFFFFF;}
+	.st1{clip-path:url(#SVGID_2_);fill:#1A1A1A;}
+	.st2{clip-path:url(#SVGID_2_);}
+	.st3{clip-path:url(#SVGID_4_);}
+	.st4{clip-path:url(#SVGID_4_);fill:#333333;}
+	.st5{clip-path:url(#SVGID_6_);fill:#333333;}
+	.st6{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st7{fill:#005596;fill-opacity:0.6;stroke:#005596;stroke-width:2;stroke-miterlimit:10;}
+	.st8{fill:#FFFFFF;}
+	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
+	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#005596;}
+	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#FCEE21;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:#F15A24;}
 </style>
-<g id="base">
+<g id="basemap">
 </g>
-<g id="Layer_2">
+<g id="ex_x5F_1">
 	<g>
-		<circle class="st16" cx="461" cy="492" r="15"/>
-		<circle class="st17" cx="461" cy="492" r="3"/>
+		<circle class="st7" cx="408.1" cy="491.2" r="14.6"/>
+		<circle class="st8" cx="408.1" cy="491.2" r="2.9"/>
 	</g>
+</g>
+<g id="ex_x5F_2">
+</g>
+<g id="ex_x5F_3">
+</g>
+<g id="police_x5F_locs">
+</g>
+<g id="civil_x5F_suits_x5F_locs">
+</g>
+<g id="citations_x5F_locs">
+</g>
+<g id="dont_x5F_know">
+	<rect y="0" class="st9" width="600" height="750"/>
 </g>
 </svg>
