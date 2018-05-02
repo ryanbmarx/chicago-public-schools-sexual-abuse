@@ -282,6 +282,15 @@ body{
 	}
 }
 
+// ADVERT TWEAK TO CENTER THE BOX
+.advert{
+	&[data-ad-type="shrinky-cube"], 
+	&[data-ad-type="cube"]{ 
+		margin: #{$grid-gap} auto; 
+	}
+}
+
+
 // TODO: Move into base styles
 
 .river ~ .image{
