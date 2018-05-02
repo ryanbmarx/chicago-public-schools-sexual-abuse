@@ -1,10 +1,7 @@
 $navbar-z-index: 10000 !default;
 $nav-speed: 1000ms !default;
 
-@mixin blurInto($delay:0){
-	// @param $delay <integer> the delay, in seconds, for the animation
-	animation: blurInto 2s ease-out #{$delay}s 1 forwards;
-}
+
 
 
 :root{
@@ -39,7 +36,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	[itemprop="publisher"]{
-		@include blurInto(3)
+		@include blurInto($blur-wave-3)
 		// height: $navbar_inner_height;
 		// height: 10px;
 		display: contents; // So it takes up no space, causing things to misalign.
@@ -103,7 +100,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	&__title{
-		@include blurInto(0)
+		@include blurInto($blur-wave-3)
 		@include responsive-font(3vw, 27px, 37px, 25px);
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
@@ -127,7 +124,7 @@ $nav-speed: 1000ms !default;
 		}
 
 		span{
-			@include blurInto(1)
+			// @include blurInto($blur-wave-3)
 			font-weight: 600;
 		}
 	}
@@ -208,7 +205,7 @@ $nav-speed: 1000ms !default;
 }
 
 .carousel__button{
-  @include blurInto(3)
+  @include blurInto($blur-wave-3)
   
   @supports (display:grid){
     grid-column: 3;

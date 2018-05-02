@@ -1,12 +1,18 @@
 .header{
 
 	&__headline{
+		@include blurInto()
 		font: 65px/1.3em #{$fonts-sans-serif-condensed};
 	    margin: 0 0 #{$grid-gap / 2} 0;
 	}
 
 	&__dek{
 		@extend .dek;
+		@include blurInto($blur-wave-1);
+	}
+
+	.bylines, .pub-date{
+		@include blurInto($blur-wave-2);
 	}
 
 	.header__panel.header__panel--headline{
@@ -17,7 +23,7 @@
 		justify-content: center;
 		width: 100vw;
 
-		* {
+		& > * {
 			// While the heads and deks should be left aligned throughout 
 			// this presentation, we want all text in this panel to be centered.
 		    margin: 0 auto #{$grid-gap / 2} auto;
