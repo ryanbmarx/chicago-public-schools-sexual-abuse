@@ -143,13 +143,17 @@ window.addEventListener('load', function() {
     const watchers = headerPanels.map(panel => {
 
         const watcher = scrollMonitor.create(panel, {
-            bottom: windowHeight * -0.55
+            top: windowHeight * -0.90
         });
 
         watcher.enterViewport(function(){
             console.log('new panel entered', panel.id, panel);
-            const id = panel.id
-            body.setAttribute('data-header-panel', id)
+            const id = panel.id;
+            body.setAttribute('data-header-panel', id);
+
+            const activePanel = document.querySelector('.header__panel--active');
+            if (activePanel != null) activePanel.classList.remove('header__panel--active')
+            panel.classList.add('header__panel--active');
         })
 
         return watcher;

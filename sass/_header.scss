@@ -1,36 +1,12 @@
 .header{
 
-	& * {
-		color: white !important;
-	}
-
 	&__headline{
 		font: 65px/1.3em #{$fonts-sans-serif-condensed};
-		// text-align: center;
 	    margin: 0 0 #{$grid-gap / 2} 0;
 	}
 
 	&__dek{
 		@extend .dek;
-		// @include sans-serif-text(25px, 1.3em, bold);
-		// text-align: center;
-		// margin: 0 0 #{$grid-gap / 2} 0;
-	}
-
-	&__panel{
-		height: 100vh;
-		border: 1px dashed yellow;
-
-		display:flex;
-		flex-flow: column;
-		align-items:flex-start;
-		justify-content: flex-end;
-
-		z-index: 3;
-		position: relative;
-
-		box-sizing: border-box;
-		padding: $grid-gap / 2;
 	}
 
 	.header__panel.header__panel--headline{
@@ -46,8 +22,27 @@
 			// this presentation, we want all text in this panel to be centered.
 		    margin: 0 auto;
 			text-align: center;
+			color: white;
 		}
 	}
+
+	&__panel{
+		height: 100vh;
+		border: 1px dashed yellow;
+
+		display:flex;
+		flex-flow: column;
+		align-items:flex-start;
+		justify-content: flex-end;
+
+		z-index: 3;
+		position: relative;
+
+		box-sizing: border-box;
+		// padding: $grid-gap / 2;
+	}
+
+	
 
 	&__map{
 		position: sticky;
@@ -59,13 +54,36 @@
 	    margin: 0 auto;
 	}
 
+	// &__map + .header__panel{
+	// 	height: 100vh; // We want the FIRST panel after the map to be a little taller.
+	// }
+
 	&__panel-text{
 		@include serif-text(30px, 1.3em, normal);
 		text-align: center;
 	    background: rgba(black, .5);
 	    padding: $grid-gap / 2;
-
+	    color: white;
+	    margin: 0;
+	    opacity: .5;
+	    transition: opacity 200ms ease-in;
 	}
+
+	small{
+		// display:none;
+    	// DEBUG ONLY. CAN BE DELETED ON PROD
+    	@include agate();
+    	color: white;
+    	text-align:center;
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    }
+}
+
+.header__panel--active .header__panel-text{ 
+	opacity: 1; 
+	transition: opacity 200ms ease-in;
 }
 
 .map{
@@ -207,6 +225,7 @@
 
 			&__panel{
 				grid-column: 1 / 2;
+				height: 100%; // The grid config will determine the row height
 			}
 		}
 	}
