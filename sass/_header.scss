@@ -168,7 +168,7 @@
 		}
 	}	
 
-	@supports (display:griddddddd){
+	@supports (display:grid){
 		.header{
 			display:grid;
 			grid-template: calc(100vh - var(--navbar-height)) auto / 1fr 1fr;
@@ -198,7 +198,7 @@
 			}
 		}
 	}
-	@supports not (display:griddddddd){
+	@supports not (display:grid){
 		.header{
 			// display:grid;
 			// grid-template: calc(100vh - var(--navbar-height)) auto / 1fr 1fr;
