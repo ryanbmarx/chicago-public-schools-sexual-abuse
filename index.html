@@ -48,12 +48,7 @@
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
 		<article id='{{ story.slug }}' class='sidebar river dropcap'>
-			{% include "subtemplates/_sidebar-header.html" %}
-			{% for story_item in abuse[info.slug] %}
-				{# The story content, from the Archie, is passed directly to the template as var 	story #}
-				{% set s = story_item %}
-				{% include 'subtemplates/_story-loop.html' %}
-			{% endfor %} {# end storyloop #}
+			{% include "subtemplates/_sidebar.html" %}
 		</article>
 		<button class='read-more' data-target="{{ story.slug }}">Read more</button>
 		{% if i % 6 == 0 %}
