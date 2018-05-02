@@ -34,7 +34,7 @@ a{
 
 .dek{
 	@include sans-serif-text(25px, 1.3em, bold);
-	text-align: center;
+	// text-align: center;
 	margin: 0 0 #{$grid-gap / 2} 0;
 }
 
