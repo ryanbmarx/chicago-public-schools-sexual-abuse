@@ -225,7 +225,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	body{
-		padding: #{$navbar_inner_height + ($navbar_padding_v * 2)} 0 0 0 !important;
+		padding: var(--navbar-height) 0 0 0 !important;
 	}
 
 	.carousel{

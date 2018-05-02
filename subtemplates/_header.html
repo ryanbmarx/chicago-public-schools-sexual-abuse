@@ -3,8 +3,8 @@
 
 <header class='header'>
 	<div class='header__panel header__panel--headline'>
-		<h1>{{ mainbar_info.headline }}</h1>
-		<h2>{{ mainbar_info.dek }}</h2>
+		<h1 class='header__headline'>{{ mainbar_info.headline }}</h1>
+		<h2 class='header__dek' itemprop="headline">{{ mainbar_info.dek }}</h2>
 		{{ add_bylines(mainbar_info.bylines)}}
 		{{ add_date_published(date_published, date_modified) }}
 	</div>
