@@ -174,17 +174,46 @@ body{
 }
 
 
-
-// ##############################################
-// If you are using the off platform rig, then uncomment this code. otherwise you can delete it.
-// ##############################################
-
-
-
 // Makes subscribe refers side-saddle
+// And other fun adjustments
 .refer{
 	@extend .side--right;
+	margin-top: 0;
+    background: rgba($white, .15);
+	overflow:hidden; // TO hide the neg. margins.
+
+	&__inner{
+		display:flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;	
+		margin: #{0 - $grid-gap} #{0 - $grid-gap} 0 0; // To simulate margin collapse with flex;
+	}
+
+	&__text-wrapper{
+		flex: 1 1 200px;
+		max-width: fit-content;
+		margin: $grid-gap $grid-gap 0 0;
+	}
+
+	&__button{
+		margin: $grid-gap $grid-gap 0 0;
+		flex: 1 1 125px;
+		max-width: 125px;
+	}
+
+	&__header, &__text{
+		@include sans-serif();
+		color: $white;
+		margin: 0;
+	}
+
+	&__header{
+		font-size: 1.2em;
+		font-weight: bold;
+	}
 }
+
 
 [data-ad-type="shrinky-cube"]{
 	margin: $grid-gap auto;
