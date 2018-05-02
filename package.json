@@ -5,10 +5,12 @@
   "main": "js/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "grunt",
+    "build": "grunt && npm run svgs",
     "watch": "grunt watch",
     "publish": "grunt && tarbell publish",
-    "publish:production": "grunt && tarbell publish production"
+    "publish:production": "grunt && tarbell publish production",
+    "postinstall": "npm install -g svgo",
+    "svgs":"svgo -f img/header/src/ -o img/header/"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,8 @@
     "html-entities": "^1.2.1",
     "htmlparser2": "^3.9.2",
     "minifyify": "^7.3.3",
+    "npm-run-all": "^4.1.2",
+    "svgo": "^1.0.5",
     "trib-styles": "git+ssh://git@tribune.unfuddle.com:tribune/trib-styles.git"
   },
   "browserify": {
