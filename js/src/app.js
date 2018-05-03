@@ -181,13 +181,8 @@ window.addEventListener('load', function() {
         });
 
         watcher.exitViewport(function(){
-            v.querySelector('video').pause()
-                .then( function(el){
-                    console.log("Video is pause", this, el);
-                })
-                .catch((error) => {
-                    console.error("Error: " + error);
-                })
+            console.log("Video is pause", this, el);
+            v.querySelector('video').pause();
         });
 
         return watcher;
