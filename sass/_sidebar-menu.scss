@@ -17,9 +17,10 @@
 	&__stories{
 		@supports (display:grid){
 			display:grid;
-			grid-template-columns: repeat(4, 1fr);
+			grid-template: 200px / repeat(2, 1fr);
 			grid-auto-flow: row dense;
-			grid-gap: $grid-gap;
+			grid-auto-rows: $grid-gap * 3;
+			// grid-gap: $grid-gap;
 		}
 	
 		@supports not (display:grid){
@@ -32,11 +33,48 @@
 		}
 	}
 
-	&__story a{
-		display:block;
+	&__story {
+		display:flex;
+		position:relative;
+		a{
+			@include sans-serif();
+			color: black;
+    		font-weight: bold;
+			// display:block;
+			text-align: center;
+			margin: auto;
+			z-index: 3;
+			position: relative;
+			padding: $grid-gap / 3;
+			background: white;
+			&:hover{
+				// background: #eee;
+			}
+		}
+	}
 
-		&:hover{
-			background: #eee;
+	$background_colors: "#217FBC", "#F69E00", "#01A185", "#F4CB1A", "#FEF3DE", "#A667C0";
+
+	%overlay{
+		content:"";
+		display:block;
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+	    mix-blend-mode: multiply;
+		z-index: 2;
+		opacity: .4
+	}
+
+	@supports (mix-blend-mode:multiply){
+		// Add our cool color effect only if it will work
+		@for $index from 1 to (length($background_colors) + 1) {
+			.sidebar-menu__story:nth-child(#{$index}n):before {		
+				@extend %overlay;
+				background: #{nth($background_colors, $index)};
+			}
 		}
 	}
 
@@ -44,4 +82,29 @@
 		width: 100%;
 	}
 
+}
+
+
+@media all and (min-width: #{$river-width-large}){
+	.sidebar-menu__stories{
+		@supports (display:grid){
+			// display:grid;
+			grid-template: 200px / repeat(3, 1fr);
+			// grid-auto-flow: row dense;
+			// grid-auto-rows: $grid-gap * 3;
+			// grid-gap: $grid-gap;
+		}
+	}
+}
+
+@media all and (min-width: #{$desktop-min-width}){
+	.sidebar-menu__stories{
+		@supports (display:grid){
+			// display:grid;
+			grid-template: 200px / repeat(4, 1fr);
+			// grid-auto-flow: row dense;
+			// grid-auto-rows: $grid-gap * 3;
+			// grid-gap: $grid-gap;
+		}
+	}
 }
