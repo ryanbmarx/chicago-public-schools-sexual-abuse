@@ -55,7 +55,7 @@ $read-more-background-color: $bright;
 
 $blur-wave-1: 1s;
 $blur-wave-2: 5s;
-$blur-wave-3: 7s;
+$blur-wave-3: 5s;
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
@@ -231,11 +231,17 @@ body{
 .sidebars__traveler{display:none;}
 
 .sidebar{
+
+	// margin-top: calc(#{$grid-gap} + var(--navbar-height)); // SO the anchor tags jump the sidebar into view
 	margin-bottom: $sidebar-margin-bottom;
 	max-height: 500px;
 	overflow:hidden;
 	position:relative;
 	transition: max-height 400ms ease;
+
+	// &:first-child{
+	// 	margin-top: 0; // So the first sidebar aligns to top with the traveler.
+	// }
 
 	&:after{
 		// This is the little gradient showing that there is more stuff

@@ -42,6 +42,7 @@ a{
 	@include sans-serif();
 	font-weight: bold;
 	text-transform: uppercase;
+	margin: 0 0 #{$grid-gap / 2} 0;
 }
 
 [itemprop="author creator"]{

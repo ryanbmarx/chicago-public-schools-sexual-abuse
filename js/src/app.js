@@ -2,8 +2,7 @@ import 'intersection-observer';
 // import "scrollmonitor";
 const scrollMonitor = require('scrollmonitor');
 
-const 	pym = require('pym.js'), 
-        inView = require('in-view');
+const 	pym = require('pym.js');
 
 
 
@@ -114,13 +113,16 @@ window.addEventListener('load', function() {
         new pym.Parent(pymId, pymUrl, {});
     }
     
-    // Let's set our lazyload offset to ~ 40% up the screen.
+    // POWER THE SIDEBAR TRAVELER
+    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
 
-    inView.offset(windowHeight * .4);
-    
-    // Let's track the sidebars
-    const sidebars = inView('.sidebar')
-        .on('enter', el => {
+    const sidebarWatchers = sidebars.map(el => {
+
+        const watcher = scrollMonitor.create(el, {
+            bottom: windowHeight * .4
+        });
+
+        watcher.enterViewport(function(){
 
             const target = el.id;
 
@@ -131,8 +133,9 @@ window.addEventListener('load', function() {
             // Add the highlight class to the new traveler link
             document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
         });
+        return watcher;
+    });
 
-   
 
     // This powers the header 
 

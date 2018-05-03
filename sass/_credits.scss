@@ -44,5 +44,10 @@
 	&__category-list{
 		@include sans-serif();
 		margin:0;
+
+		span{
+			// Individual names should not break
+		    white-space: nowrap; 
+		}
 	}
 }
