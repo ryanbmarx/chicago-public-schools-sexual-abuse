@@ -162,4 +162,35 @@ window.addEventListener('load', function() {
         return watcher;
     });
 
+    const videoBreakers = [].slice.call(document.querySelectorAll('.breaker'));
+
+    const videoWatchers = videoBreakers.map(v => {
+
+        const watcher = scrollMonitor.create(v, {
+            top: 200
+        });
+
+        watcher.enterViewport(function(){
+            v.querySelector('video').play()
+                .then( function(el){
+                    console.log("Video is playing", this, el);
+                })
+                .catch((error) => {
+                    console.error("Error: " + error);
+                })
+        });
+
+        watcher.exitViewport(function(){
+            v.querySelector('video').pause()
+                .then( function(el){
+                    console.log("Video is pause", this, el);
+                })
+                .catch((error) => {
+                    console.error("Error: " + error);
+                })
+        });
+
+        return watcher;
+    });
+
 });

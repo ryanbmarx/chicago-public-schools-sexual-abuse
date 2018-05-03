@@ -1,0 +1,15 @@
+<figure class='breaker'>
+	<figcaption>
+		<p class='breaker__caption'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat error quisquam facilis saepe, laborum totam voluptate at mollitia doloribus ut, ex numquam ad minus dolorem asperiores neque suscipit amet velit.</p>
+		<p class='breaker__credit'>Photo by Brian Cassella/Chicago Tribune</p>
+	</figcaption>
+	<picture>
+		{% set widths = [1500, 1200, 800, 600, 320] %}
+		{% for w in widths %}
+			<source srcset="img/clemente-{{w}}.jpg" type="image/jpg" media="(min-width: {{ w }}px)">
+		{% endfor %}
+		<img src='img/clemente.jpg' alt="clemente" />	
+	</picture>
+	
+</figure>
+<h3>This is the breaker text</h3>

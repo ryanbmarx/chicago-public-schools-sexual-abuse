@@ -60,7 +60,9 @@
     text-align: center;
 }
 
-
+.breaker__video-wrapper{
+	@include responsive-embed(3456, 2304);
+}
 
 .illo{
 	
