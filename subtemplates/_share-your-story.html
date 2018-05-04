@@ -1,0 +1,14 @@
+{% from 'base-subtemplates/_macros.html' import refer as refer with context %}
+{# <aside class='refer refer--has-image side--right'>
+	<div class='refer__inner'>
+		<img class='refer__image' src='img/share-icon.png' />
+		<div class='refer__text-wrapper'>
+			<h1 class='refer__headline'>{{ refers["share_your_story"]["headline"] }}</h1>
+			<p class='refer__text'>{{ refers["share_your_story"]["text"] }}</p>
+			<a class='refer__button' href="{{ refers['share_your_story']['button_url'] }}" rel="noopener" target="_blank">{{ refers["share_your_story"]["button_text"] }}</a>
+		</div>
+	</div>
+</aside> #}
+
+{% set keyword = "share_your_story" %}
+{{ refer(refers[keyword]['headline'], refers[keyword]['text'], refers[keyword]['button_url'], refers[keyword]['button_text'], has_image="img/share-icon.png") }}
