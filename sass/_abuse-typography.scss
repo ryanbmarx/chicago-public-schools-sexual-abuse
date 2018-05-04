@@ -20,7 +20,8 @@ a{
 
 	// Story dropcap
 	&:first-letter{
-		color: $trib-red2;
+		font-family: #{$fonts-sans-serif-condensed};
+		color: #888;
 		float: left;
 		font-size: 75px;
 		line-height: 60px;
