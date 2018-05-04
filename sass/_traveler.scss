@@ -35,6 +35,11 @@
 			background: $white;
 		}
 	}
+
+	.traveler__link--mainbar{
+		text-transform:uppercase;
+		font-weight:bold;
+	}
 }
 
 @media all and (min-width: $side-saddle-min-width){
