@@ -20,7 +20,7 @@
 			grid-template: 200px / repeat(2, 1fr);
 			grid-auto-flow: row dense;
 			grid-auto-rows: $grid-gap * 3;
-			// grid-gap: $grid-gap;
+			grid-gap: 5px;
 		}
 	
 		@supports not (display:grid){
@@ -46,7 +46,8 @@
 			z-index: 3;
 			position: relative;
 			padding: $grid-gap / 3;
-			background: white;
+			background: rgba(white, .85);
+		    max-width: 70%;
 			&:hover{
 				// background: #eee;
 			}
