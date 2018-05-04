@@ -54,15 +54,9 @@
 		position: sticky;
 		top: 0;
 
-		// background: red;
-		// height: calc(100vh - var(--navbar-height));
 	    width: 320px;
 	    margin: 0 auto;
 	}
-
-	// &__map + .header__panel{
-	// 	height: 100vh; // We want the FIRST panel after the map to be a little taller.
-	// }
 
 	&__panel-text{
 		@include serif-text(30px, 1.3em, normal);
@@ -193,7 +187,7 @@
 @media all and (min-width: $tablet-min-width){
 	.header{
 		&__panel{
-			padding: $grid-gap * 2;			
+			padding: 0 0 0 #{$grid-gap * 2};			
 			align-items:flex-start;
 			justify-content: center;
 			height: 85vh; // Adjust this to make scroll faster or slower
@@ -205,9 +199,9 @@
 		}
 
 		&__map{
-			// Keep the container of the map images at a ~4x5 ratio b/c Chicago
 			height: calc(100vh - var(--navbar-height));
-			width: calc(4 * (100vh - var(--navbar-height)) / 5);
+			width: 100%;
+			// width: calc(4 * (100vh - var(--navbar-height)) / 5);
 
 			top: var(--navbar-height);
 			z-index: 2;
@@ -223,7 +217,10 @@
 	@supports (display:grid){
 		.header{
 			display:grid;
-			grid-template: auto auto / 1fr 1fr;
+
+			// first column width greater than 320, but less than 1fr
+			// It's like setting a min-width on a grid column
+			grid-template: auto auto / minmax(320px, 600px) 1fr; 
 			grid-auto-rows: 75vh;
 
 			&__panel.header__panel--headline{
