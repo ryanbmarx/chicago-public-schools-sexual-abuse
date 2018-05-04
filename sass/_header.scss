@@ -220,7 +220,7 @@
 
 			// first column width greater than 320, but less than 1fr
 			// It's like setting a min-width on a grid column
-			grid-template: auto auto / minmax(320px, 600px) 1fr; 
+			grid-template: auto auto / minmax(320px, 500px) 1fr; 
 			grid-auto-rows: 75vh;
 
 			&__panel.header__panel--headline{
