@@ -17,7 +17,7 @@
 	</div>
 	{% for panel in intro|sort(attribute="disp_order") %}
 		<div id="{{ panel.id }}" class='header__panel'>
-			<small><strong>{{ panel.id }}:</strong></small>
+{# 			<small><strong>{{ panel.id }}:</strong></small> #}
 			<p class='header__panel-text'>{{ panel.text|process_text }}</p>
 		</div>
 	{% endfor %}

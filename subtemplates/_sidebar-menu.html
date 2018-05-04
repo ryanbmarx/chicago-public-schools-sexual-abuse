@@ -2,7 +2,7 @@
 	<h1 class='sidebar-menu__header'>{{ sidebar_label }}</h1>
 	<p class='sidebar-menu__sub-label'>{{ sidebar_sublabel }}</p>
 	<div class='sidebar-menu__stories'>
-		{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" %}
+		{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" and story.display_menu == 1%}
 			<article class='sidebar-menu__story' style='background:url({{ story.thumbnail_url }}) center center no-repeat;background-size:cover;'>
 				<a href="#{{ story.slug }}">{{ story.headline }}</a>
 			</article>
