@@ -174,18 +174,20 @@ window.addEventListener('load', function() {
         });
 
         watcher.enterViewport(function(){
-            v.querySelector('video').play()
-                .then( function(el){
-                    console.log("Video is playing", this, el);
-                })
-                .catch((error) => {
-                    console.error("Error: " + error);
-                })
+            
+            if (v.querySelector('video') != null){
+                v.querySelector('video').play()
+                    .then( function(el){
+                        console.log("Video is playing");
+                    })
+                    .catch((error) => {
+                        console.error("Error: " + error);
+                    })
+            }
         });
 
         watcher.exitViewport(function(){
-            console.log("Video is pause", this, el);
-            v.querySelector('video').pause();
+            if (v.querySelector('video') != null) v.querySelector('video').pause();
         });
 
         return watcher;
