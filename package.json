@@ -10,7 +10,7 @@
     "publish": "grunt && tarbell publish",
     "publish:production": "grunt && tarbell publish production",
     "postinstall": "npm install -g svgo",
-    "svgs":"svgo -f img/header/src/ -o img/header/"
+    "svgs": "svgo -f img/header/src/ -o img/header/"
   },
   "repository": {
     "type": "git",
