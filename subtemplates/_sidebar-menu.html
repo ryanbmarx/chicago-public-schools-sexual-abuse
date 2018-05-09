@@ -3,8 +3,15 @@
 	<p class='sidebar-menu__sub-label'>{{ sidebar_sublabel }}</p>
 	<div class='sidebar-menu__stories'>
 		{% for story in stories|sort(attribute="display_order") if story.display_menu == 1%}
-			<article class='sidebar-menu__story' style='background:url({{ story.thumbnail_url }}) center center no-repeat;background-size:cover;'>
-				<a href="#{{ story.slug }}">{{ story.headline }}</a>
+			<article class='sidebar-menu__story sidebar-menu__story--{{ story.slug }}'>
+				<a href="#{{ story.slug }}">
+				{% if story.slug == "mainbar" %}
+					<p class='headline'>{{ story.headline }}</p>
+					<p class='dek'>{{ story.dek }}</p>
+				{% else %}
+					<p class='dek'>{{ story.headline }}</p>
+				{% endif %}
+				</a>
 			</article>
 		{% endfor %}
 	</div>
