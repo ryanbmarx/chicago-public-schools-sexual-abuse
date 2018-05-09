@@ -25,6 +25,7 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 		@supports (display:grid){
 			display:grid;
 			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: $grid-gap * 5;
 			grid-auto-flow: row dense;
 			grid-auto-rows: $grid-gap * 3;
 			grid-gap: 5px;
@@ -156,12 +157,8 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 @media all and (min-width: #{$river-width-large}){
 	.sidebar-menu__stories{
 		@supports (display:grid){
-			// display:grid;
-			// grid-template: 200px / repeat(3, 1fr);
 			grid-template-columns: repeat(3, 1fr);
-			// grid-auto-flow: row dense;
-			// grid-auto-rows: $grid-gap * 3;
-			// grid-gap: $grid-gap;
+			grid-template-rows: $grid-gap * 3;
 		}
 	}
 
