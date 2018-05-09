@@ -16,9 +16,6 @@ $imperial:#0B4F6C;
 $purple:#36213E;
 
 
-
-
-
 $body-background-color: #111;
 $navbar_background_color: $darkest;
 $highlight-color: $bright;
@@ -177,8 +174,25 @@ $keep-scrolling-icon-width: 50px !default;
 [data-animate="true"]{
 	.keep-scrolling-icon{
 		@include bounce();
-		@include blurInto($blur-wave-3);
+		// @include blurInto($blur-wave-3);
 	}
+}
+
+.animation-toggle{
+	@include sans-serif();
+	background: rgba(white, .3);
+    border: none;
+    color: #aaa;
+    padding: 5px;
+    max-width: fit-content;
+    margin: auto;
+	.animation-toggle__enable{ display:inline; }
+	.animation-toggle__disable{ display:none; }
+}
+
+[data-animate="true"]{
+	.animation-toggle__enable{ display:none; }
+	.animation-toggle__disable{ display:inline; }
 }
 
 // RESETS

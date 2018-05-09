@@ -22,10 +22,8 @@ document.querySelector('#animation-toggle').addEventListener("click", function(e
 
     if (body.dataset.animate.toLowerCase() == "true"){
         body.dataset.animate = "false";
-        this.innerHTML = "Enable animations"
     } else {
         body.dataset.animate = "true";
-        this.innerHTML = "Disable animations"
     }
 })
 
