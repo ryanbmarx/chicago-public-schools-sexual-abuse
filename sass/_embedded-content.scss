@@ -5,28 +5,43 @@ $side-width: calc(((100vw - #{$river-width-large}) / 2) - #{$container_padding_h
 $side-max-width: (($container-max-width - $river-width-large) / 2) - $container_padding_h * 2;
 $side-saddle-min-width: $river-width-large + $media-col-width * 2 + $container_padding_h * 2;
 
+
+.image--mug{
+	max-width: 200px; // We use important here to override the max-width from .side
+}
+
+@media all and (max-width: $side-saddle-min-width){
+	// This might be hacky, but when mugshots are NOT side saddle, 
+	// we want them floating and constrained width.
+	.image.image--mug{
+		float: right;
+		margin: 0 0 $grid-gap $grid-gap;
+	}
+}
+
+
 // This calc() pushes the graphic from the left edge of the viewport to the right edge of the river, with a further grid-gap in between;
 @media all and (min-width: $side-saddle-min-width){
-	.side{
-		position: absolute;
-		width: $side-width;
-		max-width: $side-max-width;
-		box-sizing:border-box;
-		background: rgba($river-background-color, .9);
-		padding: $grid-gap;
-		
-		&--right{
-			@extend .side;
-			right: $container_padding_h; // Hugs it against the interior edge of the container
-		}
-
-		&--left{
-			@extend .side;
-			left: $container_padding_h; // Hugs it against the interior edge of the container
+	.story-open, .sidebar--open {
+		.side{
+			position: absolute;
+			width: $side-width;
+			max-width: $side-max-width;
+			box-sizing:border-box;
+			background: rgba($river-background-color, .9);
+			padding: $grid-gap;
+			
+			&--right{
+				@extend .side;
+				right: $container_padding_h; // Hugs it against the interior edge of the container
+			}
+	
+			&--left{
+				@extend .side;
+				left: $container_padding_h; // Hugs it against the interior edge of the container
+			}
 		}
 	}
-
-
 }
 
 
