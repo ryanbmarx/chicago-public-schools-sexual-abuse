@@ -3,7 +3,7 @@
 {% from './base-subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
 
 <header class='header'>
-	
+	{{ keep_scrolling(target="#mainbar") }}
 	<div class='header__panel header__panel--headline'>
 		<h1 class='header__headline'>{{ mainbar_info.headline }}</h1>
 		<h2 class='header__dek' itemprop="headline">{{ mainbar_info.dek }}</h2>
@@ -13,7 +13,6 @@
 	<div class='header__map map'>
 		{# Put the images here #}
 		<img class='map__layer map__layer--base' src="http://{{ ROOT_URL }}/img/header/intro_basemap.svg">
-		{{ keep_scrolling(target="#mainbar") }}
 		{% for panel in intro|sort(attribute="disp_order") %}
 			<img class='map__layer map__layer--{{ panel.id }}' src='http://{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' />
 		{% endfor %}

@@ -60,6 +60,19 @@ a{
 	}
 }
 
+%section-label{
+    text-align: center;
+    font: 38px/1.3em #{$fonts-sans-serif-condensed};
+    text-transform: uppercase;
+	text-align:center;
+	margin:0;
+}
+
+%section-sub-label{
+	@include sans-serif();
+	text-align:center;
+	margin:0;
+}
 
 @media all and (min-width: $phablet-min-width){
 	// By default, this is 450px+

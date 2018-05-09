@@ -3,15 +3,12 @@ $nav-speed: 1000ms !default;
 
 
 
-
 :root{
 	--navbar-height: 65px;
 }
 
-.blur-at-start{
-	opacity:0;
-	filter: blur(100px);
-}
+
+
 
 .carousel{
 	width: 100%;
@@ -36,7 +33,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	[itemprop="publisher"]{
-		@include blurInto($blur-wave-3)
+		// @include blurInto($blur-wave-3)
 		// height: $navbar_inner_height;
 		// height: 10px;
 		display: contents; // So it takes up no space, causing things to misalign.
@@ -70,7 +67,7 @@ $nav-speed: 1000ms !default;
 		background: black;
 		opacity: 0;
 		transform: translate(0,-100vh);
-		transition: all #{$nav-speed} ease;
+		
 		box-sizing:border-box;
 		padding: $grid-gap;
 		overflow-y: scroll;
@@ -93,7 +90,7 @@ $nav-speed: 1000ms !default;
 	}
 
 	&__title{
-		@include blurInto($blur-wave-3)
+		// @include blurInto($blur-wave-3)
 		@include responsive-font(3vw, 27px, 37px, 25px);
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
@@ -133,12 +130,10 @@ $nav-speed: 1000ms !default;
 .carousel.carousel--open ~ .carousel__stories{
 	opacity: 1;
 	transform: translate(0,0);
-	transition: all #{$nav-speed} ease;
 
-	.carousel__stories-list li{
-		filter: blur(0);
-		transition: filter 1s ease-out;
-	}
+	// .carousel__stories-list li{
+	// 	filter: blur(0);
+	// }
 }
 
 
@@ -150,8 +145,6 @@ $nav-speed: 1000ms !default;
 		padding-bottom: $grid-gap;
 		border-bottom: 1px solid #eee;
 
-		filter: blur(100px);
-		transition: filter 1s ease-out;
 	}	
 }
 
@@ -207,6 +200,30 @@ $nav-speed: 1000ms !default;
   }
 }
 
+[data-animate="true"]{
+	.carousel{
+		[itemprop="publisher"]{ @include blurInto($blur-wave-3); }
+		&__title{ @include blurInto($blur-wave-3); }	
+	}
+
+	.carousel__stories-list li {
+		filter: blur(100px);
+		transition: filter 1s ease-out;
+	}
+
+	.carousel__stories{
+		transition: all #{$nav-speed} ease;
+	}
+
+	.carousel.carousel--open ~ .carousel__stories{
+		transition: all #{$nav-speed} ease;
+
+		.carousel__stories-list li{
+			filter: blur(0);
+			transition: filter 1s ease-out;
+		}
+	}
+}
 
 @media all and (min-width: $river-width-large){
 	

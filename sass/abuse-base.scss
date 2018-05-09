@@ -114,20 +114,6 @@ $blur-wave-3: 5s;
     margin-bottom: $grid-gap;
 }
 
-%section-label{
-    text-align: center;
-    font: 38px/1.3em #{$fonts-sans-serif-condensed};
-    text-transform: uppercase;
-	text-align:center;
-	margin:0;
-}
-
-%section-sub-label{
-	@include sans-serif();
-	text-align:center;
-	margin:0;
-}
-
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT -----------------------------------
 // @import 'ngux-visibility-toggles';
@@ -169,22 +155,30 @@ $blur-wave-3: 5s;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
+$keep-scrolling-icon-width: 50px !default;
 
 .keep-scrolling-icon{
-	@include bounce();
-	// @include blurInto($blur-wave-3);
 	fill: white;
 	position: sticky;
 
     top: 100vh;
+    top: calc(100vh - var(--navbar-height));
     left: 50%;
+	transform: translate(-50%, -115%);
 
 	border: 2px solid white;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: $keep-scrolling-icon-width;
+    height: $keep-scrolling-icon-width;
     padding: 10px;
     box-sizing: border-box;
+}
+
+[data-animate="true"]{
+	.keep-scrolling-icon{
+		@include bounce();
+		@include blurInto($blur-wave-3);
+	}
 }
 
 // RESETS

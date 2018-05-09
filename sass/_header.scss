@@ -1,18 +1,10 @@
-.header{
-	
+.header{	
 	&__headline{
 		@extend .headline;
-		@include blurInto()
-
 	}
 
 	&__dek{
 		@extend .dek;
-		@include blurInto($blur-wave-1);
-	}
-
-	.bylines, .pub-date{
-		@include blurInto($blur-wave-2);
 	}
 
 	.header__panel.header__panel--headline{
@@ -121,6 +113,24 @@
 	&__layer--visible{
 			opacity:1;
 			transition: opacity 150ms ease;
+	}
+}
+
+
+[data-animate="true"]{
+	// If animations are on, then do this
+	.header{	
+		&__headline{
+			@include blurInto()
+		}
+
+		&__dek{
+			@include blurInto($blur-wave-1);
+		}
+
+		.bylines, .pub-date{
+			@include blurInto($blur-wave-2);
+		}
 	}
 }
 

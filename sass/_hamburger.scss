@@ -51,7 +51,6 @@
 
 .carousel__button.carousel__button--open{
   span{
-    transition: all $nav-transition-time ease;
 
     &:nth-of-type(1){
       transform:translate(-50%,0) rotate(-45deg);
@@ -72,4 +71,8 @@
 
     }
   }
+}
+
+[data-animate="true"]{
+  .carousel__button.carousel__button--open span{ transition: all $nav-transition-time ease; }
 }
