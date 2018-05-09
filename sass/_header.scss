@@ -1,9 +1,9 @@
 .header{
 	
 	&__headline{
+		@extend .headline;
 		@include blurInto()
-		font: 65px/1.3em #{$fonts-sans-serif-condensed};
-	    margin: 0 0 #{$grid-gap / 2} 0;
+
 	}
 
 	&__dek{
