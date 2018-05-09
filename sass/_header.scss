@@ -137,7 +137,10 @@
 
 // PANEL 2
 [data-header-panel="intro_ex_2"]{
-	.map__layer.map__layer--intro_ex_1, 
+	.map__layer.map__layer--intro_ex_1{
+		opacity: .5;
+	}
+	
 	.map__layer.map__layer--intro_ex_2{
 		opacity: 1;
 	}
@@ -146,7 +149,10 @@
 // PANEL 3
 [data-header-panel="intro_ex_3"]{
 	.map__layer.map__layer--intro_ex_1, 
-	.map__layer.map__layer--intro_ex_2, 
+	.map__layer.map__layer--intro_ex_2{
+		opacity: .5;
+	} 
+
 	.map__layer.map__layer--intro_ex_3{
 		opacity: 1;
 	}
