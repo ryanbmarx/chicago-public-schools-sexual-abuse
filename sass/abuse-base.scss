@@ -265,7 +265,7 @@ body{
 	margin-bottom: $sidebar-margin-bottom;
 	max-height: 500px;
 	overflow:hidden;
-	position:relative;
+	// position:relative;
 	transition: max-height 400ms ease;
 
 	// &:first-child{
