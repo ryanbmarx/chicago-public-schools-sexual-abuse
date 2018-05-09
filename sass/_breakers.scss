@@ -59,9 +59,20 @@ $line-width: 200px;
     text-align: center;
 }
 
-// .breaker__video-wrapper{
-// 	@include responsive-embed(3456,2304);
-// }
+[data-animate="true"]{
+	// If animations are on, then do this
+	
+	.breaker__caption{ opacity:0; }
+
+	.breaker--animated{
+		.breaker__caption{
+			// This class will trigger css blurIns
+			@include blurInto();
+		}
+	}
+
+}
+
 
 .illo{
 	

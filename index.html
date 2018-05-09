@@ -21,6 +21,9 @@
     <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock stylesheets %}
 
+
+{% block body_attr %}data-animate="true"{% endblock body_attr %}
+
 {% block content %}
 
 {% set mainbar_info = stories|get_story_info('mainbar') %}

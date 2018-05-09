@@ -11,6 +11,11 @@ function isMobile(){
     return window.innerWidth < 850 ? true : false;
 }
 
+function doesUserWantAnimations(){
+    // returns true if user wants animations
+    return document.querySelector(`[data-animate="true"]`) == null ? false : true;
+}
+
 function toggleDrawer(drawerShouldOpen=false){
     if (drawerShouldOpen){
         // The drawer should be opened
@@ -23,6 +28,28 @@ function toggleDrawer(drawerShouldOpen=false){
     }
 }
 window.addEventListener('DOMContentLoaded', function(e){
+
+    const   windowHeight = window.innerHeight,
+            doAnimations = doesUserWantAnimations();
+
+    if(doAnimations){
+        // If user wants animations, then register the observers on the breakers
+        const breakers = [].slice.call(document.querySelectorAll('.breaker'));
+
+        const breakerWatchers = breakers.map(b => {
+
+            const watcher = scrollMonitor.create(b, {
+                top: windowHeight * 0.3
+            });
+
+            watcher.enterViewport(function(){
+                b.classList.add('breaker--animated');
+            });
+
+            return watcher;
+        });
+
+    }
 
 	// Handle the carousel opening/closing
 	[].slice.call(document.querySelectorAll('.carousel__opener')).forEach(opener => {
@@ -142,7 +169,6 @@ window.addEventListener('load', function() {
     const   body = document.querySelector('body'),
             headerPanels = [].slice.call(document.querySelectorAll('.header__panel-text'));
 
-    console.log(windowHeight, windowHeight * -0.4, windowHeight * -0.6);
     const watchers = headerPanels.map(panel => {
 
         const watcher = scrollMonitor.create(panel, {
@@ -165,32 +191,32 @@ window.addEventListener('load', function() {
         return watcher;
     });
 
-    const videoBreakers = [].slice.call(document.querySelectorAll('.breaker'));
+    // const videoBreakers = [].slice.call(document.querySelectorAll('.breaker'));
 
-    const videoWatchers = videoBreakers.map(v => {
+    // const videoWatchers = videoBreakers.map(v => {
 
-        const watcher = scrollMonitor.create(v, {
-            top: 200
-        });
+    //     const watcher = scrollMonitor.create(v, {
+    //         top: 200
+    //     });
 
-        watcher.enterViewport(function(){
+    //     watcher.enterViewport(function(){
             
-            if (v.querySelector('video') != null){
-                v.querySelector('video').play()
-                    .then( function(el){
-                        console.log("Video is playing");
-                    })
-                    .catch((error) => {
-                        console.error("Error: " + error);
-                    })
-            }
-        });
+    //         if (v.querySelector('video') != null){
+    //             v.querySelector('video').play()
+    //                 .then( function(el){
+    //                     console.log("Video is playing");
+    //                 })
+    //                 .catch((error) => {
+    //                     console.error("Error: " + error);
+    //                 })
+    //         }
+    //     });
 
-        watcher.exitViewport(function(){
-            if (v.querySelector('video') != null) v.querySelector('video').pause();
-        });
+    //     watcher.exitViewport(function(){
+    //         if (v.querySelector('video') != null) v.querySelector('video').pause();
+    //     });
 
-        return watcher;
-    });
+    //     return watcher;
+    // });
 
 });
