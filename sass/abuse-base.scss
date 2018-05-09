@@ -186,6 +186,13 @@ $keep-scrolling-icon-width: 50px !default;
     padding: 5px;
     max-width: fit-content;
     margin: auto;
+
+    position: absolute;
+    left: 53vw;
+    top: 0%;
+    grid-row: 1;
+    // transform: translate(0, -50%);
+
 	.animation-toggle__enable{ display:inline; }
 	.animation-toggle__disable{ display:none; }
 }
@@ -201,10 +208,10 @@ body{
 	padding: 0;
 	background-color: $body-background-color;
 	
-	@supports (background-blend-mode: multiply){
-		background-image: url(../img/cps-abuse-bg-texture.jpg);
-		background-blend-mode: multiply;
-	}
+	// @supports (background-blend-mode: multiply){
+	// 	background-image: url(../img/cps-abuse-bg-texture.jpg);
+	// 	background-blend-mode: multiply;
+	// }
 }
 
 .sr-only{
