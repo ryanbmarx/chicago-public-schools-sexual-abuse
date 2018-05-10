@@ -117,7 +117,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		.image.image--mug{
 			// Notch the mugshots, but with it's own max-width
 			padding: $grid-gap / 2;
-			max-width: $image-mug-max-width + $grid-gap * 2;
+			max-width: $image-mug-max-width + $grid-gap * 2 !important; // Important so he other .image styles don't disrupt it.
 			margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
 		}
 	
@@ -133,11 +133,20 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		position: absolute;
 		width: $side-width;
 		max-width: $side-max-width;
-		right: $container_padding_h; // Hugs it against the interior edge of the container
-
+		left: calc(#{$container_padding_h} + #{$river-width-large} + (100vw - #{$river-width-large}) / 2);
+		
 		// This cancels the notched styling
 	    margin: 0 !important; // Imprt used here to just tell all the other margins in use to go eff themselves.
 	    float:none;
 
 	}
 }	
+
+@media all and (min-width: $container-max-width){
+
+	.side, .river .chart.side, .river .image.side, .river .video.side{
+		// Because 100vw is too large at this point, we will just use the container maxwidth because that's the way to go.
+		left:$container_padding_h + $river-width-large + (($container-max-width - $river-width-large) / 2);
+	}
+
+}
