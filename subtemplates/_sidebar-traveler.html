@@ -1,6 +1,6 @@
 <nav class='traveler'>
 	<ul>
-		{% for story in stories|sort(attribute="display_order") if story.display_traveler == 1 %}
+		{% for story in stories|sort(attribute="display_order") if story.display_traveler == 1 and story.display_order > 0 %}
 			{% set add_class = "" %}
 			{% if story.slug == "mainbar" %}
 				{% set add_class = "traveler__link--mainbar" %}

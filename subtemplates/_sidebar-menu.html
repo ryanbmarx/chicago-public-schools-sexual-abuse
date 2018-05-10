@@ -2,7 +2,7 @@
 	<h1 class='sidebar-menu__header'>{{ sidebar_label }}</h1>
 	<p class='sidebar-menu__sub-label'>{{ sidebar_sublabel }}</p>
 	<div class='sidebar-menu__stories'>
-		{% for story in stories|sort(attribute="display_order") if story.display_menu == 1%}
+		{% for story in stories|sort(attribute="display_order") if story.display_menu == 1 and story.display_order > 0 %}
 			<article class='sidebar-menu__story sidebar-menu__story--{{ story.slug }}'>
 				<a href="#{{ story.slug }}">
 				{% if story.slug == "mainbar" %}

@@ -48,7 +48,7 @@
 		{% include 'subtemplates/_sidebar-traveler.html' %}
 	</div>
 	<div class='sidebars__stories'>
-	{% for story in stories if story.slug != "mainbar" %}
+	{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" and story.display_order and story.display_order > 0 %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
 		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
@@ -74,3 +74,5 @@
 {% block scripts %}
 	<script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script>
 {% endblock %}
+
+{% block comments %}{% endblock comments %}
