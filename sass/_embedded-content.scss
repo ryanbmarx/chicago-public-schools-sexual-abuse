@@ -115,8 +115,8 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 			}
 		}
 		.image.image--mug{
-			// Notch the mugshots, but with it's own 
-			padding: $grid-gap;
+			// Notch the mugshots, but with it's own max-width
+			padding: $grid-gap / 2;
 			max-width: $image-mug-max-width + $grid-gap * 2;
 			margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
 		}
