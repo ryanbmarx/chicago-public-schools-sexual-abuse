@@ -1,47 +1,121 @@
-// Here we deal with the side-saddle graphics
-$river-background-color: $white !default;
-$media-col-width: 250px !default;
+// ######################################################################################
+// # HANDLED HERE ARE EMEBDDED GRAPHICS, CHANGES TO IMAGES AND THE SIDE-SADDLE CONCEPT  #
+// 
+// The overriding principle here is that only elements that have a side class (which 
+// defaults to right placement) will go sidesaddle. No more extending the class elsewhere.
+// This also introduces a middle step, called "notching," where things move out of the way 
+// a little but remain partially in the river.
+// 
+// ######################################################################################
+
+// Some asset widths 
+$image-mug-max-width: 200px !default;
+$chart-right-max-width: 280px !default;
+$notched-max-width: $chart-right-max-width + ($grid-gap * 2) !default; // This adds room in the box for some padding
+$media-column-min-width: 250px !default;
+
+// Sidesaddle things
 $side-width: calc(((100vw - #{$river-width-large}) / 2) - #{$container_padding_h * 2});
 $side-max-width: (($container-max-width - $river-width-large) / 2) - $container_padding_h * 2;
-$side-saddle-min-width: $river-width-large + $media-col-width * 2 + $container_padding_h * 2;
+
+// The infamous negative margin for making the notching
+// This value is the overall distance the item needs to travel. It's half the sum of notched width
+// plus the river's padding, then cut in half and made negative.
+$side-saddle-middle-negative-margin: ($notched-max-width + $grid-gap * 2) / -2;
+
+// Really fragile breakpoints
+$notched-min-width: $river-width-large + $notched-max-width !default;
+$side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $container_padding_h * 2 !default;
 
 
-.image--mug{
-	max-width: 200px; // We use important here to override the max-width from .side
+// Universal resets for this stuff
+.chart, .image, .side{
+	box-sizing:border-box;
 }
 
-@media all and (max-width: $side-saddle-min-width){
-	// This might be hacky, but when mugshots are NOT side saddle, 
-	// we want them floating and constrained width.
-	.image.image--mug{
+
+// CHARTS
+
+.chart{
+	margin: $grid-gap 0;
+	padding: $grid-gap 0;
+	border-top: 1px solid $trib-gray4;
+	border-bottom: 1px solid $trib-gray4;
+}
+
+
+// IMAGES
+.image.image--mug{
+	// Since mugs are so small anyways, they can float at the beginning
+	max-width: $image-mug-max-width;
+	float: right;
+	margin: 0 0 $grid-gap $grid-gap;
+}
+
+// SIDESADDLE ... nothing at this time
+
+@media all and (min-width: $river-width-large){
+
+	// With a little room, our floated items can float.
+	.chart.chart--right{
+		max-width: $chart-right-max-width;
 		float: right;
-		margin: 0 0 $grid-gap $grid-gap;
+		padding: 0;
+		border-top: none;
+		border-bottom: none;
+		margin-left: $grid-gap;
 	}
 }
 
+@media all and (min-width: $notched-min-width){
+	body{
+		// HACK slash DEBUG -- CAN BE DELETED
+		background: red !important;
+	}
 
-// This calc() pushes the graphic from the left edge of the viewport to the right edge of the river, with a further grid-gap in between;
-@media all and (min-width: $side-saddle-min-width){
-	.story-open, .sidebar--open {
-		.side{
-			position: absolute;
-			width: $side-width;
-			max-width: $side-max-width;
-			box-sizing:border-box;
-			background: rgba($river-background-color, .9);
-			padding: $grid-gap;
-			
-			&--right{
-				@extend .side;
-				right: $container_padding_h; // Hugs it against the interior edge of the container
-			}
+	.chart.side, .image.image--mug{
+		// We'll want our special background color, but not for ALL side items.
+		background: darken($river-background-color, 10%);
+	}
+
 	
-			&--left{
-				@extend .side;
-				left: $container_padding_h; // Hugs it against the interior edge of the container
-			}
-		}
+	.side:not(.refer), .chart.side{
+		// .refers should NOT notch. But everything else should
+		float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
+		padding: $grid-gap;			
+		max-width: $notched-max-width;
+		margin: 0 $side-saddle-middle-negative-margin 0 $grid-gap;
 	}
+	
+	.image.image--mug{
+		// Notch the mugshots, but with it's own 
+		padding: $grid-gap;
+		max-width: $image-mug-max-width + $grid-gap * 2;
+		margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
+	}
+
 }
 
+@media all and (min-width: $side-saddle-min-width){
+	// TODO: Check on floated elements in sidebars
+
+	body{
+		// HACK slash DEBUG -- CAN BE DELETED
+		background: pink !important;
+	}
+
+
+	.side, .chart.side{
+		position: absolute;
+		width: $side-width;
+		max-width: $side-max-width;
+		right: $container_padding_h; // Hugs it against the interior edge of the container
+
+		// This cancels the notched styling
+	    margin: 0 !important; // Imprt used here to just tell all the other margins in use to go eff themselves.
+	    float:none;
+
+	}
+
+}
 
