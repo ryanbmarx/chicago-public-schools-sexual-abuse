@@ -1,4 +1,5 @@
 import 'intersection-observer';
+import clickTrack from "./click-track.js";
 // import "scrollmonitor";
 const scrollMonitor = require('scrollmonitor');
 
@@ -21,8 +22,10 @@ document.querySelector('#animation-toggle').addEventListener("click", function(e
     const body = document.querySelector('body');
 
     if (body.dataset.animate.toLowerCase() == "true"){
+        clickTrack("CPS abuse - animations toggled off", true, true);
         body.dataset.animate = "false";
     } else {
+        clickTrack("CPS abuse - animations toggled on", true, true);
         body.dataset.animate = "true";
     }
 })
@@ -32,6 +35,7 @@ function toggleDrawer(drawerShouldOpen=false){
         // The drawer should be opened
         document.querySelector('.carousel').classList.add('carousel--open');
         document.querySelector('#hamburger').classList.add('carousel__button--open');
+        clickTrack("CPS Abuse - nav drawer is opened", true, true);
     } else {
         // the drawer should be closed
         document.querySelector('.carousel').classList.remove('carousel--open');
@@ -50,11 +54,12 @@ window.addEventListener('DOMContentLoaded', function(e){
         const breakerWatchers = breakers.map(b => {
 
             const watcher = scrollMonitor.create(b, {
-                top: windowHeight * 0.3
+                bottom: windowHeight * 0.15
             });
 
             watcher.enterViewport(function(){
                 b.classList.add('breaker--animated');
+                watcher.destroy();
             });
 
             return watcher;
@@ -62,37 +67,17 @@ window.addEventListener('DOMContentLoaded', function(e){
 
     }
 
-	// Handle the carousel opening/closing
-	[].slice.call(document.querySelectorAll('.carousel__opener')).forEach(opener => {
-		opener.addEventListener('click', function(e){
-			if (document.querySelector('#hamburger').classList.contains('carousel__button--open')){
-				toggleDrawer();
-			} else {
-                toggleDrawer(true);
-			}
-		});
-	});
 
-    [].slice.call(document.querySelectorAll('.carousel__stories-list .story__link')).forEach(link => {
-        link.addEventListener('click', e => toggleDrawer());
-    });
+    // First, let's init the non-lazy graphics
+    const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
     
-
-
-    // Open the sidebars
-    [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
-        button.addEventListener('click', function(e){
-            // Which sidebar do we want to open?
-            const sidebar = this.dataset.target;
-
-            // Add the open class to that sidebar, found by ID.
-            document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
-
-            // Remove the button
-            this.remove();
-        })
-    });
-
+    for (var graphicCounter = 0; graphicCounter < graphics.length; graphicCounter++){
+        const   graphic = graphics[graphicCounter],
+                pymId = graphic.id,
+                pymUrl = graphic.dataset.iframeUrl;
+        
+        new pym.Parent(pymId, pymUrl, {});
+    }
 
     // Also, let's lazyload the images
     const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy');
@@ -127,6 +112,40 @@ window.addEventListener('DOMContentLoaded', function(e){
     lazyItems.forEach(i => lazyObserver.observe(i));
 
 
+    // Handle the carousel opening/closing
+    [].slice.call(document.querySelectorAll('.carousel__opener')).forEach(opener => {
+        opener.addEventListener('click', function(e){
+            if (document.querySelector('#hamburger').classList.contains('carousel__button--open')){
+                toggleDrawer();
+            } else {
+                toggleDrawer(true);
+            }
+        });
+    });
+
+    [].slice.call(document.querySelectorAll('.carousel__stories-list .story__link')).forEach(link => {
+        link.addEventListener('click', e => toggleDrawer());
+    });
+    
+
+
+    // Open the sidebars
+    [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
+        button.addEventListener('click', function(e){
+            
+            // Which sidebar do we want to open?
+            const sidebar = this.dataset.target;
+
+            // Add the open class to that sidebar, found by ID.
+            document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
+
+            // Remove the button
+            this.remove();
+            scrollMonitor.recalculateLocations();
+            clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, true);
+        })
+    });
+
 
  
 });
@@ -139,25 +158,13 @@ window.addEventListener('load', function() {
 
     const windowHeight = window.innerHeight;
 
-
-    // First, let's init the non-lazy graphics
-    const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
-    
-    for (var graphicCounter = 0; graphicCounter < graphics.length; graphicCounter++){
-        const   graphic = graphics[graphicCounter],
-                pymId = graphic.id,
-                pymUrl = graphic.dataset.iframeUrl;
-        
-        new pym.Parent(pymId, pymUrl, {});
-    }
-    
     // POWER THE SIDEBAR TRAVELER
     const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
 
     const sidebarWatchers = sidebars.map(el => {
 
         const watcher = scrollMonitor.create(el, {
-            bottom: windowHeight * .4
+            bottom: windowHeight * .5
         });
 
         watcher.enterViewport(function(){
@@ -186,6 +193,8 @@ window.addEventListener('load', function() {
             top: windowHeight * -0.5
         });
 
+
+
         watcher.enterViewport(function(){
             const   panelParent = panel.parentElement,
                     id = panelParent.id,
@@ -201,33 +210,4 @@ window.addEventListener('load', function() {
 
         return watcher;
     });
-
-    // const videoBreakers = [].slice.call(document.querySelectorAll('.breaker'));
-
-    // const videoWatchers = videoBreakers.map(v => {
-
-    //     const watcher = scrollMonitor.create(v, {
-    //         top: 200
-    //     });
-
-    //     watcher.enterViewport(function(){
-            
-    //         if (v.querySelector('video') != null){
-    //             v.querySelector('video').play()
-    //                 .then( function(el){
-    //                     console.log("Video is playing");
-    //                 })
-    //                 .catch((error) => {
-    //                     console.error("Error: " + error);
-    //                 })
-    //         }
-    //     });
-
-    //     watcher.exitViewport(function(){
-    //         if (v.querySelector('video') != null) v.querySelector('video').pause();
-    //     });
-
-    //     return watcher;
-    // });
-
 });
