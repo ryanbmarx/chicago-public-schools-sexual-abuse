@@ -7,23 +7,26 @@
 // COLORS, eyedropped from Casella photos
 
 $darkest: #070808;
-// $dark: #293B93;
 $dark: #0a154e;
-// $dark: #292D74;
 $bright: #FEE8A0;
 $white: #F1F3F4;
+
+$yankees:#1C2541;
+$imperial:#0B4F6C;
+$purple:#36213E;
+
 
 $body-background-color: #111;
 $navbar_background_color: $darkest;
 $highlight-color: $bright;
+$river-background-color: $white;
 
 // Reassign type styles
 // $fonts-serif: XXX;
 $fonts-sans-serif: "'Open Sans', sans-serif";
 $fonts-sans-serif-condensed: "'Open Sans Condensed', sans-serif";
 
-
-$cta-background-color: lighten($trib-blue4, 20%);
+$refer-background-color: #2F3030; // Hex of rgba($white, .15)
 
 
 // NAV CAROUSEL
@@ -51,6 +54,11 @@ $tablet-min-width: 767px;
 $sidebar-margin-bottom: $grid-gap * 2;
 $read-more-background-color: $bright;
 
+// INTRO BLUR TIMES
+
+$blur-wave-1: 1s;
+$blur-wave-2: 5s;
+$blur-wave-3: 5s;
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
@@ -61,35 +69,46 @@ $read-more-background-color: $bright;
 	from {
 		opacity:0;
 		filter: blur(100px);
-		transform: translate(-5px, 0);
+		// transform: translate(0, -1em);
 	}
 
 	to{
 		opacity:1;
 		filter: blur(0);
-		transform: translate(0,0);
+		// transform: translate(0,0);
 	}
+}
+
+@mixin blurInto($delay:0s){
+	// @param $delay <integer> the delay, in seconds, for the animation
+	animation: blurInto 2s ease-out #{$delay} 1 forwards;
+	opacity:0;
+}
+
+
+@keyframes bounce{
+	from {
+		transform: translate(-50%, 0);
+	}
+
+	to {
+		transform: translate(-50%, -50px);
+	}
+}
+
+@mixin bounce(){
+	animation-name: bounce;
+	animation-duration: 1.5s;
+	animation-direction: reverse;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
 }
 
 %content_block{
 	padding: $grid-gap;
-	background: $white;
+	background: $river-background-color;
 	box-sizing: border-box;
     margin-bottom: $grid-gap;
-}
-
-%section-label{
-    text-align: center;
-    font: 38px/1.3em #{$fonts-sans-serif-condensed};
-    text-transform: uppercase;
-	text-align:center;
-	margin:0;
-}
-
-%section-sub-label{
-	@include sans-serif();
-	text-align:center;
-	margin:0;
 }
 
 
@@ -133,6 +152,49 @@ $read-more-background-color: $bright;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
+$keep-scrolling-icon-width: 50px !default;
+
+.keep-scrolling-icon{
+	fill: white;
+	position: sticky;
+
+    top: 100vh;
+    top: calc(100vh - var(--navbar-height));
+    left: 50%;
+	transform: translate(-50%, -115%);
+
+	border: 2px solid white;
+    border-radius: 50%;
+    width: $keep-scrolling-icon-width;
+    height: $keep-scrolling-icon-width;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+[data-animate="true"]{
+	.keep-scrolling-icon{
+		@include bounce();
+		// @include blurInto($blur-wave-3);
+	}
+}
+
+.animation-toggle{
+	@include sans-serif();
+	background: rgba(white, .3);
+    border: none;
+    color: #aaa;
+    padding: 5px;
+    max-width: fit-content;
+    margin: auto;
+	.animation-toggle__enable{ display:inline; }
+	.animation-toggle__disable{ display:none; }
+}
+
+[data-animate="true"]{
+	.animation-toggle__enable{ display:none; }
+	.animation-toggle__disable{ display:inline; }
+}
+
 // RESETS
 body{
 	margin: 0;
@@ -163,17 +225,17 @@ body{
 }
 
 
-
-// ##############################################
-// If you are using the off platform rig, then uncomment this code. otherwise you can delete it.
-// ##############################################
-
-
-
 // Makes subscribe refers side-saddle
 .refer{
 	@extend .side--right;
+	margin-top: 0;
+
+	&__headline{
+		font-size: 1.2em;
+	}
 }
+
+
 
 [data-ad-type="shrinky-cube"]{
 	margin: $grid-gap auto;
@@ -191,11 +253,17 @@ body{
 .sidebars__traveler{display:none;}
 
 .sidebar{
+
+	// margin-top: calc(#{$grid-gap} + var(--navbar-height)); // SO the anchor tags jump the sidebar into view
 	margin-bottom: $sidebar-margin-bottom;
 	max-height: 500px;
 	overflow:hidden;
 	position:relative;
 	transition: max-height 400ms ease;
+
+	// &:first-child{
+	// 	margin-top: 0; // So the first sidebar aligns to top with the traveler.
+	// }
 
 	&:after{
 		// This is the little gradient showing that there is more stuff
@@ -270,6 +338,15 @@ body{
 		}
 	}
 }
+
+// ADVERT TWEAK TO CENTER THE BOX
+.advert{
+	&[data-ad-type="shrinky-cube"], 
+	&[data-ad-type="cube"]{ 
+		margin: #{$grid-gap} auto; 
+	}
+}
+
 
 // TODO: Move into base styles
 

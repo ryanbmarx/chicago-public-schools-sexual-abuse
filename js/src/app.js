@@ -2,8 +2,7 @@ import 'intersection-observer';
 // import "scrollmonitor";
 const scrollMonitor = require('scrollmonitor');
 
-const 	pym = require('pym.js'), 
-        inView = require('in-view');
+const 	pym = require('pym.js');
 
 
 
@@ -11,6 +10,22 @@ function isMobile(){
     // returns true if I think we're on mobile.
     return window.innerWidth < 850 ? true : false;
 }
+
+function doesUserWantAnimations(){
+    // returns true if user wants animations
+    return document.querySelector(`[data-animate="true"]`) == null ? false : true;
+}
+
+
+document.querySelector('#animation-toggle').addEventListener("click", function(e){
+    const body = document.querySelector('body');
+
+    if (body.dataset.animate.toLowerCase() == "true"){
+        body.dataset.animate = "false";
+    } else {
+        body.dataset.animate = "true";
+    }
+})
 
 function toggleDrawer(drawerShouldOpen=false){
     if (drawerShouldOpen){
@@ -24,6 +39,28 @@ function toggleDrawer(drawerShouldOpen=false){
     }
 }
 window.addEventListener('DOMContentLoaded', function(e){
+
+    const   windowHeight = window.innerHeight,
+            doAnimations = doesUserWantAnimations();
+
+    if(doAnimations){
+        // If user wants animations, then register the observers on the breakers
+        const breakers = [].slice.call(document.querySelectorAll('.breaker'));
+
+        const breakerWatchers = breakers.map(b => {
+
+            const watcher = scrollMonitor.create(b, {
+                top: windowHeight * 0.3
+            });
+
+            watcher.enterViewport(function(){
+                b.classList.add('breaker--animated');
+            });
+
+            return watcher;
+        });
+
+    }
 
 	// Handle the carousel opening/closing
 	[].slice.call(document.querySelectorAll('.carousel__opener')).forEach(opener => {
@@ -114,13 +151,16 @@ window.addEventListener('load', function() {
         new pym.Parent(pymId, pymUrl, {});
     }
     
-    // Let's set our lazyload offset to ~ 40% up the screen.
+    // POWER THE SIDEBAR TRAVELER
+    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
 
-    inView.offset(windowHeight * .4);
-    
-    // Let's track the sidebars
-    const sidebars = inView('.sidebar')
-        .on('enter', el => {
+    const sidebarWatchers = sidebars.map(el => {
+
+        const watcher = scrollMonitor.create(el, {
+            bottom: windowHeight * .4
+        });
+
+        watcher.enterViewport(function(){
 
             const target = el.id;
 
@@ -131,15 +171,15 @@ window.addEventListener('load', function() {
             // Add the highlight class to the new traveler link
             document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
         });
+        return watcher;
+    });
 
-   
 
     // This powers the header 
 
     const   body = document.querySelector('body'),
             headerPanels = [].slice.call(document.querySelectorAll('.header__panel-text'));
 
-    console.log(windowHeight, windowHeight * -0.4, windowHeight * -0.6);
     const watchers = headerPanels.map(panel => {
 
         const watcher = scrollMonitor.create(panel, {
@@ -161,5 +201,33 @@ window.addEventListener('load', function() {
 
         return watcher;
     });
+
+    // const videoBreakers = [].slice.call(document.querySelectorAll('.breaker'));
+
+    // const videoWatchers = videoBreakers.map(v => {
+
+    //     const watcher = scrollMonitor.create(v, {
+    //         top: 200
+    //     });
+
+    //     watcher.enterViewport(function(){
+            
+    //         if (v.querySelector('video') != null){
+    //             v.querySelector('video').play()
+    //                 .then( function(el){
+    //                     console.log("Video is playing");
+    //                 })
+    //                 .catch((error) => {
+    //                     console.error("Error: " + error);
+    //                 })
+    //         }
+    //     });
+
+    //     watcher.exitViewport(function(){
+    //         if (v.querySelector('video') != null) v.querySelector('video').pause();
+    //     });
+
+    //     return watcher;
+    // });
 
 });

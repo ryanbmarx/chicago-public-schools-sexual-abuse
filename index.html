@@ -21,6 +21,9 @@
     <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock stylesheets %}
 
+
+{% block body_attr %}data-animate="true"{% endblock body_attr %}
+
 {% block content %}
 
 {% set mainbar_info = stories|get_story_info('mainbar') %}
@@ -28,7 +31,7 @@
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
 {% include "subtemplates/_header.html" with context %}
-<section id='main' class='container'>
+<section id='mainbar' class='container'>
 	<div class='river dropcap'>
 		{% for story_item in abuse['mainbar'] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
@@ -37,6 +40,7 @@
 		{% endfor %}
 	</div>
 </section> </article>{# END MAINBAR #}
+{% include 'subtemplates/_share-your-story.html' %}
 <div class='advert' data-ad-type="leaderboard"></div>
 {% include "subtemplates/_sidebar-menu.html" %}
 <section class='sidebars container'>

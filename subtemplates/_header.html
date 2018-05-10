@@ -1,7 +1,9 @@
 {% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
-{% from './subtemplates/_macros.html' import add_date_published as add_date_published with context%}
+{% from './subtemplates/_macros.html' import add_date_published as add_date_published with context %}
+{% from './base-subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
 
 <header class='header'>
+	{{ keep_scrolling(target="#mainbar") }}
 	<div class='header__panel header__panel--headline'>
 		<h1 class='header__headline'>{{ mainbar_info.headline }}</h1>
 		<h2 class='header__dek' itemprop="headline">{{ mainbar_info.dek }}</h2>
@@ -17,7 +19,7 @@
 	</div>
 	{% for panel in intro|sort(attribute="disp_order") %}
 		<div id="{{ panel.id }}" class='header__panel'>
-			<small><strong>{{ panel.id }}:</strong></small>
+{# 			<small><strong>{{ panel.id }}:</strong></small> #}
 			<p class='header__panel-text'>{{ panel.text|process_text }}</p>
 		</div>
 	{% endfor %}

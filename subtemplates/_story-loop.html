@@ -7,10 +7,10 @@
 {% from './subtemplates/_macros.html' import pullquote as pullquote  with context%}
 {% from './subtemplates/_macros.html' import aside as aside  with context%}
 {% from './subtemplates/_macros.html' import photo_arr as photo_arr  with context%}
-{% from './subtemplates/_macros.html' import breaker as breaker  with context%}
+{% from './subtemplates/_macros.html' import abuse_breaker as abuse_breaker  with context%}
 
 
-{% if s.close_river|upper == "TRUE" or (s.type|upper == "BREAKER" and s.design|upper != "FALSE") %}
+{% if s.close_river|upper == "TRUE" %}
     {% set close_river = True %}
 {% else %}
     {% set close_river = False %}
@@ -143,15 +143,7 @@
     {% endif %}
 
 {% elif type|upper == "BREAKER" %}
-    {% if s.design|upper != "FALSE" %}
-        {% set design = s.design %}
-    {% else %}
-        {% set design = False %}
-    {% endif  %}
-
-    {% if s.content %}
-        {{ breaker(s.content, design) }}
-    {% endif %}
+    {{ abuse_breaker(s.content, s.caption, s.breaker_text) }}
 
 {% elif type|upper == "INCLUDE" %}
     {% if s.content %}

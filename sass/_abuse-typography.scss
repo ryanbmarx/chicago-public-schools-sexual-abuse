@@ -20,16 +20,22 @@ a{
 
 	// Story dropcap
 	&:first-letter{
-		color: $trib-red2;
+		font-family: #{$fonts-sans-serif-condensed};
+		color: #888;
 		float: left;
 		font-size: 75px;
 		line-height: 60px;
 		padding-top: 4px;
 		padding-right: 8px;
 		padding-left: 3px;
+		font-weight: bold;
 	}
 }
 
+.headline{
+	font: 65px/1.3em #{$fonts-sans-serif-condensed};
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
 
 
 .dek{
@@ -42,16 +48,31 @@ a{
 	@include sans-serif();
 	font-weight: bold;
 	text-transform: uppercase;
+	margin: 0 0 #{$grid-gap / 2} 0;
 }
 
 [itemprop="author creator"]{
 	@include sans-serif-text(15px, 1.3em);
+	margin: 0;
 
 	a{
 		font-weight: bold;
 	}
 }
 
+%section-label{
+    text-align: center;
+    font: 38px/1.3em #{$fonts-sans-serif-condensed};
+    text-transform: uppercase;
+	text-align:center;
+	margin:0;
+}
+
+%section-sub-label{
+	@include sans-serif();
+	text-align:center;
+	margin:0;
+}
 
 @media all and (min-width: $phablet-min-width){
 	// By default, this is 450px+

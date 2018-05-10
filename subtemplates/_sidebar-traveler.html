@@ -1,7 +1,11 @@
 <nav class='traveler'>
 	<ul>
-		{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" %}
-			<li><a class='traveler__link' href="#{{ story.slug }}"><strong>{{ story.slug }}: </strong>{{ story.headline }}</a></li>
+		{% for story in stories|sort(attribute="display_order") if story.display_traveler == 1 %}
+			{% set add_class = "" %}
+			{% if story.slug == "mainbar" %}
+				{% set add_class = "traveler__link--mainbar" %}
+			{% endif %}
+			<li><a class='traveler__link {{ add_class }}' href="#{{ story.slug }}">{{ story.headline }}</a></li>
 		{% endfor %}
 	</ul>
 </nav>

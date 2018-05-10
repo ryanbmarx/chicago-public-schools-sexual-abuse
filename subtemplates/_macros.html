@@ -1,3 +1,21 @@
+{% macro abuse_breaker(image_url="No image specified", caption="No caption specififed", breaker_text=False) %}
+
+  <figure class='breaker'>
+    <p class='breaker__caption'>{{ caption }}</p>
+    <picture class='breaker__image'>
+      {% set widths = [1500, 1200, 800, 600, 320] %}
+      {% for w in widths %}
+        <source srcset="img/{{ image_url }}-{{w}}.jpg" type="image/jpg" media="(min-width: {{ w }}px)">
+      {% endfor %}
+      <img src='img/{{ image_url }}.jpg' alt="clemente" />  
+    </picture>
+    <figcaption>
+      <p class='breaker__credit'>{{ breaker_credit }}</p>
+    </figcaption>
+  </figure>
+  {% if breaker_text %}<h3>{{ breaker_text }}</h3>{% endif %}
+{% endmacro %}
+
 {% macro add_date_published(pub, mod) %}
   <div class='pub-date'>
 

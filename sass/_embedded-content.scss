@@ -1,5 +1,5 @@
 // Here we deal with the side-saddle graphics
-
+$river-background-color: $white !default;
 $media-col-width: 250px !default;
 $side-width: calc(((100vw - #{$river-width-large}) / 2) - #{$container_padding_h * 2});
 $side-max-width: (($container-max-width - $river-width-large) / 2) - $container_padding_h * 2;
@@ -12,8 +12,8 @@ $side-saddle-min-width: $river-width-large + $media-col-width * 2 + $container_p
 		width: $side-width;
 		max-width: $side-max-width;
 		box-sizing:border-box;
-		// background: yellow;
-		// padding: $grid-gap;
+		background: rgba($river-background-color, .9);
+		padding: $grid-gap;
 		
 		&--right{
 			@extend .side;
