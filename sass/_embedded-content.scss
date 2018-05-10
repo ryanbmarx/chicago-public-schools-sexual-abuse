@@ -77,7 +77,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 }
 
 @media all and (min-width: $notched-min-width){
-	.chart.side, .image.image--mug{
+	.chart.side, .image.image--mug, .image.side{
 		// We'll want our special background color, but not for ALL side items.
 		background: darken($river-background-color, 10%);
 	}
@@ -103,7 +103,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 @media all and (min-width: $side-saddle-min-width){
 	// TODO: Check on floated elements in sidebars
 
-	.side, .chart.side{
+	.side, .chart.side, .image.side{
 		position: absolute;
 		width: $side-width;
 		max-width: $side-max-width;
