@@ -29,7 +29,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 
 // Universal resets for this stuff
-.chart, .image, .side{
+.chart, .image, .side, .video{
 	box-sizing:border-box;
 }
 
@@ -52,14 +52,33 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 	margin: 0 0 $grid-gap $grid-gap;
 }
 
+// VIDEOS
+
+.video{
+	margin: $grid-gap 0;
+    width: 100%;
+	&__headline{
+		@include label7();
+		margin: 0 0 #{$grid-gap / 2} 0;
+	}
+
+	&__wrapper{
+		@include responsive-embed();
+	}
+}
+
+.river ~ .video .video__headline{
+	color: white;
+}
+
 // A special condition to hide images and charts within closed sidebars
 
 .sidebar {
-	.image, .chart{ display:none }
+	.image, .video, .chart{ display:none }
 }
 
 .sidebar--open {
-	.image, .chart{ display:block }
+	.image, .video, .chart{ display:block }
 }
 
 
@@ -77,43 +96,50 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 }
 
 @media all and (min-width: $notched-min-width){
-	.chart.side, .image.image--mug, .image.side{
-		// We'll want our special background color, but not for ALL side items.
-		background: darken($river-background-color, 10%);
-	}
+	.river{
+		// We only care about sidesaddle stuff for elements
+		// inside the river. ANything going fullwidth is on its own.
 
+		.chart.side, .image.image--mug, .image.side, .video.side{
+			// We'll want our special background color, but not for ALL side items.
+			background: darken($river-background-color, 10%);
+		}
 	
-	.side:not(.refer), .chart.side{
-		// .refers should NOT notch. But everything else should
-		float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
-		padding: $grid-gap;			
-		max-width: $notched-max-width;
-		margin: 0 $side-saddle-middle-negative-margin 0 $grid-gap;
-	}
+		.side{
+			&:not(.refer), &.chart, &.video{
+				// .refers should NOT notch. But everything else should
+				float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
+				padding: $grid-gap;			
+				max-width: $notched-max-width;
+				margin: 0 $side-saddle-middle-negative-margin 0 $grid-gap;
+			}
+		}
+		.image.image--mug{
+			// Notch the mugshots, but with it's own 
+			padding: $grid-gap;
+			max-width: $image-mug-max-width + $grid-gap * 2;
+			margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
+		}
 	
-	.image.image--mug{
-		// Notch the mugshots, but with it's own 
-		padding: $grid-gap;
-		max-width: $image-mug-max-width + $grid-gap * 2;
-		margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
 	}
-
 }
 
 @media all and (min-width: $side-saddle-min-width){
 	// TODO: Check on floated elements in sidebars
+	.river{
+		// We only care about sidesaddle stuff for elements
+		// inside the river. ANything going fullwidth is on its own.
 
-	.side, .chart.side, .image.side{
-		position: absolute;
-		width: $side-width;
-		max-width: $side-max-width;
-		right: $container_padding_h; // Hugs it against the interior edge of the container
-
-		// This cancels the notched styling
-	    margin: 0 !important; // Imprt used here to just tell all the other margins in use to go eff themselves.
-	    float:none;
-
-	}
-
+		.side, .chart.side, .image.side, .video.side{
+			position: absolute;
+			width: $side-width;
+			max-width: $side-max-width;
+			right: $container_padding_h; // Hugs it against the interior edge of the container
+	
+			// This cancels the notched styling
+		    margin: 0 !important; // Imprt used here to just tell all the other margins in use to go eff themselves.
+		    float:none;
+	
+		}
+	}	
 }
-
