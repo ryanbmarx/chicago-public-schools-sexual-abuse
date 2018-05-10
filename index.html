@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 
 {% macro abuse_subscribe_refer() %}
-	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text']) }}
+	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=" side") }}
 {% endmacro %}
 
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
