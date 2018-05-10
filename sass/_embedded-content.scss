@@ -52,7 +52,16 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 	margin: 0 0 $grid-gap $grid-gap;
 }
 
-// SIDESADDLE ... nothing at this time
+// A special condition to hide images and charts within closed sidebars
+
+.sidebar {
+	.image, .chart{ display:none }
+}
+
+.sidebar--open {
+	.image, .chart{ display:block }
+}
+
 
 @media all and (min-width: $river-width-large){
 
@@ -68,11 +77,6 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 }
 
 @media all and (min-width: $notched-min-width){
-	body{
-		// HACK slash DEBUG -- CAN BE DELETED
-		background: red !important;
-	}
-
 	.chart.side, .image.image--mug{
 		// We'll want our special background color, but not for ALL side items.
 		background: darken($river-background-color, 10%);
@@ -98,12 +102,6 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 @media all and (min-width: $side-saddle-min-width){
 	// TODO: Check on floated elements in sidebars
-
-	body{
-		// HACK slash DEBUG -- CAN BE DELETED
-		background: pink !important;
-	}
-
 
 	.side, .chart.side{
 		position: absolute;
