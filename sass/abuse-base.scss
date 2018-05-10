@@ -45,7 +45,7 @@ $nav-transition-time: 250ms;
 
 
 // CUSTOM OR WEIRD BREAKPOINTS AND SCAFFOLDING
-$river-width-large: 650px; // Copied from base
+$river-width-large: 600px; // Copied from base
 $river-width-small: 450px; // Copied from base
 $media-col-width: 250px;
 $tablet-min-width: 767px;
@@ -134,7 +134,7 @@ $blur-wave-3: 5s;
 @import 'base-social';
 @import 'base-byline';
 @import 'base-adverts';
-@import 'base-comments';
+// @import 'base-comments';
 @import 'base-refers';
 @import 'base-hamburger';
 
@@ -210,7 +210,6 @@ body{
 
 // Makes subscribe refers side-saddle
 .refer{
-	@extend .side--right;
 	margin-top: 0;
 
 	&__headline{
@@ -243,37 +242,37 @@ body{
 	overflow:hidden;
 	// position:relative;
 	transition: max-height 400ms ease;
-
+    box-shadow: inset 0 0 53px $white;
 	// &:first-child{
 	// 	margin-top: 0; // So the first sidebar aligns to top with the traveler.
 	// }
 
-	&:after{
-		// This is the little gradient showing that there is more stuff
-		content:"";
-		display:block;
+	// &:after{
+	// 	// This is the little gradient showing that there is more stuff
+	// 	content:"";
+	// 	display:block;
 
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: $sidebar-margin-bottom;
-
-
-		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+1,ffffff+100&1+19,0+100 */
-		background: linear-gradient(to top, #{rgba($white, 1)} 1%,#{rgba($white, 1)} 19%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	// 	position: absolute;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	width: 100%;
+	// 	height: $sidebar-margin-bottom;
 
 
-	}
+	// 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+1,ffffff+100&1+19,0+100 */
+	// 	background: linear-gradient(to top, #{rgba($white, 1)} 1%,#{rgba($white, 1)} 19%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+	// }
 
 	&--open{
 		max-height:none;
 		transition: max-height 400ms ease;
 		overflow:visible;
-
-		&:after{
-			content:none;
-		}
+		box-shadow: none;
+		// &:after{
+		// 	content:none;
+		// }
 	}
 }
 
@@ -351,36 +350,29 @@ body{
 
 // Changes to comments to match the styles
 
-.comments:not(.comments--open){
+// .comments:not(.comments--open){
 	
-	.river{ 
+// 	.river{ 
 		
-    	@supports (display: contents){
-    		display: contents;
-    	}
-    	@supports not (display: contents){
-    		background: none; 
-    	}
-	}
-	#comments-button{
-		border-color: $white;
-		color: $white;
+//     	@supports (display: contents){
+//     		display: contents;
+//     	}
+//     	@supports not (display: contents){
+//     		background: none; 
+//     	}
+// 	}
+// 	#comments-button{
+// 		border-color: $white;
+// 		color: $white;
 
-		&:hover{
-			background: $white;
-			color: black;
-		}
-	}
-}
+// 		&:hover{
+// 			background: $white;
+// 			color: black;
+// 		}
+// 	}
+// }
 
 
-@media all and (min-width: $phablet-min-width){
-	// By default, this is 450px+
-	// p{
-	// 	font-size: 18px;
-	// 	line-height: 1.5em;
-	// }
-}
 @media all and (min-width: $side-saddle-min-width){
 
 	.sidebars{
@@ -402,13 +394,3 @@ body{
 	}
 
 }
-
-// @media all and (min-width: $tablet-min-width){
-// 	// ONLY CHANGES FOR TABLETS + DESKTOPS
-// 	// By default, this is 650px+	
-// }
-
-// @media all and (min-width: $desktop-min-width){
-// 	// ONLY CHANGES FOR DESKTOPS
-// 	// By default, this is 850px+
-// }
