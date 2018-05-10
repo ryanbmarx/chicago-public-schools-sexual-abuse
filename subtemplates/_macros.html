@@ -1,3 +1,24 @@
+{% macro video_by_ref(ref, add_class, header) %}
+    
+   <figure class='video {% if add_class %} {{ add_class }}{% endif %}'>
+      {% if header %}
+        <figcaption><h4 class='video__headline'>{{ header }}</h4></figcaption>
+      {% endif %}
+       <div class='video__wrapper'>
+          <video data-account="3690581440001"
+            data-player="S1vBkbMfe"
+            data-embed="default"
+            data-video-id="ref:{{ ref }}"
+            data-application-id
+            tabindex="-1" 
+            class="video-js"
+            controls></video>
+      </div>
+    </figure>
+{% endmacro %}
+
+
+
 {% macro abuse_breaker(image_url="No image specified", caption="No caption specififed", breaker_text=False) %}
 
   <figure class='breaker'>
