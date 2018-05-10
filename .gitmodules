@@ -1,3 +1,4 @@
 [submodule "_blueprint"]
 	path = _blueprint
 	url = git@tribune.unfuddle.com:tribune/tribune-tarbell-blueprint-two.git
+	branch = master
