@@ -43,9 +43,38 @@ function toggleDrawer(drawerShouldOpen=false){
     }
 }
 window.addEventListener('DOMContentLoaded', function(e){
-
+    console.log('DOMContent is loaded')
     const   windowHeight = window.innerHeight,
             doAnimations = doesUserWantAnimations();
+
+
+    // This powers the header 
+    const   body = document.querySelector('body'),
+            headerPanels = [].slice.call(document.querySelectorAll('.header__panel-text'));
+
+    const watchers = headerPanels.map(panel => {
+
+        const watcher = scrollMonitor.create(panel, {
+            top: windowHeight * -0.5
+        });
+
+
+
+        watcher.enterViewport(function(){
+            const   panelParent = panel.parentElement,
+                    id = panelParent.id,
+                    activePanel = document.querySelector('.header__panel--active');
+
+            // Toggle text highlight
+            if (activePanel != null) activePanel.classList.remove('header__panel--active')
+            panelParent.classList.add('header__panel--active');
+
+            // Toggle graphic image with the <body> data attribute.
+            body.setAttribute('data-header-panel', id);
+        })
+
+        return watcher;
+    });
 
     if(doAnimations){
         // If user wants animations, then register the observers on the breakers
@@ -79,28 +108,26 @@ window.addEventListener('DOMContentLoaded', function(e){
         new pym.Parent(pymId, pymUrl, {});
     }
 
-    // Also, let's lazyload the images
-    const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy');
+    // Also, let's lazyload the images and charts
+    const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy, .breaker');
 
     const lazyObserver = new IntersectionObserver((entry, observer)=>{
         // This is the object of our lazy-loading afecction for the moment
         const el = entry[0].target;
 
-        if (el.classList.contains('image--lazy')){
-            // If we're dealing with an image
-            const   newWidth = entry[0].boundingClientRect.width,
-                    fullResSrc = el.querySelector('img').getAttribute("src").replace("10", newWidth);
-
-            // let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
-            el.querySelector('img').setAttribute('src', fullResSrc);
-
-        } else if (el.classList.contains('chart--lazy')){
+        if (el.classList.contains('chart--lazy')){
             // if we're dealing with a graphic
-
             const   chartContainer = el.querySelector('.graphic-embed'),
                     pymId = chartContainer.id,
                     pymUrl = chartContainer.dataset.iframeUrl;
                     new pym.Parent(pymId, pymUrl, {});
+        } else {
+            // If we're dealing with an image
+            const   newWidth = entry[0].boundingClientRect.width,
+                    fullResSrc = el.querySelector('img').getAttribute("src").replace("10", newWidth).replace(/’/g, ""); // Damn smart quotes are appearing again
+            console.log(fullResSrc, newWidth);
+            // let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
+            el.querySelector('img').setAttribute('src', fullResSrc);
         }
 
         // now that the image or graphic has been loaded, we don't need to observe anymore
@@ -182,32 +209,5 @@ window.addEventListener('load', function() {
     });
 
 
-    // This powers the header 
 
-    const   body = document.querySelector('body'),
-            headerPanels = [].slice.call(document.querySelectorAll('.header__panel-text'));
-
-    const watchers = headerPanels.map(panel => {
-
-        const watcher = scrollMonitor.create(panel, {
-            top: windowHeight * -0.5
-        });
-
-
-
-        watcher.enterViewport(function(){
-            const   panelParent = panel.parentElement,
-                    id = panelParent.id,
-                    activePanel = document.querySelector('.header__panel--active');
-
-            // Toggle text highlight
-            if (activePanel != null) activePanel.classList.remove('header__panel--active')
-            panelParent.classList.add('header__panel--active');
-
-            // Toggle graphic image with the <body> data attribute.
-            body.setAttribute('data-header-panel', id);
-        })
-
-        return watcher;
-    });
 });
