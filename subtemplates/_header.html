@@ -13,7 +13,7 @@
 	<div class='header__map map'>
 		{# Put the images here #}
 		<img class='map__layer map__layer--base' src="http://{{ ROOT_URL }}/img/header/intro_basemap.svg">
-		{% for panel in intro|sort(attribute="disp_order") %}
+		{% for panel in intro|sort(attribute="disp_order") if panel.has_map == 1%}
 			<img class='map__layer map__layer--{{ panel.id }}' src='http://{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' />
 		{% endfor %}
 	</div>
