@@ -157,7 +157,8 @@
 		transition: opacity 150ms ease;
 	}
 
-	[data-header-panel="intro_dont_know"]{
+	// Here we're actually looking at TWO <body> data attributes
+	&[data-header-panel="intro_dont_know"]{
 		.map__layer.map__layer--intro_police_locs,
 		.map__layer.map__layer--intro_civil_suits_locs,
 		.map__layer.map__layer--intro_citations_locs,
@@ -165,9 +166,7 @@
 			transition: opacity 2s ease-out;
 		}
 	}
-
 }
-
 
 // USE CSS AND A DATA-* ATTRIBUTE ON THE BODY 
 // TO TOGGLE VISIBLITY OF THE APPROPRIATE IMAGES
