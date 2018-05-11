@@ -3,13 +3,13 @@
 {% from './base-subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
 
 <header class='header'>
-	{{ keep_scrolling(target="#mainbar") }}
 	<div class='header__panel header__panel--headline'>
 		<h1 class='header__headline'>{{ mainbar_info.headline }}</h1>
 		<h2 class='header__dek' itemprop="headline">{{ mainbar_info.dek }}</h2>
 		{{ add_bylines(mainbar_info.bylines)}}
 		{{ add_date_published(date_published, date_modified) }}
 	</div>
+	{{ keep_scrolling(target="#mainbar") }}
 	<div class='header__map map'>
 		{# Put the images here #}
 		<img class='map__layer map__layer--base' src="http://{{ ROOT_URL }}/img/header/intro_basemap.svg">
