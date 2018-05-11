@@ -8,7 +8,29 @@ $nav-speed: 1000ms !default;
 }
 
 
+.animation-toggle{
+	@include sans-serif();
+	background: rgba(white, .3);
+    border: none;
+    color: #aaa;
+    padding: 5px;
+    max-width: fit-content;
+    margin: auto;
 
+    position: absolute;
+    left: 53vw;
+    top: 0%;
+    grid-row: 1;
+    // transform: translate(0, -50%);
+
+	.animation-toggle__enable{ display:inline; }
+	.animation-toggle__disable{ display:none; }
+}
+
+[data-animate="true"]{
+	.animation-toggle__enable{ display:none; }
+	.animation-toggle__disable{ display:inline; }
+}
 
 .carousel{
 	width: 100%;

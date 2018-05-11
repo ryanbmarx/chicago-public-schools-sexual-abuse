@@ -1,32 +1,152 @@
-// Here we deal with the side-saddle graphics
-$river-background-color: $white !default;
-$media-col-width: 250px !default;
+// ######################################################################################
+// # HANDLED HERE ARE EMEBDDED GRAPHICS, CHANGES TO IMAGES AND THE SIDE-SADDLE CONCEPT  #
+// 
+// The overriding principle here is that only elements that have a side class (which 
+// defaults to right placement) will go sidesaddle. No more extending the class elsewhere.
+// This also introduces a middle step, called "notching," where things move out of the way 
+// a little but remain partially in the river.
+// 
+// ######################################################################################
+
+// Some asset widths 
+$image-mug-max-width: 200px !default;
+$chart-right-max-width: 280px !default;
+$notched-max-width: $chart-right-max-width + ($grid-gap * 2) !default; // This adds room in the box for some padding
+$media-column-min-width: 250px !default;
+
+// Sidesaddle things
 $side-width: calc(((100vw - #{$river-width-large}) / 2) - #{$container_padding_h * 2});
 $side-max-width: (($container-max-width - $river-width-large) / 2) - $container_padding_h * 2;
-$side-saddle-min-width: $river-width-large + $media-col-width * 2 + $container_padding_h * 2;
 
-// This calc() pushes the graphic from the left edge of the viewport to the right edge of the river, with a further grid-gap in between;
-@media all and (min-width: $side-saddle-min-width){
-	.side{
-		position: absolute;
-		width: $side-width;
-		max-width: $side-max-width;
-		box-sizing:border-box;
-		background: rgba($river-background-color, .9);
-		padding: $grid-gap;
-		
-		&--right{
-			@extend .side;
-			right: $container_padding_h; // Hugs it against the interior edge of the container
-		}
+// The infamous negative margin for making the notching
+// This value is the overall distance the item needs to travel. It's half the sum of notched width
+// plus the river's padding, then cut in half and made negative.
+$side-saddle-middle-negative-margin: ($notched-max-width + $grid-gap * 2) / -2;
 
-		&--left{
-			@extend .side;
-			left: $container_padding_h; // Hugs it against the interior edge of the container
-		}
-	}
+// Really fragile breakpoints
+$notched-min-width: $river-width-large + $notched-max-width !default;
+$side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $container_padding_h * 2 !default;
 
 
+// Universal resets for this stuff
+.chart, .image, .side, .video{
+	box-sizing:border-box;
 }
 
 
+// CHARTS
+
+.chart{
+	margin: $grid-gap 0;
+	padding: $grid-gap 0;
+	border-top: 1px solid $trib-gray4;
+	border-bottom: 1px solid $trib-gray4;
+}
+
+
+// IMAGES
+.image.image--mug{
+	// Since mugs are so small anyways, they can float at the beginning
+	max-width: $image-mug-max-width;
+	float: right;
+	margin: 0 0 $grid-gap $grid-gap;
+}
+
+// VIDEOS
+
+.video{
+	margin: $grid-gap 0;
+    width: 100%;
+	&__headline{
+		@include label7();
+		margin: 0 0 #{$grid-gap / 2} 0;
+	}
+
+	&__wrapper{
+		@include responsive-embed();
+	}
+}
+
+.river ~ .video .video__headline{
+	color: white;
+}
+
+// A special condition to hide images and charts within closed sidebars
+
+.sidebar {
+	.image, .video, .chart{ display:none }
+}
+
+.sidebar--open {
+	.image, .video, .chart{ display:block }
+}
+
+
+@media all and (min-width: $river-width-large){
+
+	// With a little room, our floated items can float.
+	.chart.chart--right{
+		max-width: $chart-right-max-width;
+		float: right;
+		padding: 0;
+		border-top: none;
+		border-bottom: none;
+		margin-left: $grid-gap;
+	}
+}
+
+@media all and (min-width: $notched-min-width){
+	.river{
+		// We only care about notching stuff inside the river. 
+		// ANything going fullwidth is on its own.
+
+		.chart.side, .image.image--mug, .image.side, .video.side{
+			// We'll want our special background color, but not for ALL side items.
+			background: darken($river-background-color, 10%);
+		}
+	
+		.side{
+			&:not(.refer), &.chart, &.video{
+				// .refers should NOT notch. But everything else should
+				float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
+				padding: $grid-gap / 2;			
+				max-width: $notched-max-width;
+				margin: 0 $side-saddle-middle-negative-margin 0 $grid-gap;
+			}
+		}
+		.image.image--mug{
+			// Notch the mugshots, but with it's own max-width
+			padding: $grid-gap / 2;
+			max-width: $image-mug-max-width + $grid-gap * 2 !important; // Important so he other .image styles don't disrupt it.
+			margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
+		}
+	
+	}
+}
+
+@media all and (min-width: $side-saddle-min-width){
+	// TODO: Check on floated elements in sidebars
+	// We only care about sidesaddle stuff for elements
+	// inside the river. ANything going fullwidth is on its own.
+
+	.side, .river .chart.side, .river .image.side, .river .video.side{
+		position: absolute;
+		width: $side-width;
+		max-width: $side-max-width;
+		left: calc(#{$container_padding_h} + #{$river-width-large} + (100vw - #{$river-width-large}) / 2);
+		
+		// This cancels the notched styling
+	    margin: 0 !important; // Imprt used here to just tell all the other margins in use to go eff themselves.
+	    float:none;
+
+	}
+}	
+
+@media all and (min-width: $container-max-width){
+
+	.side, .river .chart.side, .river .image.side, .river .video.side{
+		// Because 100vw is too large at this point, we will just use the container maxwidth because that's the way to go.
+		left:$container_padding_h + $river-width-large + (($container-max-width - $river-width-large) / 2);
+	}
+
+}

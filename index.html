@@ -1,7 +1,17 @@
 {% extends "_base.html" %}
 
 {% macro abuse_subscribe_refer() %}
-	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text']) }}
+	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=" side") }}
+{% endmacro %}
+
+{% macro abuse_share_refer() %}
+	{{ refer(refers["share_your_story"]['headline'], 
+		refers["share_your_story"]['text'], 
+		refers["share_your_story"]['button_url'], 
+		refers["share_your_story"]['button_text'], 
+		has_image="img/share-icon.png", 
+		unique_id="share_your_story", 
+		add_class=" side") }}
 {% endmacro %}
 
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
@@ -31,7 +41,7 @@
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
 {% include "subtemplates/_header.html" with context %}
-<section id='mainbar' class='container'>
+<section id='mainbar' class='container story-open'>
 	<div class='river dropcap'>
 		{% for story_item in abuse['mainbar'] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
@@ -40,7 +50,7 @@
 		{% endfor %}
 	</div>
 </section> </article>{# END MAINBAR #}
-{% include 'subtemplates/_share-your-story.html' %}
+{{ abuse_share_refer() }}
 <div class='advert' data-ad-type="leaderboard"></div>
 {% include "subtemplates/_sidebar-menu.html" %}
 <section class='sidebars container'>
@@ -48,10 +58,10 @@
 		{% include 'subtemplates/_sidebar-traveler.html' %}
 	</div>
 	<div class='sidebars__stories'>
-	{% for story in stories if story.slug != "mainbar" %}
+	{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" and story.display_order and story.display_order > 0 %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
-		<article id='{{ story.slug }}' class='sidebar river dropcap'>
+		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
 			{% include "subtemplates/_sidebar.html" %}
 		</article>
 		<button class='read-more' data-target="{{ story.slug }}">Read more</button>
@@ -72,5 +82,8 @@
 
 
 {% block scripts %}
+	<script src="//players.brightcove.net/3690581440001/S1vBkbMfe_default/index.min.js"></script>
 	<script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script>
 {% endblock %}
+
+{% block comments %}{% endblock comments %}
