@@ -3,36 +3,35 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 600 750" style="enable-background:new 0 0 600 750;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.65;fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FBFCFC;stroke-width:2;stroke-miterlimit:10;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
-	.st2{fill:none;stroke:#4D4D4D;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st3{fill:none;stroke:#4D4D4D;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st5{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st6{fill:none;stroke:#FEE8A0;stroke-width:3;stroke-miterlimit:10;}
-	.st7{fill:#FEE8A0;stroke:#FEE8A0;stroke-miterlimit:10;}
-	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#6791A3;stroke:#000000;stroke-miterlimit:10;}
-	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#FEE8A0;stroke:#000000;stroke-miterlimit:10;}
-	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#F1F3F4;}
-	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#69973F;}
+	.st0{fill:none;stroke:#4D4D4D;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#FEE8A0;stroke-width:3;stroke-miterlimit:10;}
+	.st2{fill:#FEE8A0;stroke:#FEE8A0;stroke-miterlimit:10;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#6791A3;stroke:#000000;stroke-miterlimit:10;}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#FEE8A0;stroke:#000000;stroke-miterlimit:10;}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:#F1F3F4;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#69973F;}
+	.st8{fill:none;stroke:#4D4D4D;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st9{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st10{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
 </style>
 <g>
-	<rect class="st1" width="600" height="750"/>
+	<rect class="st3" width="600" height="750"/>
 	<g>
-		<circle class="st10" cx="386.074" cy="150.133" r="5.966"/>
-		<path class="st10" d="M378.353,34.831c0,3.295-2.671,5.966-5.966,5.966c-3.295,0-5.966-2.671-5.966-5.966s2.671-5.966,5.966-5.966
+		<circle class="st6" cx="386.074" cy="150.133" r="5.966"/>
+		<path class="st6" d="M378.353,34.831c0,3.295-2.671,5.966-5.966,5.966c-3.295,0-5.966-2.671-5.966-5.966s2.671-5.966,5.966-5.966
 			C375.682,28.864,378.353,31.536,378.353,34.831z"/>
-		<circle class="st10" cx="576.854" cy="612.006" r="5.966"/>
+		<circle class="st6" cx="576.854" cy="612.006" r="5.966"/>
 		
-			<ellipse transform="matrix(0.1222 -0.9925 0.9925 0.1222 26.4134 667.3791)" class="st10" cx="390.494" cy="318.757" rx="5.966" ry="5.966"/>
-		<path class="st10" d="M393.825,254.983c0,3.295-2.671,5.966-5.966,5.966c-3.295,0-5.966-2.671-5.966-5.966
+			<ellipse transform="matrix(0.1222 -0.9925 0.9925 0.1222 26.4134 667.3791)" class="st6" cx="390.494" cy="318.757" rx="5.966" ry="5.966"/>
+		<path class="st6" d="M393.825,254.983c0,3.295-2.671,5.966-5.966,5.966c-3.295,0-5.966-2.671-5.966-5.966
 			c0-3.295,2.671-5.966,5.966-5.966C391.154,249.017,393.825,251.688,393.825,254.983z"/>
-		<circle class="st10" cx="355.88" cy="168.753" r="5.966"/>
-		<path class="st10" d="M455.371,431.072c0,3.295-2.671,5.966-5.966,5.966c-3.295,0-5.966-2.671-5.966-5.966
+		<circle class="st6" cx="355.88" cy="168.753" r="5.966"/>
+		<path class="st6" d="M455.371,431.072c0,3.295-2.671,5.966-5.966,5.966c-3.295,0-5.966-2.671-5.966-5.966
 			c0-3.295,2.671-5.966,5.966-5.966C452.699,425.106,455.371,427.777,455.371,431.072z"/>
-		<path class="st10" d="M391.385,61.483c0,3.295-2.671,5.966-5.966,5.966s-5.966-2.671-5.966-5.966c0-3.295,2.671-5.966,5.966-5.966
+		<path class="st6" d="M391.385,61.483c0,3.295-2.671,5.966-5.966,5.966s-5.966-2.671-5.966-5.966c0-3.295,2.671-5.966,5.966-5.966
 			S391.385,58.187,391.385,61.483z"/>
-		<circle class="st10" cx="433.477" cy="645.331" r="5.966"/>
+		<circle class="st6" cx="433.477" cy="645.331" r="5.966"/>
 	</g>
 </g>
 </svg>
