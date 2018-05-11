@@ -230,28 +230,12 @@
 
 {% endmacro %}
 
-{% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
+{% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary, add_class=False) %}
     
   {% set page_url = "http://" + ROOT_URL + "/" + PATH %}
   
   {% set tweet = quote_text + ' #WaterDrain via @chicagotribune' %}
-    <figure class="trib-pullquote">
-{#         <ul class="social-menu">
-            <li>
-                <a target="_blank" href="https://twitter.com/share?url={{ page_url }}&text={{ tweet|urlencode }}">
-                    <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-                    <span class="hidden">Twitter</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="https://www.facebook.com/sharer.php?u={{ page_url }}&t={{ quote_text|urlencode }}">
-                    <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-                    <span class="hidden">Facebook</span>
-                </a>
-            </li>
-        </ul>
- #}{#         <p>{{ quote_text|length }} CHARS QUOTE</p>
-        <p>{{ tweet|length }} CHARS TOTAL</p> #}
+    <figure class="pullquote {% if add_class %} {{ add_class }}{% endif %}">
         <blockquote>{{ quote_text|dumb_to_smart_quotes|process_text() }}</blockquote>
         {% if quote_attribution %}
             <figcaption>

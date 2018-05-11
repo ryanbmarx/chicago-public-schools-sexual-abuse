@@ -1,19 +1,43 @@
+@keyframes slideUp{
+	from{
+		transform: translate(-50%, -50%);
+		opacity: .3;
+	}
+
+	to{
+		transform: translate(-50%, -100%);
+		opacity: .1;
+	}
+}
+
 .header{
 	&__headline{
-		@extend .headline;
+		// @extend .headline;
+		@include responsive-font(26vw, 70px, 370px);
+		line-height: 1.3em;
+		font-family: #{$fonts-sans-serif-condensed};
+		font-weight:normal;
+		opacity: .1;
+		margin: 0 auto -0.45em auto !important;
+		// transform: translate(0, .55em);
 	}
 
 	&__dek{
+		// @extend .headline;
 		@extend .dek;
+		font-weight: normal;
+		max-width: 800px;
 	}
 
-	.header__panel.header__panel--headline{
+	.header__panel--headline{
 		// We use this selector b/c we want to be very specific so it does not 
 		// take up the changes to other panels.
 
 		height: calc(100vh - var(--navbar-height));// Because the headline panel DOES include the navbar
 		justify-content: center;
 		width: 100vw;
+		position: relative;
+		padding: 0 $grid-gap;
 
 		& > * {
 			// While the heads and deks should be left aligned throughout 
@@ -66,7 +90,6 @@
 	    color: white;
 	    margin: 0;
 	    opacity: .5;
-	    transition: opacity 200ms ease-in;
 	}
 
 	small{
@@ -83,7 +106,7 @@
 
 .header__panel--active .header__panel-text{ 
 	opacity: 1; 
-	transition: opacity 200ms ease-in;
+	// transition: opacity 200ms ease-in;
 }
 
 .map{
@@ -121,7 +144,8 @@
 	// If animations are on, then do this
 	.header{	
 		&__headline{
-			@include blurInto()
+			// @include blurInto()
+			// animation: slideUp 4s ease-out 0s 1 forwards;
 		}
 
 		&__dek{
@@ -132,6 +156,14 @@
 			@include blurInto($blur-wave-2);
 		}
 	}
+
+	.header__panel-text{ 
+		transition: opacity 200ms ease-in;
+	}
+	// .header__panel--active .header__panel-text{ 
+	// 	transition: opacity 200ms ease-in;
+	// }
+
 }
 
 
@@ -200,15 +232,29 @@
 [data-header-panel="intro_dont_know"]{
 	.map__layer.map__layer--base{
 		opacity: 0;
+		transition: opacity 3s ease-out;
 	}
 
-	.map__layer.map__layer--intro_dont_know{
-		opacity: 1;
-	}
+	// .map__layer.map__layer--intro_dont_know{
+	// 	opacity: 1;
+	// }
 }
 
 @media all and (min-width: $tablet-min-width){
 	.header{
+
+		&__headline{
+			// position:absolute;
+			// top: 50%;
+			// left: 50%;
+			// transform: translate(0, .5em);
+			margin-bottom: -.55em;
+		}
+
+		&__dek{
+			font-size: 40px;
+		}
+
 		&__panel {
 			padding: 0 0 0 #{$grid-gap * 2};			
 			align-items:flex-start;
@@ -218,8 +264,15 @@
 
 		&__panel:last-child {
 			height: 85vh; // Adjust this to make scroll faster or slower
+			
+			// Make it full width since the map will fade out here.
+			grid-column: 1/-1;
+
 			.header__panel-text{
-				padding: 50vh 0;			
+				text-align:center;
+				padding: $grid-gap / 3;
+				width: 100%;
+				// background: rgba(black, .5);
 			}
 		}
 
@@ -287,6 +340,17 @@
 			&__panel{
 				max-width: 50vw;
 			}
+		}
+	}
+}
+
+@media all and (min-width: $desktop-min-width){
+	.header{
+		&__headline{
+			// transform: translate(-50%, -100%);
+		}
+		&__dek{
+			font-size: 50px;
 		}
 	}
 }
