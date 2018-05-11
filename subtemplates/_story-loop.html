@@ -57,12 +57,18 @@
     {{ add_video(s.id, add_class, header, s.video_slug) }}
 
 {% elif type == "pullquote" and s.quote_text and s.quote_attribution %}
+    {% if s.add_class %}
+        {% set add_class = s.add_class %}
+    {% else %}
+        {% set add_class = "" %}
+    {% endif %}
+
     {% if s.quote_attribution_secondary %}
         {% set quote_attribution_secondary = s.quote_attribution_secondary %}
     {% else %}
         {% set quote_attribution_secondary = "" %}
     {% endif %}
-    {{ pullquote(s.quote_text, s.quote_attribution, quote_attribution_secondary) }}
+    {{ pullquote(s.quote_text, s.quote_attribution, quote_attribution_secondary, add_class) }}
 {% elif type == "p2p_photo" and s.slug %}
     {% if s.add_class %}
         {% set add_class = s.add_class %}

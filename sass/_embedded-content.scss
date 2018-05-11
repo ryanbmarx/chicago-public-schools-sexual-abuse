@@ -100,7 +100,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		// We only care about notching stuff inside the river. 
 		// ANything going fullwidth is on its own.
 
-		.chart.side, .image.image--mug, .image.side, .video.side{
+		.chart.side, .image.image--mug, .image.side, .video.side, .side{
 			// We'll want our special background color, but not for ALL side items.
 			background: darken($river-background-color, 10%);
 		}
