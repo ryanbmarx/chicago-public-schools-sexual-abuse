@@ -106,14 +106,12 @@
 
 .header__panel--active .header__panel-text{ 
 	opacity: 1; 
-	// transition: opacity 200ms ease-in;
 }
 
 .map{
 
 	&__layer{
 		opacity:0;
-		transition: opacity 150ms ease;
 
 		position: absolute;
 		top:0;
@@ -135,7 +133,6 @@
 
 	&__layer--visible{
 			opacity:1;
-			transition: opacity 150ms ease;
 	}
 }
 
@@ -143,11 +140,6 @@
 [data-animate="true"]{
 	// If animations are on, then do this
 	.header{	
-		&__headline{
-			// @include blurInto()
-			// animation: slideUp 4s ease-out 0s 1 forwards;
-		}
-
 		&__dek{
 			@include blurInto($blur-wave-1);
 		}
@@ -160,9 +152,19 @@
 	.header__panel-text{ 
 		transition: opacity 200ms ease-in;
 	}
-	// .header__panel--active .header__panel-text{ 
-	// 	transition: opacity 200ms ease-in;
-	// }
+	
+	.map__layer, .map__layer--visible{
+		transition: opacity 150ms ease;
+	}
+
+	[data-header-panel="intro_dont_know"]{
+		.map__layer.map__layer--intro_police_locs,
+		.map__layer.map__layer--intro_civil_suits_locs,
+		.map__layer.map__layer--intro_citations_locs,
+		.map__layer.map__layer--base{
+			transition: opacity 2s ease-out;
+		}
+	}
 
 }
 
@@ -230,24 +232,18 @@
 
 // PANEL 7
 [data-header-panel="intro_dont_know"]{
+	.map__layer.map__layer--intro_police_locs,
+	.map__layer.map__layer--intro_civil_suits_locs,
+	.map__layer.map__layer--intro_citations_locs,
 	.map__layer.map__layer--base{
 		opacity: 0;
-		transition: opacity 3s ease-out;
 	}
-
-	// .map__layer.map__layer--intro_dont_know{
-	// 	opacity: 1;
-	// }
 }
 
 @media all and (min-width: $tablet-min-width){
 	.header{
 
 		&__headline{
-			// position:absolute;
-			// top: 50%;
-			// left: 50%;
-			// transform: translate(0, .5em);
 			margin-bottom: -.55em;
 		}
 
@@ -270,9 +266,8 @@
 
 			.header__panel-text{
 				text-align:center;
-				padding: $grid-gap / 3;
 				width: 100%;
-				// background: rgba(black, .5);
+				opacity: 1;
 			}
 		}
 
@@ -286,7 +281,6 @@
 		&__map{
 			height: calc(100vh - var(--navbar-height));
 			width: 100%;
-			// width: calc(4 * (100vh - var(--navbar-height)) / 5);
 
 			top: var(--navbar-height);
 			z-index: 2;
@@ -346,9 +340,6 @@
 
 @media all and (min-width: $desktop-min-width){
 	.header{
-		&__headline{
-			// transform: translate(-50%, -100%);
-		}
 		&__dek{
 			font-size: 50px;
 		}
