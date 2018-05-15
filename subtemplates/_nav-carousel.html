@@ -6,7 +6,7 @@
 	  <span></span>
 	  <span></span>
 	  <span></span>
-	</button>/
+	</button>
 	<button id="animation-toggle" class='animation-toggle'><span class='animation-toggle__disable'>Disable</span><span class='animation-toggle__enable'>Enable</span> animations</button>
     <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
 	  	<a href="http://www.chicagotribune.com" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
@@ -26,10 +26,10 @@
 						<p class='story__description'>{{ story.og_description }}</p>
 						<a class='story__link' href="#{{ story.slug }}">Read the story</a>
 					</div>
-					<figure class='story__image'>
+{# 					<figure class='story__image'>
 						<img src="http://{{ ROOT_URL }}/{{ story.thumbnail_url }}" alt="{{ story.thumbnail_alt }}" title="{{ story.thumbnail_alt }}"/>
 					</figure>
-				</article>
+ #}				</article>
 			</li>
 		{% endfor %}
 	</ul>
