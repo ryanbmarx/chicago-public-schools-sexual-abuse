@@ -1,0 +1,6 @@
+{% for reporter in credits|sort(attribute="name_last") if reporter.reporting == 1 and reporter.email %}
+	<p><a target="_blank" rel="noopener" href="mailto:{{ reporter.email }}">{{ reporter.email }}</a></p>
+{% endfor %}
+{% for reporter in credits|sort(attribute="name_last") if reporter.reporting == 1 and reporter.twitter %}
+	<p>Twitter <a target="_blank" rel="noopener" href="http://twitter.com/{{ reporter.twitter }}">@{{ reporter.twitter }}</a></p>
+{% endfor %}
