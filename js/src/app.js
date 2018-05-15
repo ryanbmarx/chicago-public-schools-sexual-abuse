@@ -42,6 +42,12 @@ function toggleDrawer(drawerShouldOpen=false){
         document.querySelector('#hamburger').classList.remove('carousel__button--open');
     }
 }
+
+// #########################################
+// ######### DOMCONTENT LOADED #############
+// #########################################
+
+
 window.addEventListener('DOMContentLoaded', function(e){
     console.log('DOMContent is loaded')
     const   windowHeight = window.innerHeight,
@@ -153,8 +159,45 @@ window.addEventListener('DOMContentLoaded', function(e){
     [].slice.call(document.querySelectorAll('.carousel__stories-list .story__link')).forEach(link => {
         link.addEventListener('click', e => toggleDrawer());
     });
-    
+});
 
+// #########################################
+// ########### DOCUMENT LOADED #############
+// #########################################
+
+
+window.addEventListener('load', function() {  
+
+    console.log('main window is onloaded');
+
+    const windowHeight = window.innerHeight;
+
+    // POWER THE SIDEBAR TRAVELER
+    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
+
+    window.sidebarWatchers = sidebars.map(el => {
+
+        const   sidebarWatcherTop = windowHeight * -0.6,
+                sidebarWatcherBottom = windowHeight * -0.4;
+
+        const sidebarWatcher = scrollMonitor.create(el, {
+            top: sidebarWatcherTop,
+            bottom: sidebarWatcherBottom
+        });
+
+        sidebarWatcher.enterViewport(function(){
+
+            const target = el.id;
+
+            // Mute the active link in the traveler
+            const activeLink = document.querySelector(`.traveler__link--active`)
+            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
+            
+            // Add the highlight class to the new traveler link
+            document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
+        });
+        return sidebarWatcher;
+    });
 
     // Open the sidebars
     [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
@@ -172,42 +215,6 @@ window.addEventListener('DOMContentLoaded', function(e){
             clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, true);
         })
     });
-
-
- 
-});
-
-
-
-window.addEventListener('load', function() {  
-
-    console.log('main window is onloaded');
-
-    const windowHeight = window.innerHeight;
-
-    // POWER THE SIDEBAR TRAVELER
-    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
-
-    const sidebarWatchers = sidebars.map(el => {
-
-        const watcher = scrollMonitor.create(el, {
-            bottom: windowHeight * .5
-        });
-
-        watcher.enterViewport(function(){
-
-            const target = el.id;
-
-            // Mute the active link in the traveler
-            const activeLink = document.querySelector(`.traveler__link--active`)
-            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
-            
-            // Add the highlight class to the new traveler link
-            document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
-        });
-        return watcher;
-    });
-
 
 
 });
