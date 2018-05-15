@@ -13,16 +13,23 @@
 		margin:0;
 		padding: 0;
 
+		li{
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid $trib-gray4;
+
+			&:last-child {border-bottom: none;}
+		}
+
 	}
 
-	li:last-child a {border-bottom: none;}
+	
 
 	&__link{
 		@include sans-serif();
 		display:block;
 		font-family: #{$fonts-sans-serif-condensed};
 		padding: 5px;
-		border-bottom: 1px solid $trib-gray4;
 		color:black;
 
 		&:hover, &:focus{
@@ -34,6 +41,13 @@
 			font-weight: bold;
 			background: $white;
 		}
+	}
+	
+	&__story-icon{
+		height: 1.5em;
+		width: 1.5em;
+		fill: black;
+		margin-right: 5px;
 	}
 
 	.traveler__link--mainbar{

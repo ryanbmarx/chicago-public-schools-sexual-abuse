@@ -14,6 +14,9 @@ js/vendor.min.js
 js/*.min.js
 js/*.map 
 
+# Ignore other generated content
+img/icon-sprite.svg
+
 # This stupid MacOS thing.
 .DS_Store
 

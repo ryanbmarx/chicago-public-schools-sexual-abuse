@@ -16,6 +16,13 @@
 
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
 
+{% block sprites %}
+	<div style="display:none;height:0;visibility:invisible;">
+    	{% include 'img/icon-sprite.svg' %}
+	</div>
+{% endblock %}
+
+
 {% block nav %}{% endblock %}
 
 {% block prefetch %}

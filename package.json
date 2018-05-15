@@ -29,6 +29,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-sass": "^2.0.0",
+    "grunt-svgstore": "^1.0.0",
     "html-entities": "^1.2.1",
     "htmlparser2": "^3.9.2",
     "minifyify": "^7.3.3",
