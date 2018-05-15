@@ -78,42 +78,7 @@ $line-width: 200px;
 }
 
 
-.illo{
-	
-	position: relative;
 
-	@supports (mix-blend-mode: multiply){
-
-		&:after{
-			// This will tint the image with our river background color, 
-			// making a white-bg image blend seamlessly with what's around it.
-			content: "";
-			display:block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: $white;
-			mix-blend-mode: multiply;
-		}
-		
-		// This will cover up the "double multiplied" section where the tint screen above
-		// combines with the river background, so we get a slightly darker shade.
-
-		img{
-			margin: 0;
-		    display: block;
-		}
-		img + figcaption {
-			margin: 0;
-			padding-top: 7px;
-			background: $white;
-			position: relative;
-			z-index: 2; // Moves the opaque figcaption up over the screen to cover the double multiplied portion
-		}
-	}
-}
 
 
 @media all and (min-width: $river-width-large){
