@@ -1,7 +1,7 @@
 {% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
 
 <header>
-	{% if info.headline %}<h1 class='kicker'>{{ info.headline }}</h1>{% endif %}
+	{% if info.headline %}<h1 class='kicker'>{{ info.slug }}: {{ info.headline }}</h1>{% endif %}
 	{% if info.dek %}<h2 class='dek'>{{ info.dek }}</h2>{% endif %}
 	{% if info.bylines %}{{ add_bylines(info.bylines) }}{% endif %}
 </header>

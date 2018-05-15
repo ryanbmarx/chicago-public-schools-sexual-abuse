@@ -5,7 +5,7 @@
 			{% if story.slug == "mainbar" %}
 				{% set add_class = "traveler__link--mainbar" %}
 			{% endif %}
-			<li><a class='traveler__link {{ add_class }}' href="#{{ story.slug }}">{{ story.headline }}</a></li>
+			<li><a class='traveler__link {{ add_class }}' href="#{{ story.slug }}">{{ story.slug }}: {{ story.headline }}</a></li>
 		{% endfor %}
 	</ul>
 </nav>
