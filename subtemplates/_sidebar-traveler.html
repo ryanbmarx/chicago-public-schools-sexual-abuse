@@ -7,7 +7,7 @@
 			{% endif %}
 			<li>
 				{% if story.icon %}
-					<svg class='traveler__story-icon'>
+					<svg aria-hidden="true" role="img" class='traveler__story-icon'>
 						<use xlink:href="#{{ story.icon }}" />
 					</svg>
 				{% endif %}
