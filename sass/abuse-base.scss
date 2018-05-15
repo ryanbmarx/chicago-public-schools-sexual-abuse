@@ -374,7 +374,18 @@ body{
 // 		}
 // 	}
 // }
+.reporter-credit{
+	box-sizing: border-box;
+	list-style:none;
+	margin: #{$grid-gap / 2} 0;
+	padding: 0 0 0 #{$grid-gap / 2};
 
+	border-left: 4px solid $trib-gray4;
+
+	li {
+		@include agate();
+	}
+}
 
 @media all and (min-width: $side-saddle-min-width){
 
