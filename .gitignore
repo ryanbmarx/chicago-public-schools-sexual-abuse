@@ -23,6 +23,7 @@ out_drive.html
 
 # A place to store things locally
 _archive
+_vault
 
 # Ignore generate stuff
 img/header/*.svg
