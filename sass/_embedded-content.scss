@@ -1,7 +1,7 @@
 // ######################################################################################
 // # HANDLED HERE ARE EMEBDDED GRAPHICS, CHANGES TO IMAGES AND THE SIDE-SADDLE CONCEPT  #
 // 
-// The overriding principle here is that only elements that have a side class (which 
+// The over-arching principle here is that only elements that have a side class (which 
 // defaults to right placement) will go sidesaddle. No more extending the class elsewhere.
 // This also introduces a middle step, called "notching," where things move out of the way 
 // a little but remain partially in the river.
@@ -17,6 +17,9 @@ $media-column-min-width: 250px !default;
 // Sidesaddle things
 $side-width: calc(((100vw - #{$river-width-large}) / 2) - #{$container_padding_h * 2});
 $side-max-width: (($container-max-width - $river-width-large) / 2) - $container_padding_h * 2;
+// $side-background-color: #D4DBDE;
+$side-background-color: darken($river-background-color, 10%);
+
 
 // The infamous negative margin for making the notching
 // This value is the overall distance the item needs to travel. It's half the sum of notched width
@@ -26,6 +29,8 @@ $side-saddle-middle-negative-margin: ($notched-max-width + $grid-gap * 2) / -2;
 // Really fragile breakpoints
 $notched-min-width: $river-width-large + $notched-max-width !default;
 $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $container_padding_h * 2 !default;
+
+
 
 
 // Universal resets for this stuff
@@ -82,7 +87,6 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 }
 
 .illo{
-	
 	position: relative;
 
 	@supports (mix-blend-mode: multiply){
@@ -139,9 +143,13 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 		.chart.side, .image.image--mug, .image.side, .video.side, .side{
 			// We'll want our special background color, but not for ALL side items.
-			background: darken($river-background-color, 10%);
+			background: $side-background-color;
 		}
-	
+
+		.side .illo:after, .side.illo:after{
+			background: $side-background-color;
+		}
+
 		.side{
 			&:not(.refer), &.chart, &.video{
 				// .refers should NOT notch. But everything else should
