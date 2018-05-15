@@ -133,7 +133,7 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 .sidebar-menu__story--#{$sider3},
 .sidebar-menu__story--#{$sider4}{
 	a .dek{
-		font-size: 23px;
+		font-size: 20px;
 	}
 }
 
@@ -166,6 +166,16 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 		// Give it a bigger space
 		// grid-column: 1/3;
 		grid-row: 1/4;
+	}
+
+	// Add hierarchy to the font
+	.sidebar-menu__story--#{$sider1},
+	.sidebar-menu__story--#{$sider2},
+	.sidebar-menu__story--#{$sider3},
+	.sidebar-menu__story--#{$sider4}{
+		a .dek{
+			font-size: 1.5em;
+		}
 	}
 
 	.sidebar-menu__story--#{$sider1}{
