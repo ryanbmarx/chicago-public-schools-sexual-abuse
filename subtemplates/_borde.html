@@ -1,27 +1,35 @@
-<figure class='borde side'>
+{# Figures inside figures is okay, says this person: https://www.sitepoint.com/quick-tip-the-right-way-to-use-figure-and-figcaption-elements/ #}
+
+<figure class='borde side' role="group">
+	<figcaption class='borde__header'>Three interrogations</figcaption>
 	<div class='borde__inner'>
-		<div class='borde__panel'>
+		<figure class='borde__panel'>
 			<div class='border__image-wrapper illo'>
 				<img class="borde__image" alt="XX" src="img/illos/borde-1.png" />
 			</div>
-			{# <p class='borde__kicker'>ON THE BEBEKJBK:</p> #}
-			<p class='borde__text'> The acting principal asked Morgan to show how the teacher had touched her. <strong>"It was very uncomfortable; I felt like I couldn’t breathe."</strong></p>
-		</div>
-		<div class='borde__panel'>
+			<figcaption>
+				<p class='borde__credit'>(Agnes Lee / Special for the Chicago Tribune)</p>
+				<p class='borde__text'> The acting principal asked Morgan to show how the teacher had touched her. <strong>"It was very uncomfortable; I felt like I couldn’t breathe."</strong></p>
+			</figcaption>
+		</figure>
+		<figure class='borde__panel'>
 			<div class='border__image-wrapper illo'>
 				<img class="borde__image" alt="XX" src="img/illos/borde-2.png" />
 			</div>
-			{# <p class='borde__kicker'>ON THE BEBEKJBK:</p> #}
-			<p class='borde__text'>A CPS investigator asked what Morgan was wearing at the time. <strong>"I felt incredibly diminished. It was demeaning. It was nasty."</strong></p>
+			<figcaption>
+				<p class='borde__credit'>(Agnes Lee / Special for the Chicago Tribune)</p>
+				<p class='borde__text'>A CPS investigator asked what Morgan was wearing at the time. <strong>"I felt incredibly diminished. It was demeaning. It was nasty."</strong></p>
+			</figcaption>
 
-		</div>
-		<div class='borde__panel'>
+		</figure>
+		<figure class='borde__panel'>
 			<div class='border__image-wrapper illo'>
 				<img class="borde__image" alt="XX" src="img/illos/borde-3.png" />
 			</div>
-			{# <p class='borde__kicker'>AT A HEARING:</p> #}
-			<p class='borde__text'>At the teacher’s job hearing, an attorney challenged Morgan’s story. <strong>"I thought this trial would be so in my favor I would barely have to talk."</strong></p>
-
-		</div>
+			<figcaption>
+				<p class='borde__credit'>(Agnes Lee / Special for the Chicago Tribune)</p>
+				<p class='borde__text'>At the teacher’s job hearing, an attorney challenged Morgan’s story. <strong>"I thought this trial would be so in my favor I would barely have to talk."</strong></p>
+			</figcaption>
+		</figure>
 	</div>
 </figure>
