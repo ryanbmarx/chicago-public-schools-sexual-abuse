@@ -14,13 +14,15 @@ $nav-speed: 1000ms !default;
     border: none;
     color: #aaa;
     padding: 5px;
+    height: 100%;
     max-width: fit-content;
     margin: auto;
 
-    position: absolute;
-    left: 53vw;
-    top: 0%;
-    grid-row: 1;
+    // position: absolute;
+    // left: 53vw;
+    // top: 0%;
+    grid-row: 1 / -1;
+    grid-column: 2;
     // transform: translate(0, -50%);
 
 	.animation-toggle__enable{ display:inline; }
@@ -42,7 +44,7 @@ $nav-speed: 1000ms !default;
 
 	@supports (display:grid){
 		display: grid;
-		grid-template: 12px 1fr / 1fr 1fr 1fr;
+		grid-template: 16px 1fr / auto auto auto;
 		grid-gap: 5px 0;
 		align-items: center;
 	}
@@ -268,8 +270,20 @@ $nav-speed: 1000ms !default;
 		}
 	}
 
+
+
+
 	@supports (display:grid){
 		// Rearrange the navbar from the mobile layout.
+
+		.animation-toggle{ 
+			grid-column: 3; 
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    transform: translate(-50%, 0);
+		}
+
 		.carousel {
 			grid-template: 1fr / 1fr 1fr 1fr;
 			padding: $navbar_padding_v $navbar_padding_h;

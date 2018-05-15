@@ -151,7 +151,8 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		}
 
 		.side{
-			&:not(.refer), &.chart, &.video{
+			// &:not(.refer), &.chart, &.video{
+			&.refer, &.chart, &.video{
 				// .refers should NOT notch. But everything else should
 				float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
 				padding: $grid-gap / 2;			
@@ -159,6 +160,12 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 				margin: 0 $side-saddle-middle-negative-margin 0 $grid-gap;
 			}
 		}
+
+		.side.side--left{
+				margin: 0 $grid-gap 0 $side-saddle-middle-negative-margin;
+				float: left;
+		}
+
 		.image.image--mug{
 			// Notch the mugshots, but with it's own max-width
 			padding: $grid-gap / 2;
@@ -179,10 +186,17 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		width: $side-width;
 		max-width: $side-max-width;
 		left: calc(#{$container_padding_h} + #{$river-width-large} + (100vw - #{$river-width-large}) / 2);
-		
 		// This cancels the notched styling
 	    margin: 0 !important; // Imprt used here to just tell all the other margins in use to go eff themselves.
 	    float:none;
+	}
+
+	.side.side--left{
+		margin: 0;
+		float: none;
+		// left: calc(#{$container_padding_h} + #{$river-width-large} + (100vw - #{$river-width-large}) / 2);
+		left: auto;
+		right: calc(50% + #{($river-width-large / 2) + $grid-gap - $container_padding_h});
 
 	}
 }	
