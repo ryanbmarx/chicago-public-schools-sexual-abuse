@@ -212,7 +212,7 @@ window.addEventListener('load', function() {
             if (activeLink != null) activeLink.classList.remove('traveler__link--active');
             
             // Add the highlight class to the new traveler link
-            document.querySelector(`.traveler a[href="#${target}"]`).classList.add('traveler__link--active');
+            document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
         });
         return sidebarWatcher;
     });
