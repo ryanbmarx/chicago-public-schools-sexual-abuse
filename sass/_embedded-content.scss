@@ -34,8 +34,16 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 
 // Universal resets for this stuff
-.chart, .image, .side, .video{
+.chart, .image, .side, .video, .refer{
 	box-sizing:border-box;
+}
+
+// AND SOME TWEAKS BECAUSE I NEED TO REFACTOR
+
+.side.refer{
+	.refer__headline, .refer__text {
+		color: #{set-text-color($side-background-color, true)};
+	}
 }
 
 
@@ -79,11 +87,11 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 // A special condition to hide images and charts within closed sidebars
 
 .sidebar {
-	.image, .video, .chart{ display:none }
+	.refer, .image, .video, .chart{ display:none }
 }
 
 .sidebar--open {
-	.image, .video, .chart{ display:block }
+	.refer, .image, .video, .chart{ display:block }
 }
 
 .illo{
@@ -141,9 +149,10 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		// We only care about notching stuff inside the river. 
 		// ANything going fullwidth is on its own.
 
-		.chart.side, .image.image--mug, .image.side, .video.side, .side{
+		.chart.side, .image.image--mug, .image.side, .video.side, .refer.side, .side{
 			// We'll want our special background color, but not for ALL side items.
 			background: $side-background-color;
+			color: #{set-text-color($side-background-color, true)};
 		}
 
 		.side .illo:after, .side.illo:after{
