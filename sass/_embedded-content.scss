@@ -41,6 +41,13 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 // AND SOME TWEAKS BECAUSE I NEED TO REFACTOR
 
 .side.refer{
+
+	padding: $grid-gap 0;
+	background: transparent;
+	
+	border-top: 1px solid $trib-grey4;
+	border-bottom: 1px solid $trib-grey4;
+
 	.refer__headline, .refer__text {
 		color: #{set-text-color($side-background-color, true)};
 	}
