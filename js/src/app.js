@@ -1,9 +1,12 @@
 import 'intersection-observer';
 import clickTrack from "./click-track.js";
+import smoothscroll from 'smoothscroll-polyfill';
+
 // import "scrollmonitor";
 const scrollMonitor = require('scrollmonitor');
-
 const 	pym = require('pym.js');
+
+smoothscroll.polyfill(); // kick off the polyfill!
 
 
 
@@ -131,8 +134,7 @@ window.addEventListener('DOMContentLoaded', function(e){
             // If we're dealing with an image
             const   newWidth = entry[0].boundingClientRect.width,
                     fullResSrc = el.querySelector('img').getAttribute("src").replace("10", newWidth).replace(/’/g, ""); // Damn smart quotes are appearing again
-            console.log(fullResSrc, newWidth);
-            // let src = isMobile ? el.dataset.fullResSrc.replace('/1200', "/850") : el.dataset.fullResSrc ;
+                    
             el.querySelector('img').setAttribute('src', fullResSrc);
         }
 
@@ -159,6 +161,22 @@ window.addEventListener('DOMContentLoaded', function(e){
     [].slice.call(document.querySelectorAll('.carousel__stories-list .story__link')).forEach(link => {
         link.addEventListener('click', e => toggleDrawer());
     });
+
+    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.carousel__stories .story__link, .sidebar-menu__story a, .sidebar-link'))
+
+    for (let sidebarLinkButtonsCounter = 0; sidebarLinkButtonsCounter < sidebarLinkButtons.length; sidebarLinkButtonsCounter++){
+        const b = sidebarLinkButtons[sidebarLinkButtonsCounter];
+        b.addEventListener('click', function(e){
+            e.preventDefault();
+            scrollMonitor.recalculateLocations();
+            const targetSidebar = this.getAttribute('href');
+
+            document.querySelector(targetSidebar).scrollIntoView({ behavior: 'smooth' });
+            
+            clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, true, true);
+        });
+    }
+
 });
 
 // #########################################
