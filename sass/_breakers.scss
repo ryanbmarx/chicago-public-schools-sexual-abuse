@@ -5,8 +5,9 @@ $line-width: 200px;
 .breaker{
 	position: relative;
 	overflow: hidden;
-	margin: #{$grid-gap * 2} 0 $grid-gap 0;
+	margin: #{$grid-gap * 2} auto $grid-gap auto;
 	padding: #{$grid-gap * 2} 0 0 0;
+	max-width: 1000px;
 
 	&:before{
 		content: "";
