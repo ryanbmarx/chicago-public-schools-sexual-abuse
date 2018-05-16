@@ -150,7 +150,7 @@ $blur-wave-3: 5s;
 @import 'header'; // the mainbar header
 @import 'breakers'; // Test styles for story breakers
 @import 'pullquote'; 
-
+@import 'sidebars';
 @import 'borde'; 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -265,71 +265,7 @@ body{
 }
 
 
-.sidebars__traveler{display:none;}
 
-.sidebar{
-
-	// margin-top: calc(#{$grid-gap} + var(--navbar-height)); // SO the anchor tags jump the sidebar into view
-	margin-bottom: $sidebar-margin-bottom;
-	max-height: 500px;
-	overflow:hidden;
-	// position:relative;
-	transition: max-height 400ms ease;
-    box-shadow: inset 0 0 53px $white;
-	// &:first-child{
-	// 	margin-top: 0; // So the first sidebar aligns to top with the traveler.
-	// }
-
-	// &:after{
-	// 	// This is the little gradient showing that there is more stuff
-	// 	content:"";
-	// 	display:block;
-
-	// 	position: absolute;
-	// 	bottom: 0;
-	// 	left: 0;
-	// 	width: 100%;
-	// 	height: $sidebar-margin-bottom;
-
-
-	// 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+1,ffffff+100&1+19,0+100 */
-	// 	background: linear-gradient(to top, #{rgba($white, 1)} 1%,#{rgba($white, 1)} 19%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
-
-	// }
-
-	&--open{
-		max-height:none;
-		transition: max-height 400ms ease;
-		overflow:visible;
-		box-shadow: none;
-		// &:after{
-		// 	content:none;
-		// }
-	}
-}
-
-// sidebar open buttons
-.read-more{
-	@include sans-serif();
-    z-index: 1000;
-	transform:translate(0, -50%);
-	display: block;
-	margin: #{$sidebar-margin-bottom / -1 } auto 0 auto;
-
-    border: none;
-    background: $read-more-background-color;
-    color: set-text-color($read-more-background-color);
-
-    padding: 15px;
-    border: 1px solid #bbb;
-	transition: background 150ms ease-out;
-    
-    &:hover, &:focus{
-		background: darken($read-more-background-color, 10%);
-		transition: background 150ms ease-out;
-    }
-}
 
 // This is the paywall/meter/registration sticky note at the bottom of the page
 .met-flyout .met-promo-content{
@@ -417,24 +353,24 @@ body{
 	}
 }
 
-@media all and (min-width: $side-saddle-min-width){
+// @media all and (min-width: $side-saddle-min-width){
 
-	.sidebars{
-		display:flex;
+// 	.sidebars{
+// 		display:flex;
 
-		&__traveler{
-			display:block;
-			flex: 1 1;
-		}
+// 		&__traveler{
+// 			display:block;
+// 			flex: 1 1;
+// 		}
 
-		&__stories{
-			flex-basis: $river-width-large
-		}
+// 		&__stories{
+// 			flex-basis: $river-width-large
+// 		}
 
-		&__media-column{
-			// Right now, this column only exists to take up equal space on the far side
-			flex: 1 1;
-		}
-	}
+// 		&__media-column{
+// 			// Right now, this column only exists to take up equal space on the far side
+// 			flex: 1 1;
+// 		}
+// 	}
 
-}
+// }
