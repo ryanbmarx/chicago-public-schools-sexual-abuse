@@ -1,17 +1,26 @@
 {% extends "_base.html" %}
 
 {% macro abuse_subscribe_refer() %}
-	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=" side") }}
+
+	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=add_class) }}
+
 {% endmacro %}
 
-{% macro abuse_share_refer() %}
+{% macro abuse_share_refer(make_side=False) %}
+	
+	{% set add_class = "" %}
+
+	{% if make_side %}
+		{% set add_class = add_class + " side side--left" %}
+	{% endif %}
+
 	{{ refer(refers["share_your_story"]['headline'], 
 		refers["share_your_story"]['text'], 
 		refers["share_your_story"]['button_url'], 
 		refers["share_your_story"]['button_text'], 
 		has_image="img/share-icon.png", 
 		unique_id="share_your_story", 
-		add_class=" side") }}
+		add_class=add_class) }}
 {% endmacro %}
 
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}

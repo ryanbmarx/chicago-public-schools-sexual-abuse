@@ -1,4 +1,1 @@
-{% from 'base-subtemplates/_macros.html' import refer as refer with context %}
-
-{% set keyword = "share_your_story" %}
-{{ refer(refers[keyword]['headline'], refers[keyword]['text'], refers[keyword]['button_url'], refers[keyword]['button_text'], has_image="img/share-icon.png", unique_id=keyword, add_class=" side") }}
+{{ abuse_share_refer(True) }}
