@@ -63,6 +63,7 @@
 		{% for story_item in abuse['mainbar'] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
 			{% set s = story_item %}
+			{% set mainbar = True %}
 			{% include 'subtemplates/_story-loop.html' %}
 		{% endfor %}
 	</div>
@@ -76,12 +77,13 @@
 	</div>
 	<div class='sidebars__stories'>
 	{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" and story.display_order and story.display_order > 0 %}
+		{% set mainbar = False %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
 		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
 			{% include "subtemplates/_sidebar.html" %}
 		</article>
-		<button class='read-more' data-target="{{ story.slug }}">Read more</button>
+		<button class='read-more' data-target="{{ story.slug }}" aria-label="Read this entire story">Read more</button>
 		{% if i % 6 == 0 %}
 			<div class='advert' data-ad-type="shrinky-cube"></div>
 		{% elif i % 3 == 0 %}
