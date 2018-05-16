@@ -97,8 +97,7 @@
     {% else %}
         {% set display_credit = True %}
     {% endif %}
-
-    {{ add_p2p_photo(s.slug, s.add_class, width, display_caption, display_credit) }}
+    {{ add_p2p_photo(s.slug|trim, s.add_class, width, display_caption, display_credit) }}
 
 {% elif type == "html" %}
     {{ s.html_content|process_text(False) }}
