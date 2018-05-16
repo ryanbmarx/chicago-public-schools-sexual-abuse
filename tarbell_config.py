@@ -34,6 +34,8 @@ from tarbell.oauth import get_drive_api
 # To generate the urls with or without links
 from flask_frozen import Freezer, walk_directory
 
+# For the sidebar keyword search/replace
+import re
 
 # Google document key for the stories. If not specified, the Archie stuff is skipped
 DOC_KEY = "1NNNFdLZvKiSzG3t2NJ0Ls4YIGPaSq1oM5QhiMd-bYFM"
@@ -120,6 +122,36 @@ def get_story_info(stories, slug):
         if story['slug'] == slug:
             return story
 
+@blueprint.app_template_filter('find_sidebar_keywords')
+@jinja2.contextfilter
+def find_sidebar_keywords(context, text):
+    """
+    Searches a blob of text for arbitrary keywords, turns them into links to downpage sidebars based on the related story slug
+    """
+    # print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+
+    stories = context['stories']
+    new_text = text # This will be the retval
+    svg="<svg><use xlink:href='#link2' /></svg>"
+    for story in stories:
+
+        try:
+            slug = story['slug']
+            keywords = story['sidebar_link_keywords'].split(',')
+
+            for k in keywords:
+                # Now loop through keywords looking for them in the story text
+                link_label = "Read more about {}".format(k)
+                link_opener = "<a class='sidebar-link' aria-label='{0}' title='{0}'".format(link_label) # everything inside the <a> except the HREF 
+                k = k.strip()
+                # print "Now looking for {}".format(k)
+                new_text = re.sub(k, "{} href='#{}'>{}{}</a>".format(link_opener, slug, k, svg), new_text)
+
+        except:
+            # Likely cause for error here is missing keywords, which is fine. Move along.
+            pass
+    
+    return new_text
 
 @blueprint.app_template_filter('get_bylines')
 @jinja2.contextfilter
