@@ -8,6 +8,10 @@ $nav-speed: 1000ms !default;
 }
 
 
+body{
+	padding: var(--navbar-height) 0 0 0 !important;
+}
+
 .animation-toggle{
 	@include sans-serif();
 	background: rgba(white, .3);
@@ -35,6 +39,10 @@ $nav-speed: 1000ms !default;
 }
 
 .carousel{
+	position: fixed;
+	top: 0;
+	left: 0;
+
 	width: 100%;
 	z-index: $navbar-z-index; // Set absurdly high b/c of Leaflet elements
 	background: rgba($navbar_background_color, .95);
@@ -255,20 +263,15 @@ $nav-speed: 1000ms !default;
 		--navbar-height: 60px;
 	}
 
-	body{
-		padding: var(--navbar-height) 0 0 0 !important;
-	}
+	// body{
+	// 	padding: var(--navbar-height) 0 0 0 !important;
+	// }
 
-	.carousel{
-		position: fixed;
-		top: 0;
-		left: 0;
-
-		&__title{
-			// @include 
-			// font-size: 30px;
-		}
-	}
+	// .carousel{
+	// 	position: fixed;
+	// 	top: 0;
+	// 	left: 0;
+	// }
 
 
 
