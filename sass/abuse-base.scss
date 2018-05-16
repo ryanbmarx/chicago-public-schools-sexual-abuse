@@ -211,15 +211,19 @@ body{
 }
 
 
-// Makes subscribe refers side-saddle
 .refer{
-	margin-top: 0;
+	// margin-top: 0;
 
 	&__headline{
 		font-size: 1.2em;
 	}
 }
 
+.refer--has-image.refer--share_your_story {
+	.refer__image, .refer__text-wrapper{ 
+		max-width: 450px;
+	}
+}
 
 
 [data-ad-type="shrinky-cube"]{
