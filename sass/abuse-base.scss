@@ -4,6 +4,8 @@
 @import 'base-variables';
 @import 'base-config'; // If you are using the off-platform blueprint, uncomment this.
 
+$mainbar: "failures";
+
 // COLORS, eyedropped from Casella photos
 
 $darkest: #070808;
@@ -88,11 +90,11 @@ $blur-wave-3: 5s;
 
 @keyframes bounce{
 	from {
-		transform: translate(-50%, 0);
+		transform: translate(0, 0);
 	}
 
 	to {
-		transform: translate(-50%, -50px);
+		transform: translate(0, -50px);
 	}
 }
 
@@ -152,41 +154,17 @@ $blur-wave-3: 5s;
 @import 'pullquote'; 
 @import 'sidebars';
 @import 'borde'; 
+@import 'keep-scrolling-icon'; 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
-$keep-scrolling-icon-width: 50px !default;
-
-.keep-scrolling-icon{
-	fill: white;
-	position: sticky;
-
-    top: 100vh;
-    top: calc(100vh - var(--navbar-height));
-    left: 50%;
-	transform: translate(-50%, -115%);
-
-	border: 2px solid white;
-    border-radius: 50%;
-    width: $keep-scrolling-icon-width;
-    height: $keep-scrolling-icon-width;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-[data-animate="true"]{
-	.keep-scrolling-icon{
-		@include bounce();
-		// @include blurInto($blur-wave-3);
-	}
-}
 
 // RESETS
 body{
 	margin: 0;
 	padding: 0;
 	background-color: $body-background-color;
-	
+	scroll-behavior: smooth;
 	// @supports (background-blend-mode: multiply){
 	// 	background-image: url(../img/cps-abuse-bg-texture.jpg);
 	// 	background-blend-mode: multiply;
@@ -238,14 +216,14 @@ body{
 }
 
 .refer.side.refer--case-study{
-	background: url('../img/illos/03-Wells-02.jpg') center no-repeat;
+	background: url('../img/illos/wells.jpg') center no-repeat;
 	background-size: cover;
 	
 	padding: 30px 0;
 
 	h1{
 		@include label7();
-				padding: 5px;
+		padding: 5px;
 		background: rgba(black, .85);
 		color: white;
 
@@ -261,6 +239,7 @@ body{
 
 	.refer__button{
 		margin: auto;
+		background: rgba(black, .85);
 	}
 }
 

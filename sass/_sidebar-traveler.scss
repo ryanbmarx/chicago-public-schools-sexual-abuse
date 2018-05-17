@@ -47,7 +47,7 @@
 		margin-right: 5px;
 	}
 
-	.traveler__link--mainbar a{
+	.traveler__link--#{$mainbar} a{
 		text-transform:uppercase;
 		line-height: 1em;
 		font-weight:bold;

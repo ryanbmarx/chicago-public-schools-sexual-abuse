@@ -136,7 +136,7 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 
 // Set some exceptions for special design
 
-.sidebar-menu__story--mainbar{
+.sidebar-menu__story--#{$mainbar}{
 	// Give it a bigger space
 	grid-column: 1/3;
 	grid-row: 1/3;
@@ -184,7 +184,7 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 		}
 	}
 
-	.sidebar-menu__story--mainbar{
+	.sidebar-menu__story--#{$mainbar}{
 		// Give it a bigger space
 		// grid-column: 1/3;
 		grid-row: 1/4;

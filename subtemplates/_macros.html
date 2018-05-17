@@ -215,14 +215,6 @@
     {% endif %}
 {% endmacro %}
 
-{% macro keep_scrolling_icon() %}
-  <div class='story-header__scrolling-icon'>
-    <span>{{ scrolling_icon_text }}</span>
-    <i class="fa fa-arrow-circle-down fa-2x" aria-hidden="true"></i>
-  </div>
-
-{% endmacro %}
-
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary, add_class=False) %}
     
   {% set page_url = "http://" + ROOT_URL + "/" + PATH %}
