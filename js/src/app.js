@@ -1,4 +1,4 @@
-import 'intersection-observer';
+import 'intersection-observer'; // A polyfill that comes highly recommended
 import clickTrack from "./click-track.js";
 import smoothscroll from 'smoothscroll-polyfill';
 
@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', function(e){
         return watcher;
     });
 
-    if(doAnimations){
+    if(doesUserWantAnimations()){
         // If user wants animations, then register the observers on the breakers
         const breakers = [].slice.call(document.querySelectorAll('.breaker'));
 
@@ -162,18 +162,27 @@ window.addEventListener('DOMContentLoaded', function(e){
         link.addEventListener('click', e => toggleDrawer());
     });
 
-    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.carousel__stories .story__link, .sidebar-menu__story a, .sidebar-link'))
-
+    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.carousel__stories .story__link, .sidebar-menu__story a, .sidebar-link, .traveler__link a, .keep-scrolling'))
     for (let sidebarLinkButtonsCounter = 0; sidebarLinkButtonsCounter < sidebarLinkButtons.length; sidebarLinkButtonsCounter++){
         const b = sidebarLinkButtons[sidebarLinkButtonsCounter];
         b.addEventListener('click', function(e){
             e.preventDefault();
             scrollMonitor.recalculateLocations();
-            const targetSidebar = this.getAttribute('href');
-
-            document.querySelector(targetSidebar).scrollIntoView({ behavior: 'smooth' });
+            const   targetSidebar = this.getAttribute('href'),
+                    targetSidebarTop = document.querySelector(targetSidebar).getBoundingClientRect().y;
             
-            clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, true, true);
+            console.log(targetSidebar, document.querySelector(targetSidebar).getBoundingClientRect());
+            window.scrollBy({
+                top: targetSidebarTop - 70,
+                behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
+            })
+            // document.querySelector(targetSidebar).scrollIntoView({ 
+            //     behavior: doesUserWantAnimations() ? 'smooth' : 'instant',
+            //     block: "start", 
+            //     inline: "nearest"
+            // });
+            
+            clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, true);
         });
     }
 
