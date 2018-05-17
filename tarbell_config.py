@@ -78,7 +78,7 @@ def cps_abuse_story(slug):
 
     print "fetching content for {}".format(slug)
 
-    if row != {} and row['slug'] != "mainbar": 
+    if row != {} and row['slug'] != data[mainbar_slug]: 
         # render a template, using the same template environment as everywhere else
         # But skip the mainbar, since that is the main index.html
         return render_template('templates/_abuse-sidebar-base.html', bucket=bucket, slug=slug, story_info=row,**data)

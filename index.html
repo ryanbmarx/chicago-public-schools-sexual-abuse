@@ -54,14 +54,14 @@
 
 {% block content %}
 
-{% set mainbar_info = stories|get_story_info('mainbar') %}
+{% set mainbar_info = stories|get_story_info(mainbar_slug) %}
 
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
 {% include "subtemplates/_header.html" with context %}
-<section id='mainbar' class='container story-open'>
+<section id='{{ mainbar_slug }}' class='container story-open'>
 	<div class='river dropcap'>
-		{% for story_item in abuse['mainbar'] %}
+		{% for story_item in abuse[mainbar_slug] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
 			{% set s = story_item %}
 			{% set mainbar = True %}
@@ -77,7 +77,7 @@
 		{% include 'subtemplates/_sidebar-traveler.html' %}
 	</div>
 	<div class='sidebars__stories'>
-	{% for story in stories|sort(attribute="display_order") if story.slug != "mainbar" and story.display_order and story.display_order > 0 %}
+	{% for story in stories|sort(attribute="display_order") if story.slug != mainbar_slug and story.display_order and story.display_order > 0 %}
 		{% set mainbar = False %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
