@@ -2,7 +2,6 @@ $keep-scrolling-icon-width: 50px !default;
 $keep-scrolling-icon-height: $keep-scrolling-icon-width !default;
 
 .keep-scrolling{
-	background: blue;
 	position: sticky;
 	top: 100vh;
 	transform: translate(0, -100%); // We've pushed it all the way to the bottom, but want it to peak over the top regardless of nav heights and all that.
