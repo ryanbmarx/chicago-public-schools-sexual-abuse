@@ -2,10 +2,7 @@
 	<ul class='traveler__links'>
 		{%- for story in stories|sort(attribute="display_order") if story.display_traveler == 1 and story.display_order > 0 %}
 			{% set add_class = "" %}
-			{%- if story.slug == mainbar_slug %}
-				{% set add_class = "traveler__link--mainbar" %}
-			{% endif %}
-			<li class='traveler__link {{ add_class }}' data-sidebar-target="{{ story.slug }}">
+			<li class='traveler__link traveler__link--{{ story.slug }}' data-sidebar-target="{{ story.slug }}">
 				{%- if story.icon %}
 					<svg aria-hidden="true" class='traveler__story-icon'>
 						<use xlink:href="#{{ story.icon }}" />
