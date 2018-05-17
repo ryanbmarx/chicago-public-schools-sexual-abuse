@@ -1,0 +1,40 @@
+$keep-scrolling-icon-width: 50px !default;
+$keep-scrolling-icon-height: $keep-scrolling-icon-width !default;
+
+.keep-scrolling{
+	background: blue;
+	position: sticky;
+	top: 100vh;
+	transform: translate(0, -100%); // We've pushed it all the way to the bottom, but want it to peak over the top regardless of nav heights and all that.
+
+	left: 0;
+    width: 100vw; // So the entire bottom strip is a button
+    height: $keep-scrolling-icon-height * 2;
+
+    display: flex; // So we can center the icon
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10; // SO it sits on top of all content and is, thus, clickable
+ 
+	&__icon{
+		fill: white;
+		border: 2px solid white;
+	    border-radius: 50%;
+	    width: $keep-scrolling-icon-width;
+	    height: $keep-scrolling-icon-height;
+	    padding: 10px;
+	    box-sizing: border-box;
+	    margin: 0 0 10px 0;
+	}
+
+}
+
+
+
+[data-animate="true"]{
+	.keep-scrolling__icon{
+		@include bounce();
+		margin: 0;
+		// @include blurInto($blur-wave-3);
+	}
+}
