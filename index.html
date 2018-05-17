@@ -3,7 +3,6 @@
 {% macro abuse_subscribe_refer() %}
 
 	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=add_class) }}
-
 {% endmacro %}
 
 {% macro abuse_share_refer(make_side=False) %}
@@ -24,6 +23,9 @@
 {% endmacro %}
 
  {# {{ url_for('cps-abuse.cps_abuse_story', slug=slug) }} #}
+
+{% block title %}<title>{{ mainbar_hammer_hede }} -- Chicago Tribune</title>{% endblock title %}
+
 
 {% block sprites %}
 	<div style="display:none;height:0;visibility:invisible;">
