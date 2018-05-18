@@ -1,18 +1,5 @@
-@keyframes slideUp{
-	from{
-		transform: translate(-50%, -50%);
-		opacity: .3;
-	}
-
-	to{
-		transform: translate(-50%, -100%);
-		opacity: .1;
-	}
-}
-
 .header{
 	&__headline{
-		// @extend .headline;
 		@include responsive-font(26vw, 70px, 370px);
 		line-height: 1.3em;
 		font-family: #{$fonts-sans-serif-condensed};
@@ -24,8 +11,8 @@
 	}
 
 	&__dek{
-		// @extend .headline;
 		@extend .dek;
+		font-size: 30px;
 		font-weight: normal;
 		max-width: 800px;
 	}
@@ -236,7 +223,7 @@
 	.map__layer.map__layer--intro_civil_suits_locs,
 	.map__layer.map__layer--intro_citations_locs,
 	.map__layer.map__layer--base{
-		opacity: 0;
+		opacity: 0.05;
 	}
 }
 
@@ -247,9 +234,9 @@
 			margin-bottom: -.55em;
 		}
 
-		&__dek{
-			font-size: 40px;
-		}
+		// &__dek{
+		// 	font-size: 40px;
+		// }
 
 		&__panel {
 			padding: 0 0 0 #{$grid-gap * 2};			
@@ -258,18 +245,18 @@
 			height: 85vh; // Adjust this to make scroll faster or slower
 		}
 
-		&__panel:last-child {
-			height: 85vh; // Adjust this to make scroll faster or slower
+		// &__panel:last-child {
+		// 	height: 85vh; // Adjust this to make scroll faster or slower
 			
-			// Make it full width since the map will fade out here.
-			grid-column: 1/-1;
+		// 	// Make it full width since the map will fade out here.
+		// 	grid-column: 1/-1;
 
-			.header__panel-text{
-				text-align:center;
-				width: 100%;
-				opacity: 1;
-			}
-		}
+		// 	.header__panel-text{
+		// 		text-align:center;
+		// 		width: 100%;
+		// 		opacity: 1;
+		// 	}
+		// }
 
 
 		&__panel--headline{
@@ -314,34 +301,35 @@
 				grid-column: 2 / -1;
 			}
 
-			&__panel{
+			&__panels{
 				grid-column: 1 / 2;
-				height: 100%; // The grid config will determine the row height
+				grid-row: 2 / -1; // Starting with row 2, the texts should take up the 1st column in all the rows
+				// height: 100%; // The grid config will determine the row height
 			}
 		}
 	}
 	@supports not (display:grid){
 		.header{
 
-			&__panel.header__panel--headline{
-			}
+			// &__panel.header__panel--headline{
+			// }
 
 			&__map{
 				left: 50vw;
 				margin: 0;
 			}
 
-			&__panel{
+			&__panels{
 				max-width: 50vw;
 			}
 		}
 	}
 }
 
-@media all and (min-width: $desktop-min-width){
-	.header{
-		&__dek{
-			font-size: 50px;
-		}
-	}
-}
+// @media all and (min-width: $desktop-min-width){
+// 	.header{
+// 		&__dek{
+// 			font-size: 50px;
+// 		}
+// 	}
+// }

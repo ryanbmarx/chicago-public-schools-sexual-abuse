@@ -18,10 +18,11 @@
 			<img class='map__layer map__layer--{{ panel.id }}' src='http://{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' aria-labeledby="#{{ panel.id }}-text" />
 		{% endfor %}
 	</div>
-	{% for panel in intro|sort(attribute="disp_order") %}
-		<div id="{{ panel.id }}" class='header__panel'>
-{# 			<small><strong>{{ panel.id }}:</strong></small> #}
-			<p id='#{{ panel.id }}-text' class='header__panel-text'>{{ panel.text|process_text }}</p>
-		</div>
-	{% endfor %}
+	<div class='header__panels'>
+		{% for panel in intro|sort(attribute="disp_order") %}
+			<div id="{{ panel.id }}" class='header__panel'>
+				<p id='#{{ panel.id }}-text' class='header__panel-text'>{{ panel.text|process_text }}</p>
+			</div>
+		{% endfor %}
+	</div>
 </header>
