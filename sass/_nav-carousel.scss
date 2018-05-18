@@ -127,7 +127,8 @@ body{
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
 		line-height: 1em;
-
+		text-transform: uppercase;
+		
 		color:$highlight-color;
 		text-transform:uppercase;
 		margin: 0;

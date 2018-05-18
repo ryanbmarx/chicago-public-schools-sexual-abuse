@@ -145,6 +145,7 @@ $background_colors: $darkest, $dark, $yankees, $imperial, $purple;
 	.headline{
 		@include responsive-font(15vw, 75px, 105px);
 		font: 105px/.9em #{$fonts-sans-serif-condensed}, sans-serif;
+		text-transform:uppercase;
 	}
 }
 
