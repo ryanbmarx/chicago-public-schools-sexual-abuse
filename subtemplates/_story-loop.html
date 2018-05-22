@@ -152,7 +152,7 @@
     {% endif %}
 
 {% elif type|upper == "BREAKER" %}
-    {{ abuse_breaker(s.content, s.caption, s.breaker_text) }}
+    {{ abuse_breaker(s.photo_slug, s.caption, s.breaker_text) }}
 
 {% elif type|upper == "INCLUDE" %}
     {% if s.content %}
