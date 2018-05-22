@@ -183,8 +183,15 @@
       {% set caption = caption + photo.caption|striptags|strip_whitespace %}
     {% endif %}
 
+
     {% if display_credit %}
-      {% set caption = caption + " (" + photo.credit|striptags|strip_whitespace + ")" %}
+      {% set credit = photo.credit|striptags|strip_whitespace %}
+    {% endif %}
+
+    {% if display_credit and display_caption %}
+      {% set caption = caption + " (" + credit + ")" %}
+    {% elif display_credit and not display_caption %}
+      {% set caption = caption + credit %}
     {% endif %}
 
     {% if display_caption or display_credit %}
