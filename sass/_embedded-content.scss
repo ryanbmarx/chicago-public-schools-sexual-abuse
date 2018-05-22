@@ -34,7 +34,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 
 // Universal resets for this stuff
-.chart, .image, .side, .video, .refer{
+.chart, .image, .side, .video, .refer, .pullquote{
 	box-sizing:border-box;
 }
 
@@ -94,11 +94,11 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 // A special condition to hide images and charts within closed sidebars
 
 .sidebar {
-	.refer, .image, .video, .chart{ display:none }
+	.pullquote, .refer, .image, .video, .chart{ display:none }
 }
 
 .sidebar--open {
-	.refer, .image, .video, .chart{ display:block }
+	.pullquote, .refer, .image, .video, .chart{ display:block }
 }
 
 .illo{
@@ -156,7 +156,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		// We only care about notching stuff inside the river. 
 		// ANything going fullwidth is on its own.
 
-		.chart.side, .image.image--mug, .image.side, .video.side, .refer.side, .side{
+		.pullquote.side, .chart.side, .image.image--mug, .image.side, .video.side, .refer.side, .side{
 			// We'll want our special background color, but not for ALL side items.
 			background: $side-background-color;
 			color: #{set-text-color($side-background-color, true)};
@@ -168,7 +168,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 		.side{
 			// &:not(.refer), &.chart, &.video{
-			&.refer, &.chart, &.video{
+			&.refer, &.chart, &.video, &.pullquote{
 				// .refers should NOT notch. But everything else should
 				float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
 				padding: $grid-gap / 2;			
