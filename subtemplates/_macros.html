@@ -19,17 +19,44 @@
 
 
 
-{% macro abuse_breaker(image_url="No image specified", caption="No caption specififed", breaker_text=False) %}
-
+{% macro abuse_breaker(image_slug=False, caption, breaker_text=False) %}
   <figure class='breaker'>
-    <p class='breaker__caption'>{{ caption }}</p>
-    <img class='breaker__image' src='{{ image_url }}/10' alt="TKTKTKTK" />  
-    <figcaption>
+    <blockquote  class='breaker__caption'>{{ caption }}</blockquote>
+    {% if image_slug != False %}
+      {# <img class='breaker__image' src='{{ image_url }}/10' alt="TKTKTKTK" />   #}
+      {# <p class='breaker__caption'>SLUG: {{ image_slug }}</p> #}
+      {{ add_p2p_photo(
+          slug=image_slug, 
+          add_class="image--lazy breaker__image", 
+          width=1000, 
+          display_caption=False, 
+          display_credit=True, 
+          full_res=True) }}
+    {% else %}
+      <p class='breaker__caption'>NO IMAGE SLUG PROVIDED</p>
+    {% endif %}
+{#     <figcaption>
       <p class='breaker__credit'>{{ breaker_credit }}</p>
-    </figcaption>
+    </figcaption> #}
   </figure>
   {% if breaker_text %}<h3>{{ breaker_text }}</h3>{% endif %}
 {% endmacro %}
+
+{# 
+
+slug, add_class, width, display_caption, display_credit, full_res=False
+
+{{ add_p2p_photo(
+  image_slug, 
+  "image--breaker", 
+  width, 
+  False, 
+  True, 
+  False) 
+}}
+
+ #}
+
 
 {% macro add_date_published(pub, mod) %}
   <div class='pub-date'>

@@ -27,7 +27,11 @@ $line-width: 200px;
 	&__image{
 		img, source {
 			width: 100%;
-			margin: 0 0 10px 0;
+			margin: 0;
+		}
+
+		figcaption {
+			color:white;
 		}
 	}
 
