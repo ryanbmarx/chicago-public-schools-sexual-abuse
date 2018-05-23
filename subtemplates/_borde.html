@@ -1,35 +1,26 @@
+{% from './subtemplates/_macros.html' import add_p2p_photo as add_p2p_photo with context %}
+
 {# Figures inside figures is okay, says this person: https://www.sitepoint.com/quick-tip-the-right-way-to-use-figure-and-figcaption-elements/ #}
 
-<figure class='borde side' role="group">
+<figure class='borde' role="group">
 	<figcaption class='borde__header'>Three interrogations</figcaption>
 	<div class='borde__inner'>
-		<figure class='borde__panel'>
-			<div class='border__image-wrapper illo'>
-				<img class="borde__image" alt="XX" src="img/illos/borde-1.png" />
-			</div>
-			<figcaption>
-				<p class='borde__credit'>(Agnes Lee / Special for the Chicago Tribune)</p>
-				<p class='borde__text'> The acting principal asked Morgan to show how the teacher had touched her. <strong>"It was very uncomfortable; I felt like I couldn’t breathe."</strong></p>
-			</figcaption>
-		</figure>
-		<figure class='borde__panel'>
-			<div class='border__image-wrapper illo'>
-				<img class="borde__image" alt="XX" src="img/illos/borde-2.png" />
-			</div>
-			<figcaption>
-				<p class='borde__credit'>(Agnes Lee / Special for the Chicago Tribune)</p>
-				<p class='borde__text'>A CPS investigator asked what Morgan was wearing at the time. <strong>"I felt incredibly diminished. It was demeaning. It was nasty."</strong></p>
-			</figcaption>
-
-		</figure>
-		<figure class='borde__panel'>
-			<div class='border__image-wrapper illo'>
-				<img class="borde__image" alt="XX" src="img/illos/borde-3.png" />
-			</div>
-			<figcaption>
-				<p class='borde__credit'>(Agnes Lee / Special for the Chicago Tribune)</p>
-				<p class='borde__text'>At the teacher’s job hearing, an attorney challenged Morgan’s story. <strong>"I thought this trial would be so in my favor I would barely have to talk."</strong></p>
-			</figcaption>
-		</figure>
+		{%- for b in borde_illustrations %}
+			<div class='borde__panel'>
+				{% if loop.last %}
+					{% set display_credit_bool = True %}
+				{% else %}
+					{% set display_credit_bool = False %}
+				{% endif %}
+				{{ add_p2p_photo(
+					"ct-cps-abuse-illustration-borde-20180523-00" ~ b.number, 
+					add_class="illo image--lazy", 
+					width=650, 
+					display_caption=False, 
+					display_credit=display_credit_bool, 
+					dont_lazy_load=False) }}
+				<p class='borde__text'>{{ b.caption|process_text }}</p>
+		</div>
+		{% endfor %}
 	</div>
 </figure>
