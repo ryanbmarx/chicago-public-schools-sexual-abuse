@@ -133,8 +133,8 @@ window.addEventListener('DOMContentLoaded', function(e){
         } else {
             // If we're dealing with an image
             const   newWidth = entry[0].boundingClientRect.width,
-                    fullResSrc = el.querySelector('img').getAttribute("src").replace("10", newWidth).replace(/’/g, ""); // Damn smart quotes are appearing again
-                    
+                    fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
+            console.log('lazy loading ', fullResSrc);
             el.querySelector('img').setAttribute('src', fullResSrc);
         }
 
@@ -214,6 +214,9 @@ window.addEventListener('load', function() {
     console.log('main window is onloaded');
 
     const windowHeight = window.innerHeight;
+    
+    // Now that the css is parsed and rendered, let's recalc all our waypoints
+    scrollMonitor.recalculateLocations();
 
     // POWER THE SIDEBAR TRAVELER
     const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
