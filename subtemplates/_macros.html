@@ -29,7 +29,7 @@
           width=1000, 
           display_caption=False, 
           display_credit=True, 
-          full_res=True) }}
+          dont_lazy_load=True) }}
     {% else %}
       <p class='breaker__caption'>NO IMAGE SLUG PROVIDED</p>
     {% endif %}
@@ -167,7 +167,7 @@
 </figure>
 {% endmacro %}
 
-{% macro add_p2p_photo(slug, add_class, width, display_caption, display_credit, full_res=False) %}
+{% macro add_p2p_photo(slug, add_class, width, display_caption, display_credit, dont_lazy_load=False) %}
   {% set photo = get_p2p_content_item(slug) %}
 
   {% if photo|check_if_is_okay_to_publish(BUCKET_NAME) %}
@@ -198,16 +198,17 @@
       {% set caption = caption + "</figcaption>" %}
     {% endif %}
 
-    {% if full_res %}
+    {% if dont_lazy_load %}
       {# {% set src = "src=\'" ~ photo.photo_services_url ~ "/" ~ width ~ "\'" %} #}
       {% set src = "{}/{}".format(photo.photo_services_url, width) %}
+      {% set full_res_src = False %}
     {% else %}
       {% set src = "{}/{}".format(photo.photo_services_url, 10) %}
       {% set full_res_src = "{}/{}".format(photo.photo_services_url, width) %}
     {% endif %}
 
       <figure class='image {{ add_class }}'>
-        <img {% if full_res %}data-full-res-src="{{ full_res_src }}"{% endif %} src="{{ src|process_text() }}" alt='{{ photo.title }}' title='{{ photo.title }}'/>
+        <img {% if full_res_src %}data-full-res-src="{{ full_res_src }}"{% endif %} src="{{ src|process_text() }}" alt='{{ photo.title }}' title='{{ photo.title }}'/>
         {{ caption|process_text() }}
         <p class='debug-slug'>Image p2p slug: {{ slug }}</p>
       </figure>
