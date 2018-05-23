@@ -159,6 +159,11 @@ $blur-wave-3: 5s;
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
 // debugging only
+.illo .debug-slug{
+	position: absolute;
+	top: 40%;
+}
+
 .debug-slug{
 	@include agate();
 	margin-top: 10px;
