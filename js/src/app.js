@@ -21,17 +21,17 @@ function doesUserWantAnimations(){
 }
 
 
-document.querySelector('#animation-toggle').addEventListener("click", function(e){
-    const body = document.querySelector('body');
+// document.querySelector('#animation-toggle').addEventListener("click", function(e){
+//     const body = document.querySelector('body');
 
-    if (body.dataset.animate.toLowerCase() == "true"){
-        clickTrack("CPS abuse - animations toggled off", true, true);
-        body.dataset.animate = "false";
-    } else {
-        clickTrack("CPS abuse - animations toggled on", true, true);
-        body.dataset.animate = "true";
-    }
-})
+//     if (body.dataset.animate.toLowerCase() == "true"){
+//         clickTrack("CPS abuse - animations toggled off", true, true);
+//         body.dataset.animate = "false";
+//     } else {
+//         clickTrack("CPS abuse - animations toggled on", true, true);
+//         body.dataset.animate = "true";
+//     }
+// })
 
 function toggleDrawer(drawerShouldOpen=false){
     if (drawerShouldOpen){
@@ -185,7 +185,23 @@ window.addEventListener('DOMContentLoaded', function(e){
             clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, true);
         });
     }
+    
+    // Open the sidebars
+    [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
+        button.addEventListener('click', function(e){
+            
+            // Which sidebar do we want to open?
+            const sidebar = this.dataset.target;
 
+            // Add the open class to that sidebar, found by ID.
+            document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
+
+            // Remove the button
+            this.remove();
+            scrollMonitor.recalculateLocations();
+            clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, true);
+        })
+    });
 });
 
 // #########################################
@@ -225,23 +241,4 @@ window.addEventListener('load', function() {
         });
         return sidebarWatcher;
     });
-
-    // Open the sidebars
-    [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
-        button.addEventListener('click', function(e){
-            
-            // Which sidebar do we want to open?
-            const sidebar = this.dataset.target;
-
-            // Add the open class to that sidebar, found by ID.
-            document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
-
-            // Remove the button
-            this.remove();
-            scrollMonitor.recalculateLocations();
-            clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, true);
-        })
-    });
-
-
 });

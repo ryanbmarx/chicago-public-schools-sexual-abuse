@@ -234,15 +234,15 @@ body{
 }
 
 [data-animate="true"]{
-	.carousel{
-		[itemprop="publisher"]{ @include blurInto($blur-wave-3); }
-		&__title{ @include blurInto($blur-wave-3); }	
-	}
+	// .carousel{
+	// 	[itemprop="publisher"]{ @include blurInto($blur-wave-3); }
+	// 	&__title{ @include blurInto($blur-wave-3); }	
+	// }
 
-	.carousel__stories-list li {
-		filter: blur(100px);
-		transition: filter 1s ease-out;
-	}
+	// .carousel__stories-list li {
+	// 	filter: blur(100px);
+	// 	transition: filter 1s ease-out;
+	// }
 
 	.carousel__stories{
 		transition: all #{$nav-speed} ease;
@@ -251,10 +251,10 @@ body{
 	.carousel.carousel--open ~ .carousel__stories{
 		transition: all #{$nav-speed} ease;
 
-		.carousel__stories-list li{
-			filter: blur(0);
-			transition: filter 1s ease-out;
-		}
+		// .carousel__stories-list li{
+		// 	filter: blur(0);
+		// 	transition: filter 1s ease-out;
+		// }
 	}
 }
 

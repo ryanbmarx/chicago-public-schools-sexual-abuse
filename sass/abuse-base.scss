@@ -18,7 +18,7 @@ $imperial:#0B4F6C;
 $purple:#36213E;
 
 
-$body-background-color: #111;
+$body-background-color: #333;
 $navbar_background_color: $darkest;
 $highlight-color: $bright;
 $river-background-color: $white;
@@ -158,6 +158,13 @@ $blur-wave-3: 5s;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
+// debugging only
+.debug-slug{
+	@include agate();
+	margin-top: 10px;
+	font-weight:bold;
+	color: #aaa;
+}
 
 // RESETS
 body{

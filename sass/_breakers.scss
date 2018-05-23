@@ -69,19 +69,19 @@ $line-width: 200px;
     text-align: center;
 }
 
-[data-animate="true"]{
-	// If animations are on, then do this
+// [data-animate="true"]{
+// 	// If animations are on, then do this
 	
-	.breaker__caption{ opacity:0; }
+// 	.breaker__caption{ opacity:0; }
 
-	.breaker--animated{
-		.breaker__caption{
-			// This class will trigger css blurIns
-			@include blurInto();
-		}
-	}
+// 	.breaker--animated{
+// 		.breaker__caption{
+// 			// This class will trigger css blurIns
+// 			@include blurInto();
+// 		}
+// 	}
 
-}
+// }
 
 
 
