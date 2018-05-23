@@ -209,6 +209,7 @@
       <figure class='image {{ add_class }}'>
         <img {% if full_res %}data-full-res-src="{{ full_res_src }}"{% endif %} src="{{ src|process_text() }}" alt='{{ photo.title }}' title='{{ photo.title }}'/>
         {{ caption|process_text() }}
+        <p class='debug-slug'>Image p2p slug: {{ slug }}</p>
       </figure>
     {% else %}
       <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
