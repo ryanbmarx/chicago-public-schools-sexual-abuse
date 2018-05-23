@@ -224,7 +224,7 @@ body{
 }
 
 .carousel__button{
-  @include blurInto($blur-wave-3)
+  // @include blurInto($blur-wave-3);
   
   @supports (display:grid){
     grid-column: 3;
