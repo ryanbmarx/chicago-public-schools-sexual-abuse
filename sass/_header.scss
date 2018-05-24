@@ -1,11 +1,11 @@
 .header{
 	&__headline{
-		@include responsive-font(26vw, 70px, 370px);
+		@include responsive-font(23vw, 30px, 120px);
 		line-height: 1.3em;
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight:normal;
-		opacity: .1;
-		margin: 0 auto -0.45em auto !important;
+		// opacity: .1;
+		margin: 0 auto -0.1em auto !important; // This is an exception to a * rule below
 		text-transform: uppercase;
 		// transform: translate(0, .55em);
 	}
