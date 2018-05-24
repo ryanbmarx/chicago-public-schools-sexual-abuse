@@ -96,7 +96,7 @@ body{
 	// Actual story link stuff here
 
 	&__stories{
-		background: black;
+		background: rgba($body-background-color, .9);
 		opacity: 0;
 		transform: translate(0,-100vh);
 		
@@ -117,7 +117,7 @@ body{
 	&__stories-list{
 		list-style: none;
 		padding: 0;
-		max-width: 250px;
+		// max-width: 250px;
 		margin: 0 auto;
 	}
 
@@ -172,36 +172,29 @@ body{
 
 .carousel__stories-list{
 	li{
-		overflow:hidden; // To cover for neg. margins in .story
-
 		margin-bottom: $grid-gap;
-		padding-bottom: $grid-gap;
 		border-bottom: 1px solid #eee;
-
+	    box-shadow: 1px 1px 3px rgba(black, .4);
 	}	
 }
 
 .story{
-	display:flex;
-	align-items: flex-start;
-	flex-wrap: wrap;
-	margin: 0 -30px 0 0;
+	box-sizing:border-box;
+	padding: 30px;
+	background: $river-background-color;
+    height: 100%;
 
 	&__text{
-		flex: 2 1 230px;
-		order: 2;
 		margin: 0 30px 0 0;
 	}
 
 	&__headline{
 		@include label6();
-		color:white;
 		margin: 0 0 7px 0;
 	}
 
 	&__description{
 		@include sans-serif();
-		color:white;
 		margin: 0 0 7px 0;
 	}
 
@@ -211,7 +204,6 @@ body{
 }
 
 .carousel__button{
-  // @include blurInto($blur-wave-3);
   
   @supports (display:grid){
     grid-column: 3;
@@ -290,7 +282,7 @@ body{
 		.carousel__stories-list{
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			grid-gap: $grid-gap * 2;
+			grid-gap: $grid-gap;
 			
 			li{
 				margin-bottom: 0;
@@ -303,7 +295,7 @@ body{
 	@supports not (display:grid){
 		// If we support grid, then undo the mobile view
 		.carousel__stories-list{
-			max-width: $river-width-small;
+			max-width: $river-width-large;
 			// margin: 0 auto;			
 		}
 	}
