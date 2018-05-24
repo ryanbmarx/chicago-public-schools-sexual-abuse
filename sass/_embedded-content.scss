@@ -116,7 +116,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: $white;
+			background: $river-background-color;
 			mix-blend-mode: multiply;
 		}
 		
@@ -130,7 +130,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		img + figcaption {
 			margin: 0;
 			padding-top: 7px;
-			background: $white;
+			background: $river-background-color;
 			position: relative;
 			z-index: 2; // Moves the opaque figcaption up over the screen to cover the double multiplied portion
 		}
@@ -150,7 +150,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		margin-left: $grid-gap;
 	}
 }
-
+/*
 @media all and (min-width: $notched-min-width){
 	.river{
 		// We only care about notching stuff inside the river. 
@@ -158,12 +158,12 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 		.pullquote.side, .chart.side, .image.image--mug, .image.side, .video.side, .refer.side, .side{
 			// We'll want our special background color, but not for ALL side items.
-			background: $side-background-color;
-			color: #{set-text-color($side-background-color, true)};
+			// background: $side-background-color;
+			// color: #{set-text-color($side-background-color, true)};
 		}
 
 		.side .illo:after, .side.illo:after{
-			background: $side-background-color;
+			// background: $side-background-color;
 		}
 
 		.side{
@@ -171,7 +171,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 			&.refer, &.chart, &.video, &.pullquote{
 				// .refers should NOT notch. But everything else should
 				float: right; // ANY chart which is to go side-saddle shall float. That is how this works. It is decreed.
-				padding: $grid-gap / 2;			
+				// padding: $grid-gap / 2;			
 				max-width: $notched-max-width;
 				margin: 0 $side-saddle-middle-negative-margin 0 $grid-gap;
 			}
@@ -184,14 +184,14 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 
 		.image.image--mug{
 			// Notch the mugshots, but with it's own max-width
-			padding: $grid-gap / 2;
+			// padding: $grid-gap / 2;
 			max-width: $image-mug-max-width + $grid-gap * 2 !important; // Important so he other .image styles don't disrupt it.
 			margin-right: ($image-mug-max-width + $grid-gap * 4) / -2;
 		}
 	
 	}
 }
-
+*/
 @media all and (min-width: $side-saddle-min-width){
 	// TODO: Check on floated elements in sidebars
 	// We only care about sidesaddle stuff for elements

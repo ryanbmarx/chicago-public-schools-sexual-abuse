@@ -1,12 +1,12 @@
 
 .credits{
-	@extend %content_block;
+	max-width: 1000px;
 	
     margin: $grid-gap auto;
-    background: rgba($white, .15);
-	padding: $grid-gap;
+    // background: rgba($white, .15);
+	padding: 0 $grid-gap;
 	overflow:hidden;
-	color: white;
+	color: #{set-text-color($body-background-color, true)};
 
 	&__inner{
 		@extend .container;

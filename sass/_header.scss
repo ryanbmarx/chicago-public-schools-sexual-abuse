@@ -32,7 +32,7 @@
 			// this presentation, we want all text in this panel to be centered.
 		    margin: 0 auto #{$grid-gap / 2} auto;
 			text-align: center;
-			color: white;
+			color: #{set-text-color($body-background-color, true)};
 		}
 	}
 
@@ -75,7 +75,7 @@
 		text-align: center;
 	    background: rgba(black, .5);
 	    padding: $grid-gap / 2;
-	    color: white;
+	    color: #{set-text-color($body-background-color, true)};
 	    margin: 0;
 	    opacity: .5;
 	}

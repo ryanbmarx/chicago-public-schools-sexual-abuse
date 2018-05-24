@@ -7,7 +7,7 @@ $line-width: 200px;
 	overflow: hidden;
 	margin: #{$grid-gap * 2} auto $grid-gap auto;
 	padding: #{$grid-gap * 2} 0 0 0;
-	max-width: 1000px;
+	max-width: 900px;
 
 	&:before{
 		content: "";
@@ -31,7 +31,7 @@ $line-width: 200px;
 		}
 
 		figcaption {
-			color:white;
+			color: #{set-text-color($body-background-color, true)};
 		}
 	}
 
@@ -59,8 +59,8 @@ $line-width: 200px;
 }
 
 .breaker + h3 {
-	color: $white;
-    font: 45px/1em #{$fonts-sans-serif-condensed};
+	color: #{set-text-color($body-background-color, true)};
+    font: 35px/1em #{$fonts-sans-serif-condensed};
     text-transform: uppercase;
     max-width: $river-width-large;
     margin: #{$grid-gap} auto #{$grid-gap / 3} auto;
@@ -95,7 +95,7 @@ $line-width: 200px;
 
 	.breaker + h3 {
 	    // text-align: left;
-	    font-size: 70px
+	    font-size: 45px
 	}
 
 }

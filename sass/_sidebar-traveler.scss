@@ -2,11 +2,14 @@
 // This is NOT the container. This is the MENU inside the container
 // ######################################################################
 
+$traveler-active-background-color: set-text-color($body-background-color, true) !default;
+
 .traveler{
 	@extend %content_block;
 	background: rgba($white, .75);
 	margin-right: $grid-gap;
 	padding: $grid-gap / 2;
+	padding: 0;
 
 	&__links {
 		list-style:none;
@@ -33,10 +36,14 @@
 		}
 
 		&--active{
-			background: $white;
-			// a {
-			// 	opacity: 1;
-			// }
+			background: #{$traveler-active-background-color};
+
+			a {
+				// This is a littl bit inception-esque, but the highlight background
+				// is calculated based on the body color. We want the text color to be 
+				// the opposite of that calculated color.
+				color: white;
+			}
 		}
 	}
 	

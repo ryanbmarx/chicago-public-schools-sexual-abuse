@@ -10,7 +10,8 @@ $mainbar: "failures";
 
 $darkest: #070808;
 $dark: #0a154e;
-$bright: #FEE8A0;
+// $bright: #FEE8A0;
+$bright: #c7ba90;
 $white: #F1F3F4;
 
 $yankees:#1C2541;
@@ -18,17 +19,19 @@ $imperial:#0B4F6C;
 $purple:#36213E;
 
 
-$body-background-color: #333;
+$body-background-color: $white;
 $navbar_background_color: $darkest;
 $highlight-color: $bright;
 $river-background-color: $white;
+$river-background-color: white;
 
 // Reassign type styles
 // $fonts-serif: XXX;
 $fonts-sans-serif: "'Open Sans', sans-serif";
 $fonts-sans-serif-condensed: "'Open Sans Condensed', sans-serif";
 
-$refer-background-color: #2F3030; // Hex of rgba($white, .15)
+$refer-background-color: rgba(black, .1);
+$refer-text-color: black;
 
 
 // NAV CAROUSEL
@@ -205,11 +208,17 @@ body{
 	// margin-top: 0;
 
 	&__headline{
+		color: $refer-text-color;
 		font-size: 1.2em;
+	}
+
+	&__text{
+		color: $refer-text-color;
 	}
 }
 
 .refer--has-image.refer--share_your_story {
+
 	.refer__image, .refer__text-wrapper{ 
 		max-width: 450px;
 	}
