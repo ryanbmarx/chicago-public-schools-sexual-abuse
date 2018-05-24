@@ -18,7 +18,7 @@
 </nav>
 <div class='carousel__stories'>
 	<ul class="carousel__stories-list">
-		{% for story in stories|sort(attribute="display_order") if story.display_drawer == 1 %}
+		{% for story in stories|sort(attribute="display_order") if story.display_drawer == 1 and story.publish and story.publish > 0 %}
 			<li>
 				<article class='story'>
 					<div class='story__text'>

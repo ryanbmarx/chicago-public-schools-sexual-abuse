@@ -82,7 +82,7 @@
 		{% include 'subtemplates/_sidebar-traveler.html' %}
 	</div>
 	<div class='sidebars__stories'>
-	{% for story in stories|sort(attribute="display_order") if story.slug != mainbar_slug and story.display_order and story.display_order > 0 %}
+	{% for story in stories|sort(attribute="display_order") if story.slug != mainbar_slug and story.display_order and story.display_order > 0 and story.publish and story.publish > 0 %}
 		{% set mainbar = False %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
