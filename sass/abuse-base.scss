@@ -30,7 +30,7 @@ $river-background-color: white;
 $fonts-sans-serif: "'Open Sans', sans-serif";
 $fonts-sans-serif-condensed: "'Open Sans Condensed', sans-serif";
 
-$refer-background-color: rgba(black, .1);
+$refer-background-color: $trib-gray4;
 $refer-text-color: black;
 
 
@@ -254,8 +254,15 @@ body{
 
 .refer--has-image.refer--share_your_story {
 
+	.refer__headline{
+		font-size: 2em;
+	}
 	.refer__image, .refer__text-wrapper{ 
 		max-width: 450px;
+	}
+
+	.refer__image{
+		mix-blend-mode:multiply;
 	}
 }
 
