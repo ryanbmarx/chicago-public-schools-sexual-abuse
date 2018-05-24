@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 600 750" style="enable-background:new 0 0 600 750;" xml:space="preserve">
 <style type="text/css">
@@ -7,18 +7,19 @@
 	.st1{fill:none;stroke:#FEE8A0;stroke-width:3;stroke-miterlimit:10;}
 	.st2{fill:#FEE8A0;stroke:#FEE8A0;stroke-miterlimit:10;}
 	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
-	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#6791A3;stroke:#000000;stroke-miterlimit:10;}
-	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#FEE8A0;stroke:#000000;stroke-miterlimit:10;}
-	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:#F1F3F4;}
-	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#69973F;}
-	.st8{fill:none;stroke:#4D4D4D;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st9{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
-	.st10{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#FEE8A0;stroke:#000000;stroke-miterlimit:10;}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#F1F3F4;}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:#69973F;}
+	.st7{fill:none;stroke:#4D4D4D;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st9{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#6791A3;stroke:#000000;stroke-miterlimit:10;}
+	.st11{fill:#6791A3;stroke:#000000;stroke-miterlimit:10;}
 </style>
 <g>
 	<g>
-		<circle class="st1" cx="439.074" cy="539.184" r="14.608"/>
-		<circle class="st2" cx="439.074" cy="539.184" r="2.922"/>
+		<circle class="st1" cx="439.1" cy="539.2" r="14.6"/>
+		<circle class="st2" cx="439.1" cy="539.2" r="2.9"/>
 	</g>
 	<rect class="st3" width="600" height="750"/>
 </g>
