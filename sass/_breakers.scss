@@ -43,7 +43,7 @@ $breaker-text-color: $yankees !default;
 		font-weight: bold;
 		text-align: center;
 		padding: 0;
-		margin: 0;
+		margin: 0 0 #{$grid-gap / 2} 0;
 	}
 
 	&__credit{
