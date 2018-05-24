@@ -1,5 +1,3 @@
-.sidebars__traveler{display:none;}
-
 $sidebar-link-background-color: darken($bright, 10%) !default;
 $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !default;
 
@@ -23,6 +21,19 @@ $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !
 	}
 }
 
+.sidebars{
+	&__header{
+		@extend %section-label;
+		width: 100%;// b/c of the flex container
+	}
+
+	&__sub-label{
+		@extend %section-sub-label;
+		margin: 0 0 #{$grid-gap / 2} 0;
+		width: 100%; // b/c of the flex container
+	}
+}
+
 .sidebar{
 	margin-top: $grid-gap;
 	margin-bottom: $sidebar-margin-bottom;
@@ -36,6 +47,11 @@ $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !
 		transition: max-height 400ms ease;
 		overflow:visible;
 		box-shadow: none;
+	}
+
+	&__traveler{ 
+		display:block; 
+		max-width: 400px;
 	}
 }
 
@@ -64,11 +80,15 @@ $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !
 
 @media all and (min-width: $side-saddle-min-width){
 
+	// .sidebar-menu__header,.sidebar-menu__sub-label{
+	// 	display:none;
+	// }
+
 	.sidebars{
 		display:flex;
+		flex-wrap:wrap;
 
 		&__traveler{
-			display:block;
 			flex: 1 1;
 		}
 

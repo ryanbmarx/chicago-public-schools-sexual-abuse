@@ -71,10 +71,13 @@
 		{% endfor %}
 	</div>
 </section> </article>{# END MAINBAR #}
-{{ abuse_share_refer() }}
 <div class='advert' data-ad-type="leaderboard"></div>
-{% include "subtemplates/_sidebar-menu.html" %}
+{# {% include "subtemplates/_sidebar-menu.html" %} #}
 <section class='sidebars container'>
+	
+	<h1 class='sidebars__header'>{{ sidebar_label }}</h1>
+	<p class='sidebars__sub-label'>{{ sidebar_sublabel }}</p>
+
 	<div class='sidebars__traveler'>
 		{% include 'subtemplates/_sidebar-traveler.html' %}
 	</div>
@@ -87,6 +90,9 @@
 			{% include "subtemplates/_sidebar.html" %}
 		</article>
 		<button class='read-more' data-target="{{ story.slug }}" aria-label="Read this entire story">Read more</button>
+		{% if loop.first %}
+			{{ abuse_share_refer() }}
+		{% endif %}
 		{% if i % 6 == 0 %}
 			<div class='advert' data-ad-type="shrinky-cube"></div>
 		{% elif i % 3 == 0 %}
