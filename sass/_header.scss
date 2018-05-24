@@ -21,7 +21,9 @@
 		// We use this selector b/c we want to be very specific so it does not 
 		// take up the changes to other panels.
 
-		height: calc(100vh - var(--navbar-height));// Because the headline panel DOES include the navbar
+		// height: calc(100vh - var(--navbar-height));// Because the headline panel DOES include the navbar
+		height: auto;
+		padding: #{$grid-gap * 4} #{$grid-gap};
 		justify-content: center;
 		width: 100vw;
 		position: relative;
