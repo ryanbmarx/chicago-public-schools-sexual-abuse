@@ -65,6 +65,9 @@ $blur-wave-1: 1s;
 $blur-wave-2: 5s;
 $blur-wave-3: 5s;
 
+// BREAKERS
+$breaker-text-color: $imperial;
+
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
 

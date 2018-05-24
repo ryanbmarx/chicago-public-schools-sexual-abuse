@@ -1,6 +1,6 @@
 $line-height: 3px;
 $line-width: 200px;
-
+$breaker-text-color: $yankees !default;
 
 .breaker{
 	position: relative;
@@ -17,7 +17,7 @@ $line-width: 200px;
 		transform: translate(-50%, 0);
 		height: $line-height;
 		width: $line-width;
-		background: $bright;
+		background: $breaker-text-color;
 	}
 
 	.breaker__image{
@@ -39,7 +39,7 @@ $line-width: 200px;
 
 	&__caption{
 		@include sans-serif-text(1.5em, 1.3em, bold);
-		color: $bright;
+		color: $breaker-text-color;
 		font-weight: bold;
 		text-align: center;
 		padding: 0;
@@ -48,7 +48,7 @@ $line-width: 200px;
 
 	&__credit{
 		@include agate();
-		color: white;
+		color: #{set-text-color($body-background-color, true)};
 		margin: 0;
 	}
 
