@@ -221,15 +221,6 @@ body{
 }
 
 [data-animate="true"]{
-	// .carousel{
-	// 	[itemprop="publisher"]{ @include blurInto($blur-wave-3); }
-	// 	&__title{ @include blurInto($blur-wave-3); }	
-	// }
-
-	// .carousel__stories-list li {
-	// 	filter: blur(100px);
-	// 	transition: filter 1s ease-out;
-	// }
 
 	.carousel__stories{
 		transition: all #{$nav-speed} ease;
@@ -237,11 +228,6 @@ body{
 
 	.carousel.carousel--open ~ .carousel__stories{
 		transition: all #{$nav-speed} ease;
-
-		// .carousel__stories-list li{
-		// 	filter: blur(0);
-		// 	transition: filter 1s ease-out;
-		// }
 	}
 }
 
@@ -250,19 +236,6 @@ body{
 	:root{
 		--navbar-height: 60px;
 	}
-
-	// body{
-	// 	padding: var(--navbar-height) 0 0 0 !important;
-	// }
-
-	// .carousel{
-	// 	position: fixed;
-	// 	top: 0;
-	// 	left: 0;
-	// }
-
-
-
 
 	@supports (display:grid){
 		// Rearrange the navbar from the mobile layout.
