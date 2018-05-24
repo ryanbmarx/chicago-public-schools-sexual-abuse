@@ -119,6 +119,25 @@ $breaker-text-color: $imperial;
     margin-bottom: $grid-gap;
 }
 
+%sidebar-button{
+	@include sans-serif();
+	display: inline-block;
+	padding: 5px #{$grid-gap / 2};
+	margin-top: 5px;
+
+	cursor:pointer;
+	border: 1px solid #888;
+    background: $read-more-background-color;
+    color: #{set-text-color($read-more-background-color)};
+	transition: background 150ms ease-out;
+
+    &:hover, &:focus{
+		background: darken($read-more-background-color, 10%);
+		transition: background 150ms ease-out;
+		text-decoration:none;
+    }
+
+}
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT -----------------------------------
 // @import 'ngux-visibility-toggles';
@@ -154,7 +173,7 @@ $breaker-text-color: $imperial;
 @import 'credits'; // The credits box
 @import 'embedded-content'; // Handles graphics and various side-saddle issues
 @import 'sidebar-traveler'; // The nav alongside the sidebars
-@import 'sidebar-menu'; // The nav before the sidebars
+// @import 'sidebar-menu'; // The nav before the sidebars
 @import 'header'; // the mainbar header
 @import 'breakers'; // Test styles for story breakers
 @import 'pullquote'; 

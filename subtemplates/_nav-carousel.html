@@ -22,14 +22,11 @@
 			<li>
 				<article class='story'>
 					<div class='story__text'>
-						<h1 class="story__headline">{{ story.slug }}: {{ story.headline }}</h1>
+						<h1 class="story__headline">{{ story.headline }}</h1>
 						<p class='story__description'>{{ story.og_description }}</p>
 						<a class='story__link' href="#{{ story.slug }}">Read the story</a>
 					</div>
-{# 					<figure class='story__image'>
-						<img src="http://{{ ROOT_URL }}/{{ story.thumbnail_url }}" alt="{{ story.thumbnail_alt }}" title="{{ story.thumbnail_alt }}"/>
-					</figure>
- #}				</article>
+				</article>
 			</li>
 		{% endfor %}
 	</ul>

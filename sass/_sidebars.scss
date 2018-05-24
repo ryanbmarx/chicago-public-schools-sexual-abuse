@@ -57,24 +57,11 @@ $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !
 
 // sidebar open buttons
 .read-more{
-	@include sans-serif();
+	@extend %sidebar-button;
     z-index: 1000;
 	transform:translate(0, -50%);
-	display: block;
 	margin: #{$sidebar-margin-bottom / -1 } auto 0 auto;
-
-    border: none;
-    background: $read-more-background-color;
-    color: set-text-color($read-more-background-color);
-
-    padding: 5px #{$grid-gap};
-    border: 1px solid #bbb;
-	transition: background 150ms ease-out;
-    
-    &:hover, &:focus{
-		background: darken($read-more-background-color, 10%);
-		transition: background 150ms ease-out;
-    }
+	display:block;
 }
 
 
