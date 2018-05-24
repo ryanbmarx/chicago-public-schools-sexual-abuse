@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function(e){
         // This ensures we only lazy load an item once.
         lazyObserver.unobserve(el);
     }, {
-        rootMargin: `0px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
+        rootMargin: `500px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
     });
     lazyItems.forEach(i => lazyObserver.observe(i));
 
