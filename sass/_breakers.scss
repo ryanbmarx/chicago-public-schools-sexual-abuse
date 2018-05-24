@@ -38,7 +38,7 @@ $breaker-text-color: $yankees !default;
 	
 
 	&__caption{
-		@include sans-serif-text(1.5em, 1.3em, bold);
+		@include serif-text(1.5em, 1.3em, bold);
 		color: $breaker-text-color;
 		font-weight: bold;
 		text-align: center;
