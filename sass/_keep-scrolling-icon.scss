@@ -1,5 +1,6 @@
 $keep-scrolling-icon-width: 50px !default;
 $keep-scrolling-icon-height: $keep-scrolling-icon-width !default;
+$keep-scrolling-icon-color: #{set-text-color($body-background-color, true)} !default;
 
 .keep-scrolling{
 	position: sticky;
@@ -16,8 +17,8 @@ $keep-scrolling-icon-height: $keep-scrolling-icon-width !default;
     z-index: 10; // SO it sits on top of all content and is, thus, clickable
  
 	&__icon{
-		fill: white;
-		border: 2px solid white;
+		fill: $keep-scrolling-icon-color;
+		border: 2px solid $keep-scrolling-icon-color;
 	    border-radius: 50%;
 	    width: $keep-scrolling-icon-width;
 	    height: $keep-scrolling-icon-height;

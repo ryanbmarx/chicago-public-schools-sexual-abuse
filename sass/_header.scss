@@ -73,9 +73,9 @@
 	&__panel-text{
 		@include serif-text(30px, 1.3em, normal);
 		text-align: center;
-	    background: rgba(black, .5);
+	    background: rgba(black, .6);
 	    padding: $grid-gap / 2;
-	    color: #{set-text-color($body-background-color, true)};
+	    color: white;
 	    margin: 0;
 	    opacity: .5;
 	}
@@ -277,6 +277,7 @@
 			text-align: left;
 			background: transparent;
 			padding: 0;
+			color: black;
 		}	
 	}
 
