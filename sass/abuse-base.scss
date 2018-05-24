@@ -216,6 +216,11 @@ body{
 	// }
 }
 
+.noscroll{
+	// Used for keeping the main story from scrolling when the navdrawer is open
+	overflow:hidden;
+}
+
 .sr-only{
 	// Use this to hide elements from everything except screen readers.
   position: absolute;
