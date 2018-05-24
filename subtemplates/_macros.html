@@ -19,7 +19,7 @@
 
 
 
-{% macro abuse_breaker(image_slug=False, caption, breaker_text=False) %}
+{% macro abuse_breaker(image_slug=False, caption, breaker_text=False, display_ad=False) %}
   <figure class='breaker'>
     <blockquote  class='breaker__caption'>{{ caption }}</blockquote>
     {% if image_slug != False %}
@@ -34,7 +34,10 @@
       <p class='breaker__caption'>NO IMAGE SLUG PROVIDED</p>
     {% endif %}
   </figure>
-  {% if breaker_text %}<h3>{{ breaker_text }}</h3>{% endif %}
+  {% if display_ad %}
+    {{ ad(display_ad, False) }}
+  {% endif %}
+  {% if breaker_text %}<h3 class='breaker-subhede'>{{ breaker_text }}</h3>{% endif %}
 {% endmacro %}
 
 {% macro add_date_published(pub, mod) %}

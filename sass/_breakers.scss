@@ -35,8 +35,6 @@ $breaker-text-color: $yankees !default;
 		}
 	}
 
-	
-
 	&__caption{
 		@include serif-text(1.5em, 1.3em, bold);
 		color: $breaker-text-color;
@@ -58,7 +56,8 @@ $breaker-text-color: $yankees !default;
 	}
 }
 
-.breaker + h3 {
+
+.breaker-subhede {
 	color: #{set-text-color($body-background-color, true)};
     font: 35px/1em #{$fonts-sans-serif-condensed};
     text-transform: uppercase;
@@ -68,21 +67,6 @@ $breaker-text-color: $yankees !default;
     border: none;	
     text-align: center;
 }
-
-// [data-animate="true"]{
-// 	// If animations are on, then do this
-	
-// 	.breaker__caption{ opacity:0; }
-
-// 	.breaker--animated{
-// 		.breaker__caption{
-// 			// This class will trigger css blurIns
-// 			@include blurInto();
-// 		}
-// 	}
-
-// }
-
 
 
 

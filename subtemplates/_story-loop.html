@@ -154,7 +154,13 @@
     {% endif %}
 
 {% elif type|upper == "BREAKER" %}
-    {{ abuse_breaker(s.photo_slug, s.caption, s.breaker_text) }}
+    {% if s.display_ad %}
+        {% set display_ad = s.display_ad %}
+    {% else %}
+        {% set display_ad = False %}
+    {% endif %}
+    {{ abuse_breaker(s.photo_slug, s.caption, s.breaker_text, display_ad) }}
+    
 
 {% elif type|upper == "INCLUDE" %}
     {% if s.content %}
