@@ -137,6 +137,9 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 	}
 }
 
+.image--credit-only figcaption{
+	text-align:right;
+}
 
 @media all and (min-width: $river-width-large){
 

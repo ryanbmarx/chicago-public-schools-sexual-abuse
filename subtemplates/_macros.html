@@ -174,6 +174,10 @@
   
     {% set caption = "" %}
     
+    {% if not display_caption and display_credit %}
+      {% set add_class = add_class + " image--credit-only" %}
+    {% endif %}
+
     {% if display_caption or display_credit %}
       {% set caption = caption + "<figcaption>" %}
       {# {% set caption = caption + "<figcaption>" + photo.caption|striptags|strip_whitespace %} #}

@@ -164,6 +164,14 @@ $breaker-text-color: $imperial;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
+
+.image--credit-only{
+    text-align: right;
+	figcaption{
+		text-align:right;
+	}
+}
+
 // debugging only
 .illo .debug-slug{
 	position: absolute;
