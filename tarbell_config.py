@@ -195,7 +195,7 @@ S3_BUCKETS = {
     # then use tarbell publish mytarget to publish to it
     
     "production": "graphics.chicagotribune.com/cps-abuse",
-    "staging": "apps.beta.tribapps.com/cps-abuse",
+    "staging": "apps.beta.tribapps.com/chicago-public-schools-sexual-abuse",
     "ryan": "apps.beta.tribapps.com/cps-abuse-ryan-beta",
 }
 
