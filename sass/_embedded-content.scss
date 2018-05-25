@@ -67,6 +67,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 // IMAGES
 .image.image--mug{
 	// Since mugs are so small anyways, they can float at the beginning
+	width: 30vw;
 	max-width: $image-mug-max-width;
 	float: right;
 	margin: 0 0 $grid-gap $grid-gap;
