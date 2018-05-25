@@ -82,6 +82,8 @@ window.addEventListener('DOMContentLoaded', function(e){
     const   windowHeight = window.innerHeight,
             doAnimations = doesUserWantAnimations();
 
+    // Remove the nav drawer note if clicked.
+    document.querySelector('#nav-drawer-note').addEventListener('click', function(e){ this.remove(); });
 
     // This powers the header 
     const   body = document.querySelector('body'),

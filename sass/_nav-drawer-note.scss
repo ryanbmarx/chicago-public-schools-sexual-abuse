@@ -1,0 +1,67 @@
+$nav-drawer-note-background-color: $bright !default;
+$nav-drawer-note-icon-width: 26px !default;
+$nav-drawer-note-icon-height: 26px !default;
+$nav-drawer-note-padding: $grid-gap / 2 !default;
+.nav-drawer-note{
+	box-sizing:border-box;
+	display:flex;
+	padding: $nav-drawer-note-padding;
+	background: $nav-drawer-note-background-color;
+	border-bottom: 2px solid darken($nav-drawer-note-background-color, 15);
+
+	position: absolute;
+	top: var(--navbar-height);
+	right: 0;
+	width: 100%;
+
+	z-index: 1000;
+
+	&__text{
+		@include sans-serif();
+		margin: auto;
+		padding: 0;
+		tet-align:center;
+		color: #{set-text-color($nav-drawer-note-background-color, true)};
+	}
+
+	&__icon{
+		transform: rotate(180deg);
+		width: $nav-drawer-note-icon-width;
+		height: $nav-drawer-note-icon-height;
+		fill: #{set-text-color($nav-drawer-note-background-color, true)};
+	}
+
+	&__close-icon{
+		// transform: rotate(180deg);
+		width: .85em;
+		height: .85em;
+		fill: #{set-text-color($nav-drawer-note-background-color, true)};
+		opacity: .5;
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(-25%, 25%);
+	}
+
+}
+@media all and (min-width: $river-width-large){
+	.nav-drawer-note{
+	    right: 50%;
+		border: 2px solid darken($nav-drawer-note-background-color, 15);
+		margin-top: $grid-gap / 2;
+		box-shadow: $side-bar-box-shadow;
+
+		// Hopefully, this centers the arrow under the centered hamburger menu
+		transform: translate(#{$nav-drawer-note-icon-width / 2 + $nav-drawer-note-padding},0);
+
+	    @supports (width: fit-content){
+    	    width: fit-content;
+    	}
+
+	    @supports not (width: fit-content){
+    	    width: 320px;
+    	}
+	}
+}
+

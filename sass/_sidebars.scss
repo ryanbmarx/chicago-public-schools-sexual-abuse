@@ -2,6 +2,8 @@ $sidebar-margin-bottom: $grid-gap !default;
 $read-more-background-color: $bright !default;
 $sidebar-link-background-color: darken($bright, 10%) !default;
 $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !default;
+$side-bar-box-shadow: 1px 1px 3px rgba(black, .4) !default;
+
 
 // The inline links in the mainbar
 .sidebar-link{
