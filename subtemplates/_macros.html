@@ -1,3 +1,28 @@
+{% macro sidebar_refer(sidebar_slug, image_slug=False, add_class=False) %}
+  
+  {% set sidebar_info = stories|get_story_info(sidebar_slug) %}
+
+  
+  <aside class='refer {% if image_slug %}refer--has-image{% endif %} refer--case-study {% if add_class %}{{ add_class }} {% endif %}'>
+    <div class='refer__inner'>
+      {% if image_slug %}
+        {{ add_p2p_photo(
+          slug=image_slug, 
+          add_class="refer__image image--lazy", 
+          width=500, 
+          display_caption=False, 
+          display_credit=False, 
+          dont_lazy_load=False) }}
+      {% endif %}
+      <div class='refer__text-wrapper'>
+        <h1 class="refer__headline"><small class='kicker'>Case study: </small>{{ sidebar_info.headline }}</h1>
+        <p class="refer__text">{{ sidebar_info.dek }}</p>
+        <a  class="refer__button" href="#{{ sidebar_slug }}">Read it</a>
+      </div>
+    </div>
+  </aside>
+{% endmacro %}
+
 {% macro video_by_ref(ref, add_class, header) %}
     
    <figure class='video {% if add_class %} {{ add_class }}{% endif %}'>
@@ -21,7 +46,7 @@
 
 {% macro abuse_breaker(image_slug=False, caption, breaker_text=False, display_ad=False) %}
   <figure class='breaker'>
-    <blockquote  class='breaker__caption'>{{ caption }}</blockquote>
+    <blockquote  class='breaker__caption'>{{ caption|process_text }}</blockquote>
     {% if image_slug != False %}
       {{ add_p2p_photo(
           slug=image_slug, 
@@ -37,7 +62,7 @@
   {% if display_ad %}
     {{ ad(display_ad, False) }}
   {% endif %}
-  {% if breaker_text %}<h3 class='breaker-subhede'>{{ breaker_text }}</h3>{% endif %}
+  {% if breaker_text %}<h3 class='breaker-subhede'>{{ breaker_text|process_text }}</h3>{% endif %}
 {% endmacro %}
 
 {% macro add_date_published(pub, mod) %}

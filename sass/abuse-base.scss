@@ -196,7 +196,7 @@ $breaker-text-color: $imperial;
 }
 
 // debugging only
-.illo .debug-slug{
+.debug-slug{
 	position: absolute;
 	top: 40%;
 }
@@ -282,31 +282,22 @@ body{
 	@extend %content_block;
 }
 
-.refer.side.refer--case-study{
-	background: url('../img/illos/wells.jpg') center no-repeat;
-	background-size: cover;
-	
-	padding: 30px 0;
+.refer--case-study{
+	// We're going to force all sidebar refers to float right
 
-	h1{
-		@include label7();
-		padding: 5px;
-		background: rgba(black, .85);
-		color: white;
+	float:right;
+	margin: 30px 0 30px 30px;
+	max-width: 250px;
 
-	}
-
-	p{
-		@include sans-serif();
-		padding: 5px;
-		background: rgba(black, .85);
-		color: white;
-
+	.kicker{
+		display:block;
+		font-size: 14px;
+		margin: 0 0 7px 0;
 	}
 
 	.refer__button{
-		margin: auto;
-		background: rgba(black, .85);
+		@extend %sidebar-button;
+		margin: #{$grid-gap / 2} auto 0 auto;
 	}
 }
 

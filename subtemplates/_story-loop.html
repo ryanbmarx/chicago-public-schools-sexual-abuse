@@ -1,4 +1,4 @@
-
+{% from './subtemplates/_macros.html' import sidebar_refer as sidebar_refer with context%}
 {% from './subtemplates/_macros.html' import add_chart as add_chart with context%}
 {% from './subtemplates/_macros.html' import add_photo as add_photo with context %}
 {% from './subtemplates/_macros.html' import add_p2p_photo as add_p2p_photo with context %}
@@ -24,8 +24,8 @@
 {% if type == "text" %}
     
     {% if mainbar %}
-        {# {{ s.content|find_sidebar_keywords|markdown|find_inline_link|trim }} #}
-        {{ s.content|markdown|find_inline_link|trim }}
+        {{ s.content|find_sidebar_keywords|markdown|find_inline_link|trim }}
+        {# {{ s.content|markdown|find_inline_link|trim }} #}
     {% else %}
         {{ s.content|markdown|find_inline_link|trim }}
     {% endif %}
@@ -183,6 +183,24 @@
         {% endif %}
         {# If the content attribute is filled out, then include the referenced file. #}
         {{ video_by_ref(s.ref, add_class, header) }}
+    {% endif %}    
+
+{% elif type|upper == "SIDEBAR_REFER" %}
+    {% if s.sidebar_slug  %}
+        {% if s.add_class %}
+            {% set add_class = s.add_class %}
+        {% else %}
+            {% set add_class = "" %}
+        {% endif %}
+
+        {% if s.image_slug %}
+            {% set image_slug = s.image_slug %}
+        {% else %}
+            {% set image_slug = False %}
+        {% endif %}
+        
+        {# If the content attribute is filled out, then include the referenced file. #}
+        {{ sidebar_refer(s.sidebar_slug, image_slug, add_class) }}
     {% endif %}    
 {% endif %}
 
