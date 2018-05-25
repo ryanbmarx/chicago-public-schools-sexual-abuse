@@ -15,8 +15,8 @@ a{
 
 // Explode first graf if the story
 .dropcap > p:first-of-type {
-    font-size: 1.4em;
-    line-height: 1.65em;
+    font-size: 1.15em;
+    line-height: 1.3em;
 
 	// Story dropcap
 	&:first-letter{
@@ -74,10 +74,15 @@ a{
 	margin:0;
 }
 
-@media all and (min-width: $phablet-min-width){
+@media all and (min-width: $river-width-large){
 	// By default, this is 450px+
 	p{
 		font-size: 18px;
 		line-height: 1.5em;
+	}
+
+	.dropcap > p:first-of-type {
+    	font-size: 1.4em;
+    	line-height: 1.65em;
 	}
 }
