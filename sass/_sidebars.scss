@@ -1,3 +1,5 @@
+$sidebar-margin-bottom: $grid-gap !default;
+$read-more-background-color: $bright !default;
 $sidebar-link-background-color: darken($bright, 10%) !default;
 $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !default;
 
@@ -60,7 +62,7 @@ $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !
 	@extend %sidebar-button;
     z-index: 1000;
 	transform:translate(0, -50%);
-	margin: #{$sidebar-margin-bottom / -1 } auto 0 auto;
+	margin: #{$sidebar-margin-bottom / -1 } auto;
 	display:block;
 }
 
