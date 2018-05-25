@@ -94,11 +94,23 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 // A special condition to hide images and charts within closed sidebars
 
 .sidebar {
-	.pullquote, .refer, .image, .video, .chart{ display:none }
+	.pullquote, .refer, .video { display:none }
+
+	// Use visibility here so the images can lazyload properly. 
+	// With display:none, they have a BoundingRect.y of zero, 
+	// which triggers the lazy load immediately, but without 
+	// the display none, they're visible outside the sidebar (sidesaddle)
+	// even if the sidebar is not open. This is the solution. Visibility 
+	// still takes up space even if it is not visible.
+
+	// NOTE: We DO want the illos visible, tho.
+	.chart, .image:not(.illo){ visibility: hidden; }
 }
 
 .sidebar--open {
-	.pullquote, .refer, .image, .video, .chart{ display:block }
+	.pullquote, .refer, .video { display:block }
+	
+	.chart, .image, .image:not(.illo){ visibility: visible; }
 }
 
 .illo{

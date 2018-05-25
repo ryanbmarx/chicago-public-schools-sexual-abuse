@@ -10,8 +10,8 @@ $mainbar: "failures";
 
 $darkest: #070808;
 $dark: #0a154e;
-// $bright: #FEE8A0;
-$bright: #c7ba90;
+$bright: #FEE8A0;
+// $bright: #c7ba90;
 $white: #F1F3F4;
 
 $yankees:#1C2541;
@@ -38,6 +38,8 @@ $refer-text-color: black;
 $navbar_padding_h: $grid-gap / 2;
 $navbar_padding_v: $grid-gap / 3;
 $navbar-overall-height: 60px;
+$navbar-carousel-background-color: $darkest;
+$navbar-carousel-story-background-color:#333;
 
 // Hamburgar button in nav
 $hamburger-border-radius: 5px;
@@ -56,8 +58,9 @@ $media-col-width: 250px;
 $tablet-min-width: 767px;
 
 // Common needs for sidebars
-$sidebar-margin-bottom: $grid-gap * 2;
+$sidebar-margin-bottom: $grid-gap;
 $read-more-background-color: $bright;
+$side-bar-box-shadow: 1px 1px 3px rgba(black, .4);
 
 // INTRO BLUR TIMES
 
@@ -180,6 +183,7 @@ $breaker-text-color: $imperial;
 @import 'sidebars';
 @import 'borde'; 
 @import 'keep-scrolling-icon'; 
+@import 'nav-drawer-note';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 

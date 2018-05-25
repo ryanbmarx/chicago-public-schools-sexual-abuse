@@ -1,12 +1,36 @@
 import 'intersection-observer'; // A polyfill that comes highly recommended
 import clickTrack from "./click-track.js";
 import smoothscroll from 'smoothscroll-polyfill';
+// import {throttle} from 'lodash.throttle';
+// import debounce from 'lodash.debounce';
 
 // import "scrollmonitor";
-const scrollMonitor = require('scrollmonitor');
-const 	pym = require('pym.js');
+const   scrollMonitor = require('scrollmonitor'),
+        pym = require('pym.js'),
+        throttle = require('lodash.throttle');
 
 smoothscroll.polyfill(); // kick off the polyfill!
+
+
+function loadElement(el){
+    console.log(el, el.getBoundingClientRect());
+    console.log("-----------");
+    // Function we use for loading graphics and lazyloading images.
+    if (el.classList.contains('chart--lazy')){
+        // if we're dealing with a graphic
+        const   chartContainer = el.querySelector('.graphic-embed'),
+                pymId = chartContainer.id,
+                pymUrl = chartContainer.dataset.iframeUrl;
+                new pym.Parent(pymId, pymUrl, {});
+    } else {
+        // If we're dealing with an image
+        const   newWidth = el.getBoundingClientRect().width,
+                fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
+        console.log('lazy loading ', fullResSrc);
+        el.querySelector('img').setAttribute('src', fullResSrc);
+    }
+}
+
 
 
 
@@ -58,6 +82,8 @@ window.addEventListener('DOMContentLoaded', function(e){
     const   windowHeight = window.innerHeight,
             doAnimations = doesUserWantAnimations();
 
+    // Remove the nav drawer note if clicked.
+    document.querySelector('#nav-drawer-note').addEventListener('click', function(e){ this.remove(); });
 
     // This powers the header 
     const   body = document.querySelector('body'),
@@ -112,42 +138,29 @@ window.addEventListener('DOMContentLoaded', function(e){
     const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
     
     for (var graphicCounter = 0; graphicCounter < graphics.length; graphicCounter++){
-        const   graphic = graphics[graphicCounter],
-                pymId = graphic.id,
-                pymUrl = graphic.dataset.iframeUrl;
-        
-        new pym.Parent(pymId, pymUrl, {});
+        loadElement(graphics[graphicCounter]);
     }
 
     // Also, let's lazyload the images and charts
-    const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy, .breaker');
+    const lazyItems = [].slice.call(document.querySelectorAll('.image--lazy, .chart--lazy'));
+    const lazyWatchers = lazyItems.map(el => {
 
-    const lazyObserver = new IntersectionObserver((entry, observer)=>{
-        // This is the object of our lazy-loading afecction for the moment
-        const el = entry[0].target;
+        const lazyWatcher = scrollMonitor.create(el, {
+            top: 500,
+            bottom: 500
+        });
 
-        if (el.classList.contains('chart--lazy')){
-            // if we're dealing with a graphic
-            const   chartContainer = el.querySelector('.graphic-embed'),
-                    pymId = chartContainer.id,
-                    pymUrl = chartContainer.dataset.iframeUrl;
-                    new pym.Parent(pymId, pymUrl, {});
-        } else {
-            // If we're dealing with an image
-            const   newWidth = entry[0].boundingClientRect.width,
-                    fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
-            console.log('lazy loading ', fullResSrc);
-            el.querySelector('img').setAttribute('src', fullResSrc);
-        }
+        const throttledLazyLoad = throttle(function(){ loadElement(el) }, 100);
 
-        // now that the image or graphic has been loaded, we don't need to observe anymore
-        // This ensures we only lazy load an item once.
-        lazyObserver.unobserve(el);
-    }, {
-        rootMargin: `500px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
+        lazyWatcher.enterViewport(function(){
+            // First bring on the lazy content, but only once every 1/10 second
+            throttledLazyLoad();
+
+            // Now that the image is loaded, we can kill the watcher.
+            lazyWatcher.destroy();
+        });
+        return lazyWatcher;
     });
-    lazyItems.forEach(i => lazyObserver.observe(i));
-
 
     // Handle the carousel opening/closing
     [].slice.call(document.querySelectorAll('.carousel__opener')).forEach(opener => {
@@ -178,12 +191,7 @@ window.addEventListener('DOMContentLoaded', function(e){
                 top: targetSidebarTop - 70,
                 behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
             })
-            // document.querySelector(targetSidebar).scrollIntoView({ 
-            //     behavior: doesUserWantAnimations() ? 'smooth' : 'instant',
-            //     block: "start", 
-            //     inline: "nearest"
-            // });
-            
+
             clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, true);
         });
     }

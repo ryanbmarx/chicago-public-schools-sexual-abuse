@@ -96,7 +96,7 @@ body{
 	// Actual story link stuff here
 
 	&__stories{
-		background: rgba($body-background-color, .9);
+		background: rgba($navbar-carousel-background-color, .9);
 		opacity: 0;
 		transform: translate(0,-100vh);
 		
@@ -181,8 +181,10 @@ body{
 .story{
 	box-sizing:border-box;
 	padding: 30px;
-	background: $river-background-color;
+	background: $navbar-carousel-story-background-color;
     height: 100%;
+
+
 
 	&__text{
 		margin: 0 30px 0 0;
@@ -190,12 +192,14 @@ body{
 
 	&__headline{
 		@include label6();
+		color: #{set-text-color($navbar-carousel-story-background-color, true)};
 		margin: 0 0 7px 0;
 	}
 
 	&__description{
 		@include sans-serif();
 		margin: 0 0 7px 0;
+		color: #{set-text-color($navbar-carousel-story-background-color, true)};
 	}
 
 	&__link{
