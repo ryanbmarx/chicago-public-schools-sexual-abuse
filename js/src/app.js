@@ -1,4 +1,5 @@
 import 'intersection-observer'; // A polyfill that comes highly recommended
+// import './sidebar-bounce.js';
 import clickTrack from "./click-track.js";
 import smoothscroll from 'smoothscroll-polyfill';
 // import {throttle} from 'lodash.throttle';
@@ -177,7 +178,7 @@ window.addEventListener('DOMContentLoaded', function(e){
         link.addEventListener('click', e => toggleDrawer());
     });
 
-    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.refer--case-study .refer__button, .carousel__stories .story__link, .sidebar-menu__story a, .sidebar-link, .traveler__link a, .keep-scrolling'))
+    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.refer--case-study .refer__button, .carousel__stories .story__link, .sidebar-link, .traveler__link a, .keep-scrolling'));
     for (let sidebarLinkButtonsCounter = 0; sidebarLinkButtonsCounter < sidebarLinkButtons.length; sidebarLinkButtonsCounter++){
         const b = sidebarLinkButtons[sidebarLinkButtonsCounter];
         b.addEventListener('click', function(e){
@@ -223,7 +224,8 @@ window.addEventListener('load', function() {
 
     console.log('main window is onloaded');
 
-    const windowHeight = window.innerHeight;
+    const   windowHeight = window.innerHeight,
+            body = document.querySelector('body');
     
     // Now that the css is parsed and rendered, let's recalc all our waypoints
     scrollMonitor.recalculateLocations();
@@ -254,4 +256,38 @@ window.addEventListener('load', function() {
         });
         return sidebarWatcher;
     });
+
+    // The return trip from sidebars
+
+    const sidebarLinks = [].slice.call(document.querySelectorAll('.sidebar-link'));
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function(e){
+            e.preventDefault();
+            this.classList.add('return-target');
+            body.setAttribute('data-display-return', "true");
+            // document.body.appendChild(returnButton);
+        });
+    })
+
+    document.querySelector('#return').addEventListener('click', function(e){
+        
+        e.preventDefault();
+
+        const   returnTarget = document.querySelector('.return-target'),
+                returnTargetTop = returnTarget.getBoundingClientRect().y;
+
+        // scrollMonitor.recalculateLocations();
+
+        window.scrollBy({
+            top: returnTargetTop - 70,
+            behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
+        })
+
+        returnTarget.classList.remove('return-target');
+
+        body.setAttribute('data-display-return', "false");
+
+        console.log('return button clicked, headed to', returnTarget);
+    });
+
 });

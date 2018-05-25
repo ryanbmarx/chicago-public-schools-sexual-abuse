@@ -5,6 +5,27 @@ $sidebar-link-text-color: set-text-color($sidebar-link-background-color, true) !
 $side-bar-box-shadow: 1px 1px 3px rgba(black, .4) !default;
 
 
+#return{
+	// the returnlink
+	display:none;
+    width: fit-content;
+    height: fit-content;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: auto;
+
+	transform: translate(-100%, -100px);
+   
+    svg{
+		transform: rotate(180deg);
+	    animation: none;
+	    background: rgba(black, .3);
+	}
+}
+
+[data-display-return=true] #return{ display:block; }
+
 // The inline links in the mainbar
 .sidebar-link{
 	font-family: #{$fonts-sans-serif};
