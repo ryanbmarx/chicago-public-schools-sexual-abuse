@@ -120,33 +120,69 @@ window.addEventListener('DOMContentLoaded', function(e){
     }
 
     // Also, let's lazyload the images and charts
-    const lazyItems = document.querySelectorAll('.image--lazy, .chart--lazy, .breaker');
+    const lazyItems = [].slice.call(document.querySelectorAll('.image--lazy, .chart--lazy'));
 
-    const lazyObserver = new IntersectionObserver((entry, observer)=>{
-        // This is the object of our lazy-loading afecction for the moment
-        const el = entry[0].target;
+    console.log(lazyItems);
 
-        if (el.classList.contains('chart--lazy')){
-            // if we're dealing with a graphic
-            const   chartContainer = el.querySelector('.graphic-embed'),
-                    pymId = chartContainer.id,
-                    pymUrl = chartContainer.dataset.iframeUrl;
-                    new pym.Parent(pymId, pymUrl, {});
-        } else {
-            // If we're dealing with an image
-            const   newWidth = entry[0].boundingClientRect.width,
-                    fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
-            console.log('lazy loading ', fullResSrc);
-            el.querySelector('img').setAttribute('src', fullResSrc);
+    const lazyWatchers = lazyItems.map(el => {
+
+        const lazyWatcher = scrollMonitor.create(el, {
+            top: 350,
+            bottom: 350
+        });
+
+        function lazyLoad(el){
+            if (el.classList.contains('chart--lazy')){
+                // if we're dealing with a graphic
+                const   chartContainer = el.querySelector('.graphic-embed'),
+                        pymId = chartContainer.id,
+                        pymUrl = chartContainer.dataset.iframeUrl;
+                        new pym.Parent(pymId, pymUrl, {});
+            } else {
+                // If we're dealing with an image
+                const   newWidth = el.getBoundingClientRect().width,
+                        fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
+                console.log('lazy loading ', fullResSrc);
+                el.querySelector('img').setAttribute('src', fullResSrc);
+            }
         }
 
-        // now that the image or graphic has been loaded, we don't need to observe anymore
-        // This ensures we only lazy load an item once.
-        lazyObserver.unobserve(el);
-    }, {
-        rootMargin: `500px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
+        lazyWatcher.enterViewport(function(){
+            // First bring on the lazy content!
+            lazyLoad(el);
+
+            // Now that the image is loaded, we can kill the watcher.
+            lazyWatcher.destroy();
+        });
+        return lazyWatcher;
     });
-    lazyItems.forEach(i => lazyObserver.observe(i));
+    // const lazyObserver = new IntersectionObserver((entry, observer)=>{
+    //     // This is the object of our lazy-loading afecction for the moment
+    //     const el = entry[0].target;
+
+    //     if (el.classList.contains('chart--lazy')){
+    //         // if we're dealing with a graphic
+    //         const   chartContainer = el.querySelector('.graphic-embed'),
+    //                 pymId = chartContainer.id,
+    //                 pymUrl = chartContainer.dataset.iframeUrl;
+    //                 new pym.Parent(pymId, pymUrl, {});
+    //     } else {
+    //         // If we're dealing with an image
+    //         const   newWidth = entry[0].boundingClientRect.width,
+    //                 fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
+    //         console.log('lazy loading ', fullResSrc);
+    //         el.querySelector('img').setAttribute('src', fullResSrc);
+    //     }
+
+    //     // now that the image or graphic has been loaded, we don't need to observe anymore
+    //     // This ensures we only lazy load an item once.
+    //     lazyObserver.unobserve(el);
+    // }, {
+    //     rootMargin: `500px 0px 500px 0px`, // Move the trigger line from the bottom of the screen to 500px below
+    // });
+
+    // lazyItems.forEach(i => lazyObserver.observe(i));
+
 
 
     // Handle the carousel opening/closing
