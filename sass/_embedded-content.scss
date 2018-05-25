@@ -102,13 +102,15 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 	// the display none, they're visible outside the sidebar (sidesaddle)
 	// even if the sidebar is not open. This is the solution. Visibility 
 	// still takes up space even if it is not visible.
-	.chart, .image{ visibility: hidden; }
+
+	// NOTE: We DO want the illos visible, tho.
+	.chart, .image:not(.illo){ visibility: hidden; }
 }
 
 .sidebar--open {
 	.pullquote, .refer, .video { display:block }
 	
-	.chart, .image{ visibility: visible; }
+	.chart, .image, .image:not(.illo){ visibility: visible; }
 }
 
 .illo{
