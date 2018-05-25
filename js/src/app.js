@@ -1,11 +1,7 @@
 import 'intersection-observer'; // A polyfill that comes highly recommended
-// import './sidebar-bounce.js';
 import clickTrack from "./click-track.js";
 import smoothscroll from 'smoothscroll-polyfill';
-// import {throttle} from 'lodash.throttle';
-// import debounce from 'lodash.debounce';
 
-// import "scrollmonitor";
 const   scrollMonitor = require('scrollmonitor'),
         pym = require('pym.js'),
         throttle = require('lodash.throttle');
@@ -14,8 +10,6 @@ smoothscroll.polyfill(); // kick off the polyfill!
 
 
 function loadElement(el){
-    console.log(el, el.getBoundingClientRect());
-    console.log("-----------");
     // Function we use for loading graphics and lazyloading images.
     if (el.classList.contains('chart--lazy')){
         // if we're dealing with a graphic
@@ -178,7 +172,7 @@ window.addEventListener('DOMContentLoaded', function(e){
         link.addEventListener('click', e => toggleDrawer());
     });
 
-    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.refer--case-study .refer__button, .carousel__stories .story__link, .sidebar-link, .traveler__link a, .keep-scrolling'));
+    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.carousel__stories .story__link, .sidebar-link, .traveler__link a, .keep-scrolling'));
     for (let sidebarLinkButtonsCounter = 0; sidebarLinkButtonsCounter < sidebarLinkButtons.length; sidebarLinkButtonsCounter++){
         const b = sidebarLinkButtons[sidebarLinkButtonsCounter];
         b.addEventListener('click', function(e){
