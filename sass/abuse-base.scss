@@ -197,7 +197,6 @@ $breaker-text-color: $imperial;
 
 // debugging only
 .debug-slug{
-	position: absolute;
 	top: 40%;
 }
 
@@ -268,6 +267,12 @@ body{
 	.refer__image{
 		mix-blend-mode:multiply;
 	}
+}
+
+.chart.chart--tips-digital{
+	padding:0;
+	border-top: none;
+	border-bottom: none;
 }
 
 

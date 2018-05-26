@@ -24,8 +24,8 @@
 {% if type == "text" %}
     
     {% if mainbar %}
-        {{ s.content|find_sidebar_keywords|markdown|find_inline_link|trim }}
-        {# {{ s.content|markdown|find_inline_link|trim }} #}
+        {# {{ s.content|find_sidebar_keywords|markdown|find_inline_link|trim }} #}
+        {{ s.content|markdown|find_inline_link|trim }}
     {% else %}
         {{ s.content|markdown|find_inline_link|trim }}
     {% endif %}

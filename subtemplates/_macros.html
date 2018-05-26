@@ -1,26 +1,30 @@
+{% from 'base-subtemplates/_macros.html' import refer as refer with context %}
+
 {% macro sidebar_refer(sidebar_slug, image_slug=False, add_class=False) %}
   
   {% set sidebar_info = stories|get_story_info(sidebar_slug) %}
 
-  
-  <aside class='refer {% if image_slug %}refer--has-image{% endif %} refer--case-study {% if add_class %}{{ add_class }} {% endif %}'>
-    <div class='refer__inner'>
-      {% if image_slug %}
-        {{ add_p2p_photo(
-          slug=image_slug, 
-          add_class="refer__image image--lazy", 
-          width=500, 
-          display_caption=False, 
-          display_credit=False, 
-          dont_lazy_load=False) }}
-      {% endif %}
-      <div class='refer__text-wrapper'>
-        <h1 class="refer__headline"><small class='kicker'>Case study: </small>{{ sidebar_info.headline }}</h1>
-        <p class="refer__text">{{ sidebar_info.dek }}</p>
-        <a  class="refer__button sidebar-link" href="#{{ sidebar_slug }}">Read it</a>
+  {% if sidebar_info.publish == 1 %}
+    {# Only make a refer if we have published the sidebar #}
+    <aside class='refer {% if image_slug %}refer--has-image{% endif %} refer--case-study {% if add_class %}{{ add_class }} {% endif %}'>
+      <div class='refer__inner'>
+        {% if image_slug %}
+          {{ add_p2p_photo(
+            slug=image_slug, 
+            add_class="refer__image image--lazy", 
+            width=500, 
+            display_caption=False, 
+            display_credit=False, 
+            dont_lazy_load=False) }}
+        {% endif %}
+        <div class='refer__text-wrapper'>
+          <h1 class="refer__headline"><small class='kicker'>Case study: </small>{{ sidebar_info.headline }}</h1>
+          <p class="refer__text">{{ sidebar_info.dek }}</p>
+          <a  class="refer__button" href="#{{ sidebar_slug }}">Read it</a>
+        </div>
       </div>
-    </div>
-  </aside>
+    </aside>
+  {% endif %}
 {% endmacro %}
 
 {% macro video_by_ref(ref, add_class, header) %}
@@ -83,15 +87,29 @@
   </div>
 {% endmacro %}
 
+{% macro abuse_download_refer(make_side=True) %}
 
+  {% set add_class = "" %}
+
+  {% if make_side %}
+    {% set add_class = add_class + " side" %}
+  {% endif %}
+
+  {{ refer(refers["tips"]['headline'], 
+    refers["tips"]['text'], 
+    refers["tips"]['button_url'], 
+    refers["tips"]['button_text'], 
+    has_image=refers["tips"]['image_url'], 
+    unique_id="tips", 
+    add_class=add_class) }}
+{% endmacro %}
 
 {% macro add_bylines(bylines) %}
   <div class='bylines'>
     <p itemprop="author creator"> By 
       {%- for person in bylines|get_bylines %}
         <a href="mailto:{{ person.email }}" target="_blank" rel="noopener">
-          <span itemtype="http://schema.org/Person" itemscope="">{{ person.name_first }} {{ person.name_last }}</span>
-        </a>
+          <span itemtype="http://schema.org/Person" itemscope="">{{ person.name_first|trim }} {{ person.name_last|trim }}</span></a>
         {%- if loop.length > 2 and loop.index < loop.length - 1 %}, {% endif %}
         {%- if loop.index == loop.length - 1 %} and {% endif %}
       {% endfor %}
