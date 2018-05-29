@@ -1,3 +1,27 @@
+%section-label{
+    text-align: center;
+    font: 38px/1.3em #{$fonts-sans-serif-condensed};
+    text-transform: uppercase;
+	text-align:center;
+	margin:0;
+}
+
+%section-sub-label{
+	@include sans-serif();
+	text-align:center;
+	margin:0;
+}
+
+%subhede{
+	color: #{set-text-color($body-background-color, true)};
+    font: 35px/1em #{$fonts-sans-serif-condensed};
+    text-transform: uppercase;
+    max-width: $river-width-large;
+    margin: 1.5em 0 .5em 0;
+    width: 100%;
+    border: none;	
+}
+
 p{
 	font: 15px/1.6em $fonts-serif;
 	margin: 0 0 #{$grid-gap / 2} 0;
@@ -60,18 +84,9 @@ a{
 	}
 }
 
-%section-label{
-    text-align: center;
-    font: 38px/1.3em #{$fonts-sans-serif-condensed};
-    text-transform: uppercase;
-	text-align:center;
-	margin:0;
-}
 
-%section-sub-label{
-	@include sans-serif();
-	text-align:center;
-	margin:0;
+h3{
+	@extend %subhede;
 }
 
 @media all and (min-width: $river-width-large){

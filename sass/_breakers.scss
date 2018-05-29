@@ -58,13 +58,8 @@ $breaker-text-color: $yankees !default;
 
 
 .breaker-subhede {
-	color: #{set-text-color($body-background-color, true)};
-    font: 35px/1em #{$fonts-sans-serif-condensed};
-    text-transform: uppercase;
-    max-width: $river-width-large;
+	@extend %subhede;
     margin: #{$grid-gap} auto #{$grid-gap / 3} auto;
-    width: 100%;
-    border: none;	
     text-align: center;
 }
 
