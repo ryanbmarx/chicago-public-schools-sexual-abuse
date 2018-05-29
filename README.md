@@ -11,6 +11,19 @@ Assumptions
 * grunt-cli (See http://gruntjs.com/getting-started#installing-the-cli)
 * Sass
 
+CUSTOM ANALYTICS/LINK TRACKING
+------------------------------
+
+The following unique strings are used to measure custom events, which should be self explanatory.
+    - "CPS Abuse - nav drawer is opened"
+    - All internal navigation, including traver, drawer and more: `CPS abuse - internal nav clicked - ${targetSidebar}`
+    - `CPS abuse - sidebar ${sidebar} opened`
+    - From a graphic in another project: "CPS Abuse - school lookup search"
+
+
+
+
+
 Custom configuration
 --------------------
 
