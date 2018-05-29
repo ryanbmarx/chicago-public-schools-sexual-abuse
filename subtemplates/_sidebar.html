@@ -1,4 +1,6 @@
 {% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
+{% from './subtemplates/_macros.html' import add_author_shirtails as add_author_shirtails with context%}
+
 
 <header>
 	{% if info.headline %}<h1 class='kicker'>{{ info.slug }}: {{ info.headline }}</h1>{% endif %}
@@ -10,3 +12,6 @@
 	{% set s = story_item %}
 	{% include 'subtemplates/_story-loop.html' %}
 {% endfor %} {# end storyloop #}
+{# Shirttails #}
+{% set authors = info.slug|get_authors %}
+{{ add_author_shirtails(authors) }}

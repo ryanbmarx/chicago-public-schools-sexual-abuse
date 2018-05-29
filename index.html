@@ -1,4 +1,8 @@
 {% extends "_base.html" %}
+{% from './subtemplates/_macros.html' import add_author_shirtails as add_author_shirtails with context%}
+
+
+{% block omniture_server %}apps.beta.tribapps.com{% endblock omniture_server %}
 
 {% macro abuse_subscribe_refer() %}
 
@@ -86,6 +90,8 @@
 			{% set s = story_item %}
 			{% set mainbar = True %}
 			{% include 'subtemplates/_story-loop.html' %}
+			{% set authors = mainbar_slug|get_authors %}
+			{{ add_author_shirtails(authors) }}
 		{% endfor %}
 	</div>
 </section> </article>{# END MAINBAR #}
@@ -127,7 +133,7 @@
 
 {% block scripts %}
 	<script src="//players.brightcove.net/3690581440001/S1vBkbMfe_default/index.min.js"></script>
-	<script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script>
+	<script src="//{{ ROOT_URL }}/js/base.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block comments %}{% endblock comments %}

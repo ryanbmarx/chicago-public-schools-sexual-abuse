@@ -1,5 +1,30 @@
 {% from 'base-subtemplates/_macros.html' import refer as refer with context %}
 
+
+{% macro add_author_shirtails(authors=False) %}
+  {# If there are not authors in the spreadsheet, then this will come across as false #}
+  {% if authors %}
+    {# Adds the shirtails to the bottom of stories #}
+    <div class='reporter-credits'>
+    {% for author in authors %}
+      <ul class='reporter-credit'>
+        {% if author.email %}
+        <li>
+          <a target="_blank" rel="noopener" href="mailto:{{ author.email }}">{{ author.email }}</a>
+        </li>
+        {% endif %}
+        {% if author.twitter %}
+        <li>
+          Twitter <a target="_blank" rel="noopener" href="http://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a>
+        </li>
+        {% endif %}
+      </ul>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+
 {% macro sidebar_refer(sidebar_slug, image_slug=False, add_class=False) %}
   
   {% set sidebar_info = stories|get_story_info(sidebar_slug) %}

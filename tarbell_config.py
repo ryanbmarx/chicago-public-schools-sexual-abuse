@@ -112,6 +112,35 @@ FILTERS & FUNCTIONS //// #######################################
 ################################################################
 """
 
+@blueprint.app_template_filter('get_authors')
+@jinja2.contextfilter
+def get_authors(context, slug):
+    stories = context['stories']
+    people = context['credits']
+
+    story_authors = ""
+    for story in stories:
+        if story['slug'] == slug:
+            try:
+                # Try to nab the bylines
+                story_authors = story['bylines'].split(',')
+            except: 
+                # If this doesn't work, then skip this altogether
+                # The macro will cease if it encounters false
+                return False
+
+    # Cycle through the plucked people in the order they are entered into the spreadsheet
+    retval=[]
+    # For each of the specififed authors ...
+    for author in story_authors:
+        # ... look through the list of credits for that person ...
+        for person in people:
+            # ... if we have a match, push the person.
+            if author.strip() == person['id']:
+                retval.append(person)
+    return retval
+
+
 @blueprint.app_template_filter('get_story_info')
 # @jinja2.contextfilter
 def get_story_info(stories, slug):
