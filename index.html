@@ -32,7 +32,7 @@
 	{% set add_class = "" %}
 
 	{% if make_side %}
-		{% set add_class = add_class + " side side--left" %}
+		{% set add_class = add_class + " side side--" + make_side %}
 	{% endif %}
 
 	{{ refer(refers["share_your_story"]['headline'], 
@@ -113,7 +113,7 @@
 		</article>
 		<button class='read-more' data-target="{{ story.slug }}" aria-label="Read this entire story">Read more</button>
 		{% if loop.first %}
-			{{ abuse_share_refer(True) }}
+			{{ abuse_share_refer("right") }}
 		{% endif %}
 		{% if i % 6 == 0 %}
 			<div class='advert' data-ad-type="shrinky-cube"></div>
