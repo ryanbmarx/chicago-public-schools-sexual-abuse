@@ -8,7 +8,6 @@ const   scrollMonitor = require('scrollmonitor'),
 
 smoothscroll.polyfill(); // kick off the polyfill!
 
-
 function loadElement(el){
     // Function we use for loading graphics and lazyloading images.
     if (el.classList.contains('chart--lazy')){
@@ -58,7 +57,7 @@ function toggleDrawer(drawerShouldOpen=false){
         document.querySelector('.carousel').classList.add('carousel--open');
         document.querySelector('#hamburger').classList.add('carousel__button--open');
         document.querySelector('body').classList.add('noscroll');
-        clickTrack("CPS Abuse - nav drawer is opened", true, true);
+        clickTrack("CPS abuse - nav drawer is opened", true, true);
         if (document.querySelector('#nav-drawer-note') !== null) document.querySelector('#nav-drawer-note').remove();
     } else {
         // the drawer should be closed
@@ -182,7 +181,6 @@ window.addEventListener('DOMContentLoaded', function(e){
             const   targetSidebar = this.getAttribute('href'),
                     targetSidebarTop = document.querySelector(targetSidebar).getBoundingClientRect().y;
             
-            console.log(targetSidebar, document.querySelector(targetSidebar).getBoundingClientRect());
             window.scrollBy({
                 top: targetSidebarTop - 70,
                 behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
