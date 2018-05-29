@@ -21,8 +21,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 {% block content %}
     <script type='text/javascript'>
         console.log("{{ story_info['slug'] }}");
-        document.location.replace("http://{{ ROOT_URL }}#{{ story_info['slug'] }}");
-        
+        document.location.replace("http://{{ ROOT_URL }}#{{ story_info['slug'] }}");    
     </script>
 {% endblock content %}
 
@@ -84,5 +83,8 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 {% endblock twitter %}
 
 {% block footer %}{% endblock footer %}
+{% block sprites %}{% endblock sprites %}
+{% block comments %}{% endblock comments %}
+{% block meter %}{% endblock meter %}
 
-
+{% block adverts %}{% endblock adverts %}
