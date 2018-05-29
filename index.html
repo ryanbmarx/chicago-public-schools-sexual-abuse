@@ -90,9 +90,9 @@
 			{% set s = story_item %}
 			{% set mainbar = True %}
 			{% include 'subtemplates/_story-loop.html' %}
-			{% set authors = mainbar_slug|get_authors %}
-			{{ add_author_shirtails(authors) }}
 		{% endfor %}
+		{% set authors = mainbar_slug|get_authors %}
+		{{ add_author_shirtails(authors) }}
 	</div>
 </section> </article>{# END MAINBAR #}
 <div class='advert' data-ad-type="leaderboard"></div>
