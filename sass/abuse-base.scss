@@ -382,6 +382,7 @@ body{
 // 		}
 // 	}
 // }
+
 .reporter-credit{
 	box-sizing: border-box;
 	list-style:none;
@@ -394,25 +395,3 @@ body{
 		@include agate();
 	}
 }
-
-// @media all and (min-width: $side-saddle-min-width){
-
-// 	.sidebars{
-// 		display:flex;
-
-// 		&__traveler{
-// 			display:block;
-// 			flex: 1 1;
-// 		}
-
-// 		&__stories{
-// 			flex-basis: $river-width-large
-// 		}
-
-// 		&__media-column{
-// 			// Right now, this column only exists to take up equal space on the far side
-// 			flex: 1 1;
-// 		}
-// 	}
-
-// }
