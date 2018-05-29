@@ -16,15 +16,15 @@ module.exports = function(grunt) {
         debug: true
       }
     },
-    app: {
-      src: ['js/src/app.js'],
-      dest: 'js/app.min.js',
+    base: {
+      src: ['js/src/base.js'],
+      dest: 'js/base.min.js',
       options: {
         plugin: [
           [
             'minifyify', {
-              map: 'app.min.js.map',
-              output: './js/app.min.js.map'
+              map: 'base.min.js.map',
+              output: './js/base.min.js.map'
             }
           ]
         ],
@@ -101,7 +101,7 @@ module.exports = function(grunt) {
     },
     js: {
       files: ['js/src/**/*.js'],
-      tasks: ['browserify:app']
+      tasks: ['browserify']
     },
     svg: {
       files: ['img/svgs/**/*.svg', '_blueprint/**/*.svg'],
