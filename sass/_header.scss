@@ -64,7 +64,7 @@
 
 	&__map{
 		position: sticky;
-		top: 0;
+		top: var(--navbar-height);
 
 		width: 100vw;
 		height: calc(100vh - var(--navbar-height));
