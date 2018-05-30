@@ -227,6 +227,11 @@
 	.map__layer.map__layer--base{
 		opacity: 0.05;
 	}
+
+	.keep-scrolling{ 
+		opacity:0; 
+		transition: opacity 100ms ease;
+	}
 }
 
 @media all and (min-width: $tablet-min-width){
