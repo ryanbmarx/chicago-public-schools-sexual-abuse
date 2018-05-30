@@ -50,7 +50,7 @@
     {% if s.add_class %}
         {% set add_class = s.add_class %}
     {% else %}
-        {% set add_class = "" %}
+        {% set add_class = False %}
     {% endif %}
 
     {% if s.header %}
@@ -58,9 +58,7 @@
     {% else %}
         {% set header = False %}
     {% endif %}
-
-    {{ add_video(s.id, add_class, header, s.video_slug) }}
-
+    {{ add_video(header, s.video_slug, add_class) }}
 {% elif type == "pullquote" and s.quote_text and s.quote_attribution %}
     {% if s.add_class %}
         {% set add_class = s.add_class %}

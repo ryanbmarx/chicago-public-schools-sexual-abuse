@@ -334,21 +334,14 @@
     </div>
 {% endmacro %}
 
-{% macro add_video(id, header, video_slug,addon_class="") %}
-
+{% macro add_video(header, video_slug, add_class=False) %}
     {% set video = get_p2p_content_item(video_slug) %}
 
-    {% if addon_class %}
-        {% set class = addon_class %}
-    {% else %}
-        {% set class = "" %}
-    {% endif %}
-   <div class='video {{ class }}'>
+   <div class='video {% if add_class %} {{ add_class }}{% endif %}'>
       {% if header %}
         <h4 class='video__headline'>{{ header }}</h4>
       {% endif %}
        <div class='video__wrapper'>
-{#         <div class='video__object-wrapper'> #}
           <video data-account="3690581440001"
             data-player="S1vBkbMfe"
             data-embed="default"
@@ -357,7 +350,6 @@
             tabindex="-1" 
             class="video-js"
             controls></video>
-{#         </div> #}
       </div>
     </div>
 {% endmacro %}
