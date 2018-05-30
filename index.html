@@ -1,13 +1,7 @@
 {% extends "_base.html" %}
 {% from './subtemplates/_macros.html' import add_author_shirtails as add_author_shirtails with context%}
+{% from './subtemplates/_macros.html' import abuse_subscribe_refer as abuse_subscribe_refer with context%}
 
-
-{% block omniture_server %}apps.beta.tribapps.com{% endblock omniture_server %}
-
-{% macro abuse_subscribe_refer() %}
-
-	{{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=add_class) }}
-{% endmacro %}
 
 {% macro abuse_download_refer(make_side=True) %}
 

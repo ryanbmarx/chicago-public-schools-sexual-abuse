@@ -1,5 +1,8 @@
 {% from 'base-subtemplates/_macros.html' import refer as refer with context %}
 
+{% macro abuse_subscribe_refer(add_class="") %}
+  {{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=add_class) }}
+{% endmacro %}
 
 {% macro add_author_shirtails(authors=False) %}
   {# If there are not authors in the spreadsheet, then this will come across as false #}
@@ -73,7 +76,8 @@
 
 
 
-{% macro abuse_breaker(image_slug=False, caption, breaker_text=False, display_ad=False) %}
+{% macro abuse_breaker(image_slug=False, caption, breaker_text=False, display_ad=False, sub_refer=False) %}
+  {% if sub_refer %}{{ abuse_subscribe_refer(add_class="refer--river-width") }}{% endif %}
   <figure class='breaker'>
     <blockquote  class='breaker__caption'>{{ caption|process_text }}</blockquote>
     {% if image_slug != False %}

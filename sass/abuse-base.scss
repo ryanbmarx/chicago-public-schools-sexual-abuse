@@ -269,6 +269,12 @@ body{
 	}
 }
 
+.refer--river-width{
+	max-width: $river-width-large;
+	margin: $grid-gap auto 0 auto;
+}
+
+
 .chart.chart--tips-digital{
 	padding:0;
 	border-top: none;

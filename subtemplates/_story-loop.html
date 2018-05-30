@@ -152,12 +152,12 @@
     {% endif %}
 
 {% elif type|upper == "BREAKER" %}
-    {% if s.display_ad %}
-        {% set display_ad = s.display_ad %}
+    {% if s.sub_refer|upper == "TRUE" %}
+        {% set sub_refer = True %}
     {% else %}
-        {% set display_ad = False %}
+        {% set sub_refer = False %}
     {% endif %}
-    {{ abuse_breaker(s.photo_slug, s.caption, s.breaker_text, display_ad) }}
+    {{ abuse_breaker(s.photo_slug, s.caption, s.breaker_text, sub_refer=sub_refer) }}
     
 
 {% elif type|upper == "INCLUDE" %}
