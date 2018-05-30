@@ -97,6 +97,9 @@ $traveler-active-background-color: set-text-color($body-background-color, true) 
 		margin-right: $grid-gap;
 		&__links{
 			display:block;
+			// This keeps it at a reasonable width on large screens.
+			max-width: 250px;
+			margin-left: auto;
 		}
 
 		&__link{
