@@ -57,17 +57,6 @@ def cps_abuse_story(slug):
     """
     site = g.current_site
 
-    # We'll use the slug to find only the archie stuff we want, then pass that to the template
-    # archie.get_drive_api_stuff(site, site.project.DOC_KEY)
-    
-    # try:
-    #     archie_content = archie.get_extra_context()
-    #     story = archie_content['abuse'][slug]
-    # except KeyError:
-    #     story = "No story content"
-
-
-
     # get our production bucket for URL building
     bucket = site.project.S3_BUCKETS.get('production', '')
     data = site.get_context()
@@ -78,7 +67,7 @@ def cps_abuse_story(slug):
 
     print "fetching content for {}".format(slug)
 
-    if row != {} and row['slug'] != data["mainbar_slug"]: 
+    if row != {}: 
         # render a template, using the same template environment as everywhere else
         # But skip the mainbar, since that is the main index.html
         return render_template('templates/_abuse-sidebar-base.html', bucket=bucket, slug=slug, story_info=row,**data)
