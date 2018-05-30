@@ -256,6 +256,7 @@ body{
 }
 
 .refer--has-image.refer--share_your_story {
+	background: inherit;
 
 	.refer__headline{
 		font-size: 2em;
@@ -264,8 +265,8 @@ body{
 		max-width: 450px;
 	}
 
-	.refer__image{
-		mix-blend-mode:multiply;
+	.refer__image, .refer__image img{
+		width: 100%;	
 	}
 }
 

@@ -105,7 +105,8 @@ $side-bar-box-shadow: 1px 1px 3px rgba(black, .4) !default;
 		}
 
 		&__stories{
-			flex-basis: $river-width-large
+			flex-basis: $river-width-large;
+			background: $body-background-color;
 		}
 
 		&__media-column{
