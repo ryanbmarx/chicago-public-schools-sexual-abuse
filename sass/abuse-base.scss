@@ -195,8 +195,6 @@ $breaker-text-color: $imperial;
 	}
 }
 
-
-
 .debug-slug{
 	display:none;
 }
@@ -249,8 +247,15 @@ body{
 	}
 }
 
-.refer--has-image.refer--share_your_story {
-	background: inherit;
+.refer--share_your_story {
+	
+	.refer__inner {
+		justify-content: center;
+	}
+
+	.refer__text-wrapper {
+		max-width: 400px;
+	}
 
 	.refer__headline{
 		font-size: 2em;
