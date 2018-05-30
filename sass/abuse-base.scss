@@ -195,16 +195,10 @@ $breaker-text-color: $imperial;
 	}
 }
 
-// debugging only
-.debug-slug{
-	top: 40%;
-}
+
 
 .debug-slug{
-	@include agate();
-	margin-top: 10px;
-	font-weight:bold;
-	color: #aaa;
+	display:none;
 }
 
 // RESETS
