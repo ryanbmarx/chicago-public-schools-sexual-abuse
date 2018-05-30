@@ -281,6 +281,12 @@ body{
 	border-bottom: none;
 }
 
+.chart.chart--stapanian-timeline{
+    // min-width: 180px; // lifted from ai2html
+    // max-width: 50%;
+    // float: right;
+    // margin: $grid-gap 0 $grid-gap $grid-gap;   
+}
 
 [data-ad-type="shrinky-cube"]{
 	margin: $grid-gap auto;
@@ -362,35 +368,9 @@ body{
 	}
 }
 
-// TWEAKS JUST FOR THIS PROJECT
-
 .image{
 	margin: $grid-gap 0;
 }
-
-// Changes to comments to match the styles
-
-// .comments:not(.comments--open){
-	
-// 	.river{ 
-		
-//     	@supports (display: contents){
-//     		display: contents;
-//     	}
-//     	@supports not (display: contents){
-//     		background: none; 
-//     	}
-// 	}
-// 	#comments-button{
-// 		border-color: $white;
-// 		color: $white;
-
-// 		&:hover{
-// 			background: $white;
-// 			color: black;
-// 		}
-// 	}
-// }
 
 .reporter-credit{
 	box-sizing: border-box;
@@ -402,5 +382,20 @@ body{
 
 	li {
 		@include agate();
+	}
+}
+
+@media all and (min-width: $river-width-small){
+	.chart.chart--stapanian-timeline{
+	    min-width: 180px; // lifted from ai2html
+	    max-width: 50%;
+	    float: right;
+	    margin: $grid-gap 0 $grid-gap $grid-gap;   
+	}
+}
+
+@media all and (min-width: $river-width-large){
+	.chart.chart--stapanian-timeline{
+	    max-width: 330px; // arbitrary based on current length of headline.
 	}
 }
