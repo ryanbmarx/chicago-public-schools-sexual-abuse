@@ -104,7 +104,7 @@
     {% if pub >= mod %}
       {# If the mod date is the same as pub date, then there have been no updates #}
       <meta itemprop="datePublished" datetime="{{ pub|xldate_to_datetime }}" content="{{ pub|xldate_to_datetime }}">
-      <time itemprop="dateModified" datetime="{{ mod }}"content="{{ mod|xldate_to_datetime }}">PUBLISHED: {{ mod|xldate_to_datetime|format_date_with_strftime("%B %-d, %Y") }}</time>
+      <time itemprop="dateModified" datetime="{{ mod|xldate_to_datetime }}"content="{{ mod|xldate_to_datetime }}">PUBLISHED: {{ mod|xldate_to_datetime|format_date_with_strftime("%B %-d, %Y") }}</time>
 
     {% else %}
       {# The the mod date is after the pub date, then there have been updates. #}
