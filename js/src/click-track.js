@@ -2,7 +2,6 @@
 
 function clickTrack(uniquePhrase, isALink=false, debug=false){
 	try{
-		console.log("inside try");
 		 // madeUpFunc(false);
 		// If you're not actually tracking a link click, use true instead of `this` to supress a delay
 		const linkType = isALink ? true : this;
