@@ -252,35 +252,35 @@ window.addEventListener('load', function() {
 
     // The return trip from sidebars
 
-    const sidebarLinks = [].slice.call(document.querySelectorAll('.sidebar-link'));
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', function(e){
-            e.preventDefault();
-            this.classList.add('return-target');
-            body.setAttribute('data-display-return', "true");
-            // document.body.appendChild(returnButton);
-        });
-    })
+    // const sidebarLinks = [].slice.call(document.querySelectorAll('.sidebar-link'));
+    // sidebarLinks.forEach(link => {
+    //     link.addEventListener('click', function(e){
+    //         e.preventDefault();
+    //         this.classList.add('return-target');
+    //         body.setAttribute('data-display-return', "true");
+    //         // document.body.appendChild(returnButton);
+    //     });
+    // })
 
-    document.querySelector('#return').addEventListener('click', function(e){
+    // document.querySelector('#return').addEventListener('click', function(e){
         
-        e.preventDefault();
+    //     e.preventDefault();
 
-        const   returnTarget = document.querySelector('.return-target'),
-                returnTargetTop = returnTarget.getBoundingClientRect().y;
+    //     const   returnTarget = document.querySelector('.return-target'),
+    //             returnTargetTop = returnTarget.getBoundingClientRect().y;
 
-        // scrollMonitor.recalculateLocations();
+    //     // scrollMonitor.recalculateLocations();
 
-        window.scrollBy({
-            top: returnTargetTop - 70,
-            behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
-        })
+    //     window.scrollBy({
+    //         top: returnTargetTop - 70,
+    //         behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
+    //     })
 
-        returnTarget.classList.remove('return-target');
+    //     returnTarget.classList.remove('return-target');
 
-        body.setAttribute('data-display-return', "false");
+    //     body.setAttribute('data-display-return', "false");
 
-        console.log('return button clicked, headed to', returnTarget);
-    });
+    //     console.log('return button clicked, headed to', returnTarget);
+    // });
 
 });
