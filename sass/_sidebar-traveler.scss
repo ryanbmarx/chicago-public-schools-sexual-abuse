@@ -60,6 +60,14 @@ $traveler-active-background-color: set-text-color($body-background-color, true) 
 		margin-right: 5px;
 	}
 
+	&__story-icon--new-window{
+		height: .7em;
+		width: .7em;
+		margin-right: 0;
+		margin-left: 5px;
+
+	}
+
 	.traveler__link--#{$mainbar} a{
 		text-transform:uppercase;
 		// text-align: center;
