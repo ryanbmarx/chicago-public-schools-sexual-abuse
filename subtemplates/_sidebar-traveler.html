@@ -18,5 +18,13 @@
 				</a>
 			</li>
 		{% endfor %}
+		<li class='traveler__link traveler__link--share'>
+			<a target="_blank" rel="noopener" href="{{ refers['share_your_story']['button_url'] }}">
+				<svg aria-hidden="true" class='traveler__story-icon'>
+					<use xlink:href="#share" />
+				</svg>
+				{{ refers['share_your_story']['headline'] }}
+			</a>
+		</li>
 	</ul>
 </nav>
