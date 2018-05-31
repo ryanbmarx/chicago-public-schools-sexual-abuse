@@ -18,8 +18,9 @@ function loadElement(el){
                 new pym.Parent(pymId, pymUrl, {});
     } else {
         // If we're dealing with an image
-        const   newWidth = el.getBoundingClientRect().width,
-                fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newWidth}`).replace(/’/g, ""); // Damn smart quotes are appearing again
+        const   elBox = el.getBoundingClientRect(),
+                newDimension = elBox.width > elBox.height ? Math.round(elBox.width) : Math.round(elBox.height),
+                fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newDimension}`).replace(/’/g, ""); // Damn smart quotes are appearing again
         console.log('lazy loading ', fullResSrc);
         el.querySelector('img').setAttribute('src', fullResSrc);
     }
