@@ -105,40 +105,43 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 	// still takes up space even if it is not visible.
 
 	// NOTE: We DO want the illos visible, tho.
-	.chart, .image:not(.illo){ visibility: hidden; }
+	.chart, .image:not(.illo){ 
+		visibility: hidden; 
+	}
 }
 
 .sidebar--open {
-	.pullquote, .refer, .video { display:block }
+	.chart, .pullquote, .refer, .video { display:block }
 	
 	.chart, .image, .image:not(.illo){ visibility: visible; }
 }
 
-.refer.refer--share_your_story.side .refer__image,
-.refer.refer--case-study.side .image{
-	position: relative;
-	&:after{
-		// This will tint the image with our river background color, 
-		// making a white-bg image blend seamlessly with what's around it.
-		content: "";
-		display:block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: $river-background-color;
-		// background: $body-background-color;
-		mix-blend-mode: multiply;
+@supports (mix-blend-mode:multiply){
+	.refer.refer--share_your_story.side .refer__image,
+	.refer.refer--case-study.side .image{
+		position: relative;
+		&:after{
+			// This will tint the image with our river background color, 
+			// making a white-bg image blend seamlessly with what's around it.
+			content: "";
+			display:block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: $river-background-color;
+			// background: $body-background-color;
+			mix-blend-mode: multiply;
+		}
+	}
+
+	.refer.refer--share_your_story.side .refer__image:after{
+		// slight color correction
+		background: $body-background-color;
+
 	}
 }
-
-.refer.refer--share_your_story.side .refer__image:after{
-	// slight color correction
-	background: $body-background-color;
-
-}
-
 .illo{
 	position: relative;
 
@@ -245,7 +248,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 			background: $body-background-color;
 		}
 	}
-
+	.sidebar--open{
 	.side, .river .chart.side, .river .image.side, .river .video.side{
 		position: absolute;
 		width: $side-width;
@@ -263,6 +266,7 @@ $side-saddle-min-width: $river-width-large + $media-column-min-width * 2 + $cont
 		left: auto;
 		right: calc(50% + #{($river-width-large / 2) + $grid-gap - $container_padding_h});
 
+	}
 	}
 }	
 

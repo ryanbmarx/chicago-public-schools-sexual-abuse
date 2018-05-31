@@ -77,7 +77,7 @@
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
 {% include "subtemplates/_header.html" with context %}
-<section id='{{ mainbar_slug }}' class='container story-open'>
+<section id='{{ mainbar_slug }}' class='container sidebar--open'>
 	<div class='river dropcap'>
 		{% for story_item in abuse[mainbar_slug] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
