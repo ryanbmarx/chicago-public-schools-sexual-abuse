@@ -180,14 +180,19 @@ window.addEventListener('DOMContentLoaded', function(e){
             e.preventDefault();
             scrollMonitor.recalculateLocations();
             const   targetSidebar = this.getAttribute('href'),
-                    targetSidebarTop = document.querySelector(targetSidebar).getBoundingClientRect().y;
+                    targetSidebarTop = document.querySelector(targetSidebar).getBoundingClientRect().y,
+                    loc = window.location.href.split("#")[0],
+                    newLoc = `${loc}${targetSidebar}`;
             
             window.scrollBy({
                 top: targetSidebarTop - 70,
                 behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
             })
 
-            clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, true);
+            // This will change the url without causing the page to reload;
+            // history.pushState({}, targetSidebar, newLoc);
+
+            clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, false);
         });
     }
     
@@ -204,7 +209,7 @@ window.addEventListener('DOMContentLoaded', function(e){
             // Remove the button
             this.remove();
             scrollMonitor.recalculateLocations();
-            clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, true);
+            clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, false);
         })
     });
 });
@@ -225,67 +230,35 @@ window.addEventListener('load', function() {
     scrollMonitor.recalculateLocations();
 
 
+    // POWER THE SIDEBAR TRAVELER
+    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
 
+    window.sidebarWatchers = sidebars.map(el => {
 
-    if (window.innerWidth >= 1130){
-        // POWER THE SIDEBAR TRAVELER, but only if it is side-saddle. If not, skip this.
-        const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
-    
-        window.sidebarWatchers = sidebars.map(el => {
-    
-            const   sidebarWatcherTop = windowHeight * -0.6,
-                    sidebarWatcherBottom = windowHeight * -0.4;
-    
-            const sidebarWatcher = scrollMonitor.create(el, {
-                top: sidebarWatcherTop,
-                bottom: sidebarWatcherBottom
-            });
-    
-            sidebarWatcher.enterViewport(function(){
-    
-                const target = el.id;
-    
-                // Mute the active link in the traveler
-                const activeLink = document.querySelector(`.traveler__link--active`)
-                if (activeLink != null) activeLink.classList.remove('traveler__link--active');
-                
-                // Add the highlight class to the new traveler link
-                document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
-            });
-            return sidebarWatcher;
+        const   sidebarWatcherTop = windowHeight * -0.6,
+                sidebarWatcherBottom = windowHeight * -0.4;
+
+        const sidebarWatcher = scrollMonitor.create(el, {
+            top: sidebarWatcherTop,
+            bottom: sidebarWatcherBottom
         });
-    }
-    // The return trip from sidebars
 
-    // const sidebarLinks = [].slice.call(document.querySelectorAll('.sidebar-link'));
-    // sidebarLinks.forEach(link => {
-    //     link.addEventListener('click', function(e){
-    //         e.preventDefault();
-    //         this.classList.add('return-target');
-    //         body.setAttribute('data-display-return', "true");
-    //         // document.body.appendChild(returnButton);
-    //     });
-    // })
+        sidebarWatcher.enterViewport(function(){
 
-    // document.querySelector('#return').addEventListener('click', function(e){
-        
-    //     e.preventDefault();
+            const   target = el.id,
+                    loc = window.location.href.split("#")[0],
+                    newLoc = `${loc}#${target}`;
 
-    //     const   returnTarget = document.querySelector('.return-target'),
-    //             returnTargetTop = returnTarget.getBoundingClientRect().y;
+            history.pushState({}, target, newLoc);
 
-    //     // scrollMonitor.recalculateLocations();
-
-    //     window.scrollBy({
-    //         top: returnTargetTop - 70,
-    //         behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
-    //     })
-
-    //     returnTarget.classList.remove('return-target');
-
-    //     body.setAttribute('data-display-return', "false");
-
-    //     console.log('return button clicked, headed to', returnTarget);
-    // });
+            // Mute the active link in the traveler
+            const activeLink = document.querySelector(`.traveler__link--active`)
+            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
+            
+            // Add the highlight class to the new traveler link
+            document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
+        });
+        return sidebarWatcher;
+    });
 
 });
