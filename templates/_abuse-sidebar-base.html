@@ -75,13 +75,15 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta name="twitter:site" content="@chicagotribune" />
     <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
     <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
-    <meta name="twitter:image" content="{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     <meta name="twitter:creator" content="@chicagotribune" />
     <meta name="twitter:creator" content="@chitribgraphics" />
     <meta name="twitter:creator" content="@jsmithrichards" />
     <meta name="twitter:creator" content="@perezjr" />
     <meta name="twitter:creator" content="@poolcar4" />
+    <meta name="twitter:creator" content="@garyjmarx" />
+
 {% endblock twitter %}
 
 {% block footer %}{% endblock footer %}
