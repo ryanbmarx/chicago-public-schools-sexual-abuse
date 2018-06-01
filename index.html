@@ -105,7 +105,17 @@
 		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
 			{% include "subtemplates/_sidebar.html" %}
 		</article>
-		<button class='read-more' data-target="{{ story.slug }}" aria-label="Read this entire story">Read more</button>
+		
+		{% if story.slug == "audio" %}
+			{% set read_more_label = "Listen" %}
+			{% set read_more_aria_label = "Listen to the audio presentation" %}
+		{% else %}
+			{% set read_more_label = "Read more" %}
+			{% set read_more_aria_label = "Read this entire story" %}
+		{% endif %}
+		
+		<button class='read-more' data-target="{{ story.slug }}" aria-label="{{ read_more_aria_label }}">{{ read_more_label }}</button>
+
 		{% if loop.first %}
 			{{ abuse_share_refer() }}
 		{% endif %}

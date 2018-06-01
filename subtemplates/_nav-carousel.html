@@ -25,7 +25,13 @@
 					<div class='story__text'>
 						<h1 class="story__headline">{{ story.headline }}</h1>
 						<p class='story__description'>{{ story.og_description }}</p>
-						<a class='story__link' href="#{{ story.slug }}">Read the story</a>
+
+						{% if story.slug == "audio" %}
+							{% set button_text = "Listen now" %}
+						{% else %}
+							{% set button_text = "Read the story" %}
+						{% endif %}
+						<a class='story__link' href="#{{ story.slug }}">{{ button_text }}</a>
 					</div>
 				</article>
 			</li>
