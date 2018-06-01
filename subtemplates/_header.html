@@ -2,12 +2,59 @@
 {% from './subtemplates/_macros.html' import add_date_published as add_date_published with context %}
 {% from './base-subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
 
+{% macro social_icon(network) %}
+	<li class='network network--{{ network.slug|lower }}'>
+		<a rel="noopener" target="_blank" href="{{ network.url }}" aria-label="Share this on {{ network.network }}">
+			<svg class='network__icon' viewbox="0 0 30 30">
+				<use xlink:href="#{{ network.slug|lower }}"/>
+			</svg>
+			<span class="sr-only">Share this on {{ network.network }} </span>
+		</a>
+	</li>
+{% endmacro %}
+
+{% macro social_buttons(slug) %}
+
+{# %23 is the url-encoded hash tag #}
+
+{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/index.html' %}
+
+{% set networks = {
+	"facebook":{
+		"network":"Facebook",
+		"url":"http://www.facebook.com/sharer.php?u=" + target_url,
+		"slug":"facebook"
+	},
+	"twitter":{
+		"network":"Twitter",
+		"url":"http://twitter.com/share?url=" + target_url,
+		"slug":"twitter"
+	},
+	"email":{
+		"network":"Email",
+		"url":"mailto:?body=" ~ target_url,
+		"slug":"email"
+	}
+	}
+%}
+
+<ul class='social-networks social-networks--share'>
+	{{ social_icon(networks['twitter']) }}		
+	{{ social_icon(networks['facebook']) }}		
+	{{ social_icon(networks['email']) }}		
+</ul>
+{% endmacro %}
+
+
+
 <header class='header'>
 	<div class='header__panel header__panel--headline'>
 		<h1 class='header__headline'>{{ mainbar_info.headline }}</h1>
 		<h2 class='header__dek' itemprop="headline">{{ mainbar_info.dek }}</h2>
 		{{ add_bylines(mainbar_info.bylines)}}
 		{{ add_date_published(date_published, date_modified) }}
+		{{ social_buttons("failures") }}
+
 	</div>
 	{% set target = "#" ~ mainbar_slug %}
 	{{ keep_scrolling(target=target, label="Jump to the story") }}

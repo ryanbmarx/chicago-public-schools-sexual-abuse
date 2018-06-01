@@ -1,6 +1,54 @@
 {% from './subtemplates/_macros.html' import add_bylines as add_bylines with context%}
 {% from './subtemplates/_macros.html' import add_author_shirtails as add_author_shirtails with context%}
+
+
+{% macro social_icon(network) %}
+	<li class='network network--{{ network.slug|lower }}'>
+		<a rel="noopener" target="_blank" href="{{ network.url }}" aria-label="Share this on {{ network.network }}">
+			<svg class='network__icon' viewbox="0 0 30 30">
+				<use xlink:href="#{{ network.slug|lower }}"/>
+			</svg>
+			<span class="sr-only">Share this on {{ network.network }} </span>
+		</a>
+	</li>
+{% endmacro %}
+
+{% macro social_buttons(slug) %}
+
+{# %23 is the url-encoded hash tag #}
+
+{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/' + slug %}
+
+{% set networks = {
+	"facebook":{
+		"network":"Facebook",
+		"url":"http://www.facebook.com/sharer.php?u=" + target_url,
+		"slug":"facebook"
+	},
+	"twitter":{
+		"network":"Twitter",
+		"url":"http://twitter.com/share?url=" + target_url,
+		"slug":"twitter"
+	},
+	"email":{
+		"network":"Email",
+		"url":"mailto:?body=" ~ target_url,
+		"slug":"email"
+	}
+	}
+%}
+
+<ul class='social-networks social-networks--share'>
+	{{ social_icon(networks['twitter']) }}		
+	{{ social_icon(networks['facebook']) }}		
+	{{ social_icon(networks['email']) }}		
+</ul>
+{% endmacro %}
+
+
+
 <header>
+	{{ social_buttons(info.slug) }}
 	{% if info.headline %}<h1 class='kicker'>{{ info.headline }}</h1>{% endif %}
 	{% if info.dek %}<h2 class='dek'>{{ info.dek }}</h2>{% endif %}
 	{% if info.bylines %}{{ add_bylines(info.bylines) }}{% endif %}
