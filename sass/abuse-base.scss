@@ -385,6 +385,10 @@ body{
 	}
 }
 
+.social-networks{
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
+
 @media all and (min-width: $river-width-small){
 	.chart.chart--stapanian-timeline{
 	    min-width: 180px; // lifted from ai2html
