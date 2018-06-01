@@ -21,7 +21,7 @@ function loadElement(el){
         const   elBox = el.getBoundingClientRect(),
                 newDimension = elBox.width > elBox.height ? Math.round(elBox.width) : Math.round(elBox.height),
                 fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newDimension}`).replace(/’/g, ""); // Damn smart quotes are appearing again
-        console.log('lazy loading ', fullResSrc);
+        // console.log('lazy loading ', fullResSrc);
         el.querySelector('img').setAttribute('src', fullResSrc);
     }
 }
@@ -58,7 +58,7 @@ function toggleDrawer(drawerShouldOpen=false){
         document.querySelector('.carousel').classList.add('carousel--open');
         document.querySelector('#hamburger').classList.add('carousel__button--open');
         document.querySelector('body').classList.add('noscroll');
-        clickTrack("CPS abuse - nav drawer is opened", true, true);
+        clickTrack("CPS abuse - nav drawer is opened", true, false);
         if (document.querySelector('#nav-drawer-note') !== null) document.querySelector('#nav-drawer-note').remove();
     } else {
         // the drawer should be closed
@@ -74,7 +74,7 @@ function toggleDrawer(drawerShouldOpen=false){
 
 
 window.addEventListener('DOMContentLoaded', function(e){
-    console.log('DOMContent is loaded')
+    // console.log('DOMContent is loaded')
     const   windowHeight = window.innerHeight,
             doAnimations = doesUserWantAnimations();
 
@@ -221,7 +221,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 
 window.addEventListener('load', function() {  
 
-    console.log('main window is onloaded');
+    // console.log('main window is onloaded');
 
     const   windowHeight = window.innerHeight,
             body = document.querySelector('body');
