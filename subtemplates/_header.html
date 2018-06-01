@@ -13,28 +13,28 @@
 	</li>
 {% endmacro %}
 
-{% macro social_buttons(slug) %}
+{% macro social_buttons(slug, dek) %}
 
-{# %23 is the url-encoded hash tag #}
+	{# %23 is the url-encoded hash tag #}
 
-{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/index.html' %}
+	{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/index.html' %}
 
-{% set networks = {
-	"facebook":{
-		"network":"Facebook",
-		"url":"http://www.facebook.com/sharer.php?u=" + target_url,
-		"slug":"facebook"
-	},
-	"twitter":{
-		"network":"Twitter",
-		"url":"http://twitter.com/share?url=" + target_url,
-		"slug":"twitter"
-	},
-	"email":{
-		"network":"Email",
-		"url":"mailto:?body=" ~ target_url,
-		"slug":"email"
-	}
+	{% set networks = {
+		"facebook":{
+			"network":"Facebook",
+			"url":"http://www.facebook.com/sharer.php?u=" + target_url,
+			"slug":"facebook"
+		},
+		"twitter":{
+			"network":"Twitter",
+			"url":"http://twitter.com/share?url=" + target_url + "&text=" + dek,
+			"slug":"twitter"
+		},
+		"email":{
+			"network":"Email",
+			"url":"mailto:?body=" ~ target_url,
+			"slug":"email"
+		}
 	}
 %}
 
@@ -53,7 +53,7 @@
 		<h2 class='header__dek' itemprop="headline">{{ mainbar_info.dek }}</h2>
 		{{ add_bylines(mainbar_info.bylines)}}
 		{{ add_date_published(date_published, date_modified) }}
-		{{ social_buttons("failures") }}
+		{{ social_buttons("failures", mainbar_info.dek) }}
 
 	</div>
 	{% set target = "#" ~ mainbar_slug %}

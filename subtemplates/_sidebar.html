@@ -13,42 +13,42 @@
 	</li>
 {% endmacro %}
 
-{% macro social_buttons(slug) %}
+{% macro social_buttons(info) %}
 
 {# %23 is the url-encoded hash tag #}
 
-{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/' + slug %}
+	{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/' + info.slug %}
 
-{% set networks = {
-	"facebook":{
-		"network":"Facebook",
-		"url":"http://www.facebook.com/sharer.php?u=" + target_url,
-		"slug":"facebook"
-	},
-	"twitter":{
-		"network":"Twitter",
-		"url":"http://twitter.com/share?url=" + target_url,
-		"slug":"twitter"
-	},
-	"email":{
-		"network":"Email",
-		"url":"mailto:?body=" ~ target_url,
-		"slug":"email"
-	}
-	}
-%}
+	{% set networks = {
+		"facebook":{
+			"network":"Facebook",
+			"url":"http://www.facebook.com/sharer.php?u=" + target_url,
+			"slug":"facebook"
+		},
+		"twitter":{
+			"network":"Twitter",
+			"url":"http://twitter.com/share?url=" + target_url + "&text=" + info.dek,
+			"slug":"twitter"
+		},
+		"email":{
+			"network":"Email",
+			"url":"mailto:?body=" ~ target_url,
+			"slug":"email"
+		}
+		}
+	%}
 
-<ul class='social-networks social-networks--share'>
-	{{ social_icon(networks['twitter']) }}		
-	{{ social_icon(networks['facebook']) }}		
-	{{ social_icon(networks['email']) }}		
-</ul>
+	<ul class='social-networks social-networks--share'>
+		{{ social_icon(networks['twitter']) }}		
+		{{ social_icon(networks['facebook']) }}		
+		{{ social_icon(networks['email']) }}		
+	</ul>
 {% endmacro %}
 
 
 
 <header>
-	{{ social_buttons(info.slug) }}
+	{{ social_buttons(info) }}
 	{% if info.headline %}<h1 class='kicker'>{{ info.headline }}</h1>{% endif %}
 	{% if info.dek %}<h2 class='dek'>{{ info.dek }}</h2>{% endif %}
 	{% if info.bylines %}{{ add_bylines(info.bylines) }}{% endif %}
