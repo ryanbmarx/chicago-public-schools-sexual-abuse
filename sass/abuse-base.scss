@@ -389,6 +389,16 @@ body{
 	margin: 0 0 #{$grid-gap / 2} 0;
 }
 
+.advert-wrapper{
+	width: calc(100% + #{$container_padding_h * 2});
+	margin: $grid-gap #{$container_padding_h / -1};
+
+	.advert[data-ad-type="shrinky-cube"], 
+	.advert[data-ad-type="cube"] {
+	    margin: 0 auto;
+	}
+}
+
 @media all and (min-width: $river-width-small){
 	.chart.chart--stapanian-timeline{
 	    min-width: 180px; // lifted from ai2html

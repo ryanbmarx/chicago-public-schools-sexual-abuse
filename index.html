@@ -55,7 +55,7 @@
 {% block prefetch %}
 	{{ super() }}
 	<link href='http://{{ ROOT_URL }}/img/header/intro_basemap.svg' rel='preload' as='image'>
-	<link rel="preload" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+	<link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css">
 	{# <link href='http://{{ ROOT_URL }}/img/cps-abuse-bg-texture.jpg' rel='preload' as='image'> #}
 {% endblock prefetch %}
 
@@ -120,7 +120,9 @@
 			{{ abuse_share_refer() }}
 		{% endif %}
 		{% if i % 6 == 0 %}
-			<div class='advert' data-ad-type="shrinky-cube"></div>
+			<div class='advert-wrapper'>
+				<div class='advert' data-ad-type="shrinky-cube"></div>
+			</div>
 		{% elif i % 3 == 0 %}
 			{{ abuse_subscribe_refer() }}
 		{% endif %}
