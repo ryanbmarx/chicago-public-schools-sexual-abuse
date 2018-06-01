@@ -5,7 +5,7 @@
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight:normal;
 		// opacity: .1;
-		margin: 0 auto -0.1em auto !important; // This is an exception to a * rule below
+		margin: 0 auto #{$grid-gap / 2} auto !important; // This is an exception to a * rule below
 		text-transform: uppercase;
 		// transform: translate(0, .55em);
 	}
@@ -15,6 +15,8 @@
 		font-size: 30px;
 		font-weight: normal;
 		max-width: 800px;
+		display: block;
+		text-transform: none;
 	}
 
 	.header__panel--headline{
