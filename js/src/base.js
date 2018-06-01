@@ -173,7 +173,7 @@ window.addEventListener('DOMContentLoaded', function(e){
         link.addEventListener('click', e => toggleDrawer());
     });
 
-    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.carousel__stories .story__link, .sidebar-link, .traveler__link[data-sidebar-target] a, .keep-scrolling'));
+    const sidebarLinkButtons = [].slice.call(document.querySelectorAll('.refer--case-study .refer__button, .carousel__stories .story__link, .sidebar-link, .traveler__link[data-sidebar-target] a, .keep-scrolling'));
     for (let sidebarLinkButtonsCounter = 0; sidebarLinkButtonsCounter < sidebarLinkButtons.length; sidebarLinkButtonsCounter++){
         const b = sidebarLinkButtons[sidebarLinkButtonsCounter];
         b.addEventListener('click', function(e){
