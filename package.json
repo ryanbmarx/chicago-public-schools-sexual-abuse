@@ -43,7 +43,8 @@
   "tribune": {},
   "browserslist": [
     "> 1%",
-    "ie >= 11"
+    "ie >= 11",
+    "ios >= 10"
   ],
   "dependencies": {
     "intersection-observer": "^0.5.0",
