@@ -2,8 +2,8 @@
 	<h1 class='credits__label'>{{ credits_label }}</h1>
 	<p class='credits__sublabel'>{{ credits_sublabel }}</p>
 	<div class='credits__inner'>
-		{%- for category in credits_control|sort(attribute="display_order") %}
-				{%- for person in credits|sort(attribute="name_last") if person[category.id] == 1 %}
+		{%- for category in credits_control|sort(attribute='display_order') %}
+				{%- for person in credits|sort(attribute="name_last") if person[category.id] and person[category.id] >= 1 %}
 				{%- if loop.first %}
 					<div class='credits__category'>
 					<h2 class='credits__category-label'>{{ category.readable }}</h2>

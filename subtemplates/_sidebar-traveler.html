@@ -10,11 +10,7 @@
 							<use xlink:href="#{{ story.icon }}" />
 						</svg>
 					{% endif %}
-					{%- if story.slug == mainbar_slug %}
-						{{ story.dek }}
-					{%- else %}
-						{{ story.headline }}
-					{%- endif %}
+					{{ story.headline }}
 				</a>
 			</li>
 		{% endfor %}
