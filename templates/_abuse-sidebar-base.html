@@ -10,8 +10,10 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 
 {% block title %}<title>{{ story_info['headline'] }} -- Chicago Tribune</title>{% endblock title %}
 
-{% set canonical_url = "http://" ~ ROOT_URL %}
-{% block canonical %}<link rel="canonical" href={{ canonical_url }} />{% endblock canonical %}
+
+
+{% set canonical_url = "http://" ~ ROOT_URL ~ "/" ~  story_info['slug'] ~ "/index.html" %}
+{% block canonical %}<link rel="canonical" href="{{ canonical_url }}" />{% endblock canonical %}
 
 {% block library_scripts %}{% endblock %}
 
@@ -59,7 +61,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ story_info['og_title'] }}" />
     <meta property="og:description" content="{{ story_info['og_description'] }}" />
-    <meta property="og:image" content="{{ story_info['thumbnail_url'] }}" />
+    <meta property="og:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     {% if thumbnail %}
         <meta name="og:image:height" content="{{ thumbnail.height }}px" />
