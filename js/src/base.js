@@ -271,11 +271,9 @@ window.addEventListener('load', function() {
         sidebarWatcher.enterViewport(function(){
 
             const   target = el.id,
-                    loc = window.location.href.split(/[#?\/]/)[0],
+                    loc = window.ROOT_URL,
                     newLoc = `${loc}/${target}`;
-
-            console.log(window.location.href.split(/[#?]/g).length, target, loc, newLoc);
-
+            console.log(newLoc);
             history.replaceState({}, target, newLoc);
 
             // Mute the active link in the traveler
