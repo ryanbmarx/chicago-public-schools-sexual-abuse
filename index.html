@@ -107,11 +107,11 @@
 		</article>
 		
 		{% if story.slug == "audio" %}
-			{% set read_more_label = "Listen" %}
-			{% set read_more_aria_label = "Listen to the audio presentation" %}
+			{% set read_more_label = sidebar_pod_button_label %}
+			{% set read_more_aria_label = sidebar_pod_button_aria_label %}
 		{% else %}
-			{% set read_more_label = "Read more" %}
-			{% set read_more_aria_label = "Read this entire story" %}
+			{% set read_more_label = sidebar_open_button_label %}
+			{% set read_more_aria_label = sidebar_open_button_aria_label %}
 		{% endif %}
 		
 		<button class='read-more' data-target="{{ story.slug }}" aria-label="{{ read_more_aria_label }}">{{ read_more_label }}</button>
