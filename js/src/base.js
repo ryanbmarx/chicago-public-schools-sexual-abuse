@@ -225,16 +225,6 @@ window.addEventListener('DOMContentLoaded', function(e){
     [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
         button.addEventListener('click', function(e){
             openSidebar_func(this.dataset.target);            
-            // // Which sidebar do we want to open?
-            // const sidebar = this.dataset.target;
-
-            // // Add the open class to that sidebar, found by ID.
-            // document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
-
-            // // Remove the button
-            // this.remove();
-            // scrollMonitor.recalculateLocations();
-            // clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, false);
         })
     });
 });
@@ -273,7 +263,6 @@ window.addEventListener('load', function() {
             const   target = el.id,
                     loc = window.ROOT_URL,
                     newLoc = `${loc}/${target}`;
-            console.log(newLoc);
             history.replaceState({}, target, newLoc);
 
             // Mute the active link in the traveler
