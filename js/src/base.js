@@ -45,7 +45,7 @@ function scrollToSidebar(targetSidebar, useSmoothScroll=true, openSidebar=false)
     // Takes an anchor ID and sets scroll position to that id. Optionally (and by default) 
     // uses smoothScroll, but will defer to overall preferences on animation
 
-    const targetSidebarTop = document.querySelector(`#${targetSidebar}`).getBoundingClientRect().y;
+    const targetSidebarTop = document.querySelector(`#${targetSidebar}`).getBoundingClientRect().top;
 
     if (openSidebar) {
         // Open the sidebar by simulating a click
@@ -211,7 +211,7 @@ window.addEventListener('DOMContentLoaded', function(e){
          
             scrollMonitor.recalculateLocations();
 
-            const targetSidebar = this.getAttribute('href');
+            const targetSidebar = this.getAttribute('href').replace(/#/g,"");
 
             scrollToSidebar(targetSidebar, true);
 
