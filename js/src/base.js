@@ -1,12 +1,16 @@
 import 'intersection-observer'; // A polyfill that comes highly recommended
 import clickTrack from "./click-track.js";
-import smoothscroll from 'smoothscroll-polyfill';
+// import smoothscroll from 'smoothscroll-polyfill';
+import {openSidebar_func} from './utils/open-sidebar.js';
+import {toggleDrawer} from './utils/toggle-nav-drawer.js';
+import {scrollToSidebar} from './utils/scroll-to-sidebar.js';
+import {doesUserWantAnimations} from './utils/does-user-want-animation.js';
 
 const   scrollMonitor = require('scrollmonitor'),
         pym = require('pym.js'),
         throttle = require('lodash.throttle');
 
-smoothscroll.polyfill(); // kick off the polyfill!
+// smoothscroll.polyfill(); // kick off the polyfill!
 
 function loadElement(el){
     // Function we use for loading graphics and lazyloading images.
@@ -26,63 +30,9 @@ function loadElement(el){
     }
 }
 
-function openSidebar_func(sidebarToOpen){
-
-    // Add the open class to that sidebar, found by ID.
-    document.querySelector(`#${sidebarToOpen}`).classList.add('sidebar--open');
-
-    // Remove the button, since the sidebar is opened
-    document.querySelector(`.read-more[data-target=${sidebarToOpen}]`).remove();
-
-    // We need to do this so the traveler still works
-    scrollMonitor.recalculateLocations();
-
-    // Let's track the opening
-    clickTrack(`CPS abuse - sidebar ${sidebarToOpen} opened`, true, false);
-}
-
-function scrollToSidebar(targetSidebar, useSmoothScroll=true, openSidebar=false){
-    // Takes an anchor ID and sets scroll position to that id. Optionally (and by default) 
-    // uses smoothScroll, but will defer to overall preferences on animation
-
-    const targetSidebarTop = document.querySelector(`#${targetSidebar}`).getBoundingClientRect().y;
-
-    if (openSidebar) {
-        // Open the sidebar by simulating a click
-        // document.querySelectorAll(`.read-more[data-target=${targetSidebar}]`).click();
-        openSidebar_func(targetSidebar);
-    }
-            
-    window.scrollBy({
-        top: targetSidebarTop - 70,
-        behavior: doesUserWantAnimations() && useSmoothScroll ? 'smooth' : 'instant'
-    })
-}
-
 function isMobile(){
     // returns true if I think we're on mobile.
     return window.innerWidth < 850 ? true : false;
-}
-
-function doesUserWantAnimations(){
-    // returns true if user wants animations
-    return document.querySelector(`[data-animate="true"]`) == null ? false : true;
-}
-
-function toggleDrawer(drawerShouldOpen=false){
-    if (drawerShouldOpen){
-        // The drawer should be opened
-        document.querySelector('.carousel').classList.add('carousel--open');
-        document.querySelector('#hamburger').classList.add('carousel__button--open');
-        document.querySelector('body').classList.add('noscroll');
-        clickTrack("CPS abuse - nav drawer is opened", true, false);
-        if (document.querySelector('#nav-drawer-note') !== null) document.querySelector('#nav-drawer-note').remove();
-    } else {
-        // the drawer should be closed
-        document.querySelector('.carousel').classList.remove('carousel--open');
-        document.querySelector('#hamburger').classList.remove('carousel__button--open');
-        document.querySelector('body').classList.remove('noscroll');
-    }
 }
 
 // #########################################
