@@ -26,8 +26,38 @@ function loadElement(el){
     }
 }
 
+function openSidebar_func(sidebarToOpen){
 
+    // Add the open class to that sidebar, found by ID.
+    document.querySelector(`#${sidebarToOpen}`).classList.add('sidebar--open');
 
+    // Remove the button, since the sidebar is opened
+    document.querySelector(`.read-more[data-target=${sidebarToOpen}]`).remove();
+
+    // We need to do this so the traveler still works
+    scrollMonitor.recalculateLocations();
+
+    // Let's track the opening
+    clickTrack(`CPS abuse - sidebar ${sidebarToOpen} opened`, true, false);
+}
+
+function scrollToSidebar(targetSidebar, useSmoothScroll=true, openSidebar=false){
+    // Takes an anchor ID and sets scroll position to that id. Optionally (and by default) 
+    // uses smoothScroll, but will defer to overall preferences on animation
+
+    const targetSidebarTop = document.querySelector(`#${targetSidebar}`).getBoundingClientRect().y;
+
+    if (openSidebar) {
+        // Open the sidebar by simulating a click
+        // document.querySelectorAll(`.read-more[data-target=${targetSidebar}]`).click();
+        openSidebar_func(targetSidebar);
+    }
+            
+    window.scrollBy({
+        top: targetSidebarTop - 70,
+        behavior: doesUserWantAnimations() && useSmoothScroll ? 'smooth' : 'instant'
+    })
+}
 
 function isMobile(){
     // returns true if I think we're on mobile.
@@ -38,19 +68,6 @@ function doesUserWantAnimations(){
     // returns true if user wants animations
     return document.querySelector(`[data-animate="true"]`) == null ? false : true;
 }
-
-
-// document.querySelector('#animation-toggle').addEventListener("click", function(e){
-//     const body = document.querySelector('body');
-
-//     if (body.dataset.animate.toLowerCase() == "true"){
-//         clickTrack("CPS abuse - animations toggled off", true, true);
-//         body.dataset.animate = "false";
-//     } else {
-//         clickTrack("CPS abuse - animations toggled on", true, true);
-//         body.dataset.animate = "true";
-//     }
-// })
 
 function toggleDrawer(drawerShouldOpen=false){
     if (drawerShouldOpen){
@@ -77,6 +94,19 @@ window.addEventListener('DOMContentLoaded', function(e){
     // console.log('DOMContent is loaded')
     const   windowHeight = window.innerHeight,
             doAnimations = doesUserWantAnimations();
+
+    // First things first, let's check for a scroll-to point
+
+    const pageUrl = window.location.href.split("?");
+
+    if (pageUrl.length > 1){
+        for (let i=1; i< pageUrl.length; i++){
+            if (pageUrl[i].indexOf('story') > -1){
+                const targetSidebar = pageUrl[i].split('=')[1];
+                scrollToSidebar(targetSidebar, false, true);
+            }
+        }
+    }
 
     // Remove the nav drawer note if clicked.
     document.querySelector('#nav-drawer-note').addEventListener('click', function(e){ this.remove(); });
@@ -178,19 +208,12 @@ window.addEventListener('DOMContentLoaded', function(e){
         const b = sidebarLinkButtons[sidebarLinkButtonsCounter];
         b.addEventListener('click', function(e){
             e.preventDefault();
+         
             scrollMonitor.recalculateLocations();
-            const   targetSidebar = this.getAttribute('href'),
-                    targetSidebarTop = document.querySelector(targetSidebar).getBoundingClientRect().y,
-                    loc = window.location.href.split("#")[0],
-                    newLoc = `${loc}${targetSidebar}`;
-            
-            window.scrollBy({
-                top: targetSidebarTop - 70,
-                behavior: doesUserWantAnimations() ? 'smooth' : 'instant'
-            })
 
-            // This will change the url without causing the page to reload;
-            // history.pushState({}, targetSidebar, newLoc);
+            const targetSidebar = this.getAttribute('href');
+
+            scrollToSidebar(targetSidebar, true);
 
             clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, false);
         });
@@ -199,17 +222,17 @@ window.addEventListener('DOMContentLoaded', function(e){
     // Open the sidebars
     [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
         button.addEventListener('click', function(e){
-            
-            // Which sidebar do we want to open?
-            const sidebar = this.dataset.target;
+            openSidebar_func(this.dataset.target);            
+            // // Which sidebar do we want to open?
+            // const sidebar = this.dataset.target;
 
-            // Add the open class to that sidebar, found by ID.
-            document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
+            // // Add the open class to that sidebar, found by ID.
+            // document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
 
-            // Remove the button
-            this.remove();
-            scrollMonitor.recalculateLocations();
-            clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, false);
+            // // Remove the button
+            // this.remove();
+            // scrollMonitor.recalculateLocations();
+            // clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, false);
         })
     });
 });
