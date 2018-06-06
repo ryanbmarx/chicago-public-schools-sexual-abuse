@@ -211,7 +211,9 @@ window.addEventListener('DOMContentLoaded', function(e){
          
             scrollMonitor.recalculateLocations();
 
-            const targetSidebar = this.getAttribute('href');
+            // All our navigation and such around sidebars requires 
+            // the hash to be stripped. It works with slugs, not anchors
+            const targetSidebar = this.getAttribute('href').replace(/#/g, "");
 
             scrollToSidebar(targetSidebar, true);
 
@@ -269,10 +271,12 @@ window.addEventListener('load', function() {
         sidebarWatcher.enterViewport(function(){
 
             const   target = el.id,
-                    loc = window.location.href.split("#")[0],
-                    newLoc = `${loc}#${target}`;
+                    loc = window.location.href.split(/[#?\/]/)[0],
+                    newLoc = `${loc}/${target}`;
 
-            history.pushState({}, target, newLoc);
+            console.log(window.location.href.split(/[#?]/g).length, target, loc, newLoc);
+
+            history.replaceState({}, target, newLoc);
 
             // Mute the active link in the traveler
             const activeLink = document.querySelector(`.traveler__link--active`)
