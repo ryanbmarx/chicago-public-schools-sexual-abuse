@@ -5,30 +5,12 @@ import {openSidebar_func} from './utils/open-sidebar.js';
 import {toggleDrawer} from './utils/toggle-nav-drawer.js';
 import {scrollToSidebar} from './utils/scroll-to-sidebar.js';
 import {doesUserWantAnimations} from './utils/does-user-want-animation.js';
+import {loadElement} from './utils/load-element.js';
 
 const   scrollMonitor = require('scrollmonitor'),
         pym = require('pym.js'),
         throttle = require('lodash.throttle');
 
-// smoothscroll.polyfill(); // kick off the polyfill!
-
-function loadElement(el){
-    // Function we use for loading graphics and lazyloading images.
-    if (el.classList.contains('chart--lazy')){
-        // if we're dealing with a graphic
-        const   chartContainer = el.querySelector('.graphic-embed'),
-                pymId = chartContainer.id,
-                pymUrl = chartContainer.dataset.iframeUrl;
-                new pym.Parent(pymId, pymUrl, {});
-    } else {
-        // If we're dealing with an image
-        const   elBox = el.getBoundingClientRect(),
-                newDimension = elBox.width > elBox.height ? Math.round(elBox.width) : Math.round(elBox.height),
-                fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newDimension}`).replace(/’/g, ""); // Damn smart quotes are appearing again
-        // console.log('lazy loading ', fullResSrc);
-        el.querySelector('img').setAttribute('src', fullResSrc);
-    }
-}
 
 function isMobile(){
     // returns true if I think we're on mobile.
