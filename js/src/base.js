@@ -29,8 +29,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 
     // First things first, let's check for a scroll-to point
 
-    const pageUrl = window.location.href.split("?");
-
+    const pageUrl = window.location.href.split(/[?&]/);
     if (pageUrl.length > 1){
         for (let i=1; i< pageUrl.length; i++){
             if (pageUrl[i].indexOf('story') > -1){

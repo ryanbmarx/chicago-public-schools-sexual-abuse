@@ -66,9 +66,9 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     </script>
 {% endblock omniture_config %}
 
-{% set canonical_url = "http://" ~ ROOT_URL ~ "/index.html" %}
+{% set canonical_url = "http://" ~ ROOT_URL ~ "/" ~ story_info['slug'] ~ "/index.html" %}
 {% block canonical %}<link rel="canonical" href="{{ canonical_url }}" />{% endblock canonical %}
-
+{# {% block canonical %}{% endblock canonical %} #}
 
 
 
@@ -79,7 +79,8 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 
 {% block content %}
     <script type='text/javascript'>
-        document.location.replace("http://{{ ROOT_URL }}?story={{ story_info['slug'] }}");    
+        const newURL = "http://{{ ROOT_URL }}/?story={{ story_info['slug'] }}";
+        window.location.replace(newURL); 
     </script>
 {% endblock content %}
 
@@ -88,11 +89,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 
 {# ANALYTICS TWEAKS, FOR ALL THE DIFFERENT STORIES #}
 {% block omniture_page_name %}{{ name }}--{{ slug }}{% endblock omniture_page_name %}
-{# 
-{% block chartbeat_page_title %}{{ headline }} (title){% endblock chartbeat_page_title %}
-{% block chartbeat_section %}Dataviz, Watchdog, title{% endblock chartbeat_section %}
-{% block chartbeat_author %}Watchdog{% endblock chartbeat_author %}
- #}
+
 {# GOOGLE/SEO #}
 {% block structured_data_meta %}
     {# METS/STRUCTURED DATA #}
@@ -109,7 +106,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 {% endblock structured_data_meta %}
 
 
-{% set thumbnail =  story_info['thumbnail_url']|get_thumbnail_info %}
+{% set thumbnail = story_info['thumbnail_url']|get_thumbnail_info %}
 
 {# OPENGRAPH #}
 {% block opengraph %}
