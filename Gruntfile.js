@@ -6,8 +6,9 @@ module.exports = function(grunt) {
   // You'll also have to install them using a command similar to:
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
-    //'jquery',
-    //'underscore'
+    'scrollmonitor',
+    'pym.js',
+    'lodash.throttle'
   ];
 
   config.browserify = {
@@ -47,8 +48,8 @@ module.exports = function(grunt) {
 
   // Check if there are vendor libraries and build a vendor bundle if needed
   if (VENDOR_LIBRARIES.length) {
-    config.browserify.app.options = config.browserify.app.options || {};
-    config.browserify.app.options.exclude = VENDOR_LIBRARIES;
+    config.browserify.base.options = config.browserify.base.options || {};
+    config.browserify.base.options.exclude = VENDOR_LIBRARIES;
 
     config.browserify.vendor = {
       src: [],

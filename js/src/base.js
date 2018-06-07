@@ -1,88 +1,19 @@
-import 'intersection-observer'; // A polyfill that comes highly recommended
+// import 'intersection-observer'; // A polyfill that comes highly recommended
 import clickTrack from "./click-track.js";
-import smoothscroll from 'smoothscroll-polyfill';
+// import smoothscroll from 'smoothscroll-polyfill';
+import {openSidebar_func} from './utils/open-sidebar.js';
+import {toggleDrawer} from './utils/toggle-nav-drawer.js';
+import {scrollToSidebar} from './utils/scroll-to-sidebar.js';
+import {doesUserWantAnimations} from './utils/does-user-want-animation.js';
+import {loadElement} from './utils/load-element.js';
 
 const   scrollMonitor = require('scrollmonitor'),
         pym = require('pym.js'),
         throttle = require('lodash.throttle');
 
-smoothscroll.polyfill(); // kick off the polyfill!
-
-function loadElement(el){
-    // Function we use for loading graphics and lazyloading images.
-    if (el.classList.contains('chart--lazy')){
-        // if we're dealing with a graphic
-        const   chartContainer = el.querySelector('.graphic-embed'),
-                pymId = chartContainer.id,
-                pymUrl = chartContainer.dataset.iframeUrl;
-                new pym.Parent(pymId, pymUrl, {});
-    } else {
-        // If we're dealing with an image
-        const   elBox = el.getBoundingClientRect(),
-                newDimension = elBox.width > elBox.height ? Math.round(elBox.width) : Math.round(elBox.height),
-                fullResSrc = el.querySelector('img').getAttribute("src").replace("/10", `/${newDimension}`).replace(/’/g, ""); // Damn smart quotes are appearing again
-        // console.log('lazy loading ', fullResSrc);
-        el.querySelector('img').setAttribute('src', fullResSrc);
-    }
-}
-
-function openSidebar_func(sidebarToOpen){
-
-    // Add the open class to that sidebar, found by ID.
-    document.querySelector(`#${sidebarToOpen}`).classList.add('sidebar--open');
-
-    // Remove the button, since the sidebar is opened
-    document.querySelector(`.read-more[data-target=${sidebarToOpen}]`).remove();
-
-    // We need to do this so the traveler still works
-    scrollMonitor.recalculateLocations();
-
-    // Let's track the opening
-    clickTrack(`CPS abuse - sidebar ${sidebarToOpen} opened`, true, false);
-}
-
-function scrollToSidebar(targetSidebar, useSmoothScroll=true, openSidebar=false){
-    // Takes an anchor ID and sets scroll position to that id. Optionally (and by default) 
-    // uses smoothScroll, but will defer to overall preferences on animation
-
-    const targetSidebarTop = document.querySelector(`#${targetSidebar}`).getBoundingClientRect().top;
-
-    if (openSidebar) {
-        // Open the sidebar by simulating a click
-        // document.querySelectorAll(`.read-more[data-target=${targetSidebar}]`).click();
-        openSidebar_func(targetSidebar);
-    }
-            
-    window.scrollBy({
-        top: targetSidebarTop - 70,
-        behavior: doesUserWantAnimations() && useSmoothScroll ? 'smooth' : 'instant'
-    })
-}
-
 function isMobile(){
     // returns true if I think we're on mobile.
     return window.innerWidth < 850 ? true : false;
-}
-
-function doesUserWantAnimations(){
-    // returns true if user wants animations
-    return document.querySelector(`[data-animate="true"]`) == null ? false : true;
-}
-
-function toggleDrawer(drawerShouldOpen=false){
-    if (drawerShouldOpen){
-        // The drawer should be opened
-        document.querySelector('.carousel').classList.add('carousel--open');
-        document.querySelector('#hamburger').classList.add('carousel__button--open');
-        document.querySelector('body').classList.add('noscroll');
-        clickTrack("CPS abuse - nav drawer is opened", true, false);
-        if (document.querySelector('#nav-drawer-note') !== null) document.querySelector('#nav-drawer-note').remove();
-    } else {
-        // the drawer should be closed
-        document.querySelector('.carousel').classList.remove('carousel--open');
-        document.querySelector('#hamburger').classList.remove('carousel__button--open');
-        document.querySelector('body').classList.remove('noscroll');
-    }
 }
 
 // #########################################
@@ -97,8 +28,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 
     // First things first, let's check for a scroll-to point
 
-    const pageUrl = window.location.href.split("?");
-
+    const pageUrl = window.location.href.split(/[?&]/);
     if (pageUrl.length > 1){
         for (let i=1; i< pageUrl.length; i++){
             if (pageUrl[i].indexOf('story') > -1){
@@ -139,25 +69,25 @@ window.addEventListener('DOMContentLoaded', function(e){
         return watcher;
     });
 
-    if(doesUserWantAnimations()){
-        // If user wants animations, then register the observers on the breakers
-        const breakers = [].slice.call(document.querySelectorAll('.breaker'));
+    // if(doesUserWantAnimations()){
+    //     // If user wants animations, then register the observers on the breakers
+    //     const breakers = [].slice.call(document.querySelectorAll('.breaker'));
 
-        const breakerWatchers = breakers.map(b => {
+    //     const breakerWatchers = breakers.map(b => {
 
-            const watcher = scrollMonitor.create(b, {
-                bottom: windowHeight * 0.15
-            });
+    //         const watcher = scrollMonitor.create(b, {
+    //             bottom: windowHeight * 0.15
+    //         });
 
-            watcher.enterViewport(function(){
-                b.classList.add('breaker--animated');
-                watcher.destroy();
-            });
+    //         watcher.enterViewport(function(){
+    //             b.classList.add('breaker--animated');
+    //             watcher.destroy();
+    //         });
 
-            return watcher;
-        });
+    //         return watcher;
+    //     });
 
-    }
+    // }
 
 
     // First, let's init the non-lazy graphics
@@ -168,7 +98,7 @@ window.addEventListener('DOMContentLoaded', function(e){
     }
 
     // Also, let's lazyload the images and charts
-    const lazyItems = [].slice.call(document.querySelectorAll('.image--lazy, .chart--lazy'));
+    const lazyItems = [].slice.call(document.querySelectorAll('.image--lazy, .chart--lazy, .audio--lazy'));
     const lazyWatchers = lazyItems.map(el => {
 
         const lazyWatcher = scrollMonitor.create(el, {
@@ -211,7 +141,9 @@ window.addEventListener('DOMContentLoaded', function(e){
          
             scrollMonitor.recalculateLocations();
 
-            const targetSidebar = this.getAttribute('href').replace(/#/g,"");
+            // All our navigation and such around sidebars requires 
+            // the hash to be stripped. It works with slugs, not anchors
+            const targetSidebar = this.getAttribute('href').replace(/#/g, "");
 
             scrollToSidebar(targetSidebar, true);
 
@@ -223,16 +155,6 @@ window.addEventListener('DOMContentLoaded', function(e){
     [].slice.call(document.querySelectorAll('.read-more')).forEach(button => {
         button.addEventListener('click', function(e){
             openSidebar_func(this.dataset.target);            
-            // // Which sidebar do we want to open?
-            // const sidebar = this.dataset.target;
-
-            // // Add the open class to that sidebar, found by ID.
-            // document.querySelector(`#${sidebar}`).classList.add('sidebar--open');
-
-            // // Remove the button
-            // this.remove();
-            // scrollMonitor.recalculateLocations();
-            // clickTrack(`CPS abuse - sidebar ${sidebar} opened`, true, false);
         })
     });
 });
@@ -269,10 +191,9 @@ window.addEventListener('load', function() {
         sidebarWatcher.enterViewport(function(){
 
             const   target = el.id,
-                    loc = window.location.href.split("#")[0],
-                    newLoc = `${loc}#${target}`;
-
-            history.pushState({}, target, newLoc);
+                    loc = window.ROOT_URL,
+                    newLoc = `${loc}/${target}`;
+            history.replaceState({}, target, newLoc);
 
             // Mute the active link in the traveler
             const activeLink = document.querySelector(`.traveler__link--active`)

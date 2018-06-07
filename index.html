@@ -56,11 +56,10 @@
 	{{ super() }}
 	<link href='http://{{ ROOT_URL }}/img/header/intro_basemap.svg' rel='preload' as='image'>
 	<link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css">
-	{# <link href='http://{{ ROOT_URL }}/img/cps-abuse-bg-texture.jpg' rel='preload' as='image'> #}
 {% endblock prefetch %}
 
 {% block library_scripts %}
-	{# <script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script> #}
+	<script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block stylesheets %}
@@ -136,6 +135,10 @@
 {% include 'subtemplates/_credits.html' %}
 {% endblock content %}
 
+{% block meter %}
+    <script src="//ssor.tribdss.com/reg/tribune/chinews-apps.min.js" async></script>
+    <script src="//www.tribdss.com/meter/chinews-apps.min.js" async></script>
+{% endblock meter %}
 
 {% block scripts %}
 	<script src="//players.brightcove.net/3690581440001/S1vBkbMfe_default/index.min.js"></script>
