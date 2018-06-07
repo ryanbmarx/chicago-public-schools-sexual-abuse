@@ -69,27 +69,6 @@ window.addEventListener('DOMContentLoaded', function(e){
         return watcher;
     });
 
-    // if(doesUserWantAnimations()){
-    //     // If user wants animations, then register the observers on the breakers
-    //     const breakers = [].slice.call(document.querySelectorAll('.breaker'));
-
-    //     const breakerWatchers = breakers.map(b => {
-
-    //         const watcher = scrollMonitor.create(b, {
-    //             bottom: windowHeight * 0.15
-    //         });
-
-    //         watcher.enterViewport(function(){
-    //             b.classList.add('breaker--animated');
-    //             watcher.destroy();
-    //         });
-
-    //         return watcher;
-    //     });
-
-    // }
-
-
     // First, let's init the non-lazy graphics
     const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
     
