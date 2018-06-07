@@ -54,9 +54,8 @@
 
 {% block prefetch %}
 	{{ super() }}
-	{# <link href='http://{{ ROOT_URL }}/img/header/intro_basemap.svg' rel='preload' as='image'> #}
-	{# <link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css"> #}
-	{# <link href='http://{{ ROOT_URL }}/img/cps-abuse-bg-texture.jpg' rel='preload' as='image'> #}
+	<link href='http://{{ ROOT_URL }}/img/header/intro_basemap.svg' rel='preload' as='image'>
+	<link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock prefetch %}
 
 {% block library_scripts %}
