@@ -1,4 +1,4 @@
-import 'intersection-observer'; // A polyfill that comes highly recommended
+// import 'intersection-observer'; // A polyfill that comes highly recommended
 import clickTrack from "./click-track.js";
 // import smoothscroll from 'smoothscroll-polyfill';
 import {openSidebar_func} from './utils/open-sidebar.js';
@@ -70,25 +70,25 @@ window.addEventListener('DOMContentLoaded', function(e){
         return watcher;
     });
 
-    if(doesUserWantAnimations()){
-        // If user wants animations, then register the observers on the breakers
-        const breakers = [].slice.call(document.querySelectorAll('.breaker'));
+    // if(doesUserWantAnimations()){
+    //     // If user wants animations, then register the observers on the breakers
+    //     const breakers = [].slice.call(document.querySelectorAll('.breaker'));
 
-        const breakerWatchers = breakers.map(b => {
+    //     const breakerWatchers = breakers.map(b => {
 
-            const watcher = scrollMonitor.create(b, {
-                bottom: windowHeight * 0.15
-            });
+    //         const watcher = scrollMonitor.create(b, {
+    //             bottom: windowHeight * 0.15
+    //         });
 
-            watcher.enterViewport(function(){
-                b.classList.add('breaker--animated');
-                watcher.destroy();
-            });
+    //         watcher.enterViewport(function(){
+    //             b.classList.add('breaker--animated');
+    //             watcher.destroy();
+    //         });
 
-            return watcher;
-        });
+    //         return watcher;
+    //     });
 
-    }
+    // }
 
 
     // First, let's init the non-lazy graphics
