@@ -8,6 +8,9 @@ export function loadElement(el){
                 pymId = chartContainer.id,
                 pymUrl = chartContainer.dataset.iframeUrl;
                 new pym.Parent(pymId, pymUrl, {});
+    } else if (el.classList.contains('audio--lazy')){
+        const src = el.dataset.src;
+        el.setAttribute('src', src);
     } else {
         // If we're dealing with an image
         const   elBox = el.getBoundingClientRect(),

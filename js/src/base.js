@@ -99,7 +99,7 @@ window.addEventListener('DOMContentLoaded', function(e){
     }
 
     // Also, let's lazyload the images and charts
-    const lazyItems = [].slice.call(document.querySelectorAll('.image--lazy, .chart--lazy'));
+    const lazyItems = [].slice.call(document.querySelectorAll('.image--lazy, .chart--lazy, .audio--lazy'));
     const lazyWatchers = lazyItems.map(el => {
 
         const lazyWatcher = scrollMonitor.create(el, {
