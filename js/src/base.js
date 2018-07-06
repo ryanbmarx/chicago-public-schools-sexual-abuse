@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function(e){
     const watchers = headerPanels.map(panel => {
 
         const watcher = scrollMonitor.create(panel, {
-            top: windowHeight * -0.5
+            top: window.innerHeight * -0.5
         });
 
 
