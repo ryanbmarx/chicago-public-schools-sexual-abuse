@@ -22,7 +22,6 @@ $purple:#36213E;
 $body-background-color: $white;
 $navbar_background_color: $darkest;
 $highlight-color: $bright;
-$river-background-color: $white;
 $river-background-color: white;
 
 // Reassign type styles
@@ -178,6 +177,7 @@ $breaker-text-color: $imperial;
 @import 'sidebar-traveler'; // The nav alongside the sidebars
 // @import 'sidebar-menu'; // The nav before the sidebars
 @import 'header'; // the mainbar header
+@import 'header-student'; // the student-on-student header
 @import 'breakers'; // Test styles for story breakers
 @import 'pullquote'; 
 @import 'sidebars';
