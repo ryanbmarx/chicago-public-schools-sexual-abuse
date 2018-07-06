@@ -20,21 +20,21 @@
 	{% set target_url = 'http://graphics.chicagotribune.com/chicago-public-schools-sexual-abuse/' + info.slug %}
 
 	{% set networks = {
-		"facebook":{
-			"network":"Facebook",
-			"url":"http://www.facebook.com/sharer.php?u=" + target_url,
-			"slug":"facebook"
-		},
-		"twitter":{
-			"network":"Twitter",
-			"url":"http://twitter.com/share?url=" + target_url + "&text=" + info.dek,
-			"slug":"twitter"
-		},
-		"email":{
-			"network":"Email",
-			"url":"mailto:?body=" ~ target_url,
-			"slug":"email"
-		}
+			"facebook":{
+				"network":"Facebook",
+				"url":"http://www.facebook.com/sharer.php?u=" + target_url,
+				"slug":"facebook"
+			},
+			"twitter":{
+				"network":"Twitter",
+				"url":"http://twitter.com/share?url=" + target_url + "&text=" + info.dek,
+				"slug":"twitter"
+			},
+			"email":{
+				"network":"Email",
+				"url":"mailto:?body=" ~ target_url,
+				"slug":"email"
+			}
 		}
 	%}
 
