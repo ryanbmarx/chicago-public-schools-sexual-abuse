@@ -311,9 +311,9 @@
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary, add_class=False) %}
     
-  {% set page_url = "http://" + ROOT_URL + "/" + PATH %}
+  {# {% set page_url = "http://" + ROOT_URL + "/" + PATH %} #}
   
-  {% set tweet = quote_text + ' #WaterDrain via @chicagotribune' %}
+  {# {% set tweet = quote_text + ' #WaterDrain via @chicagotribune' %} #}
     <figure class="pullquote {% if add_class %} {{ add_class }}{% endif %}">
         <blockquote>{{ quote_text|dumb_to_smart_quotes|process_text() }}</blockquote>
         {% if quote_attribution %}
