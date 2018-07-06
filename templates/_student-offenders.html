@@ -1,0 +1,147 @@
+{% extends "_base.html" %}
+{% from './subtemplates/_macros.html' import add_author_shirtails as add_author_shirtails with context %}
+{% from './subtemplates/_macros.html' import abuse_subscribe_refer as abuse_subscribe_refer with context %}
+
+{# I know this is a total hack, but I am having trouble juggling the archie refresh on both the "static" template and the dynamically rendered template. --Ryan#}
+{% set abuse = abuses['abuse'] %}
+
+
+{# {% from './index.html' import abuse_download_refer as abuse_download_refer with context%} #}
+{# {% from './index.html' import abuse_share_refer as abuse_share_refer with context%} #}
+
+{% block title %}<title>{{ mainbar_hammer_hede }}: {{ mainbar_dek_for_title }} -- Chicago Tribune</title>{% endblock title %}
+
+
+{% block sprites %}
+	<div style="display:none;height:0;visibility:invisible;">
+    	{% include 'img/icon-sprite.svg' %}
+	</div>
+{% endblock %}
+
+
+{% block nav %}{% endblock %}
+
+{% block prefetch %}
+	{{ super() }}
+	<link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+{% endblock prefetch %}
+
+{% block library_scripts %}
+	<script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+{% endblock stylesheets %}
+
+
+{% block body_attr %}data-animate="false"{% endblock body_attr %}
+
+{% block content %}
+
+{% set mainbar_info = stories|get_story_info("student-offenders") %}
+{% set mainbar_slug = "student-offenders" %}
+
+{# Our super cool project navigation #}
+{% include "subtemplates/_nav-carousel.html" %}
+{% include "subtemplates/student-offenders/_header.html" with context %}
+<section id='{{ mainbar_slug }}' class='container sidebar--open'>
+	<div class='river dropcap'>
+		{% for story_item in abuse[mainbar_slug] %}
+			{# The story content, from the Archie, is passed directly to the template as var story #}
+			{% set s = story_item %}
+			{% set mainbar = True %}
+			{% include 'subtemplates/_story-loop.html' %}
+		{% endfor %}
+		{% set authors = mainbar_slug|get_authors %}
+		{{ add_author_shirtails(authors) }}
+	</div>
+</section> </article>{# END MAINBAR #}
+<div class='advert' data-ad-type="leaderboard"></div>
+{# {{ keep_scrolling(direction="back", target="#", label="Back", id="return") }} #}
+<section class='sidebars container'>
+	<h1 class='sidebars__header'>{{ sidebar_label_student_offenders }}</h1>
+	<p class='sidebars__sub-label'>{{ sidebar_sublabel_student_offenders }}</p>
+	{# <div class='sidebars__traveler'> #}
+		{# {% include 'subtemplates/_sidebar-traveler.html' %} #}
+	{# </div> #}
+	<div class='sidebars__stories'>
+	{% for story in stories|sort(attribute="display_order") if story.slug != "student-offenders" and story.display_order and story.display_order > 0 and story.publish and story.publish > 0 and story.student_offenders and story.student_offenders > 0 %}
+		{% set mainbar = False %}
+		{% set i = loop.index %}
+		{% set info = story %} {# use a new var so the data is available on subtemplates #}
+		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
+			{% include "subtemplates/_sidebar.html" %}
+		</article>
+		
+		{% if story.slug == "audio" %}
+			{% set read_more_label = sidebar_pod_button_label %}
+			{% set read_more_aria_label = sidebar_pod_button_aria_label %}
+		{% else %}
+			{% set read_more_label = sidebar_open_button_label %}
+			{% set read_more_aria_label = sidebar_open_button_aria_label %}
+		{% endif %}
+		
+		<button class='read-more' data-target="{{ story.slug }}" aria-label="{{ read_more_aria_label }}">{{ read_more_label }}</button>
+
+		{% if loop.first %}
+			{# {{ abuse_share_refer() }} #}
+		{% endif %}
+		{% if i % 6 == 0 %}
+			<div class='advert-wrapper'>
+				<div class='advert' data-ad-type="shrinky-cube"></div>
+			</div>
+		{% elif i % 3 == 0 %}
+			{# {{ abuse_subscribe_refer() }} #}
+		{% endif %}
+	{% endfor %} {# end sidebars loop #}
+	</div> {# END SIDEBARS__STORIES WRAPPER #}
+</section> {# END SIDEBARS #}
+
+{% include 'subtemplates/_credits.html' %}
+{% endblock content %}
+
+{% block meter %}
+    <script src="//ssor.tribdss.com/reg/tribune/chinews-apps.min.js" async></script>
+    <script src="//www.tribdss.com/meter/chinews-apps.min.js" async></script>
+{% endblock meter %}
+
+{% block scripts %}
+	<script src="//players.brightcove.net/3690581440001/S1vBkbMfe_default/index.min.js"></script>
+	<script src="//{{ ROOT_URL }}/js/base.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% set thumbnail = story_info['thumbnail_url']|get_thumbnail_info %}
+
+{# OPENGRAPH #}
+{% block opengraph %}
+    <meta property="og:url" content="{{ canonical_url }}" />
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="{{ story_info['og_title'] }}" />
+    <meta property="og:description" content="{{ story_info['og_description'] }}" />
+    <meta property="og:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
+    {% if thumbnail %}
+        <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+        <meta name="og:image:width" content="{{ thumbnail.width }}px" />
+    {% endif %}
+{% endblock opengraph %}
+
+{# TWITTER #}
+{% block twitter scoped%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@chicagotribune" />
+    <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
+    <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
+    <meta name="twitter:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
+    <meta name="twitter:creator" content="@chicagotribune" />
+    <meta name="twitter:creator" content="@chitribgraphics" />
+    <meta name="twitter:creator" content="@jsmithrichards" />
+    <meta name="twitter:creator" content="@perezjr" />
+    <meta name="twitter:creator" content="@poolcar4" />
+    <meta name="twitter:creator" content="@garyjmarx" />
+
+{% endblock twitter %}
+
+{% block comments %}{% endblock comments %}

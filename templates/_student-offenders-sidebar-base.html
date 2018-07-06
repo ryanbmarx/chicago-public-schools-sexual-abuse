@@ -1,0 +1,147 @@
+{% extends "_base.html" %}
+
+{# 
+NOTES:
+
+The variable {{ slug }} is the unique identifier for the page. This should be used in all analytics.
+
+#}
+
+
+{% block title %}<title>{{ story_info['headline'] }} -- Chicago Tribune</title>{% endblock title %}
+
+{% block chartbeat %}
+    <script type='text/javascript'>
+        var _sf_async_config = _sf_async_config || {};
+        var pageTitle = "{{ story_info['headline'] }} -- CPS Abuse";
+
+        _sf_async_config.uid = 25745 
+        _sf_async_config.domain = 'chicagotribune.com'; 
+        _sf_async_config.useCanonical = true;
+        _sf_async_config.sections = 'Dataviz, Watchdog, CPS Abuse'; 
+        _sf_async_config.authors = 'Watchdog';
+        _sf_async_config.title = pageTitle;
+        
+        (function() {
+            function loadChartbeat() {
+                var e = document.createElement('script');
+                e.setAttribute('language', 'javascript');
+                e.setAttribute('type', 'text/javascript');
+                e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+                document.body.appendChild(e);
+            }
+            var oldonload = window.onload;
+            window.onload = (typeof window.onload != 'function') ?
+                loadChartbeat : function() {
+                    oldonload();
+                    loadChartbeat();
+                };
+        })();
+    </script>  
+{% endblock chartbeat %}
+
+{% block omniture_scripts %}
+    <script src="//www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script>
+{% endblock omniture_scripts %}
+
+{% block omniture_config %}
+    <script type="text/javascript">
+        ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
+                pageName: 'ct:apps:news:cps-abuse-{{ story_info.slug }}:articleproject.',
+                channel: 'news',
+                server: 'graphics.chicagotribune.com',
+                hier1: 'chicagotribune:news',
+                hier2: 'news',
+                prop1: 'D=pageName',
+                prop2: 'news',
+                prop38: 'articleproject',
+                prop57: 'D=c38',
+                prop59: '',
+                eVar20: 'chicagotribune',
+                eVar21: 'D=c38',
+                eVar34: 'D=ch',
+                eVar35: 'D=pageName',
+                events:''
+        });  
+    </script>
+{% endblock omniture_config %}
+
+{% set canonical_url = "http://" ~ ROOT_URL ~ "/" ~ story_info['slug'] ~ "/index.html" %}
+{% block canonical %}<link rel="canonical" href="{{ canonical_url }}" />{% endblock canonical %}
+{# {% block canonical %}{% endblock canonical %} #}
+
+
+
+{% block library_scripts %}{% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <script type='text/javascript'>
+        const newURL = "http://{{ ROOT_URL }}/student-offenders/?story={{ story_info['slug'] }}";
+        window.location.replace(newURL); 
+    </script>
+{% endblock content %}
+
+
+{% block scripts %}{% endblock %}
+
+{# ANALYTICS TWEAKS, FOR ALL THE DIFFERENT STORIES #}
+{% block omniture_page_name %}{{ name }}--{{ slug }}{% endblock omniture_page_name %}
+
+{# GOOGLE/SEO #}
+{% block structured_data_meta %}
+    {# METS/STRUCTURED DATA #}
+    <meta name="description" content="{{ story_info['og_description'] }}" />
+
+    {# If the story has its own keywords, then use them, otherwise use the default #}
+    {% if story_info['seo_keywords'] %}
+        <meta name="keywords" content="{{ story_info['seo_keywords'] }}" />
+    {% else %}
+        <meta name="keywords" content="{{ seo_keywords }}" />
+    {% endif %}
+    <meta name="author" content="Chicago Tribune" />
+    <meta property="image" content="{{ story_info['thumbnail_url'] }}" />
+{% endblock structured_data_meta %}
+
+
+{% set thumbnail = story_info['thumbnail_url']|get_thumbnail_info %}
+
+{# OPENGRAPH #}
+{% block opengraph %}
+    <meta property="og:url" content="{{ canonical_url }}" />
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="{{ story_info['og_title'] }}" />
+    <meta property="og:description" content="{{ story_info['og_description'] }}" />
+    <meta property="og:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
+    {% if thumbnail %}
+        <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+        <meta name="og:image:width" content="{{ thumbnail.width }}px" />
+    {% endif %}
+{% endblock opengraph %}
+
+{# TWITTER #}
+{% block twitter scoped%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@chicagotribune" />
+    <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
+    <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
+    <meta name="twitter:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
+    <meta name="twitter:creator" content="@chicagotribune" />
+    <meta name="twitter:creator" content="@chitribgraphics" />
+    <meta name="twitter:creator" content="@jsmithrichards" />
+    <meta name="twitter:creator" content="@perezjr" />
+    <meta name="twitter:creator" content="@poolcar4" />
+    <meta name="twitter:creator" content="@garyjmarx" />
+
+{% endblock twitter %}
+
+{% block footer %}{% endblock footer %}
+{% block sprites %}{% endblock sprites %}
+{% block comments %}{% endblock comments %}
+{% block meter %}{% endblock meter %}
+
+{% block adverts %}{% endblock adverts %}
