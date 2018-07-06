@@ -75,11 +75,12 @@
 
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
+<p>foo: {{ foo }}</p>
 {% include "subtemplates/_header.html" with context %}
+
 <section id='{{ mainbar_slug }}' class='container sidebar--open'>
 	<div class='river dropcap'>
 		{% for story_item in abuse[mainbar_slug] %}
-			{# The story content, from the Archie, is passed directly to the template as var story #}
 			{% set s = story_item %}
 			{% set mainbar = True %}
 			{% include 'subtemplates/_story-loop.html' %}
@@ -97,7 +98,7 @@
 		{% include 'subtemplates/_sidebar-traveler.html' %}
 	</div>
 	<div class='sidebars__stories'>
-	{% for story in stories|sort(attribute="display_order") if story.slug != mainbar_slug and story.display_order and story.display_order > 0 and story.publish and story.publish > 0 %}
+	{% for story in stories|sort(attribute="display_order") if story.slug != mainbar_slug and story.display_order and story.display_order > 0 and story.publish and story.publish > 0 and not story.student_offenders %}
 		{% set mainbar = False %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
