@@ -1,0 +1,64 @@
+.header.header--student{
+	padding: $grid-gap * 2;
+	box-sizing: border-box;
+	// background: black url(../img/bogan1.jpg) center center no-repeat;
+	// background-size: cover;
+	height: 100vh;
+
+	display:flex;
+	position:relative;
+
+	overflow:hidden;
+
+	.header__bg{
+		img{
+			object-position: center;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+					position: absolute;
+		top: 0;
+		left: 0;
+		}
+	}
+
+	.header__text{
+		background: rgba(black, .3);
+		max-width: 800px;
+		margin: auto;
+		text-align: center;
+		color: white;
+		
+		z-index: 2; 
+		position:relative;
+		padding: $grid-gap;
+		box-sizing: border-box;
+
+		& > * + *{
+			margin-bottom: $grid-gap / 2;
+		}
+
+		.header__headline{
+			line-height: .9em;
+			text-shadow: 1px 1px 3px black;
+		}
+		.social-networks { 
+			justify-content: center; 
+		}
+
+		// .pub-date, [itemprop="author creator"], .header__headline{
+		// 	color: white;
+		// }
+	}
+
+	.caption{
+		@include agate();
+		color:white;
+		position: absolute;
+		bottom: 0;
+		right: $grid-gap * 2;
+		padding: 15px;
+		text-align: right;
+
+	}
+}

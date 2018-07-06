@@ -11,6 +11,7 @@ import jinja2 #for context-getting
 from itertools import ifilter # For the route
 from tarbell.hooks import register_hook #for the route, too
 
+import archie # For refreshing archieml
 
 import sys
 from os import path
@@ -65,16 +66,21 @@ def cps_abuse_story(slug):
     # get the row we want, defaulting to an empty dictionary
     row = next(ifilter(lambda r: r['slug'] == slug, rows), {})
 
-    print "fetching content for {}".format(slug)
-
+    print ("fetching content for {}".format(slug))
+    
     if row != {}: 
-        # render a template, using the same template environment as everywhere else
-        # But skip the mainbar, since that is the main index.html
-        return render_template('templates/_abuse-sidebar-base.html', bucket=bucket, slug=slug, story_info=row,**data)
+        if slug == "student-offenders":
+            archie.get_drive_api_stuff(site, site.project.DOC_KEY)
+            stories = archie.get_extra_context()
+            return render_template('templates/_student-offenders.html', bucket=bucket, slug=slug, story_info=row, abuses=stories, **data)
+        elif row["student_offenders"] == 1:
+            return render_template('templates/_student-offenders-sidebar-base.html', bucket=bucket, slug=slug, story_info=row,**data)
+        else:
+            return render_template('templates/_abuse-sidebar-base.html', bucket=bucket, slug=slug, story_info=row,**data)
     elif slug == "404.html":
         return render_template('404.html', bucket=bucket,**data)
     elif slug == "ad-iframe.html":
-        return render_template('ad-iframe.html', bucket=bucket,**data)
+        return render_template('ad-iframe.html', bucket=bucket,foo="bar", **data)
     elif slug == "index.html":
         return render_template('index.html', bucket=bucket,**data)
     else:
