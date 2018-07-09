@@ -22,12 +22,12 @@
 	{% set networks = {
 		"facebook":{
 			"network":"Facebook",
-			"url":"http://www.facebook.com/sharer.php?u=" + target_url,
+			"url":"https://www.facebook.com/sharer.php?u=" + target_url,
 			"slug":"facebook"
 		},
 		"twitter":{
 			"network":"Twitter",
-			"url":"http://twitter.com/share?url=" + target_url + "&text=" + dek,
+			"url":"https://twitter.com/share?url=" + target_url + "&text=" + dek,
 			"slug":"twitter"
 		},
 		"email":{
@@ -63,9 +63,9 @@
 	{{ keep_scrolling(target=target, label="Jump to the story") }}
 	<div class='header__map map'>
 		{# Put the images here #}
-		<img class='map__layer map__layer--base' src="http://{{ ROOT_URL }}/img/header/intro_basemap.svg" aria-label="Basemap for graphic about Chicago">
+		<img class='map__layer map__layer--base' src="//{{ ROOT_URL }}/img/header/intro_basemap.svg" aria-label="Basemap for graphic about Chicago">
 		{% for panel in intro|sort(attribute="disp_order") if panel.has_map == 1%}
-			<img class='map__layer map__layer--{{ panel.id }}' src='http://{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' aria-labeledby="#{{ panel.id }}-text" />
+			<img class='map__layer map__layer--{{ panel.id }}' src='//{{ ROOT_URL }}/img/header/{{ panel.id }}.svg' aria-labeledby="#{{ panel.id }}-text" />
 		{% endfor %}
 	</div>
 	<div class='header__panels'>

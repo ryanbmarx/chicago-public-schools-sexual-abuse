@@ -23,7 +23,7 @@
 
 {% block prefetch %}
 	{{ super() }}
-	<link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+	<link rel="preload" as="style" href="//{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock prefetch %}
 
 {% block library_scripts %}
@@ -31,7 +31,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+    <link rel="stylesheet" type="text/css" href="//{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock stylesheets %}
 
 
@@ -70,7 +70,7 @@
 		{% set mainbar = False %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
-		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
+		<article itemscope itemtype="//schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
 			{% include "subtemplates/_sidebar.html" %}
 		</article>
 		
@@ -119,7 +119,7 @@
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ story_info['og_title'] }}" />
     <meta property="og:description" content="{{ story_info['og_description'] }}" />
-    <meta property="og:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta property="og:image" content="//{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     {% if thumbnail %}
         <meta name="og:image:height" content="{{ thumbnail.height }}px" />
@@ -133,7 +133,7 @@
     <meta name="twitter:site" content="@chicagotribune" />
     <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
     <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
-    <meta name="twitter:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image" content="//{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     <meta name="twitter:creator" content="@chicagotribune" />
     <meta name="twitter:creator" content="@chitribgraphics" />

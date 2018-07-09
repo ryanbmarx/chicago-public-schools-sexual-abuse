@@ -18,7 +18,7 @@
         {% endif %}
         {% if author.twitter %}
         <li>
-          Twitter <a target="_blank" rel="noopener" href="http://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a>
+          Twitter <a target="_blank" rel="noopener" href="https://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a>
         </li>
         {% endif %}
       </ul>
@@ -138,7 +138,7 @@
     <p itemprop="author creator"> By 
       {%- for person in bylines|get_bylines %}
         <a href="mailto:{{ person.email }}" target="_blank" rel="noopener">
-          <span itemtype="http://schema.org/Person" itemscope="">{{ person.name_first|trim }} {{ person.name_last|trim }}</span></a>
+          <span itemtype="https://schema.org/Person" itemscope="">{{ person.name_first|trim }} {{ person.name_last|trim }}</span></a>
         {%- if loop.length > 2 and loop.index < loop.length - 1 %}, {% endif %}
         {%- if loop.index == loop.length - 1 %} and {% endif %}
       {% endfor %}
@@ -218,7 +218,7 @@
     {% if aside_type == 'subscribe' or aside_type == "respond" %}
       {% set refer_url = refer_content["url"]|process_text|e %}
     {% else %}
-      {% set refer_url = "http://" + ROOT_URL + "/" + refer_content["url"]|process_text()|e %}
+      {% set refer_url = "//" + ROOT_URL + "/" + refer_content["url"]|process_text()|e %}
     {% endif %}
 
     
@@ -311,7 +311,7 @@
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary, add_class=False) %}
     
-  {# {% set page_url = "http://" + ROOT_URL + "/" + PATH %} #}
+  {# {% set page_url = "//" + ROOT_URL + "/" + PATH %} #}
   
   {# {% set tweet = quote_text + ' #WaterDrain via @chicagotribune' %} #}
     <figure class="pullquote {% if add_class %} {{ add_class }}{% endif %}">

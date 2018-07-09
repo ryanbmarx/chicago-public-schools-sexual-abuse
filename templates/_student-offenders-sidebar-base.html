@@ -66,7 +66,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     </script>
 {% endblock omniture_config %}
 
-{% set canonical_url = "http://" ~ ROOT_URL ~ "/" ~ story_info['slug'] ~ "/index.html" %}
+{% set canonical_url = "//" ~ ROOT_URL ~ "/" ~ story_info['slug'] ~ "/index.html" %}
 {% block canonical %}<link rel="canonical" href="{{ canonical_url }}" />{% endblock canonical %}
 {# {% block canonical %}{% endblock canonical %} #}
 
@@ -79,7 +79,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
 
 {% block content %}
     <script type='text/javascript'>
-        const newURL = "http://{{ ROOT_URL }}/student-offenders/?story={{ story_info['slug'] }}";
+        const newURL = "//{{ ROOT_URL }}/student-offenders/?story={{ story_info['slug'] }}";
         window.location.replace(newURL); 
     </script>
 {% endblock content %}
@@ -114,7 +114,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ story_info['og_title'] }}" />
     <meta property="og:description" content="{{ story_info['og_description'] }}" />
-    <meta property="og:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta property="og:image" content="//{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     {% if thumbnail %}
         <meta name="og:image:height" content="{{ thumbnail.height }}px" />
@@ -128,7 +128,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta name="twitter:site" content="@chicagotribune" />
     <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
     <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
-    <meta name="twitter:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image" content="//{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     <meta name="twitter:creator" content="@chicagotribune" />
     <meta name="twitter:creator" content="@chitribgraphics" />

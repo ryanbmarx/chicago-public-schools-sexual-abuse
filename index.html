@@ -54,8 +54,8 @@
 
 {% block prefetch %}
 	{{ super() }}
-	<link href='http://{{ ROOT_URL }}/img/header/intro_basemap.svg' rel='preload' as='image'>
-	<link rel="preload" as="style" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+	<link href='//{{ ROOT_URL }}/img/header/intro_basemap.svg' rel='preload' as='image'>
+	<link rel="preload" as="style" href="//{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock prefetch %}
 
 {% block library_scripts %}
@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/abuse-base.css">
+    <link rel="stylesheet" type="text/css" href="//{{ ROOT_URL }}/css/abuse-base.css">
 {% endblock stylesheets %}
 
 
@@ -75,7 +75,6 @@
 
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
-<p>foo: {{ foo }}</p>
 {% include "subtemplates/_header.html" with context %}
 
 <section id='{{ mainbar_slug }}' class='container sidebar--open'>
@@ -102,7 +101,7 @@
 		{% set mainbar = False %}
 		{% set i = loop.index %}
 		{% set info = story %} {# use a new var so the data is available on subtemplates #}
-		<article itemscope itemtype="http://schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
+		<article itemscope itemtype="//schema.org/NewsArticle" id='{{ story.slug }}' class='sidebar river dropcap'>
 			{% include "subtemplates/_sidebar.html" %}
 		</article>
 		
