@@ -2,6 +2,9 @@
 {% from './subtemplates/_macros.html' import add_author_shirtails as add_author_shirtails with context %}
 {% from './subtemplates/_macros.html' import abuse_subscribe_refer as abuse_subscribe_refer with context %}
 
+{% from './subtemplates/_macros.html' import abuse_betrayed_refer as abuse_betrayed_refer with context %}
+
+
 {# I know this is a total hack, but I am having trouble juggling the archie refresh on both the "static" template and the dynamically rendered template. --Ryan#}
 {% set abuse = abuses['abuse'] %}
 

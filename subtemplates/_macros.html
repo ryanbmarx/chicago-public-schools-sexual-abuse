@@ -4,6 +4,17 @@
   {{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=add_class) }}
 {% endmacro %}
 
+
+{% macro abuse_betrayed_refer(add_class="") %}
+  {{  refer(refers['betrayed']['headline'], 
+      refers['betrayed']['text'], 
+      refers['betrayed']['button_url'], 
+      refers['betrayed']['button_text'], 
+      has_image="//" ~ ROOT_URL ~ "/" ~ refers["betrayed"]['image_url'], 
+      add_class=add_class) }}
+{% endmacro %}
+
+
 {% macro add_author_shirtails(authors=False) %}
   {# If there are not authors in the spreadsheet, then this will come across as false #}
   {% if authors %}

@@ -8,7 +8,8 @@
 {% from './subtemplates/_macros.html' import aside as aside  with context%}
 {% from './subtemplates/_macros.html' import photo_arr as photo_arr  with context%}
 {% from './subtemplates/_macros.html' import abuse_breaker as abuse_breaker  with context%}
-{% from './subtemplates/_macros.html' import video_by_ref as video_by_ref  with context%}
+{% from './subtemplates/_macros.html' import video_by_ref as video_by_ref with context%}
+{% from './subtemplates/_macros.html' import abuse_betrayed_refer as abuse_betrayed_refer with context%}
 
 {% if s.close_river|upper == "TRUE" %}
     {% set close_river = True %}
@@ -200,6 +201,18 @@
         {# If the content attribute is filled out, then include the referenced file. #}
         {{ sidebar_refer(s.sidebar_slug, image_slug, add_class) }}
     {% endif %}    
+
+    {% elif type|upper == "BETRAYED_REFER" %}
+    
+        {% if s.add_class %}
+            {% set add_class = s.add_class %}
+        {% else %}
+            {% set add_class = "" %}
+        {% endif %}
+        
+        {# If the content attribute is filled out, then include the referenced file. #}
+        {{ abuse_betrayed_refer(add_class) }}
+
 {% endif %}
 
 
