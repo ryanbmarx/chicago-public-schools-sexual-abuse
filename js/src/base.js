@@ -153,35 +153,35 @@ window.addEventListener('load', function() {
     // Now that the css is parsed and rendered, let's recalc all our waypoints
     scrollMonitor.recalculateLocations();
 
-
-    // POWER THE SIDEBAR TRAVELER
-    const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
-
-    window.sidebarWatchers = sidebars.map(el => {
-
-        const   sidebarWatcherTop = windowHeight * -0.6,
-                sidebarWatcherBottom = windowHeight * -0.4;
-
-        const sidebarWatcher = scrollMonitor.create(el, {
-            top: sidebarWatcherTop,
-            bottom: sidebarWatcherBottom
+    if (document.querySelector('.traveler') !== null){
+        // POWER THE SIDEBAR TRAVELER, IF THERE IS ONE.
+        const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
+    
+        window.sidebarWatchers = sidebars.map(el => {
+    
+            const   sidebarWatcherTop = windowHeight * -0.6,
+                    sidebarWatcherBottom = windowHeight * -0.4;
+    
+            const sidebarWatcher = scrollMonitor.create(el, {
+                top: sidebarWatcherTop,
+                bottom: sidebarWatcherBottom
+            });
+    
+            sidebarWatcher.enterViewport(function(){
+    
+                const   target = el.id,
+                        loc = window.ROOT_URL,
+                        newLoc = `${loc}/${target}`;
+                history.replaceState({}, target, newLoc);
+    
+                // Mute the active link in the traveler
+                const activeLink = document.querySelector(`.traveler__link--active`)
+                if (activeLink != null) activeLink.classList.remove('traveler__link--active');
+                
+                // Add the highlight class to the new traveler link
+                document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
+            });
+            return sidebarWatcher;
         });
-
-        sidebarWatcher.enterViewport(function(){
-
-            const   target = el.id,
-                    loc = window.ROOT_URL,
-                    newLoc = `${loc}/${target}`;
-            history.replaceState({}, target, newLoc);
-
-            // Mute the active link in the traveler
-            const activeLink = document.querySelector(`.traveler__link--active`)
-            if (activeLink != null) activeLink.classList.remove('traveler__link--active');
-            
-            // Add the highlight class to the new traveler link
-            document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
-        });
-        return sidebarWatcher;
-    });
-
+    }
 });
