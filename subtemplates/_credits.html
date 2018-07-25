@@ -3,14 +3,17 @@
 	<p class='credits__sublabel'>{{ credits_sublabel }}</p>
 	<div class='credits__inner'>
 		{%- for category in credits_control|sort(attribute='display_order') %}
-				{%- for person in credits|sort(attribute="name_last") if person[category.id] and person[category.id] >= 1 %}
+				{% set categeory_credits = credits|get_credits_list(category.id) %}
+				{%- for person in categeory_credits if person[category.id] and person[category.id] >= 1 %}
 				{%- if loop.first %}
 					<div class='credits__category'>
-					<h2 class='credits__category-label'>{{ category.readable }}</h2>
 					<dl class="credits__category-list">
+						<dt class='credits__category-label'>{{ category.readable }}</dt>
+						<dd class='credits__category-names'>
 				{% endif %}
-					<span>{{ person.name_first }} {{ person.name_last }}</span>{% if not loop.last %}, {% endif %}
+							<span>{{ person.name_first }} {{ person.name_last }}</span>{% if not loop.last %}, {% endif %}
 				{% if loop.last %}
+						</dd>
 					</dl>
 					</div>
 				{% endif %}

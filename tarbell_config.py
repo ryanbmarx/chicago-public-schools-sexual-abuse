@@ -107,6 +107,32 @@ FILTERS & FUNCTIONS //// #######################################
 ################################################################
 """
 
+@blueprint.app_template_filter('get_credits_list')
+# @jinja2.contextfilter
+def get_authors(credits, credits_category):
+    """
+    Takes the list of people who worked on the project and filters the list down to just those 
+    who particiapted on the particular aspect at hand (writing, design, etc.). It then sorts the
+    list by display order (to appease editors) and within that, alpha by last name.
+    """
+    # Sort the list by last-name alpha
+    sorted_credits=sorted(credits, key=lambda i: i['name_last'])
+    credits_to_use=[]
+
+    print(credits_category)
+    for credit in sorted_credits:
+        if credits_category in credit:
+            # If the person is credited in this category by having any value at all
+            credits_to_use.append(credit)
+    
+    # Now sort the credits to use by the ranking. 
+    # If they all have the same rank then the alpha 
+    # order will be preserved
+    retval = sorted(credits_to_use, key=lambda i: i[credits_category])
+
+    return retval
+
+
 @blueprint.app_template_filter('get_authors')
 @jinja2.contextfilter
 def get_authors(context, slug):
