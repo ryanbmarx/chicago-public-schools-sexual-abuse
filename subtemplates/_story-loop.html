@@ -10,6 +10,9 @@
 {% from './subtemplates/_macros.html' import abuse_breaker as abuse_breaker  with context%}
 {% from './subtemplates/_macros.html' import video_by_ref as video_by_ref with context%}
 {% from './subtemplates/_macros.html' import abuse_betrayed_refer as abuse_betrayed_refer with context%}
+{% from './subtemplates/_macros.html' import abuse_subscribe_refer as abuse_subscribe_refer with context%}
+
+
 
 {% if s.close_river|upper == "TRUE" %}
     {% set close_river = True %}
@@ -45,7 +48,7 @@
         {% set add_class = "" %}
     {% endif %}
     {{ add_photo(s.url, s.add_class, s.caption, s.alt)}}
-{% elif type == "advert" and s.ad_type and s.ad_alignment %}
+{% elif type == "advert" and s.ad_type %}
     {{ ad(s.ad_type, s.ad_alignment) }}
 {% elif type == "video" and s.video_slug %}
     {% if s.add_class %}
@@ -212,6 +215,16 @@
         
         {# If the content attribute is filled out, then include the referenced file. #}
         {{ abuse_betrayed_refer(add_class) }}
+    {% elif type|upper == "SUBSCRIBE_REFER" %}
+    
+        {% if s.add_class %}
+            {% set add_class = s.add_class %}
+        {% else %}
+            {% set add_class = "" %}
+        {% endif %}
+        
+        {# If the content attribute is filled out, then include the referenced file. #}
+        {{ abuse_subscribe_refer(add_class) }}
 
 {% endif %}
 

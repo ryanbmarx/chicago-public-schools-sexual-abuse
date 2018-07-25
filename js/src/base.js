@@ -153,7 +153,6 @@ window.addEventListener('load', function() {
     // Now that the css is parsed and rendered, let's recalc all our waypoints
     scrollMonitor.recalculateLocations();
 
-    if (document.querySelector('.traveler') !== null){
         // POWER THE SIDEBAR TRAVELER, IF THERE IS ONE.
         const sidebars = [].slice.call(document.querySelectorAll('.sidebar'));
     
@@ -173,15 +172,16 @@ window.addEventListener('load', function() {
                         loc = window.ROOT_URL,
                         newLoc = `${loc}/${target}`;
                 history.replaceState({}, target, newLoc);
-    
-                // Mute the active link in the traveler
-                const activeLink = document.querySelector(`.traveler__link--active`)
-                if (activeLink != null) activeLink.classList.remove('traveler__link--active');
-                
-                // Add the highlight class to the new traveler link
-                document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
+                if (document.querySelector('.traveler') !== null){
+
+                    // Mute the active link in the traveler
+                    const activeLink = document.querySelector(`.traveler__link--active`)
+                    if (activeLink != null) activeLink.classList.remove('traveler__link--active');
+
+                    // Add the highlight class to the new traveler link
+                    document.querySelector(`.traveler [data-sidebar-target="${target}"]`).classList.add('traveler__link--active');
+                }
             });
             return sidebarWatcher;
         });
-    }
 });

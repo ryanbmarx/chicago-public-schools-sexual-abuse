@@ -1,9 +1,9 @@
 .header.header--student{
-	padding: $grid-gap * 2;
+	// padding: $grid-gap * 2;
 	box-sizing: border-box;
 	// background: black url(../img/bogan1.jpg) center center no-repeat;
 	// background-size: cover;
-	height: 100vh;
+	height: calc(100vh - var(--navbar-height);
 
 	display:flex;
 	position:relative;
@@ -24,7 +24,7 @@
 
 	.header__text{
 		background: rgba(black, .3);
-		max-width: 800px;
+	    height: 100%;
 		margin: auto;
 		text-align: center;
 		color: white;
@@ -34,13 +34,25 @@
 		padding: $grid-gap;
 		box-sizing: border-box;
 
+	    display: flex;
+	    flex-flow: column wrap;
+	    justify-content: center;
+        align-content: center;
+
+
 		& > * + *{
 			margin-bottom: $grid-gap / 2;
+			width: 100%;
 		}
 
 		.header__headline{
+			@include responsive-font(10vw, 30px, 90px);
 			line-height: .9em;
 			text-shadow: 1px 1px 3px black;
+		}
+
+		.header__dek{
+			margin-top: 1em;
 		}
 		.social-networks { 
 			justify-content: center; 
@@ -61,4 +73,15 @@
 		text-align: right;
 
 	}
+}
+
+@media all and (min-width: $desktop-min-width){
+	.header.header--student{
+		padding: $grid-gap * 2;
+		
+		.header__text{
+			max-width: 800px;
+			height:auto;
+		}
+	}	
 }

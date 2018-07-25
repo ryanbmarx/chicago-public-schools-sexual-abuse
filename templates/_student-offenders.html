@@ -48,7 +48,7 @@
 {# Our super cool project navigation #}
 {% include "subtemplates/_nav-carousel.html" %}
 {% include "subtemplates/student-offenders/_header.html" with context %}
-<section id='{{ mainbar_slug }}' class='container sidebar--open'>
+<section id='{{ mainbar_slug }}' class='container sidebar sidebar--open'>
 	<div class='river dropcap'>
 		{% for story_item in abuse[mainbar_slug] %}
 			{# The story content, from the Archie, is passed directly to the template as var story #}
@@ -61,13 +61,9 @@
 	</div>
 </section> </article>{# END MAINBAR #}
 <div class='advert' data-ad-type="leaderboard"></div>
-{# {{ keep_scrolling(direction="back", target="#", label="Back", id="return") }} #}
+
 <section class='sidebars container'>
-	<h1 class='sidebars__header'>{{ sidebar_label_student_offenders }}</h1>
-	<p class='sidebars__sub-label'>{{ sidebar_sublabel_student_offenders }}</p>
-	{# <div class='sidebars__traveler'> #}
-		{# {% include 'subtemplates/_sidebar-traveler.html' %} #}
-	{# </div> #}
+
 	<div class='sidebars__stories'>
 	{% for story in stories|sort(attribute="display_order") if story.slug != "student-offenders" and story.display_order and story.display_order > 0 and story.publish and story.publish > 0 and story.student_offenders and story.student_offenders > 0 %}
 		{% set mainbar = False %}

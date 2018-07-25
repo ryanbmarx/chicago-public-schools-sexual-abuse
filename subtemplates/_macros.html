@@ -1,7 +1,11 @@
 {% from 'base-subtemplates/_macros.html' import refer as refer with context %}
 
 {% macro abuse_subscribe_refer(add_class="") %}
-  {{ refer(refers['subscribe']['headline'], refers['subscribe']['text'], refers['subscribe']['button_url'], refers['subscribe']['button_text'], add_class=add_class) }}
+  {{  refer(refers['subscribe']['headline'], 
+      refers['subscribe']['text'], 
+      refers['subscribe']['button_url'], 
+      refers['subscribe']['button_text'], 
+      add_class=add_class) }}
 {% endmacro %}
 
 
@@ -59,7 +63,7 @@
         <div class='refer__text-wrapper'>
           <h1 class="refer__headline">{{ sidebar_info.headline }}</h1>
           <p class="refer__text">{{ sidebar_info.dek }}</p>
-          <a  class="refer__button" href="#{{ sidebar_slug }}">Read it</a>
+          <a class="refer__button" href="#{{ sidebar_slug }}">Read it</a>
         </div>
       </div>
     </aside>

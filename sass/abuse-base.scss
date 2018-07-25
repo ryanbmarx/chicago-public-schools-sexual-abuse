@@ -358,15 +358,15 @@ body{
 
 // TODO: Move into base styles
 
-.river ~ .image{
-	// For any images that are subsequent siblings (not children!!)
-	// of a .river. The goal here is to target full-width images that
-	// are in a container but not a river.
+// .river ~ .image{
+// 	// For any images that are subsequent siblings (not children!!)
+// 	// of a .river. The goal here is to target full-width images that
+// 	// are in a container but not a river.
 	
-	figcaption{
-		color: $white;
-	}
-}
+// 	figcaption{
+// 		color: $white;
+// 	}
+// }
 
 .image{
 	margin: $grid-gap 0;
