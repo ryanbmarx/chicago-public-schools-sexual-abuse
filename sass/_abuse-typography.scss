@@ -87,6 +87,10 @@ a{
 
 h3{
 	@extend %subhede;
+
+	&:first-child{
+		margin-top: 0;
+	}
 }
 
 @media all and (min-width: $river-width-large){
