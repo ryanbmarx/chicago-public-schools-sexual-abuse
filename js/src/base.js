@@ -11,6 +11,17 @@ const   scrollMonitor = require('scrollmonitor'),
         pym = require('pym.js'),
         throttle = require('lodash.throttle');
 
+// // POLYFILL FOR REMOVE() FROM https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
+// // Create Element.remove() function if not exist
+// if (!('remove' in Element.prototype)) {
+//     Element.prototype.remove = function() {
+//         if (this.parentNode) {
+//             this.parentNode.removeChild(this);
+//         }
+//     };
+// }
+
+
 function isMobile(){
     // returns true if I think we're on mobile.
     return window.innerWidth < 850 ? true : false;
@@ -39,7 +50,10 @@ window.addEventListener('DOMContentLoaded', function(e){
     }
 
     // Remove the nav drawer note if clicked.
-    document.querySelector('#nav-drawer-note').addEventListener('click', function(e){ this.remove(); });
+    document.querySelector('#nav-drawer-note').addEventListener('click', function(e){ 
+        // this.remove(); 
+        this.parentNode.removeChild(this);
+    });
 
     // This powers the header 
     const   body = document.querySelector('body'),
@@ -124,7 +138,18 @@ window.addEventListener('DOMContentLoaded', function(e){
             // the hash to be stripped. It works with slugs, not anchors
             const targetSidebar = this.getAttribute('href').replace(/#/g, "");
 
-            scrollToSidebar(targetSidebar, true);
+            console.log(document.querySelector(`#${targetSidebar}`));
+            
+            if (document.querySelector(`#${targetSidebar}`) == null){
+                // If the sidebar anchor/id does not exist in this page, 
+                // then change the window url and hope for the best.
+                console.log("jumping");
+                window.location.assign(`${window.ROOT_URL}/${targetSidebar}`);
+            } else {
+                // If the sidebar anchor/id exists in this page, then scroll to it.
+                console.log("scrolling");
+                scrollToSidebar(targetSidebar, true);
+            }
 
             clickTrack(`CPS abuse - internal nav clicked - ${targetSidebar}`, false, false);
         });
