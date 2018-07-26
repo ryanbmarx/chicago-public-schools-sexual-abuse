@@ -119,7 +119,6 @@ def get_authors(credits, credits_category):
     sorted_credits=sorted(credits, key=lambda i: i['name_last'])
     credits_to_use=[]
 
-    print(credits_category)
     for credit in sorted_credits:
         if credits_category in credit:
             # If the person is credited in this category by having any value at all
