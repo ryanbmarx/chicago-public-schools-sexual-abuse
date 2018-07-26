@@ -8,6 +8,7 @@ node_modules
 # process.  Uncomment these lines to do so:
 abuse-base.css
 abuse-base.css.map
+base.css.map
 
 #Ignore generated JS files
 js/app.min.js
