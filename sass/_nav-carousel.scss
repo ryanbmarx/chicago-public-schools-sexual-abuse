@@ -50,18 +50,19 @@ body{
 	box-sizing: border-box;
 	padding: $navbar_padding_v $navbar_padding_h;
 
+
+	// @supports not (display:grid){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	align-content: center;
+	// }
+
 	@supports (display:grid){
 		display: grid;
 		grid-template: 16px 1fr / auto auto auto;
 		grid-gap: 5px 0;
 		align-items: center;
-	}
-
-	@supports not (display:grid){
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-		align-content: center;
 	}
 
 	[itemprop="publisher"]{
