@@ -70,6 +70,8 @@ $blur-wave-3: 5s;
 // BREAKERS
 $breaker-text-color: $imperial;
 
+$river-padding: $grid-gap;
+
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
 
@@ -115,7 +117,7 @@ $breaker-text-color: $imperial;
 }
 
 %content_block{
-	padding: $grid-gap;
+	padding: $river-padding;
 	background: $river-background-color;
 	box-sizing: border-box;
     margin-bottom: $grid-gap;
@@ -184,6 +186,7 @@ $breaker-text-color: $imperial;
 @import 'borde'; 
 @import 'keep-scrolling-icon'; 
 @import 'nav-drawer-note';
+@import 'abuse-adverts';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
@@ -344,14 +347,6 @@ body{
 				
 			}
 		}
-	}
-}
-
-// ADVERT TWEAK TO CENTER THE BOX
-.advert{
-	&[data-ad-type="shrinky-cube"], 
-	&[data-ad-type="cube"]{ 
-		margin: #{$grid-gap} auto; 
 	}
 }
 

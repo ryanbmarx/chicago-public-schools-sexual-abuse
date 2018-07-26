@@ -1,0 +1,17 @@
+$overall_padding: $container_padding_h + $river-padding;
+
+// ADVERT TWEAK TO CENTER THE BOX
+.advert{
+	&[data-ad-type="shrinky-cube"], 
+	&[data-ad-type="cube"]{ 
+		margin: #{$grid-gap} auto; 
+	}
+}
+
+
+@media all and (max-width: 768px){
+	.river > .advert{
+		margin: $grid-gap #{ $overall_padding / -1} $grid-gap #{ $overall_padding / -1} ;
+		width: calc(100% + #{ 2 * $overall_padding });
+	}
+}
