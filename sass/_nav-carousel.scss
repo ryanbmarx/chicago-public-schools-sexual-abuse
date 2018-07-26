@@ -63,12 +63,11 @@ body{
 		grid-template: 16px 1fr / auto auto auto;
 		grid-gap: 5px 0;
 		align-items: center;
+
+		justify-content: space-between;
 	}
 
 	[itemprop="publisher"]{
-		// @include blurInto($blur-wave-3)
-		// height: $navbar_inner_height;
-		// height: 10px;
 		display: contents; // So it takes up no space, causing things to misalign.
 		
 		& > a{
@@ -118,12 +117,10 @@ body{
 	&__stories-list{
 		list-style: none;
 		padding: 0;
-		// max-width: 250px;
 		margin: 0 auto;
 	}
 
 	&__title{
-		// @include blurInto($blur-wave-3)
 		@include responsive-font(3vw, 27px, 37px, 25px);
 		font-family: #{$fonts-sans-serif-condensed};
 		font-weight: 300;
@@ -148,7 +145,6 @@ body{
 		}
 
 		span{
-			// @include blurInto($blur-wave-3)
 			font-weight: 600;
 		}
 	}
@@ -164,10 +160,6 @@ body{
 .carousel.carousel--open ~ .carousel__stories{
 	opacity: 1;
 	transform: translate(0,0);
-
-	// .carousel__stories-list li{
-	// 	filter: blur(0);
-	// }
 }
 
 
