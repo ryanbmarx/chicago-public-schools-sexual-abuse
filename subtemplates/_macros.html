@@ -294,11 +294,11 @@
 
     {% if dont_lazy_load %}
       {# {% set src = "src=\'" ~ photo.photo_services_url ~ "/" ~ width ~ "\'" %} #}
-      {% set src = "{}/{}".format(photo.photo_services_url, width) %}
+      {% set src = "{}/{}".format(photo.photo_services_url.replace('http:',''), width) %}
       {% set full_res_src = False %}
     {% else %}
-      {% set src = "{}/{}".format(photo.photo_services_url, 10) %}
-      {% set full_res_src = "{}/{}".format(photo.photo_services_url, width) %}
+      {% set src = "{}/{}".format(photo.photo_services_url.replace('http:',''), 10) %}
+      {% set full_res_src = "{}/{}".format(photo.photo_services_url.replace('http:',''), width) %}
     {% endif %}
 
       <figure class='image {{ add_class }}'>

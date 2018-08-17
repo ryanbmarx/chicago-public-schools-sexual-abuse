@@ -114,7 +114,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ story_info['og_title'] }}" />
     <meta property="og:description" content="{{ story_info['og_description'] }}" />
-    <meta property="og:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta property="og:image" content="https://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="og:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     {% if thumbnail %}
         <meta name="og:image:height" content="{{ thumbnail.height }}px" />
@@ -128,7 +128,7 @@ The variable {{ slug }} is the unique identifier for the page. This should be us
     <meta name="twitter:site" content="@chicagotribune" />
     <meta name="twitter:title" content="{{ story_info['og_title'] }}" />
     <meta name="twitter:description" content="{{ story_info['og_description'] }}" />
-    <meta name="twitter:image" content="http://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
+    <meta name="twitter:image" content="https://{{ ROOT_URL }}/{{ story_info['thumbnail_url'] }}" />
     <meta name="twitter:image:alt" content="{{ story_info['thumbnail_alt'] }}" />
     <meta name="twitter:creator" content="@chicagotribune" />
     <meta name="twitter:creator" content="@chitribgraphics" />
